@@ -1,3 +1,3 @@
-# CS676-Algorithms-For-Data-Science
+# CS676 Algorithms for DataScience
 
 This is the course repo.
