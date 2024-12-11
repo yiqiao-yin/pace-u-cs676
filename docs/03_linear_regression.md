@@ -32,50 +32,50 @@ Linear regression relies on several key assumptions for the model to be valid. T
 
 The linear regression model is represented by the following equation:
 
-\[
+$$
 y = \beta_0 + \beta_1x + \epsilon
-\]
+$$
 
 Where:
-- \( y \) is the dependent variable (output),
-- \( x \) is the independent variable (input),
-- \( \beta_0 \) is the intercept (the value of \( y \) when \( x = 0 \)),
-- \( \beta_1 \) is the slope (the change in \( y \) for a one-unit change in \( x \)),
-- \( \epsilon \) is the error term (residuals, which capture the difference between the observed and predicted values).
+- $y$ is the dependent variable (output),
+- $x$ is the independent variable (input),
+- $\beta_0$ is the intercept (the value of $y$ when $x = 0$),
+- $\beta_1$ is the slope (the change in $y$ for a one-unit change in $x$),
+- $\epsilon$ is the error term (residuals, which capture the difference between the observed and predicted values).
 
 For multiple independent variables, the equation extends to:
 
-\[
+$$
 y = \beta_0 + \beta_1x_1 + \beta_2x_2 + \dots + \beta_nx_n + \epsilon
-\]
+$$
 
-Where \( x_1, x_2, \dots, x_n \) are the independent variables.
+Where $x_1, x_2, \dots, x_n$ are the independent variables.
 
 ## Closed Form Solution for Beta Coefficients
 
-The closed form solution for the coefficients of linear regression can be derived using the least squares method. This method minimizes the sum of squared residuals. The objective is to find the coefficients (\( \beta_0, \beta_1 \)) that minimize the following loss function:
+The closed-form solution for the coefficients of linear regression can be derived using the least squares method. This method minimizes the sum of squared residuals. The objective is to find the coefficients ($\beta_0, \beta_1$) that minimize the following loss function:
 
-\[
+$$
 L(\beta_0, \beta_1) = \sum_{i=1}^m (y_i - (\beta_0 + \beta_1 x_i))^2
-\]
+$$
 
-Where \( m \) is the number of data points, \( y_i \) is the observed value, and \( x_i \) is the corresponding independent variable.
+Where $m$ is the number of data points, $y_i$ is the observed value, and $x_i$ is the corresponding independent variable.
 
-Taking the derivative of the loss function with respect to \( \beta_0 \) and \( \beta_1 \), we find the following closed-form expressions for \( \beta_0 \) and \( \beta_1 \):
+Taking the derivative of the loss function with respect to $\beta_0$ and $\beta_1$, we find the following closed-form expressions for $\beta_0$ and $\beta_1$:
 
 ### Beta_1 (Slope):
 
-\[
+$$
 \beta_1 = \frac{\sum_{i=1}^m (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^m (x_i - \bar{x})^2}
-\]
+$$
 
 ### Beta_0 (Intercept):
 
-\[
+$$
 \beta_0 = \bar{y} - \beta_1 \bar{x}
-\]
+$$
 
-Where \( \bar{x} \) and \( \bar{y} \) represent the mean values of the independent and dependent variables, respectively.
+Where $\bar{x}$ and $\bar{y}$ represent the mean values of the independent and dependent variables, respectively.
 
 ## How Do We Fit the Model?
 
@@ -85,13 +85,13 @@ Fitting a linear regression model involves finding the best-fitting line (or hyp
 
 We can directly compute the coefficients using the closed-form solution derived earlier:
 
-\[
+$$
 \beta = (X^T X)^{-1} X^T y
-\]
+$$
 
 Where:
-- \( X \) is the matrix of input features (with a column of ones for the intercept term),
-- \( y \) is the vector of target values.
+- $X$ is the matrix of input features (with a column of ones for the intercept term),
+- $y$ is the vector of target values.
 
 ### 2. **Dynamic Programming Approach**
 
@@ -103,14 +103,14 @@ Gradient descent is an iterative optimization algorithm used when the dataset is
 
 The update rule for gradient descent is as follows:
 
-\[
+$$
 \beta_j = \beta_j - \alpha \frac{1}{m} \sum_{i=1}^m (h_\beta(x_i) - y_i) x_{ij}
-\]
+$$
 
 Where:
-- \( \alpha \) is the learning rate,
-- \( h_\beta(x_i) \) is the predicted value \( \beta_0 + \beta_1 x_i \),
-- \( x_{ij} \) is the feature for the \( j \)-th coefficient.
+- $\alpha$ is the learning rate,
+- $h_\beta(x_i)$ is the predicted value $\beta_0 + \beta_1 x_i$,
+- $x_{ij}$ is the feature for the $j$-th coefficient.
 
 ## Implementing Linear Regression
 
