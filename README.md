@@ -3,26 +3,16 @@
 Here's the folder directory of this repo:
 
 ```
-├── README.md
-├── Syllabus.pdf
-├── notebooks/
-│   ├── notebook1.ipynb
-│   └── (Additional notebooks as required by the course)
-├── docs/
-│   ├── slide_doc/
-│       ├── CS676_Algorithms_DataScience.pdf
-│       └── LectureSlides/ (Folder containing slides for each session)
+├── README.md               # Main page with Syllabus included
+├── docs/                   # Documentation folder
+│   ├── 01_introduction.md  # Introduction document
+│   ├── 02_xxx.md           # Additional document (placeholder for specific content)
+├── notebooks/              # Notebooks folder
+│   ├── [In Progress...]    # Placeholder for ongoing notebook files
 ```
-
-## Description
-A brief description of your project.
 
 ## Table of Contents
 - [Syllabus](#syllabus)
-- [Notebooks](#notebooks)
-- [Docs](#docs)
-  - [Main Doc](#main-doc)
-  - [Slide Doc](#slide-doc)
 - [Course Topics](#course-topics)
   - [Schedule and Weekly Learning Goals](#schedule-and-weekly-learning-goals)
   - [Session 01: Introduction](#session-01-introduction)
@@ -49,7 +39,9 @@ This course delves into essential algorithms for data analytics with a computati
 [Back to TOC](#table-of-contents)
 
 ### Required Materials
-- Course notes will be released on the course repo.
+Please see the following recommended text:
+- [Introduction to Statistical Learning](https://www.statlearning.com/)
+- [Notes on Agent-based Applications](https://www.amazon.com/dp/9999320023)
 
 ### Prerequisites/Corequisites
 Prerequisites: Open to Data Science Majors.
@@ -131,7 +123,9 @@ The schedule is tentative and subject to change. The learning goals below should
 #### Session 01: Introduction
 - Overview of the course
 - Importance of data science
-- Introduction to Python and R
+- Introduction to Python (R is optional)
+
+For more details, please see: [01_introduction](docs/01_introduction.md)
 
 [Back to TOC](#table-of-contents)
 
