@@ -141,7 +141,7 @@ For more details, please see: [01_introduction](docs/01_introduction.md)
 - Multiple linear regression
 - Assessing the accuracy of the model
 
-For more details, please see: [01_introduction](docs/03_linear_regression.md)
+For more details, please see: [03_linear_regression](docs/03_linear_regression.md)
 
 [Back to TOC](#table-of-contents)
 
