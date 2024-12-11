@@ -51,7 +51,7 @@ $$ \beta := \beta - \alpha \frac{\partial}{\partial \beta} L(\beta) $$
 
 Where $\alpha$ is the learning rate.
 
-## Solve for the Best SOlution based on the Least Square Error
+## Solve for the Best Solution based on the Least Square Error
 To find the best solution for the coefficients $\beta_0$ and $\beta_1$ in a linear regression model based on Ordinary Least Squares (OLS) assumptions, we minimize the least squares loss function. The least squares loss function, $L(\beta)$, is given by:
 
 $$ L(\beta) = \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1x_i))^2 $$
