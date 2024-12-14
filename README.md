@@ -1,16 +1,5 @@
 # CS676 Algorithms for DataScience
 
-Here's the folder directory of this repo:
-
-```
-├── README.md               # Main page with Syllabus included
-├── docs/                   # Documentation folder
-│   ├── 01_introduction.md  # Introduction document
-│   ├── 02_xxx.md           # Additional document (placeholder for specific content)
-├── notebooks/              # Notebooks folder
-│   ├── [In Progress...]    # Placeholder for ongoing notebook files
-```
-
 ## Table of Contents
 - [Syllabus](#syllabus)
 - [Course Topics](#course-topics)
@@ -23,13 +12,11 @@ Here's the folder directory of this repo:
   - [Session 06: Model Selection & Regularization](#session-06-model-selection--regularization)
   - [Session 07: Going Beyond Linearity](#session-07-going-beyond-linearity)
   - [Session 08: Tree-based Methods and Midterm](#session-08-tree-based-methods-and-midterm)
-  - [Session 09: Spring Break](#session-09-spring-break)
-  - [Session 10: Continuation of Tree-based Methods](#session-10-continuation-of-tree-based-methods)
-  - [Session 11: Support Vector Machine](#session-11-support-vector-machine)
-  - [Session 12: Deep Learning](#session-12-deep-learning)
-  - [Session 13: Unsupervised Metrics](#session-13-unsupervised-metrics)
-  - [Session 14: Capstone Project Preparation](#session-14-capstone-project-preparation)
-  - [Session 15: Capstone Project Work](#session-15-capstone-project-work)
+  - [Session 09: Support Vector Machine](#session-09-support-vector-machine)
+  - [Session 10: Deep Learning](#session-10-deep-learning)
+  - [Session 11: Unsupervised Metrics](#session-11-unsupervised-metrics)
+  - [Session 12: Capstone Project Preparation](#session-12-capstone-project-preparation)
+  - [Session 13: Capstone Project Work](#session-13-capstone-project-work)
 
 ## Syllabus
 
@@ -88,6 +75,7 @@ The assessments will count toward your grade as follows:
 - **30%** of your grade will be determined by homework assignments. There will be 10 homework assignments, and the 2 lowest scores will be dropped.
 - **30%** of your grade will be determined by an open-book, open-source midterm exam conducted in person.
 - **40%** of your grade will be determined by the final project.
+- **15%** (bonus) will be additionally rewarded for extracurriculum activities.
 
 Late submissions for the midterm will incur a deduction of 5 points from the total score (100 points).
 
@@ -118,12 +106,12 @@ Discrimination and harassment of any form are not tolerated. Retaliation against
 
 ### Schedule and Weekly Learning Goals
 
-The schedule is tentative and subject to change. The learning goals below should be viewed as the key concepts you should grasp after each week, and also as a study guide before each exam, and at the end of the semester. Each exam will test on the material that was taught up until 1 week prior to the exam (i.e. vorticity will not be tested until exam 2). The applications in the second half of the semester tend to build on the concepts in the first half of the semester though, so it is still important to at least review those concepts throughout the semester. Depending on the school calendar and schedule, the terms "week" and "session" are used interchangeably.
+The schedule is tentative and subject to change. The learning goals below should be viewed as the key concepts you should grasp after each week, and also as a study guide before each exam, and at the end of the semester. Each exam will test on the material that was taught up until 1 week prior to the exam. The applications in the second half of the semester tend to build on the concepts in the first half of the semester though, so it is still important to at least review those concepts throughout the semester.
 
 #### Session 01: Introduction
 - Overview of the course
 - Importance of data science
-- Introduction to Python (R is optional)
+- Introduction to Python (R is optional by Python is recommended)
 
 For more details, please see: [01_introduction](docs/01_introduction.md)
 
@@ -150,12 +138,16 @@ For more details, please see: [03_linear_regression](docs/03_linear_regression.m
 - Linear discriminant analysis
 - Performance measures for classification
 
+For more details, please see: [04_classification](docs/04_classification.md)
+
 [Back to TOC](#table-of-contents)
 
 #### Session 05: Sampling and Bootstrap
 - Importance of sampling
 - Bootstrap methods
 - Applications of sampling and bootstrap
+
+For more details, please see: [05_sampling_and_bootstrap](docs/05_sampling_and_bootstrap.md)
 
 [Back to TOC](#table-of-contents)
 
@@ -164,6 +156,8 @@ For more details, please see: [03_linear_regression](docs/03_linear_regression.m
 - Ridge regression
 - Lasso regression
 
+For more details, please see: [06_model_selection](docs/06_model_selection.md)
+
 [Back to TOC](#table-of-contents)
 
 #### Session 07: Going Beyond Linearity
@@ -171,52 +165,52 @@ For more details, please see: [03_linear_regression](docs/03_linear_regression.m
 - Step functions
 - Basis functions and splines
 
+For more details, please see: [07_going_beyond_linearity](docs/07_going_beyond_linearity.md)
+
 [Back to TOC](#table-of-contents)
 
 #### Session 08: Tree-based Methods and Midterm
 - Decision trees
 - Random forests
 - Boosting
-
-[Back to TOC](#table-of-contents)
-
-#### Session 09: Spring Break
-
-#### Session 10: Continuation of Tree-based Methods
 - Detailed analysis of random forests
 - Advanced boosting techniques
 
+For more details, please see: [08_tree_based_model](docs/08_tree_based_model.md)
+
 [Back to TOC](#table-of-contents)
 
-#### Session 11: Support Vector Machine
+#### Session 09: Support Vector Machine
 - Introduction to SVM
 - SVM for classification
 - SVM for regression
 
 [Back to TOC](#table-of-contents)
 
-#### Session 12: Deep Learning
+#### Session 10: Deep Learning
 - Fundamentals of deep learning
 - Neural networks and architectures
 - Applications in real-world problems
 
 [Back to TOC](#table-of-contents)
 
-#### Session 13: Unsupervised Metrics
+#### Session 11: Unsupervised Metrics
 - Introduction to unsupervised metrics
 - Evaluation of clustering methods
 - Practical applications of unsupervised metrics
 
 [Back to TOC](#table-of-contents)
 
-#### Session 14: Capstone Project Preparation
+#### Session 12: Capstone Project Preparation
 - Project guidelines
 - Team formation
 - Initial project planning
 
 [Back to TOC](#table-of-contents)
 
-#### Session 15: Capstone Project Work
+#### Session 13: Capstone Project Work
+
+[Back to TOC](#table-of-contents)
 
 ## Notebooks
 This folder contains Jupyter notebooks used for the project.
@@ -228,3 +222,5 @@ This directory contains additional documentation files.
 
 ### Slide Doc
 PDF documents for presentation slides.
+
+[Back to TOC](#table-of-contents)
