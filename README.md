@@ -122,6 +122,8 @@ For more details, please see: [01_introduction](docs/01_introduction.md)
 - Key concepts and definitions
 - Examples of statistical learning applications
 
+For more details, please see: [02_basics_in_stat_learning](docs/02_basics_in_stat_learning.md)
+
 [Back to TOC](#table-of-contents)
 
 #### Session 03: Linear Regression

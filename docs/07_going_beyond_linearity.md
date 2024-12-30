@@ -13,11 +13,11 @@ Back to [home](../README.md)
 - **Definition**: Polynomial regression is a specific type of nonlinear regression that models the relationship between the independent and dependent variables as an nth-degree polynomial.
   - For example, a quadratic regression fits a parabola to the data, while a cubic regression fits a cubic curve.
 
-- **Features**: Unlike linear regression, polynomial regression can capture curves and more complex patterns by including higher-order terms (e.g., \(x^2, x^3\)) in the model.
+- **Features**: Unlike linear regression, polynomial regression can capture curves and more complex patterns by including higher-order terms (e.g., $x^2, x^3$) in the model.
   - It is particularly useful for datasets where a linear model underfits and fails to capture the nuances of the relationship.
 
 ## What are the Assumptions for Polynomial Regression Model?
-- **Linearity in Parameters**: While the model includes higher-order terms, the regression still assumes linearity in the coefficients (e.g., the weights for \(x^2, x^3\) are linear).
+- **Linearity in Parameters**: While the model includes higher-order terms, the regression still assumes linearity in the coefficients (e.g., the weights for $x^2, x^3$ are linear).
   - This means that polynomial regression is a linear model in terms of the parameter estimation process.
 
 - **Independence**: Observations in the dataset should be independent of one another.
@@ -30,7 +30,7 @@ Back to [home](../README.md)
   - Non-normality of errors can affect statistical significance.
 
 ### Differences from Linear Regression:
-- **Complexity of Fit**: Polynomial regression introduces non-linear terms (e.g., \(x^2\), \(x^3\)), while linear regression relies solely on a linear relationship.
+- **Complexity of Fit**: Polynomial regression introduces non-linear terms (e.g., $x^2$, $x^3$), while linear regression relies solely on a linear relationship.
   - This allows polynomial regression to model curves, while linear regression can only model straight lines.
 
 - **Overfitting Risk**: Polynomial regression is prone to overfitting, especially when using high-degree polynomials.

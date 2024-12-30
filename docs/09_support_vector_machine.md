@@ -78,6 +78,100 @@ sample = [[1.5]]
 predicted_value = regressor.predict(sample)
 print("Predicted value:", predicted_value)
 ```
+## SVM from Scratch
+
+write 400-600 word .md file regards the following:
+
+## SVM from Scratch
+
+Support Vector Machines (SVM) are a powerful set of supervised learning algorithms primarily used for classification tasks. SVMs aim to find the hyperplane that best separates data into different classes in an n-dimensional space. Creating an SVM from scratch is an excellent way to understand how the algorithm works under the hood. Below, we'll explore how to implement a linear SVM classifier without using third-party packages like scikit-learn.
+
+### Understanding the Problem
+
+Given:
+- A matrix $X$ with shape $m \times n$, where $m$ represents the number of samples and $n$ represents the number of features.
+- A target vector $Y$ with length $m$, containing labels (typically -1 or 1).
+
+The goal is to construct a linear SVM model that finds the optimal hyperplane separating the classes in the feature space.
+
+## Coding a Simple SVM
+
+To begin, we need to define our objective: maximize the margin between data points of different classes. This involves minimizing:
+
+$$\frac{1}{2} ||w||^2$$
+
+subject to the constraints:
+
+$$y_i(w \cdot x_i + b) \geq 1$$
+
+Where:
+- $w$ is the weight vector orthogonal to the deciding hyperplane.
+- $b$ is the bias term.
+- $x_i$ is a feature vector.
+
+### Implementation Steps
+
+1. **Initialize Parameters**: Start with a random weight vector $w$ and bias $b$.
+2. **Iterate through Samples**: Use gradient descent to update $w$ and $b$.
+3. **Hinge Loss Function**: Compute the hinge loss for error calculation and update parameters accordingly.
+
+Here's how you can implement a simple linear SVM:
+
+```python
+import numpy as np
+
+class SimpleSVM:
+    def __init__(self, learning_rate=0.001, lambda_param=0.01, n_iters=1000):
+        self.learning_rate = learning_rate
+        self.lambda_param = lambda_param
+        self.n_iters = n_iters
+        self.w = None
+        self.b = None
+    
+    def fit(self, X, y):
+        m, n = X.shape
+        y_ = np.where(y <= 0, -1, 1)
+        self.w = np.zeros(n)
+        self.b = 0
+
+        for _ in range(self.n_iters):
+            for idx, x_i in enumerate(X):
+                condition = y_[idx] * (np.dot(x_i, self.w) - self.b) >= 1
+                if condition:
+                    dw = 2 * self.lambda_param * self.w
+                    db = 0
+                else:
+                    dw = 2 * self.lambda_param * self.w - np.dot(x_i, y_[idx])
+                    db = y_[idx]
+                
+                self.w -= self.learning_rate * dw
+                self.b -= self.learning_rate * db
+    
+    def predict(self, X):
+        linear_output = np.dot(X, self.w) - self.b
+        return np.sign(linear_output)
+
+# Example usage:
+# Define a dataset
+X = np.array([[1, 2], [2, 3], [3, 3]])
+Y = np.array([-1, -1, 1])
+
+# Create and train SVM
+svm = SimpleSVM()
+svm.fit(X, Y)
+
+# Predict output
+predictions = svm.predict(X)
+print("Predicted labels:", predictions)
+```
+
+### Key Points
+
+- **Weight Update Rule**: The update for $w$ and $b$ depends on whether the sample satisfies the margin constraint. Gradient descent helps tweak these parameters iteratively.
+- **Regularization Term ($\lambda$)**: Helps prevent overfitting by penalizing large weights.
+- **Learning Rate**: Determines the size of steps taken towards the minimum loss.
+
+This simplified version of SVM implements a basic linear classifier capable of partitioning linearly separable data. While it lacks optimizations and comprehensive feature support found in library-based SVM implementations, writing it from scratch provides valuable insight into the mechanics of SVMs. For more complex datasets, kernel tricks and support for non-linear decision boundaries would be necessary.
 
 ## Conclusion
 

@@ -3,89 +3,102 @@
 Back to [home](../README.md)
 
 ## 📚 What is Supervised Learning?
-Supervised Learning is a type of machine learning approach that involves training a model on a labeled dataset. In this context, the dataset consists of features (X) and a corresponding response (Y). The goal is to learn a mapping from the input features to the output response, so that the model can make predictions on new, unseen data.
+Supervised Learning is a type of machine learning approach that involves training a model on a labeled dataset. In this context, the dataset consists of features (`X`) and a corresponding response (`Y`). The goal is to learn a mapping from the input features to the output response so that the model can make predictions on new, unseen data.
 
 - **Features (X)**: These are the input variables or predictors in the dataset.
 - **Response (Y)**: This is the output variable or the target that the model is trying to predict.
 
 ## Linear Regression Model
-A linear regression model is a fundamental approach in statistics used to model the relationship between a dependent variable (Y) and one or more independent variables (X). The formula for a simple linear regression model with one predictor is:
+A linear regression model is a fundamental approach in statistics used to model the relationship between a dependent variable (`Y`) and one or more independent variables (`X`). The formula for a simple linear regression model with one predictor is:
 
-$$ Y = \beta_0 + \beta_1X + \epsilon $$
+```python
+import numpy as np
+
+# Simple linear regression model
+def linear_regression(X, beta_0, beta_1):
+    epsilon = np.random.normal(0, 1, len(X))  # Error term
+    Y = beta_0 + beta_1 * X + epsilon
+    return Y
+```
 
 Where:
-- $ Y $ is the response variable.
-- $ X $ is the predictor variable.
-- $ \beta_0 $ is the y-intercept.
-- $ \beta_1 $ is the slope of the line.
-- $ \epsilon $ is the error term.
+- `Y` is the response variable.
+- `X` is the predictor variable.
+- `beta_0` is the y-intercept.
+- `beta_1` is the slope of the line.
+- `epsilon` is the error term generated with normal distribution.
 
 ## Least Square Loss Function
 The least squares loss function is used to estimate the coefficients of the linear regression model. It calculates the sum of the squared differences between the observed responses in the dataset and the responses predicted by the linear approximation. The formula is:
 
-$$ L(\beta) = \sum_{i=1}^{n} (y_i - ( \beta_0 + \beta_1x_i ))^2 $$
+```python
+def least_square_loss(y, y_pred):
+    loss = np.sum((y - y_pred) ** 2)
+    return loss
+```
 
 Where:
-- $ L(\beta) $ is the loss function.
-- $ y_i $ is the actual response for the ith observation.
-- $ \beta_0 + \beta_1x_i $ is the predicted response for the ith observation.
-- $ n $ is the number of observations.
+- `loss` is the sum of squared differences.
+- `y` is the actual response for the observations.
+- `y_pred` is the predicted response for the observations.
 
 ## Main Assumptions of OLS Model
 The Ordinary Least Squares (OLS) model relies on several key assumptions:
-1. Linearity: The relationship between $X$ and $Y$ is linear.
-2. Independence: The observations are independent of each other.
-3. Homoscedasticity: The variance of the error terms is constant.
-4. Normality: The error terms are normally distributed.
+1. **Linearity**: The relationship between `X` and `Y` is linear.
+2. **Independence**: The observations are independent of each other.
+3. **Homoscedasticity**: The variance of the error terms is constant.
+4. **Normality**: The error terms are normally distributed.
 
 ## Training the Model
 There are two main approaches to training a linear regression model: likelihood maximization and gradient descent.
 
 ### Likelihood Maximization
-This approach involves solving the model using the log-likelihood function. The log-likelihood is maximized to find the parameter estimates that make the observed data most probable. The formula for the log-likelihood in linear regression is:
-
-$$ \log L(\beta) = -\frac{n}{2}\log(2\pi) - \frac{n}{2}\log(\sigma^2) - \frac{1}{2\sigma^2} \sum_{i=1}^{n} (y_i - ( \beta_0 + \beta_1x_i ))^2 $$
+This approach involves solving the model using the log-likelihood function, often implicit in optimization packages.
 
 ### Gradient Descent
-Gradient descent is an optimization algorithm used to minimize the loss function. It iteratively adjusts the parameters to find the best values that minimize the cost function. The update rule in gradient descent is:
+Gradient descent is an optimization algorithm used to minimize the loss function. It iteratively adjusts the parameters to find the best values that minimize the cost function. The update rule in gradient descent is implemented as follows:
 
-$$ \beta := \beta - \alpha \frac{\partial}{\partial \beta} L(\beta) $$
+```python
+def gradient_descent(X, y, alpha=0.01, iterations=1000):
+    n = len(y)
+    beta_0 = 0
+    beta_1 = 0
+    
+    for _ in range(iterations):
+        y_pred = beta_0 + beta_1 * X
+        d_beta_0 = -(2/n) * np.sum(y - y_pred)
+        d_beta_1 = -(2/n) * np.sum((y - y_pred) * X)
+        
+        beta_0 -= alpha * d_beta_0
+        beta_1 -= alpha * d_beta_1
+        
+    return beta_0, beta_1
+```
 
-Where $\alpha$ is the learning rate.
+Where `alpha` is the learning rate.
 
 ## Solve for the Best Solution based on the Least Square Error
-To find the best solution for the coefficients $\beta_0$ and $\beta_1$ in a linear regression model based on Ordinary Least Squares (OLS) assumptions, we minimize the least squares loss function. The least squares loss function, $L(\beta)$, is given by:
-
-$$ L(\beta) = \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1x_i))^2 $$
-
-To minimize this function with respect to $\beta_0$ and $\beta_1$, we take the partial derivatives of $L(\beta)$ with respect to $\beta_0$ and $\beta_1$, and set them equal to zero.
-
-### Partial Derivative with Respect to $\beta_0$
-
-$$ \frac{\partial L(\beta)}{\partial \beta_0} = -2 \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1x_i)) = 0 $$
-
-### Partial Derivative with Respect to $\beta_1$
-
-$$ \frac{\partial L(\beta)}{\partial \beta_1} = -2 \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1x_i))x_i = 0 $$
-
-Solving these equations simultaneously gives us the values of $\beta_0$ and $\beta_1$ that minimize the loss function. 
+To find the best solution for the coefficients `beta_0` and `beta_1` in a linear regression model based on Ordinary Least Squares (OLS) assumptions, we minimize the least squares loss function. 
 
 Let's denote:
 
-- $ \bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i $ as the mean of $X$.
-- $ \bar{y} = \frac{1}{n}\sum_{i=1}^{n}y_i $ as the mean of $Y$.
+- `mean_x = np.mean(X)` as the mean of `X`.
+- `mean_y = np.mean(Y)` as the mean of `Y`.
 
-Then, solving the system of equations, we obtain the formulas for $\beta_1$ and $\beta_0$:
+Then, solving the system of equations, we obtain the formulas for `beta_1` and `beta_0`:
 
-### Solution for $\beta_1$
+```python
+def calculate_coefficients(X, Y):
+    mean_x = np.mean(X)
+    mean_y = np.mean(Y)
+    
+    beta_1 = np.sum((X - mean_x) * (Y - mean_y)) / np.sum((X - mean_x) ** 2)
+    beta_0 = mean_y - beta_1 * mean_x
+    
+    return beta_0, beta_1
+```
 
-$$ \beta_1 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n} (x_i - \bar{x})^2} $$
-
-### Solution for $\beta_0$
-
-$$ \beta_0 = \bar{y} - \beta_1\bar{x} $$
-
-These equations give us the best linear unbiased estimators for $\beta_0$ and $\beta_1$ under the OLS assumptions. The slope $\beta_1$ tells us how much the response variable $Y$ changes for a one-unit change in the predictor variable $X$, and the intercept $\beta_0$ gives the value of $Y$ when $X$ is zero.
+These equations give us the best linear unbiased estimators for `beta_0` and `beta_1` under the OLS assumptions. The slope `beta_1` tells us how much the response variable `Y` changes for a one-unit change in the predictor variable `X`, and the intercept `beta_0` gives the value of `Y` when `X` is zero.
 
 ## Example Using sklearn and Numpy
 
