@@ -203,6 +203,8 @@ For more details, please see: [10_neural_networks](docs/10_neural_networks.md)
 - Evaluation of clustering methods
 - Practical applications of unsupervised metrics
 
+For more details, please see: [11_unsupervised](docs/11_unsupervised.md)
+
 [Back to TOC](#table-of-contents)
 
 #### Session 12: Capstone Project Preparation
