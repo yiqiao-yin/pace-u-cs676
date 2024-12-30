@@ -1,5 +1,7 @@
 # Decision Tree Algorithm Lecture Notes
 
+Back to [home](../README.md)
+
 ## What is the Decision Tree Algorithm?
 
 - **Overview**: A decision tree is a supervised learning algorithm used for both classification and regression tasks. It works by splitting the dataset into branches based on certain conditions, making predictions at each branch's end.

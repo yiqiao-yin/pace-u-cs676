@@ -1,5 +1,7 @@
 # Lecture Notes: Model Selection and Related Concepts
 
+Back to [home](../README.md)
+
 ## 1. What is Model Selection? Why is it Important?
 Model selection refers to the process of choosing the best statistical model from a set of candidate models. It is crucial for:
 

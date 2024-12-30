@@ -1,5 +1,7 @@
 # Lecture Notes: Nonlinear and Polynomial Regression Models
 
+Back to [home](../README.md)
+
 ## What is Nonlinear Regression Models?
 - **Definition**: Nonlinear regression models are statistical tools used to model relationships between variables when the relationship is not a straight line. Instead of assuming a linear equation, nonlinear regression allows for flexibility in the shape of the curve that best fits the data.
   - These models are particularly useful when data exhibits patterns such as exponential growth, logistic growth, or other non-linear behaviors.

@@ -1,5 +1,7 @@
 # Lecture Notes: Sampling, Bootstrap, and Cross Validation
 
+Back to [home](../README.md)
+
 ## What is Sampling?
 
 **Sampling** refers to the process of selecting a subset of data from a larger dataset. The goal is to make inferences about the entire dataset using the selected subset.

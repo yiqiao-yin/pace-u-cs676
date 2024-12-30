@@ -64,7 +64,7 @@ Students must demonstrate proficiency in the following areas:
 ### Lecture
 The lectures are composed of slides and coding sessions. Both slides and Python notebooks will be used during the lecture. Depending on the material's content, slides and coding sessions may be presented in any order.
 
-The slides and coding materials can be found in the course repo.
+The slides and coding materials can be found in the course repo. Please see [here](docs/slide_doc/CS%20676%20Algorithms%20of%20Data%20Science.pdf).
 
 ### Final Exam and Class Project
 The final project will be a group activity with no more than five students per team. Each team will conduct a data science project culminating in a presentation, which will be recorded and evaluated by external judges.

@@ -1,4 +1,6 @@
-# Lecture Notes: Introduction to Classification and Logistic Regression
+# Introduction to Classification and Logistic Regression
+
+Back to [home](../README.md)
 
 ## 1. Motivational Example
 

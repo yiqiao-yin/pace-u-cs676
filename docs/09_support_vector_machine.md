@@ -1,5 +1,7 @@
 # Support Vector Machine
 
+Back to [home](../README.md)
+
 ## Introduction to SVM
 
 Support Vector Machine (SVM) is a powerful supervised machine learning algorithm primarily used for classification tasks but can also be adapted for regression. The main objective of SVM is to find the optimal hyperplane that best separates data points of different classes in the feature space. This hyperplane, which maximizes the margin between two classes, helps the model make predictions on new or unseen data points.

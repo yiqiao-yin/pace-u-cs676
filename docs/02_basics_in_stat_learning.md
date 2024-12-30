@@ -1,4 +1,6 @@
-# 02: Basics in Statistical Learning
+# Basics in Statistical Learning
+
+Back to [home](../README.md)
 
 ## What is Statistical Machine Learning?
 
