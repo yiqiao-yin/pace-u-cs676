@@ -61,6 +61,14 @@ Students must demonstrate proficiency in the following areas:
 3. **Basic Machine Learning:** Understand and apply fundamental machine learning algorithms or tools.
 4. **Basic API Calls:** Make and utilize API calls to interact with different data services.
 
+We will be using [this link](https://airtable.com/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form) for all of the submissions. This includes homework assignments, midterm, final projects, and extra credits. Please see the following rubrics:
+
+| Scores | Formality | Length | Novelty | Business Oriented | Reference |
+| --- | --- | --- | --- | --- | --- |
+| 7 to 10 | Simple and clear | Most length of string of the class | As little from Internet/ChatGPT as possible | Your idea is ready to start a company | Clear list of reference with bibliography summary |
+| 4 to 6 | Clear but not simple | Good amount but not the most length of string of the class | Some from Internet/ChatGPT but some from yourself | Can be converted to business idea but not ready | List of reference but no summary |
+| 1 to 3 | Not clear not simple | A few lines or minimum of the class | All from Internet/ChatGPT | Not a business idea at all | No reference or no summary |
+
 ### Lecture
 The lectures are composed of slides and coding sessions. Both slides and Python notebooks will be used during the lecture. Depending on the material's content, slides and coding sessions may be presented in any order.
 
