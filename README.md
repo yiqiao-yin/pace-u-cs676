@@ -35,7 +35,7 @@ Prerequisites: Open to Data Science Majors.
 
 ### Course Objectives
 Successful students will:
-1. Develop proficiency in Python and R for data analytics.
+1. Develop proficiency in Python for data analytics.
 2. Implement algorithms for data reduction, including data mapping and data dictionaries.
 3. Utilize scalable algorithms to handle big data.
 4. Gain insights from data through visualization, regression modeling, and cluster analysis.
@@ -49,7 +49,7 @@ This course will be conducted in person, allowing for direct interaction and han
 
 Each session will be divided into two main parts:
 1. The lecture portion will last 1 hour, where key concepts and theoretical foundations will be covered.
-2. The coding session will follow, lasting approximately 1.5 hours, depending on the content and complexity of the day's material.
+2. The coding session will follow, lasting approximately 1-1.5 hours, depending on the content and complexity of the day's material.
 
 A coding component is required for this course. We recommend using Google Colab, which allows students to write and execute Python code in a web-based environment, easily accessible through Google Drive.
 
@@ -185,12 +185,16 @@ For more details, please see: [08_tree_based_model](docs/08_tree_based_model.md)
 - SVM for classification
 - SVM for regression
 
+For more details, please see: [09_support_vector_machine](docs/09_support_vector_machine.md)
+
 [Back to TOC](#table-of-contents)
 
 #### Session 10: Deep Learning
 - Fundamentals of deep learning
 - Neural networks and architectures
 - Applications in real-world problems
+
+For more details, please see: [10_neural_networks](docs/10_neural_networks.md)
 
 [Back to TOC](#table-of-contents)
 
