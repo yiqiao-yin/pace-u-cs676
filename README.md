@@ -30,6 +30,8 @@ Please see the following recommended text:
 - [Introduction to Statistical Learning](https://www.statlearning.com/)
 - [Notes on Agent-based Applications](https://www.amazon.com/dp/9999320023)
 
+For all links in all course documents, if you are accessing this page from iOS app, hold the links and you can open in a new tab. I found that way easier to navigate. 
+
 ### Prerequisites/Corequisites
 Prerequisites: Open to Data Science Majors.
 
@@ -38,7 +40,7 @@ Successful students will:
 1. Develop proficiency in Python for data analytics.
 2. Implement algorithms for data reduction, including data mapping and data dictionaries.
 3. Utilize scalable algorithms to handle big data.
-4. Gain insights from data through visualization, regression modeling, and cluster analysis.
+4. Gain insights from data through visualization, regression modeling, and cluster analysis.`
 5. Apply predictive analytics techniques such as k-nearest neighbors, naïve Bayes, and time series forecasting.
 6. Analyze and interpret streaming data in real-time.
 
