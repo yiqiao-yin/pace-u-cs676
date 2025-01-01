@@ -14,6 +14,97 @@ Back to [home](../README.md)
 - **Binary Splitting**: Each split divides the data into two groups, creating branches in the tree. The process repeats recursively, forming deeper levels of the tree.
 - **Stopping Criteria**: The splitting process halts when all data points in a node belong to the same class, or a specified minimum number of samples in a node is reached.
 
+Here's a simple implementation of a decision tree classifier from scratch using NumPy. This implementation focuses on binary classification and uses Gini impurity as the splitting criterion. Please implement at caution. 
+
+```python
+import numpy as np
+
+class SimpleDecisionTreeClassifier:
+    def __init__(self):
+        self.tree = None
+    
+    def gini(self, y):
+        """Calculate the Gini Impurity for a list of labels."""
+        prob = np.bincount(y) / len(y)
+        return 1 - np.sum(prob ** 2)
+    
+    def best_split(self, X, y):
+        """Find the best feature and threshold to split on."""
+        best_gini = float('inf')
+        best_idx = None
+        best_threshold = None
+        
+        n_samples, n_features = X.shape
+        for idx in range(n_features):
+            thresholds = np.unique(X[:, idx])
+            for threshold in thresholds:
+                left_indices = X[:, idx] <= threshold
+                right_indices = X[:, idx] > threshold
+                if len(np.unique(y[left_indices])) == 0 or len(np.unique(y[right_indices])) == 0:
+                    continue
+                    
+                left_gini = self.gini(y[left_indices])
+                right_gini = self.gini(y[right_indices])
+                weighted_gini = (len(y[left_indices]) * left_gini + len(y[right_indices]) * right_gini) / n_samples
+                
+                if weighted_gini < best_gini:
+                    best_gini = weighted_gini
+                    best_idx = idx
+                    best_threshold = threshold
+        
+        return best_idx, best_threshold
+    
+    def build_tree(self, X, y):
+        """Build the decision tree recursively."""
+        if len(np.unique(y)) == 1:
+            return {'label': y[0]}
+        
+        best_idx, best_threshold = self.best_split(X, y)
+        if best_idx is None:
+            return {'label': np.bincount(y).argmax()}
+        
+        left_indices = X[:, best_idx] <= best_threshold
+        right_indices = X[:, best_idx] > best_threshold
+        return {
+            'feature_index': best_idx,
+            'threshold': best_threshold,
+            'left': self.build_tree(X[left_indices], y[left_indices]),
+            'right': self.build_tree(X[right_indices], y[right_indices])
+        }
+
+    def train(self, X, y):
+        """Fit the decision tree on the data."""
+        self.tree = self.build_tree(X, y)
+
+    def predict_sample(self, node, x):
+        """Predict a single sample based on the built tree."""
+        if 'label' in node:
+            return node['label']
+        
+        if x[node['feature_index']] <= node['threshold']:
+            return self.predict_sample(node['left'], x)
+        else:
+            return self.predict_sample(node['right'], x)
+    
+    def predict(self, X):
+        """Predict class labels for samples in X."""
+        return np.array([self.predict_sample(self.tree, x) for x in X])
+
+# Sample Usage
+if __name__ == "__main__":
+    # Example data
+    X = np.array([[2, 3], [1, 2], [3, 6], [6, 7], [5, 8]])
+    y = np.array([0, 0, 1, 1, 1])
+    
+    # Initialize and train our simple decision tree classifier
+    clf = SimpleDecisionTreeClassifier()
+    clf.train(X, y)
+    
+    # Make predictions
+    predictions = clf.predict(X)
+    print("Predictions:", predictions)
+```
+
 ### Explanation:
 
 - **`gini`:** This function calculates the Gini impurity for a given set of labels.
