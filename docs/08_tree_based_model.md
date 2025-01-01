@@ -14,7 +14,7 @@ Back to [home](../README.md)
 - **Binary Splitting**: Each split divides the data into two groups, creating branches in the tree. The process repeats recursively, forming deeper levels of the tree.
 - **Stopping Criteria**: The splitting process halts when all data points in a node belong to the same class, or a specified minimum number of samples in a node is reached.
 
-Here's a simple implementation of a decision tree classifier from scratch using NumPy. This implementation focuses on binary classification and uses Gini impurity as the splitting criterion.
+Here's a simple implementation of a decision tree classifier from scratch using NumPy. This implementation focuses on binary classification and uses Gini impurity as the splitting criterion. Please implement at caution. 
 
 ```python
 import numpy as np
