@@ -30,7 +30,7 @@ Please see the following recommended text:
 - [Introduction to Statistical Learning](https://www.statlearning.com/)
 - [Notes on Agent-based Applications](https://www.amazon.com/dp/9999320023)
 
-For all links in all course documents, if you are accessing this page from iOS app, hold the links and you can open in a new tab. I found that way easier to navigate. 
+**Note**: For all links in all course documents, if you are accessing this page from iOS app, hold the links and you can open in a new tab. I found that way easier to navigate. 
 
 ### Prerequisites/Corequisites
 Prerequisites: Open to Data Science Majors.
