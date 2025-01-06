@@ -63,7 +63,7 @@ Students must demonstrate proficiency in the following areas:
 3. **Basic Machine Learning:** Understand and apply fundamental machine learning algorithms or tools.
 4. **Basic API Calls:** Make and utilize API calls to interact with different data services.
 
-We will be using [this link](https://airtable.com/embed/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form) for all of the submissions. he link is set up that allows multiple submissions, but I will only read the last verson you submit. This includes homework assignments, midterm, final projects, and extra credits. Please see the following rubrics:
+We will be using [this link](https://airtable.com/embed/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form) for all of the submissions. You can also access this page from the iOS app (see ✅ tab). The link is set up that allows multiple submissions, but I will only read the last verson you submit. This includes homework assignments, midterm, final projects, and extra credits. Please see the following rubrics:
 
 | Scores | No. of Submission | Formality | Length | Novelty | Business Oriented | Reference |
 | --- | --- | --- | --- | --- | --- | --- |
