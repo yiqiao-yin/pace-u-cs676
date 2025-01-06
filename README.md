@@ -28,7 +28,7 @@ This course delves into essential algorithms for data analytics with a computati
 ### Required Materials
 Please see the following recommended text:
 - [Introduction to Statistical Learning](https://www.statlearning.com/)
-- [Notes on Agent-based Applications](https://www.amazon.com/embed/dp/9999320023)
+- [Notes on Agent-based Applications](https://www.amazon.com/dp/9999320023/ref=cm_sw_r_ffobk_cso_cp_apin_dp_HTEJCKH50ZSSMBBEDDWJ_1?newOGT=1)
 
 **Note**: For all links in all course documents, if you are accessing this page from iOS app, hold the links and you can open in a new tab. I found that way easier to navigate. 
 
