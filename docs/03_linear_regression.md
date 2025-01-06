@@ -8,6 +8,22 @@ Supervised Learning is a type of machine learning approach that involves trainin
 - **Features (X)**: These are the input variables or predictors in the dataset.
 - **Response (Y)**: This is the output variable or the target that the model is trying to predict.
 
+![graph](../pics/01_linear_reg_04.png)
+
+![graph](../pics/01_linear_reg_05.png)
+
+## Solve for the Solutions
+
+![graph](../pics/01_linear_reg_06.png)
+
+![graph](../pics/01_linear_reg_07.png)
+
+Here's the steps to derive closed form:
+
+![graph](../pics/01_linear_reg_08.png)
+
+![graph](../pics/01_linear_reg_09.png)
+
 ## Linear Regression Model
 A linear regression model is a fundamental approach in statistics used to model the relationship between a dependent variable (`Y`) and one or more independent variables (`X`). The formula for a simple linear regression model with one predictor is:
 

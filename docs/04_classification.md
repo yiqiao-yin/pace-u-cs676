@@ -6,11 +6,11 @@ Back to [home](../README.md)
 
 Imagine you are developing a medical diagnostic tool to predict whether a patient has a particular disease ("Positive") or not ("Negative") based on blood test results. This is a classic **classification task**, where the outcome is one of a limited set of categories (Positive or Negative).
 
+![graph](../pics/02_logistic_reg_01.png)
+
 ### Definitions
 - **Categorical Variable**: A variable that represents discrete categories. In our example, the diagnosis is categorical with values `Positive` or `Negative`.
 - **Continuous Variable**: A variable that takes any value within a range. For instance, a patient’s blood glucose level is continuous as it can take any real number within a valid range.
-
----
 
 ## 2. The Concept of a Classification Problem
 
@@ -18,7 +18,7 @@ A **classification problem** involves predicting a categorical variable (the cla
 
 For example, in spam detection, we classify emails as "Spam" or "Not Spam" based on features such as subject line, sender, and email content.
 
----
+![graph](../pics/02_logistic_reg_03.png)
 
 ## 3. Probability Framework and Sigmoid Function
 
@@ -38,7 +38,7 @@ prob = sigmoid(z)
 print(f"The predicted probability of the positive class is: {prob:.4f}")
 ```
 
----
+![graph](../pics/02_logistic_reg_02.gif)
 
 ## 4. Solving Classification with Maximum Likelihood
 
@@ -46,8 +46,6 @@ When we say we solve a problem using **maximum likelihood**, we mean finding the
 
 - For classification, this involves predicting probabilities and comparing them to the actual outcomes in the data.
 - The likelihood increases when the predicted probabilities match the actual labels closely.
-
----
 
 ## 5. Relationship Between Maximum Likelihood and Log-Loss (Cross-Entropy)
 
@@ -58,8 +56,6 @@ For a single example:
 - If the true label is 0 (negative class), we penalize the model when the predicted probability is far from 0.
 
 The average log-loss across all data points measures how well the model’s predicted probabilities align with the true labels.
-
----
 
 ## 6. Logistic Regression Model
 
@@ -85,8 +81,6 @@ print("Predicted probabilities:", probs[:5])
 ### Loss Function
 The loss function for logistic regression is the **log-loss function**, which is minimized during training. It ensures that the predicted probabilities are as close as possible to the true labels.
 
----
-
 ## 7. Making Inference Using Logistic Regression
 
 To make predictions with a trained logistic regression model:
@@ -102,8 +96,6 @@ label = model.predict(sample)[0]  # Predicted label
 print(f"Predicted probability: {prob:.4f}")
 print(f"Predicted label: {label}")
 ```
-
----
 
 ### Summary
 - Logistic regression is a simple yet powerful algorithm for binary classification tasks.

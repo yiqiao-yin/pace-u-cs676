@@ -12,6 +12,8 @@ Unsupervised metrics provide mechanisms to assess models without defined labels.
 
 Principal Component Analysis (PCA) is a statistical technique that transforms data into a new coordinate system. It reduces dimensionality by projecting the data onto the directions that maximize variance, called principal components. PCA helps highlight differences in data points that contribute most significantly to variance, thus simplifying data visualization and enhancing pattern recognition.
 
+![graph](../pics/11_unsupervised_01.gif)
+
 ### Key Steps in PCA:
 
 1. **Standardize the Data**: Ensure each feature has a mean of zero and unit variance.
@@ -23,6 +25,8 @@ Principal Component Analysis (PCA) is a statistical technique that transforms da
 ## K-Means Clustering
 
 K-means clustering partitions a dataset into `k` clusters by minimizing the variance within each cluster. It iteratively assigns data points to the closest centroid and recalculates centroids based on current assignments until convergence.
+
+![graph](../pics/11_unsupervised_02.gif)
 
 ### Python Code: Clustering a Single Vector
 

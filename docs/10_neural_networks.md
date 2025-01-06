@@ -4,9 +4,13 @@ Back to [home](../README.md)
 
 Deep learning is a subset of machine learning that attempts to model complex patterns in data using neural networks with multiple layers. It has revolutionized various fields by improving the performance of many tasks, such as image and speech recognition, natural language processing, and more.
 
+![graph](../pics/10_neuralnet_02.gif)
+
 ## Fundamentals of Deep Learning
 
 ### Forward Propagation
+
+![graph](../pics/10_neuralnet_01.jpg)
 
 Forward propagation is the process of passing inputs through the network to receive an output. This involves computing linear combinations of inputs and weights, applying activation functions, and eventually producing a prediction or classification. The primary goal during forward propagation is to predict outputs as close as possible to the actual values.
 
@@ -17,6 +21,14 @@ Forward propagation is the process of passing inputs through the network to rece
    - Computes a weighted sum of its inputs.
    - Applies a non-linear activation function.
 3. **Output Layer**: Produces the final output of the network.
+
+#### Probabilistic Output (Multi-class Classification)
+
+![graph](../pics/10_neuralnet_04.jpg)
+
+#### List of Activation Functions
+
+![graph](../pics/10_neuralnet_03.png)
 
 ### Backward Propagation
 
@@ -54,6 +66,20 @@ The loss function quantifies how well the model's predictions match the actual o
 - **Mean Squared Error (MSE)**: Used in regression models. Measures the average squared difference between predicted and actual values.
 - **Cross-Entropy Loss**: Used for classification problems. Assesses the discrepancy between the predicted probability distribution and the true distribution.
 
+![graph](../pics/10_neuralnet_05.png)
+
+Consider the following scenarios (you can assume $\hat{y}$ is the probability from $p(x)$):
+- If predicted probabilities $\hat{y}_i$ is small (close to 0) and truth $y_i = 0$, what happens?
+- If predicted probabilities $\hat{y}_i$ is small (close to 0) and truth $y_i = 1$, what happens?
+- If predicted probabilities $\hat{y}_i$ is large (close to 1) and truth $y_i = 0$, what happens?
+- If predicted probabilities $\hat{y}_i$ is large (close to 1) and truth $y_i = 1$, what happens?
+
+Answers:
+- If prediction $\hat{y}_i = 0.001$ and $y_i = 0$, then the loss is $-(1-0)\log(1-0.001)=-\log(0.999) \approx 0$, i.e. error is small so the model is good
+- If prediction $\hat{y}_i = 0.001$ and $y_i = 1$, then the loss is $-\log(0.001)=-\log(0.001) = 3$, i.e. the error is large so the model is bad
+- If prediction $\hat{y}_i = 0.999$ and $y_i = 0$, then the loss is $-(1-0)\log(1-0.999)=-\log(0.001)=3$, i.e. the error is large so the model is bad
+- If prediction $\hat{y}_i = 0.999$ and $y_i = 1$, then the loss is $-\log(0.999) \approx 0$, i.e. error is small so the model is good
+
 ## Neural Networks and Architectures
 
 Neural networks are structured as layers of interconnected nodes, where each node mimics biological neurons. Various architectures are engineered to address different types of data and problems.
@@ -66,10 +92,22 @@ Feedforward networks are the simplest type of artificial neural networks. In FNN
 
 CNNs are specifically designed for processing grid-like data, such as images. They leverage spatial hierarchies by using convolutional layers to detect edges, textures, patterns, and ultimately, the complete object.
 
+#### Convolutional Operation
+
+![graph](../pics/10_cnn_01.gif)
+
 #### Key Components:
 
 - **Convolutional Layers**: Apply filters to create feature maps.
+
+![graph](../pics/10_cnn_02.gif)
+
+![graph](../pics/10_cnn_03.gif)
+
 - **Pooling Layers**: Downsample feature maps through operations like max pooling or average pooling.
+
+![graph](../pics/10_cnn_04.png)
+
 - **Fully Connected Layers**: Integrate features to classify input data into categories.
 
 ### Recurrent Neural Networks (RNN)

@@ -4,11 +4,15 @@ Back to [home](../README.md)
 
 ## What is the Decision Tree Algorithm?
 
+![graph](../pics/08_tree_01.gif)
+
 - **Overview**: A decision tree is a supervised learning algorithm used for both classification and regression tasks. It works by splitting the dataset into branches based on certain conditions, making predictions at each branch's end.
 - **Structure**: The tree consists of nodes, where each internal node represents a decision on an attribute, and each leaf node represents the outcome. This hierarchical structure makes decision trees interpretable and easy to visualize.
 - **Applications**: Decision trees are widely used in industries like healthcare, finance, and marketing for their ability to handle both categorical and numerical data.
 
 ## How Does the Model Make Splits in the Predictor Space?
+
+![graph](../pics/08_tree_02.png)
 
 - **Splitting Criterion**: The algorithm splits the predictor space by selecting features that maximize information gain or reduce impurity the most. For classification, metrics like Gini impurity or entropy are used, while regression often uses the Residual Sum of Squares (RSS).
 - **Binary Splitting**: Each split divides the data into two groups, creating branches in the tree. The process repeats recursively, forming deeper levels of the tree.

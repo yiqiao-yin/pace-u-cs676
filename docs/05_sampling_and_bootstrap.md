@@ -16,7 +16,7 @@ Back to [home](../README.md)
 - Enables analysis when the full dataset is unavailable.
 - Helps in testing hypotheses without processing all data.
 
----
+![graph](../pics/05_sampling_01.jpg)
 
 ## What is Bootstrap?
 
@@ -24,6 +24,13 @@ Back to [home](../README.md)
 1. Randomly sampling from the data with replacement.
 2. Generating multiple datasets (called bootstrap samples).
 3. Calculating statistics (e.g., mean, variance) for each sample to estimate uncertainty.
+
+<div class="image-container">
+    <img src="../pics/05_sampling_02.png" alt="Graph 1" width="800">
+</div>
+<div class="image-container">
+    <img src="../pics/05_sampling_03.png" alt="Graph 2" width="800">
+</div>
 
 ### Why Use Bootstrap?
 - It estimates the variability of a statistic without requiring additional data.
@@ -71,12 +78,12 @@ Sampling and bootstrap allow us to:
    - Train the model on `k-1` folds and validate on the remaining fold.
    - Repeat for all folds and average the results.
 
+![graph](../pics/05_sampling_04.gif)
+
 2. **Leave-One-Out Cross Validation (LOOCV)**:
    - Use one sample as the validation set and the rest as training data.
 
-3. **Stratified K-Fold**: Ensures proportional representation of classes in each fold.
-
----
+![graph](../pics/05_sampling_05.gif)
 
 ### How to Perform Cross Validation Using Packages:
 
