@@ -28,6 +28,8 @@ Where:
 - `beta_1` is the slope of the line.
 - `epsilon` is the error term generated with normal distribution.
 
+![graph](../pics/01_linear_reg_01.gif)
+
 ## Least Square Loss Function
 The least squares loss function is used to estimate the coefficients of the linear regression model. It calculates the sum of the squared differences between the observed responses in the dataset and the responses predicted by the linear approximation. The formula is:
 
@@ -76,6 +78,8 @@ def gradient_descent(X, y, alpha=0.01, iterations=1000):
 ```
 
 Where `alpha` is the learning rate.
+
+![graph](../pics/01_linear_reg_02.gif)
 
 ## Solve for the Best Solution based on the Least Square Error
 To find the best solution for the coefficients `beta_0` and `beta_1` in a linear regression model based on Ordinary Least Squares (OLS) assumptions, we minimize the least squares loss function. 
@@ -191,6 +195,56 @@ model.fit(X, y, epochs=100)  # Replace 100 with your chosen number of epochs
 ```
 
 This code will create and train a TensorFlow model that performs linear regression, analogous to using `LinearRegression` from `sklearn`. Ensure that your input data `X` and labels `y` are correctly preprocessed and available for training.
+
+# What data is good for linear regression?
+
+What data set do you think is good for linear regression model? We will revisit this again in the future.
+
+![graph](../pics/01_linear_reg_03.png)
+
+The `make_blobs` function from `sklearn.datasets` is commonly used to generate synthetic datasets for clustering tasks. Below is a sample code that demonstrates how to create toy data using `make_blobs`.
+
+```python
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_blobs
+
+# Generate toy data
+n_samples = 300
+n_features = 2
+centers = 4
+cluster_std = 1.0
+random_state = 42
+
+X, y = make_blobs(n_samples=n_samples,
+                  n_features=n_features,
+                  centers=centers,
+                  cluster_std=cluster_std,
+                  random_state=random_state)
+
+# Plot the generated toy data
+plt.figure(figsize=(8, 6))
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap='viridis', marker='o', edgecolor='k', s=50)
+plt.title("Sample Blobs")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.grid(True)
+plt.show()
+```
+
+### Explanation:
+
+- **Parameters:**
+  - `n_samples`: Total number of samples.
+  - `n_features`: Number of features (dimensionality) for each sample.
+  - `centers`: The number of centers (clusters) to generate.
+  - `cluster_std`: The standard deviation of the clusters.
+  - `random_state`: Determines random number generation for dataset creation. Use an integer to ensure reproducibility.
+
+- **Output:**
+  - `X`: An array of shape `(n_samples, n_features)` containing the feature values.
+  - `y`: An array of shape `(n_samples,)` containing the cluster labels for each sample.
+
+The plot at the end visualizes the generated data points and shows how they are distributed across different clusters. Feel free to adjust parameters like `n_samples`, `centers`, or `cluster_std` to observe how the output changes.
 
 # Tensorflow Implementation on Colab
 
