@@ -28,7 +28,7 @@ This course delves into essential algorithms for data analytics with a computati
 ### Required Materials
 Please see the following recommended text:
 - [Introduction to Statistical Learning](https://www.statlearning.com/)
-- [Notes on Agent-based Applications](https://www.amazon.com/dp/9999320023)
+- [Notes on Agent-based Applications](https://www.amazon.com/embed/dp/9999320023)
 
 **Note**: For all links in all course documents, if you are accessing this page from iOS app, hold the links and you can open in a new tab. I found that way easier to navigate. 
 
@@ -63,7 +63,7 @@ Students must demonstrate proficiency in the following areas:
 3. **Basic Machine Learning:** Understand and apply fundamental machine learning algorithms or tools.
 4. **Basic API Calls:** Make and utilize API calls to interact with different data services.
 
-We will be using [this link](https://airtable.com/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form) for all of the submissions. he link is set up that allows multiple submissions, but I will only read the last verson you submit. This includes homework assignments, midterm, final projects, and extra credits. Please see the following rubrics:
+We will be using [this link](https://airtable.com/embed/appBjNPgdot15ZqO7/pagNiu6ffV5wivrIy/form) for all of the submissions. he link is set up that allows multiple submissions, but I will only read the last verson you submit. This includes homework assignments, midterm, final projects, and extra credits. Please see the following rubrics:
 
 | Scores | No. of Submission | Formality | Length | Novelty | Business Oriented | Reference |
 | --- | --- | --- | --- | --- | --- | --- |
