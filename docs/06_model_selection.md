@@ -47,28 +47,7 @@ Forward stepwise selection starts with no predictors and adds the most significa
 
 This flowchart visualizes the step-by-step process of model selection using **AIC/BIC** criteria.
 
-```mermaid
-flowchart TD
-    A[Start: Initial Model] --> B{Check All Possible Models}
-    B --> C[Forward Selection: Add Predictors One-by-One]
-    C --> D{Improved AIC/BIC?}
-    D -- Yes --> C
-    D -- No --> E[Final Model After Forward Selection]
-
-    B --> F[Backward Elimination: Remove Predictors One-by-One]
-    F --> G{Improved AIC/BIC?}
-    G -- Yes --> F
-    G -- No --> H[Final Model After Backward Elimination]
-
-    E --> I[Stepwise Selection: Combine Forward/Backward Steps]
-    H --> I
-
-    I --> J{Improved AIC/BIC?}
-    J -- Yes --> I
-    J -- No --> K[Final Stepwise Model]
-
-    K --> L[End: Final Selected Model with Optimal AIC/BIC]
-```
+![graph](../pics/06_model_selection_11.png)
 
 ### Advantages:
 - Simplifies modeling for large datasets.
