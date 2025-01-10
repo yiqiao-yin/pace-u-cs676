@@ -111,7 +111,7 @@ The deliverable includes the implementation of a feature within the chatbot to d
 
 This project aims to demonstrate the use of simulation to generate feedback for features based on customer personas. For example, a company introducing a new button or feature in their iOS app must survey beta customers from targeted demographics to gather feedback. However, this traditional process is expensive and time-consuming due to the need to pay contractors and incentivize participants with rewards.
 
-This project proposes an **AI-first solution** to simulate user feedback for features by modeling different customer personas.
+This project proposes an **AI-first solution** to simulate user feedback for features by modeling different customer personas. Recommended package: [TinyTroup](https://github.com/microsoft/TinyTroupe)
 
 ### Approach to Simulating Feedback
 [Go back to TOC](#table-of-contents)
