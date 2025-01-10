@@ -224,9 +224,15 @@ For more details, please see: [11_unsupervised](docs/11_unsupervised.md)
 - Team formation
 - Initial project planning
 
+For more details, please see: [12_capstone](docs/12_capstone.md)
+
 [Back to TOC](#table-of-contents)
 
 #### Session 13: Capstone Project Work
+
+We expect the students / teams to continue to work on their capstone project.
+
+For more details, please see: [12_capstone](docs/12_capstone.md)
 
 [Back to TOC](#table-of-contents)
 
