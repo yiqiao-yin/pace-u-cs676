@@ -63,7 +63,7 @@ Students must demonstrate proficiency in the following areas:
 3. **Basic Machine Learning:** Understand and apply fundamental machine learning algorithms or tools.
 4. **Basic API Calls:** Make and utilize API calls to interact with different data services.
 
-We will be using [this link](https://airtable.com/embed/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form) for all of the submissions. You can also access this page from the iOS app (see ✅ tab). The link is set up that allows multiple submissions, but I will only read the last verson you submit. This includes homework assignments, midterm, final projects, and extra credits. Please see the following rubrics:
+We will be using [this link](https://airtable.com/embed/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form) for all of the submissions. You can also access this page from the iOS app (see ✅ tab). The link is set up that allows multiple submissions, but I will only read the last verson you submit. This includes homework assignments, midterm, final projects, and extra credits. **We take this very seriously and you must fill this out after every single class.** Please see the following rubrics:
 
 | Scores | No. of Submission | Formality | Length | Novelty | Business Oriented | Reference |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -82,9 +82,11 @@ The final project will be a group activity with no more than five students per t
 ### Grading Policy
 The assessments will count toward your grade as follows:
 
-- **30%** of your grade will be determined by homework assignments. There will be 10 homework assignments, and the 2 lowest scores will be dropped.
-- **30%** of your grade will be determined by an open-book, open-source midterm exam conducted in person.
-- **40%** of your grade will be determined by the final project.
+- **40%** of your grade will be determined by homework assignments. You must fill up the assessment form after every session. You can be excused twice.
+- **60%** of your grade will be determined by the capstone project of the class. The project has 3 deadline submissions. Please read the following. 
+  - **20%** of your grade will be determined by the performance of the 1st deadline submission of the project.
+  - **20%** of your grade will be determined by the performance of the 2nd deadline submission of the project.
+  - **20%** of your grade will be determined by the entire capstone project.
 - **15%** (bonus) will be additionally rewarded for extracurriculum activities.
 
 Late submissions for the midterm will incur a deduction of 5 points from the total score (100 points).
