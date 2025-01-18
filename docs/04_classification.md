@@ -96,6 +96,50 @@ print("Predicted probabilities:", probs[:5])
 ### Loss Function
 The loss function for logistic regression is the **log-loss function**, which is minimized during training. It ensures that the predicted probabilities are as close as possible to the true labels.
 
+We will use the following toy data:
+
+```python
+import numpy as np
+
+# Toy data: true labels and predicted probabilities
+y_true = np.array([1, 0, 1, 0])
+y_pred = np.array([0.9, 0.1, 0.8, 0.2])
+```
+
+We can use *tensorflow*:
+
+```python
+import tensorflow as tf
+import numpy as np
+
+# Toy data
+y_true = np.array([1, 0, 1, 0], dtype=np.float32)
+y_pred = np.array([0.9, 0.1, 0.8, 0.2], dtype=np.float32)
+
+# Compute log-loss using TensorFlow
+bce = tf.keras.losses.BinaryCrossentropy()
+loss = bce(y_true, y_pred)
+
+print(f"TensorFlow Log-Loss: {loss.numpy()}")
+```
+
+We can also use *torch*:
+
+```python
+import torch
+import torch.nn as nn
+
+# Toy data
+y_true = torch.tensor([1, 0, 1, 0], dtype=torch.float32)
+y_pred = torch.tensor([0.9, 0.1, 0.8, 0.2], dtype=torch.float32)
+
+# Compute log-loss using PyTorch
+bce = nn.BCELoss()
+loss = bce(y_pred, y_true)
+
+print(f"PyTorch Log-Loss: {loss.item()}")
+```
+
 ## 7. Making Inference Using Logistic Regression
 
 To make predictions with a trained logistic regression model:
