@@ -64,7 +64,7 @@ In practice, we minimize the **negative log-likelihood** instead of maximizing t
 ![graph](../pics/02_logistic_reg_bce_05.png)
 
 | Case                  | y   | ŷ      | BCE       |
-|-----------------------|-----|--------|-----------|
+|--|--|--|--|
 | Perfect Positive      | 1   | 1      | 0         |
 | Perfect Negative      | 0   | 0      | 0         |
 | Wrong (Should Be 1)   | 1   | 0      | ∞         |
@@ -164,3 +164,332 @@ print(f"Predicted label: {label}")
 
 By understanding these concepts, you’ll have a solid foundation for tackling more advanced classification techniques!
 
+## 8. Classification from Scratch
+
+In this section, we will implement a binary classification model from scratch using **TensorFlow** and **PyTorch**. The goal is to understand how components like the sigmoid activation function, binary cross-entropy loss, and gradient descent fit together in logistic regression.
+
+### TensorFlow Implementation
+
+#### Sigmoid Activation Function
+
+```python
+import tensorflow as tf
+
+def sigmoid(x):
+    """Sigmoid activation function."""
+    return 1 / (1 + tf.exp(-x))
+```
+
+#### Linear Regression
+
+```python
+def linear_regression(X, W, b):
+    """
+    Computes the linear combination of inputs and weights.
+    
+    Parameters:
+    X: tf.Tensor - Input features
+    W: tf.Tensor - Weights
+    b: tf.Tensor - Bias
+    
+    Returns:
+    tf.Tensor - Linear combination
+    """
+    return tf.linalg.matvec(X, W) + b
+```
+
+#### Logistic Regression
+
+```python
+def logistic_regression(X, W, b):
+    """
+    Logistic regression model: Applies sigmoid activation on linear regression output.
+    
+    Parameters:
+    X: tf.Tensor - Input features
+    W: tf.Tensor - Weights
+    b: tf.Tensor - Bias
+    
+    Returns:
+    tf.Tensor - Predicted probabilities
+    """
+    z = linear_regression(X, W, b)
+    return sigmoid(z)
+```
+
+#### Binary Cross-Entropy Loss
+
+```python
+def calc_bce_loss(y, y_hat):
+    """
+    Computes binary cross-entropy loss.
+    
+    Parameters:
+    y: tf.Tensor - True labels
+    y_hat: tf.Tensor - Predicted probabilities
+    
+    Returns:
+    tf.Tensor - Loss value
+    """
+    epsilon = 1e-7  # Prevent log(0)
+    y_hat = tf.clip_by_value(y_hat, epsilon, 1 - epsilon)
+    return -tf.reduce_mean(y * tf.math.log(y_hat) + (1 - y) * tf.math.log(1 - y_hat))
+```
+
+#### Gradient Descent
+
+```python
+def gradient_descent(X, y, W, b, lr):
+    """
+    Updates model parameters using gradient descent.
+    
+    Parameters:
+    X: tf.Tensor - Input features
+    y: tf.Tensor - True labels
+    W: tf.Variable - Weights
+    b: tf.Variable - Bias
+    lr: float - Learning rate
+    
+    Returns:
+    tf.Variable, tf.Variable - Updated weights and bias
+    """
+    with tf.GradientTape() as tape:
+        y_hat = logistic_regression(X, W, b)
+        loss = calc_bce_loss(y, y_hat)
+    
+    gradients = tape.gradient(loss, [W, b])
+    W.assign_sub(lr * gradients[0])
+    b.assign_sub(lr * gradients[1])
+    return W, b
+```
+
+#### Predict Function
+
+```python
+def predict(X, W, b, threshold=0.5):
+    """
+    Makes predictions based on logistic regression.
+    
+    Parameters:
+    X: tf.Tensor - Input features
+    W: tf.Tensor - Weights
+    b: tf.Tensor - Bias
+    threshold: float - Threshold for classification
+    
+    Returns:
+    tf.Tensor - Predicted classes (0 or 1)
+    """
+    y_hat = logistic_regression(X, W, b)
+    return tf.cast(y_hat >= threshold, dtype=tf.int32)
+```
+
+#### Test
+
+```python
+import tensorflow as tf
+
+# Toy dataset
+X = tf.constant([[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0]], dtype=tf.float32)  # Input features
+y = tf.constant([0.0, 0.0, 1.0, 1.0], dtype=tf.float32)  # True labels
+
+# Initialize parameters
+W = tf.Variable([0.1, -0.1], dtype=tf.float32)  # Weights
+b = tf.Variable(0.0, dtype=tf.float32)  # Bias
+lr = 0.1  # Learning rate
+
+# Number of iterations
+num_iterations = 1000
+
+# Step-by-step test
+print("Initial Weights:", W.numpy())
+print("Initial Bias:", b.numpy())
+
+for i in range(num_iterations):
+    W, b = gradient_descent(X, y, W, b, lr)
+
+    if i % 100 == 0:  # Print progress every 100 iterations
+        y_hat = logistic_regression(X, W, b)
+        loss = calc_bce_loss(y, y_hat)
+        print(f"Iteration {i}, Loss: {loss.numpy()}")
+
+# Final parameters
+print("Final Weights:", W.numpy())
+print("Final Bias:", b.numpy())
+
+# Predictions
+predictions = predict(X, W, b, threshold=0.5)
+print("Predictions:", predictions.numpy())
+
+# Check final probabilities
+probabilities = logistic_regression(X, W, b)
+print("Predicted Probabilities:", probabilities.numpy())
+```
+
+### PyTorch Implementation
+
+#### Sigmoid Activation Function
+
+```python
+import torch
+import torch.nn.functional as F
+
+def sigmoid(x):
+    """Sigmoid activation function."""
+    return 1 / (1 + torch.exp(-x))
+```
+
+#### Linear Regression
+
+```python
+def linear_regression(X, W, b):
+    """
+    Computes the linear combination of inputs and weights.
+    
+    Parameters:
+    X: torch.Tensor - Input features
+    W: torch.Tensor - Weights
+    b: torch.Tensor - Bias
+    
+    Returns:
+    torch.Tensor - Linear combination
+    """
+    return X @ W + b
+```
+
+#### Logistic Regression
+
+```python
+def logistic_regression(X, W, b):
+    """
+    Logistic regression model: Applies sigmoid activation on linear regression output.
+    
+    Parameters:
+    X: torch.Tensor - Input features
+    W: torch.Tensor - Weights
+    b: torch.Tensor - Bias
+    
+    Returns:
+    torch.Tensor - Predicted probabilities
+    """
+    z = linear_regression(X, W, b)
+    return sigmoid(z)
+```
+
+#### Binary Cross-Entropy Loss
+
+```python
+def calc_bce_loss(y, y_hat):
+    """
+    Computes binary cross-entropy loss.
+    
+    Parameters:
+    y: torch.Tensor - True labels
+    y_hat: torch.Tensor - Predicted probabilities
+    
+    Returns:
+    torch.Tensor - Loss value
+    """
+    epsilon = 1e-7  # Prevent log(0)
+    y_hat = torch.clamp(y_hat, epsilon, 1 - epsilon)
+    return -torch.mean(y * torch.log(y_hat) + (1 - y) * torch.log(1 - y_hat))
+```
+
+#### Gradient Descent
+
+```python
+def gradient_descent(X, y, W, b, lr):
+    """
+    Updates model parameters using gradient descent.
+    
+    Parameters:
+    X: torch.Tensor - Input features
+    y: torch.Tensor - True labels
+    W: torch.Tensor - Weights
+    b: torch.Tensor - Bias
+    lr: float - Learning rate
+    
+    Returns:
+    torch.Tensor, torch.Tensor - Updated weights and bias
+    """
+    y_hat = logistic_regression(X, W, b)
+    loss = calc_bce_loss(y, y_hat)
+    
+    loss.backward()  # Compute gradients
+    
+    with torch.no_grad():
+        W -= lr * W.grad
+        b -= lr * b.grad
+        
+        # Zero gradients for the next step
+        W.grad.zero_()
+        b.grad.zero_()
+    
+    return W, b
+```
+
+#### Predict Function
+
+```python
+def predict(X, W, b, threshold=0.5):
+    """
+    Makes predictions based on logistic regression.
+    
+    Parameters:
+    X: torch.Tensor - Input features
+    W: torch.Tensor - Weights
+    b: torch.Tensor - Bias
+    threshold: float - Threshold for classification
+    
+    Returns:
+    torch.Tensor - Predicted classes (0 or 1)
+    """
+    y_hat = logistic_regression(X, W, b)
+    return (y_hat >= threshold).int()
+```
+
+#### Test
+
+```python
+import torch
+
+# Toy dataset
+X = torch.tensor([[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0]], dtype=torch.float32)  # Input features
+y = torch.tensor([0.0, 0.0, 1.0, 1.0], dtype=torch.float32)  # True labels
+
+# Initialize parameters
+W = torch.tensor([0.1, -0.1], dtype=torch.float32, requires_grad=True)  # Weights
+b = torch.tensor(0.0, dtype=torch.float32, requires_grad=True)  # Bias
+lr = 0.1  # Learning rate
+
+# Number of iterations
+num_iterations = 1000
+
+# Test training process
+print("Initial Weights:", W.detach().numpy())
+print("Initial Bias:", b.detach().numpy())
+
+for i in range(num_iterations):
+    # Perform gradient descent
+    W, b = gradient_descent(X, y, W, b, lr)
+
+    if i % 100 == 0:  # Print progress every 100 iterations
+        y_hat = logistic_regression(X, W, b)
+        loss = calc_bce_loss(y, y_hat)
+        print(f"Iteration {i}, Loss: {loss.item()}")
+
+# Final parameters
+print("Final Weights:", W.detach().numpy())
+print("Final Bias:", b.detach().numpy())
+
+# Predictions
+predictions = predict(X, W, b, threshold=0.5)
+print("Predictions:", predictions.numpy())
+
+# Check final probabilities
+probabilities = logistic_regression(X, W, b)
+print("Predicted Probabilities:", probabilities.detach().numpy())
+```
+
+### Conclusion
+
+This implementation demonstrates how to build a binary classification model from scratch using **TensorFlow** and **PyTorch**. Each helper function is modular, allowing for easy debugging and understanding of how logistic regression works internally. By implementing these steps, you gain a deeper understanding of the mechanics behind binary classification. 
