@@ -63,7 +63,7 @@ In practice, we minimize the **negative log-likelihood** instead of maximizing t
 
 ![graph](../pics/02_logistic_reg_bce_05.png)
 
-| Case                  | y   | ŷ (ŷ) | BCE       |
+| Case                  | y   | ŷ      | BCE       |
 |-----------------------|-----|--------|-----------|
 | Perfect Positive      | 1   | 1      | 0         |
 | Perfect Negative      | 0   | 0      | 0         |
