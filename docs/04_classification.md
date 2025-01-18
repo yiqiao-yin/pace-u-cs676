@@ -51,9 +51,24 @@ When we say we solve a problem using **maximum likelihood**, we mean finding the
 
 In practice, we minimize the **negative log-likelihood** instead of maximizing the likelihood because it’s computationally simpler. This is known as the **log-loss function** or **cross-entropy loss**.
 
-For a single example:
-- If the true label is 1 (positive class), we penalize the model when the predicted probability is far from 1.
-- If the true label is 0 (negative class), we penalize the model when the predicted probability is far from 0.
+![graph](../pics/02_logistic_reg_bce_01.png)
+
+### Edge Cases
+
+![graph](../pics/02_logistic_reg_bce_02.png)
+
+![graph](../pics/02_logistic_reg_bce_03.png)
+
+![graph](../pics/02_logistic_reg_bce_04.png)
+
+![graph](../pics/02_logistic_reg_bce_05.png)
+
+| Case                  | y   | ŷ (ŷ) | BCE       |
+|-----------------------|-----|--------|-----------|
+| Perfect Positive      | 1   | 1      | 0         |
+| Perfect Negative      | 0   | 0      | 0         |
+| Wrong (Should Be 1)   | 1   | 0      | ∞         |
+| Wrong (Should Be 0)   | 0   | 1      | ∞         |
 
 The average log-loss across all data points measures how well the model’s predicted probabilities align with the true labels.
 
