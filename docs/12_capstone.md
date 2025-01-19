@@ -1,6 +1,6 @@
 # Table of Contents
 
-1. [Capstone Projects](#capstone-projects)
+- [Capstone Projects](#capstone-projects)
    - [Project 1: Credibility Score for Articles/Sources/References](#project-1-credibility-score-for-articlessourcesreferences)
      - [Concept Overview](#concept-overview)
      - [Approach to Scoring Credibility](#approach-to-scoring-credibility)
@@ -17,6 +17,13 @@
        - [March 4th: Draft of the App](#march-4th-draft-of-the-app)
        - [March 18th: Beta Version and Technical Report](#march-18th-beta-version-and-technical-report)
        - [March 25th: Final Delivery of Container-Ready App](#march-25th-final-delivery-of-container-ready-app)
+  - [Project 3: Agentic AI for Machine Learning](#project-3-agentic-ai-for-machine-learning)
+    - [Concept Overview](#concept-overview-2)
+    - [Approach to Simulating Feedback](#approach-to-simulating-feedback-1)
+    - [Deliverable](#deliverable-2)
+    - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-2)
+      - [April 8th: First Draft](#april-8th-first-draft)
+      - [April 22nd: Second Draft](#april-22nd-second-draft)
 
 # Capstone Projects
 
@@ -100,8 +107,6 @@ The deliverable includes the implementation of a feature within the chatbot to d
   - Testing and validation to ensure correct functionality and user interaction.
   - Integration support using a provided application template to streamline the process.
 
----
-
 ## Project 2: TinyTroupe for Simulation
 
 ![graph](../pics/12_capstone_02.png)
@@ -166,6 +171,152 @@ The app will include:
   - Integration and deployment documentation.
   - End-to-end testing and validation of app functionality.
 
----
-
 By implementing this simulation app, the project demonstrates how AI can streamline feature feedback collection, reducing costs and accelerating the go-to-market strategy. The result is a scalable, efficient solution for user feedback analysis.
+
+## Project 3: Agentic AI for Machine Learning
+[Go back to TOC](#table-of-contents)
+
+![graph](../pics/12_capstone_03.png)
+
+### Concept Overview
+[Go back to TOC](#table-of-contents)
+
+We aim to create an intuitive platform that empowers executives and non-technical professionals to leverage advanced data science tools without requiring deep technical knowledge. By integrating built-in functionalities, users can seamlessly interact with machine learning models and perform essential data tasks.
+
+### Approach to Simulating Feedback
+[Go back to TOC](#table-of-contents)
+
+This project utilizes proprietary agentic AI tools specifically designed to simplify and automate complex data science workflows. By embedding tools we’ve developed, the solution will include guided interactions, enabling users to efficiently complete tasks such as model selection, data preparation, and visualization.
+
+### Deliverable
+[Go back to TOC](#table-of-contents)
+
+- A `.py` script containing a Python function that encapsulates the core functionality of the agentic AI tool.
+- A `requirements.txt` file documenting all the package versions required to run the Python script.
+- A `.json` file containing key metadata, including keywords and sample payloads, to demonstrate the required inputs and expected outputs for the Python function.
+
+### Deliverable Deadline Breakdown
+[Go back to TOC](#table-of-contents)
+
+#### April 8th: First Draft
+[Go back to TOC](#table-of-contents)
+
+- **April 8th**: First Draft of the Python Script, Requirements File, and JSON Metadata File
+
+The python script must follow the following template:
+
+```python:
+@register_function("send_sms")
+def send_sms(
+    payload: Dict[str, str], secrets: Dict[str, str], event_stream: list
+) -> Dict[str, Any]:
+    """
+    Simulate sending an SMS using the Twilio API.
+
+    Args:
+        payload (Dict[str, str]): Contains the message details and recipient information.
+        secrets (Dict[str, str]): Contains sensitive data like account SID and auth token.
+        event_stream (list): A list to log events and responses for the SMS API call.
+
+    Returns:
+        Dict[str, Any]: A dictionary containing the status and result of the SMS operation.
+
+    The function limits the message body to 1600 characters.
+    If exceeded, it returns an error response without sending the SMS.
+    """
+    print(f"👀 API Call: Sending SMS with payload: {payload}")
+
+    # Extract Secrets
+    account_sid = secrets["account_sid"]
+    auth_token = secrets["auth_token"]
+
+    # Message body check for character limit
+    message_body = (
+        f"Hello {payload['name']}, here's the message: {payload['message body']}"
+    )
+    if len(message_body) > 1600:
+        response = {
+            "status": "error",
+            "message": "Message body exceeds 1600 character limit.",
+            "model_name": "None",
+        }
+        print("👀 Error: Message body exceeds the 1600 character limit.")
+
+        # Append the error result to the event stream
+        event_stream.append(
+            {"event": "api_call", "api_name": "send_sms", "response": response}
+        )
+        return response
+
+    try:
+        # Initialize Twilio Client with provided credentials
+        client = Client(account_sid, auth_token)
+
+        # Simulate sending a message (replace with actual logic for real SMS sending)
+        message = client.messages.create(
+            body=message_body,
+            from_="+18552060350",  # Replace with a valid Twilio number
+            to="+15859538396",  # Replace with the destination number
+        )
+
+        print(f"👀 Message SID: {message.sid}")
+        response = {"status": f"success: {message.sid}", "model_name": "None"}
+
+    except Exception as e:
+        # Gracefully handle any exceptions
+        response = {
+            "status": f"error: {str(e)}",
+            "message": "Failed to send SMS due to an error.",
+            "model_name": "None",
+        }
+        print(f"👀 Error: {str(e)}")
+
+    # Append the result to the event stream
+    event_stream.append(
+        {"event": "api_call", "api_name": "send_sms", "response": response}
+    )
+
+    return response
+```
+
+The key words association must be provided in a `.json` file that uses the following template:
+
+```json
+{
+    "send_sms": {
+        "trigger_word": [
+            "send a message", 
+            "set a demo", 
+            "set up a demo", 
+            "send sms", 
+            "appointment", 
+            "schedule a demo", 
+            "send a text", 
+            "notify via SMS", 
+            "text someone", 
+            "arrange a demo",
+            "send an SMS", 
+            "text a friend", 
+            "initiate a message", 
+            "deliver a text", 
+            "message someone", 
+            "arrange a meeting", 
+            "book an appointment", 
+            "notify someone", 
+            "send a notification", 
+            "remind via text"
+        ],
+        "sample_payload": {
+            "name": "string",
+            "message body": "string"
+        },
+        "prerequisite": null
+    },
+    ...
+}
+```
+
+#### April 22nd: Second Draft
+[Go back to TOC](#table-of-contents)
+
+- **April 22nd**: Second Draft with Revisions and Final Adjustments

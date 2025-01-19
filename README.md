@@ -93,9 +93,8 @@ The assessments will count toward your grade as follows:
     - **10%**: deliverable 2
     - **10%**: deliverable 3
   - project 3 - to be determined:
-    - **10%**: project 3, deliverable 1
-    - **10%**: project 3, deliverable 2
-    - **10%**: project 3, deliverable 3
+    - **10%**: deliverable 1
+    - **20%**: deliverable 2
 - **15%** (bonus) will be additionally rewarded for extracurriculum activities.
 
 Late submissions for the midterm will incur a deduction of 5 points from the total score (100 points).
