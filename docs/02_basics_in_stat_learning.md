@@ -109,7 +109,7 @@ print(f"Mean Squared Error: {mse:.2f}")
 6. **E-commerce**:
    - **Application**: Recommending products to users based on purchase history.
    - **Example**: Collaborative filtering for building recommendation systems.
-   - **Popular Link**: Review [Netflix Prize Dataset](https://www.netflixprize.com/) for advanced recommendation systems research.
+   - **Popular Link**: Review [Netflix Prize Dataset](https://www.kaggle.com/datasets/netflix-inc/netflix-prize-data/) for advanced recommendation systems research.
 
 7. **Sports Analytics**:
    - **Application**: Evaluating player performance and game strategies.

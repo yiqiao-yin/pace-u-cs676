@@ -82,11 +82,20 @@ The final project will be a group activity with no more than five students per t
 ### Grading Policy
 The assessments will count toward your grade as follows:
 
-- **40%** of your grade will be determined by homework assignments. You must fill up the assessment form after every session. You can be excused twice.
-- **60%** of your grade will be determined by the capstone project of the class. The project has 3 deadline submissions. Please read the following. 
-  - **20%** of your grade will be determined by the performance of the 1st deadline submission of the project.
-  - **20%** of your grade will be determined by the performance of the 2nd deadline submission of the project.
-  - **20%** of your grade will be determined by the entire capstone project.
+- **10%** of your grade will be determined by homework assignments. You must fill up the assessment form after every session. You can be excused twice.
+- **90%** of your grade will be determined by the projects of the class. Please read the following. 
+  - project 1 - credit score:
+    - **10%**: deliverable 1
+    - **10%**: deliverable 2
+    - **10%**: deliverable 3
+  - project 2 - tinytroupe:
+    - **10%**: deliverable 1
+    - **10%**: deliverable 2
+    - **10%**: deliverable 3
+  - project 3 - to be determined:
+    - **10%**: project 3, deliverable 1
+    - **10%**: project 3, deliverable 2
+    - **10%**: project 3, deliverable 3
 - **15%** (bonus) will be additionally rewarded for extracurriculum activities.
 
 Late submissions for the midterm will incur a deduction of 5 points from the total score (100 points).

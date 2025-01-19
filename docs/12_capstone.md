@@ -6,17 +6,17 @@
      - [Approach to Scoring Credibility](#approach-to-scoring-credibility)
      - [Deliverable](#deliverable)
      - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown)
-       - [February 15th: Draft of the Python Function](#february-15th-draft-of-the-python-function)
-       - [March 15th: Detailed Technique Report](#march-15th-detailed-technique-report)
-       - [April 15th: Implementation into Live Applications](#april-15th-implementation-into-live-applications)
+       - [February 4th: Draft of the Python Function](#february-4th-draft-of-the-python-function)
+       - [February 18th: Detailed Technique Report](#february-18th-detailed-technique-report)
+       - [February 25th: Implementation into Live Applications](#february-25th-implementation-into-live-applications)
    - [Project 2: TinyTroupe for Simulation](#project-2-tinytroupe-for-simulation)
      - [Concept Overview](#concept-overview-1)
      - [Approach to Simulating Feedback](#approach-to-simulating-feedback)
      - [Deliverable](#deliverable-1)
      - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-1)
-       - [February 15th: Draft of the App](#february-15th-draft-of-the-app)
-       - [March 15th: Beta Version and Technical Report](#march-15th-beta-version-and-technical-report)
-       - [April 15th: Final Delivery of Container-Ready App](#april-15th-final-delivery-of-container-ready-app)
+       - [March 4th: Draft of the App](#march-4th-draft-of-the-app)
+       - [March 18th: Beta Version and Technical Report](#march-18th-beta-version-and-technical-report)
+       - [March 25th: Final Delivery of Container-Ready App](#march-25th-final-delivery-of-container-ready-app)
 
 # Capstone Projects
 
@@ -66,7 +66,7 @@ The deliverable includes the implementation of a feature within the chatbot to d
 ### Deliverable Deadline Breakdown
 [Go back to TOC](#table-of-contents)
 
-#### February 15th: Draft of the Python Function
+#### February 4th: Draft of the Python Function
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Develop a preliminary version of the Python function that evaluates the URL of each reference.
@@ -80,7 +80,7 @@ The deliverable includes the implementation of a feature within the chatbot to d
     ```
   - Initial testing to validate input/output handling.
 
-#### March 15th: Detailed Technique Report
+#### February 18th: Detailed Technique Report
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Provide an in-depth analysis and report on the algorithmic approach and scientific research supporting the credibility scoring.
@@ -91,7 +91,7 @@ The deliverable includes the implementation of a feature within the chatbot to d
     - Justification of chosen methodologies, including both ML-based and rule-based approaches if applicable.
   - Documentation to guide future iterations and refinements.
 
-#### April 15th: Implementation into Live Applications
+#### February 25th: Implementation into Live Applications
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Integrate the finalized Python function into live applications and ensure seamless operation with the chatbot.
@@ -135,7 +135,7 @@ The app will include:
 ### Deliverable Deadline Breakdown
 [Go back to TOC](#table-of-contents)
 
-#### February 15th: Draft of the App
+#### March 4th: Draft of the App
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Develop an initial draft of the app showcasing the basic structure and persona-based feedback generation.
@@ -144,7 +144,7 @@ The app will include:
   - Initial persona simulation results.
   - Feedback from the instructor for refinement.
 
-#### March 15th: Beta Version and Technical Report
+#### March 18th: Beta Version and Technical Report
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Complete the bulk of the app development and submit a technical report.
@@ -156,7 +156,7 @@ The app will include:
     - Use cases and examples.
   - Feedback from a second round of instructor review.
 
-#### April 15th: Final Delivery of Container-Ready App
+#### March 25th: Final Delivery of Container-Ready App
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Deliver a fully functional app ready for deployment.
