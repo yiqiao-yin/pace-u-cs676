@@ -203,116 +203,46 @@ This project utilizes proprietary agentic AI tools specifically designed to simp
 
 - **April 8th**: First Draft of the Python Script, Requirements File, and JSON Metadata File
 
-The python script must follow the following template:
+The python script must follow the following template. The provided code snippet is written in Python with a specific decorator function-like syntax and includes a comment. Here's a detailed breakdown:
 
-```python:
+```python
 @register_function("send_sms")
-def send_sms(
-    payload: Dict[str, str], secrets: Dict[str, str], event_stream: list
-) -> Dict[str, Any]:
-    """
-    Simulate sending an SMS using the Twilio API.
-
-    Args:
-        payload (Dict[str, str]): Contains the message details and recipient information.
-        secrets (Dict[str, str]): Contains sensitive data like account SID and auth token.
-        event_stream (list): A list to log events and responses for the SMS API call.
-
-    Returns:
-        Dict[str, Any]: A dictionary containing the status and result of the SMS operation.
-
-    The function limits the message body to 1600 characters.
-    If exceeded, it returns an error response without sending the SMS.
-    """
-    print(f"👀 API Call: Sending SMS with payload: {payload}")
-
-    # Extract Secrets
-    account_sid = secrets["account_sid"]
-    auth_token = secrets["auth_token"]
-
-    # Message body check for character limit
-    message_body = (
-        f"Hello {payload['name']}, here's the message: {payload['message body']}"
-    )
-    if len(message_body) > 1600:
-        response = {
-            "status": "error",
-            "message": "Message body exceeds 1600 character limit.",
-            "model_name": "None",
-        }
-        print("👀 Error: Message body exceeds the 1600 character limit.")
-
-        # Append the error result to the event stream
-        event_stream.append(
-            {"event": "api_call", "api_name": "send_sms", "response": response}
-        )
-        return response
-
-    try:
-        # Initialize Twilio Client with provided credentials
-        client = Client(account_sid, auth_token)
-
-        # Simulate sending a message (replace with actual logic for real SMS sending)
-        message = client.messages.create(
-            body=message_body,
-            from_="+18552060350",  # Replace with a valid Twilio number
-            to="+15859538396",  # Replace with the destination number
-        )
-
-        print(f"👀 Message SID: {message.sid}")
-        response = {"status": f"success: {message.sid}", "model_name": "None"}
-
-    except Exception as e:
-        # Gracefully handle any exceptions
-        response = {
-            "status": f"error: {str(e)}",
-            "message": "Failed to send SMS due to an error.",
-            "model_name": "None",
-        }
-        print(f"👀 Error: {str(e)}")
-
-    # Append the result to the event stream
-    event_stream.append(
-        {"event": "api_call", "api_name": "send_sms", "response": response}
-    )
-
-    return response
+def send_sms(payload: Dict[str, str], secrets: Dict[str, str], event_stream: list) -> Dict[str, Any]:
+    # Code to send email goes here!
+    pass
 ```
+
+1. **Decorator: `@register_function("send_sms")`**
+   - The line starting with `@` is a Python decorator. It is used to modify the behavior of the function below it.
+   - `register_function` appears to be a custom or library-provided decorator which registers the `send_sms` function under the name `"send_sms"`. This could signify that the function can be accessed or utilized elsewhere within a framework, plugin system, or API.
+
+2. **Function Definition: `def send_sms(...)`**
+   - The function named `send_sms` takes three parameters:
+     - `payload`: A dictionary (`Dict[str, str]`) where both keys and values are strings. This likely contains the data necessary to send an SMS, such as a message body or recipient's phone number.
+     - `secrets`: Another dictionary which stores sensitive information, with string keys and values, possibly containing credentials or keys required for sending an SMS.
+     - `event_stream`: A list that might be used to log events or manage asynchronous operations related to sending SMS.
+
+3. **Return Type Annotation: `-> Dict[str, Any]`**
+   - The function is supposed to return a dictionary where the keys are strings, and the values can be any data type. This might represent the result or status of the SMS sending operation.
+
+4. **Comment: `# Code to send email goes here!`**
+   - This is an internal comment indicating where the logic for sending an email (or possibly an SMS, given the context mismatch) should be implemented.
+   - Note the discrepancy; it mentions "send email," while the function is named `send_sms`.
+
+5. **`pass` Statement**
+   - The `pass` keyword is used as a placeholder and means that the function currently doesn't execute any operations. It's a no-op used when a statement is syntactically required but no action is needed or defined.
+
+The intention behind this code is to set up a structure for sending SMS messages, potentially using a framework where functions are registered via decorators. However, the actual implementation of sending the SMS is not yet complete.
 
 The key words association must be provided in a `.json` file that uses the following template:
 
 ```json
 {
-    "send_sms": {
-        "trigger_word": [
-            "send a message", 
-            "set a demo", 
-            "set up a demo", 
-            "send sms", 
-            "appointment", 
-            "schedule a demo", 
-            "send a text", 
-            "notify via SMS", 
-            "text someone", 
-            "arrange a demo",
-            "send an SMS", 
-            "text a friend", 
-            "initiate a message", 
-            "deliver a text", 
-            "message someone", 
-            "arrange a meeting", 
-            "book an appointment", 
-            "notify someone", 
-            "send a notification", 
-            "remind via text"
-        ],
-        "sample_payload": {
-            "name": "string",
-            "message body": "string"
-        },
+    "send_email": {
+        "trigger_word": ["send email", "notify via email"],
+        "sample_payload": {"email": "string", "subject": "string"},
         "prerequisite": null
-    },
-    ...
+    }
 }
 ```
 
