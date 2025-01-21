@@ -67,9 +67,9 @@ We will be using [this link](https://airtable.com/embed/appBjNPgdot15ZqO7/pagKL7
 
 | Scores | No. of Submission | Formality | Length | Novelty | Business Oriented | Reference |
 | --- | --- | --- | --- | --- | --- | --- |
-| 7 to 10 | Once | Simple and clear | Most length of string of the class | As little from Internet/ChatGPT as possible | Your idea is ready to start a company | Clear list of reference with bibliography summary |
-| 4 to 6 | Twice | Clear but not simple | Good amount but not the most length of string of the class | Some from Internet/ChatGPT but some from yourself | Can be converted to business idea but not ready | List of reference but no summary |
-| 1 to 3 | More than twice | Not clear not simple | A few lines or minimum of the class | All from Internet/ChatGPT | Not a business idea at all | No reference or no summary |
+| 3 | Once | Simple and clear | Most length of string of the class | As little from Internet/ChatGPT as possible | Your idea is ready to start a company | Clear list of reference with bibliography summary |
+| 2 | Twice | Clear but not simple | Good amount but not the most length of string of the class | Some from Internet/ChatGPT but some from yourself | Can be converted to business idea but not ready | List of reference but no summary |
+| 1 | More than twice | Not clear not simple | A few lines or minimum of the class | All from Internet/ChatGPT | Not a business idea at all | No reference or no summary |
 
 ### Lecture
 The lectures are composed of slides and coding sessions. Both slides and Python notebooks will be used during the lecture. Depending on the material's content, slides and coding sessions may be presented in any order.
