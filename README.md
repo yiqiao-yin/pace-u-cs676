@@ -95,7 +95,7 @@ The assessments will count toward your grade as follows:
   - project 3 - to be determined:
     - **10%**: deliverable 1
     - **20%**: deliverable 2
-- **15%** (bonus) will be additionally rewarded for extracurriculum activities.
+- **30%** (bonus) will be additionally rewarded for extracurriculum activities. Please read [here](./docs/12_extraprojects.md) for detailed information. Please use the course submission form to indicate which project(s) you want to apply for. This can replace project 3 entirely. You may choose to replace project 1 or project 2 with bonus if you want to, although I would recommend to go through project 1 and project 2 to engage with the content of the class.
 
 Late submissions for the midterm will incur a deduction of 5 points from the total score (100 points).
 
