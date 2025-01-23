@@ -259,6 +259,6 @@ This folder contains Jupyter notebooks used for the project.
 This directory contains additional documentation files.
 
 ### Slide Doc
-PDF documents for presentation slides.
+PDF documents for presentation slides. Please see slide here [here](./docs/slide_doc/CS%20676%20Algorithms%20of%20Data%20Science.pdf). If you are accessing from iOS app, please hold and open as a new link from browser.
 
 [Back to TOC](#table-of-contents)
