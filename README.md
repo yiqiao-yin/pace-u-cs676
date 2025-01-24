@@ -253,6 +253,8 @@ For more details, please see: [12_capstone](docs/12_capstone.md)
 ## Notebooks
 This folder contains Jupyter notebooks used for the project.
 
+A more complete list can be accessed [here](https://github.com/yiqiao-yin/WYNAssociates/tree/main/docs/ref-deeplearning). I update this folder with new latest new AI tools frequently.
+
 [Back to TOC](#table-of-contents)
 
 ## Docs
