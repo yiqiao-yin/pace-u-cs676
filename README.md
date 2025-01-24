@@ -1,4 +1,4 @@
-# CS676 Algorithms for DataScience
+# CS676 Algorithms for Data Science
 
 ## Table of Contents
 - [Syllabus](#syllabus)
