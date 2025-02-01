@@ -6,7 +6,7 @@
      - [Approach to Scoring Credibility](#approach-to-scoring-credibility)
      - [Deliverable](#deliverable)
      - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown)
-       - [February 4th: Draft of the Python Function](#february-4th-draft-of-the-python-function)
+       - [February 11th: Draft of the Python Function](#february-11th-draft-of-the-python-function)
        - [February 18th: Detailed Technique Report](#february-18th-detailed-technique-report)
        - [February 25th: Implementation into Live Applications](#february-25th-implementation-into-live-applications)
    - [Project 2: TinyTroupe for Simulation](#project-2-tinytroupe-for-simulation)
@@ -73,7 +73,7 @@ The deliverable includes the implementation of a feature within the chatbot to d
 ### Deliverable Deadline Breakdown
 [Go back to TOC](#table-of-contents)
 
-#### February 4th: Draft of the Python Function
+#### February 11th: Draft of the Python Function
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Develop a preliminary version of the Python function that evaluates the URL of each reference.
