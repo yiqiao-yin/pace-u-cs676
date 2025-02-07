@@ -95,7 +95,7 @@ The assessments will count toward your grade as follows:
   - project 3 - to be determined:
     - **10%**: deliverable 1
     - **20%**: deliverable 2
-- **30%** (bonus) will be additionally rewarded for extracurriculum activities. Please read [here](./docs/12_extraprojects.md) for detailed information. Please use the course submission form to indicate which project(s) you want to apply for. This can replace project 3 entirely. You may choose to replace project 1 or project 2 with bonus if you want to, although I would recommend to go through project 1 and project 2 to engage with the content of the class.
+- **30%** (bonus) will be additionally rewarded for extracurriculum activities. Please contact me if you would like to see the detailed list. Please use the course submission form to indicate which project(s) you want to apply for. This can replace project 3 entirely. You may choose to replace project 1 or project 2 with bonus if you want to, although I would recommend to go through project 1 and project 2 to engage with the content of the class.
 
 Late submissions for the midterm will incur a deduction of 5 points from the total score (100 points).
 
@@ -106,7 +106,7 @@ Late submissions for the midterm will incur a deduction of 5 points from the tot
 - Students are encouraged to use AI tools, including ChatGPT and Copilot, and may build their own chatbot if desired.
 
 #### Attendance Policy
-- Attendance will not be recorded.
+- Attendance will not be separately recorded but the weekly submission will help me understand your progress and attendance.
 
 #### Policies on Incomplete Grades and Late Assignments
 - The lowest two homework grades will be dropped.
