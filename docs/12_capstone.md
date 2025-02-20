@@ -106,6 +106,18 @@ The deliverable includes the implementation of a feature within the chatbot to d
   - Full implementation of the credibility scoring feature within the chatbot platform.
   - Testing and validation to ensure correct functionality and user interaction.
   - Integration support using a provided application template to streamline the process.
+  - Please the following rubrics for this deliverable!
+
+**Project Deliverable Rubrics**
+
+| **Aspect**                | **Requirements**                                                                                                                                                            |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Code Comments**         | Each section of code should include **three to five lines of comments**. Ensure the comments are clear and explanatory, providing context and purpose for each code block.  |
+| **Novelty**               | Demonstrate novelty in your neural network model architecture. Provide a defense or counterargument for class-discussed assumptions with reasonable accuracy.               |
+| **Model Accuracy**        | Aim for high accuracy in the credibility scoring model. While not heavily weighted, higher accuracy is preferred.                                                          |
+| **Production-Ready Pipeline** | Ensure the model is production-ready by deploying it on **Hugging Face**. Include Python code in your notebook to demonstrate the deployment of the model artifact.      |
+
+Feel free to adjust the content as per additional details or specifications you might have!
 
 ## Project 2: TinyTroupe for Simulation
 
