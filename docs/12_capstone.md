@@ -15,15 +15,15 @@
      - [Deliverable](#deliverable-1)
      - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-1)
        - [March 4th: Draft of the App](#march-4th-draft-of-the-app)
-       - [March 18th: Beta Version and Technical Report](#march-18th-beta-version-and-technical-report)
-       - [March 25th: Final Delivery of Container-Ready App](#march-25th-final-delivery-of-container-ready-app)
+       - [March 25th: Beta Version and Technical Report](#march-25th-beta-version-and-technical-report)
+       - [April 1st: Final Delivery of Container-Ready App](#april-1st-final-delivery-of-container-ready-app)
   - [Project 3: Agentic AI for Machine Learning](#project-3-agentic-ai-for-machine-learning)
     - [Concept Overview](#concept-overview-2)
     - [Approach to Simulating Feedback](#approach-to-simulating-feedback-1)
     - [Deliverable](#deliverable-2)
     - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-2)
       - [April 8th: First Draft](#april-8th-first-draft)
-      - [April 22nd: Second Draft](#april-22nd-second-draft)
+      - [April 15th: Second Draft](#april-15th-second-draft)
 
 # Capstone Projects
 
@@ -161,7 +161,7 @@ The app will include:
   - Initial persona simulation results.
   - Feedback from the instructor for refinement.
 
-#### March 18th: Beta Version and Technical Report
+#### March 25th: Beta Version and Technical Report
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Complete the bulk of the app development and submit a technical report.
@@ -173,7 +173,7 @@ The app will include:
     - Use cases and examples.
   - Feedback from a second round of instructor review.
 
-#### March 25th: Final Delivery of Container-Ready App
+#### April 1st: Final Delivery of Container-Ready App
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Deliver a fully functional app ready for deployment.
@@ -258,7 +258,7 @@ The key words association must be provided in a `.json` file that uses the follo
 }
 ```
 
-#### April 22nd: Second Draft
+#### April 15th: Second Draft
 [Go back to TOC](#table-of-contents)
 
 - **April 22nd**: Second Draft with Revisions and Final Adjustments
