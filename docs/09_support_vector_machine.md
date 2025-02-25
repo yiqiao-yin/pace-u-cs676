@@ -80,9 +80,6 @@ sample = [[1.5]]
 predicted_value = regressor.predict(sample)
 print("Predicted value:", predicted_value)
 ```
-## SVM from Scratch
-
-write 400-600 word .md file regards the following:
 
 ## SVM from Scratch
 
