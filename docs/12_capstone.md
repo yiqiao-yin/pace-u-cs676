@@ -14,16 +14,16 @@
      - [Approach to Simulating Feedback](#approach-to-simulating-feedback)
      - [Deliverable](#deliverable-1)
      - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-1)
-       - [March 4th: Draft of the App](#march-4th-draft-of-the-app)
-       - [March 25th: Beta Version and Technical Report](#march-25th-beta-version-and-technical-report)
-       - [April 1st: Final Delivery of Container-Ready App](#april-1st-final-delivery-of-container-ready-app)
+       - [March 25th: Draft of the App](#march-25th-draft-of-the-app)
+       - [April 1st: Beta Version and Technical Report](#april-1st-beta-version-and-technical-report)
+       - [April 8th: Final Delivery of Container-Ready App](#april-8th-final-delivery-of-container-ready-app)
   - [Project 3: Agentic AI for Machine Learning](#project-3-agentic-ai-for-machine-learning)
     - [Concept Overview](#concept-overview-2)
     - [Approach to Simulating Feedback](#approach-to-simulating-feedback-1)
     - [Deliverable](#deliverable-2)
     - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-2)
-      - [April 8th: First Draft](#april-8th-first-draft)
-      - [April 15th: Second Draft](#april-15th-second-draft)
+      - [Optional: First Draft](#optional-first-draft)
+      - [Optional: Second Draft](#optional-second-draft)
 
 # Capstone Projects
 
@@ -152,7 +152,7 @@ The app will include:
 ### Deliverable Deadline Breakdown
 [Go back to TOC](#table-of-contents)
 
-#### March 4th: Draft of the App
+#### March 25th: Draft of the App
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Develop an initial draft of the app showcasing the basic structure and persona-based feedback generation.
@@ -161,7 +161,7 @@ The app will include:
   - Initial persona simulation results.
   - Feedback from the instructor for refinement.
 
-#### March 25th: Beta Version and Technical Report
+#### April 1st: Beta Version and Technical Report
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Complete the bulk of the app development and submit a technical report.
@@ -173,7 +173,7 @@ The app will include:
     - Use cases and examples.
   - Feedback from a second round of instructor review.
 
-#### April 1st: Final Delivery of Container-Ready App
+#### April 8th: Final Delivery of Container-Ready App
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Deliver a fully functional app ready for deployment.
@@ -210,7 +210,7 @@ This project utilizes proprietary agentic AI tools specifically designed to simp
 ### Deliverable Deadline Breakdown
 [Go back to TOC](#table-of-contents)
 
-#### April 8th: First Draft
+#### Optional: First Draft
 [Go back to TOC](#table-of-contents)
 
 - **April 8th**: First Draft of the Python Script, Requirements File, and JSON Metadata File
@@ -258,7 +258,7 @@ The key words association must be provided in a `.json` file that uses the follo
 }
 ```
 
-#### April 15th: Second Draft
+#### Optional: Second Draft
 [Go back to TOC](#table-of-contents)
 
 - **April 22nd**: Second Draft with Revisions and Final Adjustments
