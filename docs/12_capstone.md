@@ -155,22 +155,23 @@ The app will include:
 #### March 25th: Draft of the App
 [Go back to TOC](#table-of-contents)
 
-- **Objective**: Develop an initial draft of the app showcasing the basic structure and persona-based feedback generation.
+- **Objective**: Investigate agentic AI by using TinyTroupe package.
 - **Deliverables**:
-  - A minimal viable product (MVP) with a basic UI to input features and personas.
+  - A walkthrough of the installation and usage.
   - Initial persona simulation results.
-  - Feedback from the instructor for refinement.
+  - Comments on the conversation stream.
+  - Deliver a `.md` file where conversation history can be found.
 
 #### April 1st: Beta Version and Technical Report
 [Go back to TOC](#table-of-contents)
 
-- **Objective**: Complete the bulk of the app development and submit a technical report.
+- **Objective**: Complete the bulk of the app development and submit a draft app.
 - **Deliverables**:
-  - A beta version of the app with more refined personas and improved feedback outputs.
-  - A detailed technical report covering:
-    - The simulation algorithm used.
-    - Persona definition and creation process.
-    - Use cases and examples.
+  - A beta version of agentic AI app with different personas.
+  - A detailed repository covering:
+    - The simulation algorithm design.
+    - A live conversation can be initiated from your UI.
+    - Use cases and examples of your own choice.
   - Feedback from a second round of instructor review.
 
 #### April 8th: Final Delivery of Container-Ready App
@@ -178,7 +179,7 @@ The app will include:
 
 - **Objective**: Deliver a fully functional app ready for deployment.
 - **Deliverables**:
-  - A container-ready app that can be deployed via Docker or cloud services.
+  - A live app deployed on cloud such as HuggingFace.
   - Finalized persona database with diverse customer profiles.
   - Integration and deployment documentation.
   - End-to-end testing and validation of app functionality.
@@ -194,6 +195,8 @@ By implementing this simulation app, the project demonstrates how AI can streaml
 [Go back to TOC](#table-of-contents)
 
 We aim to create an intuitive platform that empowers executives and non-technical professionals to leverage advanced data science tools without requiring deep technical knowledge. By integrating built-in functionalities, users can seamlessly interact with machine learning models and perform essential data tasks.
+
+Due to time limit of the semester, this will be an optional project.
 
 ### Approach to Simulating Feedback
 [Go back to TOC](#table-of-contents)
