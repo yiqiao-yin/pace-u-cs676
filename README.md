@@ -16,7 +16,6 @@
   - [Session 10: Deep Learning](#session-10-deep-learning)
   - [Session 11: Unsupervised Metrics](#session-11-unsupervised-metrics)
   - [Session 12: Capstone Project Preparation](#session-12-capstone-project-preparation)
-  - [Session 13: Capstone Project Work](#session-13-capstone-project-work)
 
 ## Syllabus
 
@@ -77,7 +76,7 @@ The lectures are composed of slides and coding sessions. Both slides and Python 
 The slides and coding materials can be found in the course repo. Please see [here](docs/slide_doc/CS%20676%20Algorithms%20of%20Data%20Science.pdf).
 
 ### Final Exam and Class Project
-The final project will be a group activity with no more than five students per team. Each team will conduct a data science project culminating in a presentation, which will be recorded and evaluated by external judges.
+The final project will be an individual project that is submission based. It will be a culmination of everything you know. You have full flexibility of the content of the application. You'll need to include a backend, a frontend, and some form of invocation of LLM.
 
 ### Grading Policy
 The assessments will count toward your grade as follows:
@@ -237,14 +236,6 @@ For more details, please see: [11_unsupervised](docs/11_unsupervised.md)
 - Project guidelines
 - Team formation
 - Initial project planning
-
-For more details, please see: [12_capstone](docs/12_capstone.md)
-
-[Back to TOC](#table-of-contents)
-
-#### Session 13: Capstone Project Work
-
-We expect the students / teams to continue to work on their capstone project.
 
 For more details, please see: [12_capstone](docs/12_capstone.md)
 
