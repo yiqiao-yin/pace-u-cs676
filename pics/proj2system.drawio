@@ -1,0 +1,286 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="25.0.3">
+  <diagram name="Page-1" id="Ls7hYSABo9p3IGueRwB0">
+    <mxGraphModel dx="2289" dy="2291" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-1" target="Fdt8mp5OrzG03PftCJdb-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-1" value="User" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-2" target="Fdt8mp5OrzG03PftCJdb-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-2" value="Intent Classifier" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-3" target="Fdt8mp5OrzG03PftCJdb-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="450" />
+              <mxPoint x="280" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-8" value="Chitchat" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fdt8mp5OrzG03PftCJdb-4">
+          <mxGeometry x="-0.5557" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-3" target="Fdt8mp5OrzG03PftCJdb-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-11" value="Yes, it is API" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fdt8mp5OrzG03PftCJdb-10">
+          <mxGeometry x="-0.2516" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-3" value="API or Chitchat" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="430" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-9" target="Fdt8mp5OrzG03PftCJdb-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-9" value="Dependency Resolver" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="160" y="530" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-12" target="Fdt8mp5OrzG03PftCJdb-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-12" value="List" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="540" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-13" value="Mistral AI Agent" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="Fdt8mp5OrzG03PftCJdb-12">
+          <mxGeometry y="30" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-18" target="Fdt8mp5OrzG03PftCJdb-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-18" value="LLM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="140" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-25">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="90" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-30" value="Yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fdt8mp5OrzG03PftCJdb-27">
+          <mxGeometry x="-0.2548" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-25" value="```python exist?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="530" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-28" value="Exec API" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="50" y="650" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-34" target="Fdt8mp5OrzG03PftCJdb-50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-34" value="User" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-36" target="Fdt8mp5OrzG03PftCJdb-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-36" value="Intent Classifier" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-41" target="Fdt8mp5OrzG03PftCJdb-34">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="450" />
+              <mxPoint x="760" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-38" value="Chitchat" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fdt8mp5OrzG03PftCJdb-37">
+          <mxGeometry x="-0.5557" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-41" target="Fdt8mp5OrzG03PftCJdb-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-40" value="Yes, it is API" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fdt8mp5OrzG03PftCJdb-39">
+          <mxGeometry x="-0.2516" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-41" value="API or Chitchat" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="430" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-43" target="Fdt8mp5OrzG03PftCJdb-55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-43" value="Dependency Resolver" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="640" y="530" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-45" target="Fdt8mp5OrzG03PftCJdb-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-45" value="List" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="830" y="510" width="140" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-46" value="API 1&lt;div&gt;&amp;nbsp;- API 1.1&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;- API 1.11&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="Fdt8mp5OrzG03PftCJdb-45">
+          <mxGeometry y="30" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-47" value="API 2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="Fdt8mp5OrzG03PftCJdb-45">
+          <mxGeometry y="60" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-48" value="API 3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="Fdt8mp5OrzG03PftCJdb-45">
+          <mxGeometry y="90" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-50" target="Fdt8mp5OrzG03PftCJdb-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-50" value="LLM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-55">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="570" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-52" value="Yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fdt8mp5OrzG03PftCJdb-51">
+          <mxGeometry x="-0.2548" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-55" target="Fdt8mp5OrzG03PftCJdb-50">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-54" value="It is API call,&amp;nbsp;&lt;div&gt;but we don&#39;t have message.&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fdt8mp5OrzG03PftCJdb-53">
+          <mxGeometry x="-0.0881" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-55" value="Do we have all payload ready?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="530" y="530" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-86" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-56" target="Fdt8mp5OrzG03PftCJdb-85">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-56" value="Exec API" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="530" y="650" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-57" value="WYN-Agent" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="170" y="130" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-58" value="WYn-Agent-X" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="660" y="130" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-59" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-60" target="Fdt8mp5OrzG03PftCJdb-76">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-60" value="API" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-61" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-62" target="Fdt8mp5OrzG03PftCJdb-67">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-62" value="Intent Classifier" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-67" target="Fdt8mp5OrzG03PftCJdb-60">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1310" y="560" />
+              <mxPoint x="1310" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-64" value="Chitchat" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fdt8mp5OrzG03PftCJdb-63">
+          <mxGeometry x="-0.5557" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-65" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-67" target="Fdt8mp5OrzG03PftCJdb-69">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-66" value="Yes, it is API" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fdt8mp5OrzG03PftCJdb-65">
+          <mxGeometry x="-0.2516" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-67" value="API or Chitchat" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="540" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-69" target="Fdt8mp5OrzG03PftCJdb-81">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-69" value="Dependency Resolver" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="640" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-71" target="Fdt8mp5OrzG03PftCJdb-69">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-71" value="List" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="620" width="140" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-72" value="API 1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="Fdt8mp5OrzG03PftCJdb-71">
+          <mxGeometry y="30" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-73" value="API 2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="Fdt8mp5OrzG03PftCJdb-71">
+          <mxGeometry y="60" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-74" value="API 3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="Fdt8mp5OrzG03PftCJdb-71">
+          <mxGeometry y="90" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-76" target="Fdt8mp5OrzG03PftCJdb-62">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-76" value="LLM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="380" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-81">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1120" y="760" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-78" value="Yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fdt8mp5OrzG03PftCJdb-77">
+          <mxGeometry x="-0.2548" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-81" target="Fdt8mp5OrzG03PftCJdb-76">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1120" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-80" value="It is API call,&amp;nbsp;&lt;div&gt;but we don&#39;t have message.&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Fdt8mp5OrzG03PftCJdb-79">
+          <mxGeometry x="-0.0881" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-81" value="Do we have all payload ready?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="640" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-82" value="Exec API" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="760" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-83" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Fdt8mp5OrzG03PftCJdb-46" target="Fdt8mp5OrzG03PftCJdb-60">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="720" y="520" as="sourcePoint" />
+            <mxPoint x="770" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-84" value="&lt;div&gt;[&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;tell me a joke&quot;},&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; {&quot;role&quot;: &quot;intent_classifier&quot;, &quot;content&quot;: &quot;No API Cal detected.&quot;},&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; {&quot;role&quot;: &quot;llm&quot;, &quot;content&quot;: &quot;jokexxxx&quot;&lt;/div&gt;&lt;div&gt;&amp;nbsp; ]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;[&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: f&quot;i want to do a google search. Use this data {pandas_to_json}&quot;},&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; {&quot;role&quot;: &quot;intent_classifier&quot;, &quot;content&quot;: &quot;API Call detected, API1.&quot;},&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; {&quot;role&quot;: &quot;dep_resolver&quot;, &quot;content&quot;: &quot;We don&#39;t have query, what do you want to search?&quot;},&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;todays weather in NYC&quot;},&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;{&quot;role&quot;: &quot;dep_resolver&quot;, &quot;content&quot;: &quot;Okay, good we have all the payload ready&quot;},&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp; {&quot;role&quot;: &quot;llm&quot;, &quot;content&quot;: &quot;do you want to execute it&quot;},&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp; &amp;nbsp; {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;yes&quot;},&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; {&quot;role&quot;: &quot;api_exec&quot;, &quot;content&quot;: &quot;today&#39;s weather is xyz&quot;&lt;/div&gt;&lt;div&gt;&amp;nbsp; ]&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="890" y="-80" width="360" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="Fdt8mp5OrzG03PftCJdb-85" value="PDF/Table/PNG/..." style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="760" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
