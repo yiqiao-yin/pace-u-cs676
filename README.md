@@ -64,11 +64,10 @@ Students must demonstrate proficiency in the following areas:
 
 We will be using [this link](https://airtable.com/embed/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form) for all of the submissions. You can also access this page from the iOS app (see ✅ tab). The link is set up that allows multiple submissions, but I will only read the last verson you submit. This includes homework assignments, midterm, final projects, and extra credits. **We take this very seriously and you must fill this out after every single class.** Please see the following rubrics:
 
-| Scores | No. of Submission | Formality | Length | Novelty | Business Oriented | Reference |
-| --- | --- | --- | --- | --- | --- | --- |
-| 3 | Once | Simple and clear | Most length of string of the class | As little from Internet/ChatGPT as possible | Your idea is ready to start a company | Clear list of reference with bibliography summary |
-| 2 | Twice | Clear but not simple | Good amount but not the most length of string of the class | Some from Internet/ChatGPT but some from yourself | Can be converted to business idea but not ready | List of reference but no summary |
-| 1 | More than twice | Not clear not simple | A few lines or minimum of the class | All from Internet/ChatGPT | Not a business idea at all | No reference or no summary |
+| Scores | Submission Status |
+| --- | --- |
+| 1 | Pass - Homework submitted |
+| 0 | Fail - Homework not submitted |
 
 ### Lecture
 The lectures are composed of slides and coding sessions. Both slides and Python notebooks will be used during the lecture. Depending on the material's content, slides and coding sessions may be presented in any order.
