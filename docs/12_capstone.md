@@ -6,24 +6,24 @@
      - [Approach to Scoring Credibility](#approach-to-scoring-credibility)
      - [Deliverable](#deliverable)
      - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown)
-       - [Deliverable 1: Draft of the Python Function](#deliverable-1-draft-of-the-python-function)
-       - [Deliverable 2: Detailed Technique Report](#deliverable-2-detailed-technique-report)
-       - [Deliverable 3: Implementation into Live Applications](#deliverable-3-implementation-into-live-applications)
+       - [Deliverable 1: Draft of the Python Function (Sept 12, 2025)](#deliverable-1-draft-of-the-python-function-sept-12-2025)
+       - [Deliverable 2: Detailed Technique Report (Sept 19, 2025)](#deliverable-2-detailed-technique-report-sept-19-2025)
+       - [Deliverable 3: Implementation into Live Applications (Sept 26, 2025)](#deliverable-3-implementation-into-live-applications-sept-26-2025)
    - [Project 2: TinyTroupe for Simulation](#project-2-tinytroupe-for-simulation)
      - [Concept Overview](#concept-overview-1)
      - [Approach to Simulating Feedback](#approach-to-simulating-feedback)
      - [Deliverable](#deliverable-1)
      - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-1)
-       - [Deliverable 1: Draft of the App](#deliverable-1-draft-of-the-app)
-       - [Deliverable 2: Beta Version and Technical Report](#deliverable-2-beta-version-and-technical-report)
-       - [Deliverable 3: Final Delivery of Container-Ready App](#deliverable-3-final-delivery-of-container-ready-app)
+       - [Deliverable 1: Draft of the App (Oct 3, 2025)](#deliverable-1-draft-of-the-app-oct-3-2025)
+       - [Deliverable 2: Beta Version and Technical Report (Oct 10, 2025)](#deliverable-2-beta-version-and-technical-report-oct-10-2025)
+       - [Deliverable 3: Final Delivery of Container-Ready App (Oct 17, 2025)](#deliverable-3-final-delivery-of-container-ready-app-oct-17-2025)
   - [Project 3: Agentic AI for Machine Learning](#project-3-agentic-ai-for-machine-learning)
     - [Concept Overview](#concept-overview-2)
     - [Approach to Simulating Feedback](#approach-to-simulating-feedback-1)
     - [Deliverable](#deliverable-2)
     - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-2)
-      - [Optional Deliverable 1: First Draft](#optional-deliverable-1-first-draft)
-      - [Optional Deliverable 2: Second Draft](#optional-deliverable-2-second-draft)
+      - [Optional Deliverable 1: First Draft (Oct 24, 2025)](#optional-deliverable-1-first-draft-oct-24-2025)
+      - [Optional Deliverable 2: Second Draft (Dec 5, 2025)](#optional-deliverable-2-second-draft-dec-5-2025)
 
 # Capstone Projects
 
@@ -80,7 +80,7 @@ This feature will involve:
 ### Deliverable Deadline Breakdown
 [Go back to TOC](#table-of-contents)
 
-#### Deliverable 1: Draft of the Python Function
+#### Deliverable 1: Draft of the Python Function (Sept 12, 2025)
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Develop a preliminary version of the Python function that evaluates the URL of each reference. This initial implementation serves as a proof-of-concept to demonstrate the feasibility of automated credibility assessment and establish the foundation for more sophisticated evaluation mechanisms. The focus at this stage is on creating a functional prototype that can process URLs and generate basic credibility scores, even if the scoring algorithm is simplified.
@@ -94,7 +94,7 @@ This feature will involve:
     ```
   - Initial testing to validate input/output handling, including test cases for various URL types, edge cases for malformed inputs, and verification that the JSON output format is consistent and properly structured. The testing should also include performance benchmarks to ensure the function can handle reasonable loads without significant delays.
 
-#### Deliverable 2: Detailed Technique Report
+#### Deliverable 2: Detailed Technique Report (Sept 19, 2025)
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Provide an in-depth analysis and report on the algorithmic approach and scientific research supporting the credibility scoring. This deliverable focuses on the theoretical foundation and empirical justification for the chosen methodology, ensuring that the credibility assessment system is grounded in established research and best practices. The report should demonstrate a thorough understanding of the credibility assessment domain and provide a roadmap for algorithmic improvements.
@@ -105,7 +105,7 @@ This feature will involve:
     - Justification of chosen methodologies, including both ML-based and rule-based approaches if applicable, with empirical evidence supporting the selection criteria. This should include comparative analysis of different approaches and discussion of trade-offs between accuracy, interpretability, and computational efficiency.
   - Documentation to guide future iterations and refinements, including detailed API specifications, algorithm parameters that may need tuning, and identified areas for improvement. The documentation should also include guidelines for maintaining and updating the credibility assessment model as new research becomes available.
 
-#### Deliverable 3: Implementation into Live Applications
+#### Deliverable 3: Implementation into Live Applications (Sept 26, 2025)
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Integrate the finalized Python function into live applications and ensure seamless operation with the chatbot. This final deliverable represents the transition from prototype to production-ready system, requiring careful attention to performance optimization, user experience design, and system reliability. The integration must be robust enough to handle real-world usage patterns while maintaining the quality and accuracy of credibility assessments.
@@ -164,7 +164,7 @@ The app will include:
 ### Deliverable Deadline Breakdown
 [Go back to TOC](#table-of-contents)
 
-#### Deliverable 1: Draft of the App
+#### Deliverable 1: Draft of the App (Oct 3, 2025)
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Investigate agentic AI by using TinyTroupe package to understand the capabilities and limitations of persona-based simulation. This phase focuses on establishing familiarity with the technology, exploring different persona configurations, and evaluating the quality of generated conversations. The investigation should provide insights into how effectively AI agents can simulate realistic user behavior and identify areas where the simulation approach shows promise or needs improvement.
@@ -174,7 +174,7 @@ The app will include:
   - Comments on the conversation stream quality, including analysis of how natural and realistic the generated conversations feel, identification of recurring patterns or limitations in the AI responses, and assessment of whether the personas maintain consistency throughout extended interactions. Comments should also evaluate the diversity and depth of insights generated by different persona types.
   - Deliver a `.md` file where conversation history can be found, organized by persona type and feature being evaluated, with annotations explaining the context and significance of key exchanges. The file should serve as a reference for understanding how different personas respond to various types of features and interaction scenarios.
 
-#### Deliverable 2: Beta Version and Technical Report
+#### Deliverable 2: Beta Version and Technical Report (Oct 10, 2025)
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Complete the bulk of the app development and submit a draft app that demonstrates the full potential of persona-based feature simulation. This deliverable represents the core implementation phase where all major features are integrated and tested, resulting in a functional application that can be used for real product development scenarios. The focus is on creating a robust, user-friendly tool that provides valuable insights while being accessible to non-technical team members.
@@ -186,7 +186,7 @@ The app will include:
     - Use cases and examples of your own choice that demonstrate the practical value of the simulation approach, including examples from different industries, various types of features (UI elements, workflows, content), and different stages of product development (early concept, detailed design, pre-launch validation).
   - Feedback from a second round of instructor review, with documented responses to suggestions and improvements made based on initial feedback. This should include explanations of design decisions, trade-offs considered, and areas identified for future enhancement.
 
-#### Deliverable 3: Final Delivery of Container-Ready App
+#### Deliverable 3: Final Delivery of Container-Ready App (Oct 17, 2025)
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Deliver a fully functional app ready for deployment that can be used in real-world product development scenarios. This final deliverable ensures that the simulation tool is production-ready, scalable, and maintainable, with comprehensive documentation and testing to support ongoing use and development. The objective includes optimizing performance, ensuring reliability, and providing the necessary infrastructure for sustainable operation.
@@ -225,7 +225,7 @@ This project utilizes proprietary agentic AI tools specifically designed to simp
 ### Deliverable Deadline Breakdown
 [Go back to TOC](#table-of-contents)
 
-#### Optional Deliverable 1: First Draft
+#### Optional Deliverable 1: First Draft (Oct 24, 2025)
 [Go back to TOC](#table-of-contents)
 
 - **Optional Deliverable 1**: First Draft of the Python Script, Requirements File, and JSON Metadata File. This initial deliverable focuses on establishing the core architecture and demonstrating the feasibility of the agentic AI approach. The draft should include a working prototype that showcases the key functionality, even if not all features are fully implemented. The emphasis should be on proving the concept and establishing a solid foundation for further development.
@@ -273,7 +273,7 @@ The key words association must be provided in a `.json` file that uses the follo
 }
 ```
 
-#### Optional Deliverable 2: Second Draft
+#### Optional Deliverable 2: Second Draft (Dec 5, 2025)
 [Go back to TOC](#table-of-contents)
 
 - **Optional Deliverable 2**: Second Draft with Revisions and Final Adjustments, incorporating feedback from initial testing and addressing any identified limitations or bugs. The second draft should represent a significant improvement over the initial version, with enhanced functionality, better error handling, improved documentation, and validated performance across different use cases. This final version should be ready for integration into production environments and include comprehensive testing results and performance benchmarks. The deliverable should demonstrate mastery of agentic AI concepts and provide a robust, scalable solution that can serve as a foundation for future enterprise applications.
