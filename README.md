@@ -46,7 +46,7 @@ Successful students will:
 [Back to TOC](#table-of-contents)
 
 ### Course Structure
-This course will be conducted in person, allowing for direct interaction and hands-on assistance.
+This course will be conducted online asynchronously, allowing students to learn at their own pace with flexible scheduling.
 
 Each session will be divided into two main parts:
 1. The lecture portion will last 1 hour, where key concepts and theoretical foundations will be covered.
