@@ -1,6 +1,12 @@
 import streamlit as st
+import anthropic
+import os
+from dotenv import load_dotenv
 
-st.title("Echo Bot")
+# Load environment variables
+load_dotenv()
+
+st.title("Claude Chatbot")
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -18,7 +24,18 @@ if prompt := st.chat_input("What is up?"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    response = f"Echo: {prompt}"
+    # Get response from Claude
+    try:
+        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        message = client.messages.create(
+            model="claude-3-5-sonnet-20241022",
+            max_tokens=1024,
+            messages=st.session_state.messages
+        )
+        response = message.content[0].text
+    except Exception as e:
+        response = f"Error: {str(e)}"
+
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
         st.markdown(response)
