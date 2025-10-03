@@ -28,11 +28,20 @@ if prompt := st.chat_input("What is up?"):
     try:
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         message = client.messages.create(
-            model="claude-3-5-sonnet-20241022",
+            model="claude-sonnet-4-5",
             max_tokens=1024,
-            messages=st.session_state.messages
+            messages=st.session_state.messages,
+            tools=[{
+                "type": "web_search_20250305",
+                "name": "web_search",
+                "max_uses": 5
+            }]
         )
-        response = message.content[0].text
+        # Extract text blocks from response (filter out tool use blocks)
+        response = ""
+        for block in message.content:
+            if block.type == "text":
+                response += block.text
     except Exception as e:
         response = f"Error: {str(e)}"
 
