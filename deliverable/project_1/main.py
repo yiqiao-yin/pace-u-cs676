@@ -4,9 +4,13 @@ import os
 from dotenv import load_dotenv
 from serpapi import GoogleSearch
 from typing import List, Dict, Any
+from langfuse import observe, get_client
 
 # Load environment variables
 load_dotenv()
+
+# Initialize Langfuse client
+langfuse = get_client()
 
 def search_serpapi(query: str, api_key: str) -> List[Dict[str, Any]]:
     """
@@ -28,10 +32,62 @@ def search_serpapi(query: str, api_key: str) -> List[Dict[str, Any]]:
     except Exception as e:
         raise Exception(f"An error occurred: {e}")
 
+@observe()
+def get_claude_response(messages: List[Dict[str, str]], user_id: str, email: str, session_id: str) -> str:
+    """
+    Get response from Claude API with Langfuse tracing.
+
+    :param messages: Chat messages history
+    :param user_id: User identifier
+    :param email: User email
+    :param session_id: Session identifier
+    :return: Claude's response text
+    """
+    client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+    # Get the user's input (last message)
+    input_text = messages[-1]["content"] if messages else ""
+
+    message = client.messages.create(
+        model="claude-sonnet-4-5",
+        max_tokens=1024,
+        messages=messages,
+        tools=[{
+            "type": "web_search_20250305",
+            "name": "web_search",
+            "max_uses": 5
+        }]
+    )
+
+    # Extract text blocks from response
+    output = ""
+    for block in message.content:
+        if block.type == "text":
+            output += block.text
+
+    # Update trace with metadata
+    langfuse.update_current_trace(
+        input=input_text,
+        output=output,
+        user_id=user_id,
+        session_id=session_id,
+        tags=["claude-chatbot", "streamlit"],
+        metadata={"email": email},
+        version="1.0.0"
+    )
+
+    return output
+
 st.title("Claude Chatbot")
 
-# Sidebar checkbox for internet search
+# Sidebar for user information and settings
 with st.sidebar:
+    st.subheader("User Information")
+    user = st.text_input("User", value="johndoe")
+    email = st.text_input("Email", value="john@gmail.com")
+    session_id = f"{user}_{email}"
+
+    st.divider()
     use_serpapi = st.checkbox("Enable Internet Search (SerpAPI)", value=False)
 
 # Initialize chat history
@@ -109,22 +165,13 @@ if prompt := st.chat_input("What is up?"):
             else:
                 st.warning("SERPAPI_API_KEY not found in environment variables")
 
-        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        message = client.messages.create(
-            model="claude-sonnet-4-5",
-            max_tokens=1024,
-            messages=st.session_state.messages,
-            tools=[{
-                "type": "web_search_20250305",
-                "name": "web_search",
-                "max_uses": 5
-            }]
+        # Call instrumented Claude function
+        response = get_claude_response(
+            st.session_state.messages,
+            user_id=user,
+            email=email,
+            session_id=session_id
         )
-        # Extract text blocks from response (filter out tool use blocks)
-        response = ""
-        for block in message.content:
-            if block.type == "text":
-                response += block.text
     except Exception as e:
         response = f"Error: {str(e)}"
 
