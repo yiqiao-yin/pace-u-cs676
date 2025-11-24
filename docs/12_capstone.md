@@ -17,13 +17,14 @@
        - [Deliverable 1: Draft of the App (Oct 31, 2025)](#deliverable-1-draft-of-the-app-oct-31-2025)
        - [Deliverable 2: Beta Version and Technical Report (Nov 7, 2025)](#deliverable-2-beta-version-and-technical-report-nov-7-2025)
        - [Deliverable 3: Final Delivery of Container-Ready App (Nov 14, 2025)](#deliverable-3-final-delivery-of-container-ready-app-nov-14-2025)
-  - [Project 3: Agentic AI for Machine Learning](#project-3-agentic-ai-for-machine-learning)
+  - [Project 3: Your Own AI/ML Project (Optional)](#project-3-your-own-aiml-project-optional)
     - [Concept Overview](#concept-overview-2)
-    - [Approach to Simulating Feedback](#approach-to-simulating-feedback-1)
+    - [Approach](#approach)
+    - [Submission Process](#submission-process)
     - [Deliverable](#deliverable-2)
     - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-2)
-      - [Optional Deliverable 1: First Draft](#optional-deliverable-1-first-draft)
-      - [Optional Deliverable 2: Second Draft](#optional-deliverable-2-second-draft)
+      - [Optional Deliverable 1: Project Proposal and Initial Work](#optional-deliverable-1-project-proposal-and-initial-work)
+      - [Optional Deliverable 2: Final Project Submission](#optional-deliverable-2-final-project-submission)
 
 # Capstone Projects
 
@@ -198,7 +199,7 @@ The app will include:
 
 By implementing this simulation app, the project demonstrates how AI can streamline feature feedback collection, reducing costs and accelerating the go-to-market strategy. The result is a scalable, efficient solution for user feedback analysis that can transform how companies approach user research and product validation, potentially reducing feedback collection time from weeks to minutes while maintaining the quality and diversity of insights needed for informed decision-making.
 
-## Project 3: Agentic AI for Machine Learning
+## Project 3: Your Own AI/ML Project (Optional)
 [Go back to TOC](#table-of-contents)
 
 ![graph](../pics/12_capstone_03.png)
@@ -206,74 +207,98 @@ By implementing this simulation app, the project demonstrates how AI can streaml
 ### Concept Overview
 [Go back to TOC](#table-of-contents)
 
-We aim to create an intuitive platform that empowers executives and non-technical professionals to leverage advanced data science tools without requiring deep technical knowledge. By integrating built-in functionalities, users can seamlessly interact with machine learning models and perform essential data tasks.
+**This is an OPTIONAL project.** Due to time constraints in the semester, Project 3 provides an opportunity for students who want to explore their own ideas in AI, machine learning, or agentic systems.
 
-Due to time limit of the semester, this will be an optional project.
+This project is entirely open-ended and allows you to pursue your own interests. You can choose from a wide variety of project types, including but not limited to:
 
-### Approach to Simulating Feedback
+- Building a chatbot or conversational AI system
+- Writing a research paper on an AI/ML topic
+- Training and deploying machine learning models
+- Developing an agentic AI application
+- Creating a data analysis or visualization tool
+- Implementing a computer vision or NLP application
+- Experimenting with LLMs and prompt engineering
+- Building an AI-powered web application
+- Any other AI/ML-related project of your choice
+
+The key requirement is that your project demonstrates meaningful engagement with AI or machine learning concepts covered in the course.
+
+### Approach
 [Go back to TOC](#table-of-contents)
 
-This project utilizes proprietary agentic AI tools specifically designed to simplify and automate complex data science workflows. By embedding tools we’ve developed, the solution will include guided interactions, enabling users to efficiently complete tasks such as model selection, data preparation, and visualization.
+Your approach will depend entirely on the project you choose. Consider the following when planning your project:
+
+1. **Scope Appropriately**: Choose a project that can be reasonably completed given the optional nature and timing of this assignment.
+
+2. **Leverage Course Concepts**: Try to incorporate concepts, tools, or techniques we've covered in class (RAG, agentic AI, LLMs, machine learning pipelines, etc.).
+
+3. **Focus on Learning**: This is an opportunity to explore something you're genuinely interested in, so prioritize learning and experimentation.
+
+4. **Document Your Work**: Maintain clear documentation of your process, decisions, and results.
+
+### Submission Process
+[Go back to TOC](#table-of-contents)
+
+To submit your project, follow these steps:
+
+1. **Create a GitHub Repository**: Host your project code, documentation, and any supporting materials in a GitHub repository.
+
+2. **Include a README**: Your repository should have a comprehensive README.md file that explains:
+   - What your project does
+   - Why you chose this project
+   - Technologies and tools used
+   - How to run/reproduce your work
+   - Results and conclusions
+
+3. **Submit via wyn360search.com**:
+   - Navigate to [wyn360search.com](https://wyn360search.com)
+   - Log in to your account
+   - Go to the REPO page
+   - Click the 'ADD REPOSITORY' button
+   - Enter your GitHub repository URL
+   - Complete the submission
+
+Once you have added your repository through the website, the instructors will be able to review your work and provide feedback.
 
 ### Deliverable
 [Go back to TOC](#table-of-contents)
 
-- A `.py` script containing a Python function that encapsulates the core functionality of the agentic AI tool.
-- A `requirements.txt` file documenting all the package versions required to run the Python script.
-- A `.json` file containing key metadata, including keywords and sample payloads, to demonstrate the required inputs and expected outputs for the Python function.
+Your deliverable will vary based on your chosen project, but should generally include:
+
+- A GitHub repository containing all project files
+- A comprehensive README.md file
+- Source code (if applicable)
+- Documentation explaining your methodology and results
+- Any necessary configuration files (requirements.txt, environment files, etc.)
+- Results, outputs, or demonstrations of your work
 
 ### Deliverable Deadline Breakdown
 [Go back to TOC](#table-of-contents)
 
-#### Optional Deliverable 1: First Draft
+#### Optional Deliverable 1: Project Proposal and Initial Work
 [Go back to TOC](#table-of-contents)
 
-- **Optional Deliverable 1**: First Draft of the Python Script, Requirements File, and JSON Metadata File. This initial deliverable focuses on establishing the core architecture and demonstrating the feasibility of the agentic AI approach. The draft should include a working prototype that showcases the key functionality, even if not all features are fully implemented. The emphasis should be on proving the concept and establishing a solid foundation for further development.
+- **Objective**: Define your project scope and begin initial development or research.
 
-The python script must follow the following template to ensure compatibility with the agentic AI framework. The provided code snippet is written in Python with a specific decorator function-like syntax and includes a comment. This template establishes a standardized interface for registering and executing AI agent functions, enabling seamless integration with the broader agentic AI ecosystem. The decorator pattern allows for dynamic function discovery and registration, which is essential for building flexible, extensible AI systems. Here's a detailed breakdown:
+- **Deliverables**:
+  - A project proposal (can be in your README.md) that outlines:
+    - Project title and description
+    - Objectives and goals
+    - Planned approach and technologies
+    - Expected outcomes
+  - Initial work demonstrating progress on your project
+  - A GitHub repository with your initial commits
 
-```python
-@register_function("send_sms")
-def send_sms(payload: Dict[str, str], secrets: Dict[str, str], event_stream: list) -> Dict[str, Any]:
-    # Code to send email goes here!
-    pass
-```
-
-1. **Decorator: `@register_function("send_sms")`**
-   - The line starting with `@` is a Python decorator that serves as a registration mechanism for agentic AI functions. It is used to modify the behavior of the function below it, adding metadata and registration capabilities that enable the AI system to discover and utilize the function automatically.
-   - `register_function` appears to be a custom or library-provided decorator which registers the `send_sms` function under the name `"send_sms"`. This registration system is crucial for agentic AI applications as it allows the AI agent to dynamically discover available functions and select appropriate ones based on user requests or system needs. The decorator could signify that the function can be accessed or utilized elsewhere within a framework, plugin system, or API, enabling modular and extensible AI agent capabilities.
-
-2. **Function Definition: `def send_sms(...)`**
-   - The function named `send_sms` takes three parameters that follow the standardized interface for agentic AI functions, ensuring consistency and predictability across all agent capabilities:
-     - `payload`: A dictionary (`Dict[str, str]`) where both keys and values are strings. This likely contains the data necessary to send an SMS, such as a message body or recipient's phone number. The standardized payload format enables the AI agent to pass user-requested information in a consistent manner, regardless of the specific function being called.
-     - `secrets`: Another dictionary which stores sensitive information, with string keys and values, possibly containing credentials or keys required for sending an SMS. This parameter is crucial for maintaining security in agentic AI systems, as it provides a secure way to pass authentication credentials and API keys without exposing them in logs or user interfaces.
-     - `event_stream`: A list that might be used to log events or manage asynchronous operations related to sending SMS. This parameter enables comprehensive monitoring and debugging of agent actions, allowing the system to track the progress of operations, handle errors gracefully, and provide detailed feedback to users about the status of their requests.
-
-3. **Return Type Annotation: `-> Dict[str, Any]`**
-   - The function is supposed to return a dictionary where the keys are strings, and the values can be any data type. This standardized return format ensures that all agentic AI functions provide consistent output that can be easily processed by the AI agent and presented to users in a meaningful way. The return dictionary might represent the result or status of the SMS sending operation, including success indicators, error messages, confirmation details, or any other relevant information that the AI agent needs to communicate back to the user.
-
-4. **Comment: `# Code to send email goes here!`**
-   - This is an internal comment indicating where the logic for sending an email (or possibly an SMS, given the context mismatch) should be implemented. In a production agentic AI system, this is where the actual business logic would reside, including error handling, validation, external API calls, and result formatting.
-   - Note the discrepancy; it mentions "send email," while the function is named `send_sms`. This type of inconsistency should be carefully avoided in production code, as it can lead to confusion and maintenance issues. Proper documentation and naming conventions are especially important in agentic AI systems where functions may be automatically selected and executed based on their names and descriptions.
-
-5. **`pass` Statement**
-   - The `pass` keyword is used as a placeholder and means that the function currently doesn't execute any operations. It's a no-op used when a statement is syntactically required but no action is needed or defined. In the context of agentic AI development, this placeholder approach allows developers to establish the function interface and registration mechanism before implementing the full functionality, enabling iterative development and testing of the agent system architecture.
-
-The intention behind this code is to set up a structure for sending SMS messages, potentially using a framework where functions are registered via decorators for use by agentic AI systems. This architectural approach enables AI agents to dynamically discover and utilize various capabilities without hardcoded function calls, making the system highly extensible and maintainable. However, the actual implementation of sending the SMS is not yet complete, which is typical during the initial development phases where the focus is on establishing proper interfaces and integration patterns before implementing specific business logic.
-
-The key words association must be provided in a `.json` file that uses the following template to enable natural language processing and function selection by the AI agent. This metadata file is crucial for helping the AI agent understand when and how to use each registered function, as it provides the semantic mapping between user requests and available capabilities. The JSON structure should be comprehensive enough to handle various ways users might express their intent while being specific enough to avoid ambiguous function selection:
-
-```json
-{
-    "send_email": {
-        "trigger_word": ["send email", "notify via email"],
-        "sample_payload": {"email": "string", "subject": "string"},
-        "prerequisite": null
-    }
-}
-```
-
-#### Optional Deliverable 2: Second Draft
+#### Optional Deliverable 2: Final Project Submission
 [Go back to TOC](#table-of-contents)
 
-- **Optional Deliverable 2**: Second Draft with Revisions and Final Adjustments, incorporating feedback from initial testing and addressing any identified limitations or bugs. The second draft should represent a significant improvement over the initial version, with enhanced functionality, better error handling, improved documentation, and validated performance across different use cases. This final version should be ready for integration into production environments and include comprehensive testing results and performance benchmarks. The deliverable should demonstrate mastery of agentic AI concepts and provide a robust, scalable solution that can serve as a foundation for future enterprise applications.
+- **Objective**: Complete your project and submit it for evaluation.
+
+- **Deliverables**:
+  - A complete GitHub repository with all project files
+  - Comprehensive documentation and README
+  - Working code, trained models, or completed research paper (depending on your project type)
+  - Submission through the wyn360search.com website as described above
+  - A brief reflection on what you learned and any challenges you encountered
+
+**Note**: Since this is an optional project, deadlines will be flexible. However, it's recommended to complete the project before the end of the semester to receive feedback and credit.
