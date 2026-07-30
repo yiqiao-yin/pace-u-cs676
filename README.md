@@ -150,10 +150,6 @@ The schedule is tentative and subject to change. The learning goals below should
 - Importance of data science
 - Introduction to Python (R is optional by Python is recommended)
 
-For lecture reocrdings, please see the following:
-
-[![Class Recording](https://img.youtube.com/vi/98nOvfGRO9k/0.jpg)](https://www.youtube.com/embed/98nOvfGRO9k?si=HSPty1L_8OBeONjS)
-
 For more details, please see: [01_introduction](docs/01_introduction.md)
 
 [Back to TOC](#table-of-contents)
