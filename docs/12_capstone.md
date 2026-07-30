@@ -156,11 +156,13 @@ This feature will involve:
 | **Aspect**                | **Requirements**                                                                                                                                                            |
 |---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Code Comments**         | Each section of code should include **three to five lines of comments**. Ensure the comments are clear and explanatory, providing context and purpose for each code block.  |
-| **Novelty**               | Demonstrate novelty in your neural network model architecture. Provide a defense or counterargument for class-discussed assumptions with reasonable accuracy.               |
-| **Model Accuracy**        | Aim for high accuracy in the credibility scoring model. While not heavily weighted, higher accuracy is preferred.                                                          |
-| **Production-Ready Pipeline** | Ensure the model is production-ready by deploying it on **Hugging Face**. Include Python code in your notebook to demonstrate the deployment of the model artifact.      |
+| **Novelty**               | Show something beyond a longer lookup table, and defend it. Extending the domain list is the obvious move and earns the fewest points; reading the page, using real publication metadata, or learning the weights from labelled data are not. Disagreeing with a label in `evaluate.py` and arguing your case counts as novelty. |
+| **Accuracy**              | Report measured before/after numbers from `python evaluate.py` — mean absolute error, band accuracy, and worst-case error against the baseline of 0.142 / 66.7% / 0.410. A measured improvement matters more than a large one; "it seems better" earns nothing. |
+| **Robustness**            | The scorer must not crash the app. Dead links, timeouts, malformed URLs, and API failures all have to degrade to a score and an explanation. `test_credibility.py` must still pass. |
+| **Deployment (bonus)**    | Deploying the working app to **Hugging Face Spaces** adds **+5%** to your course grade. This is a bonus, not a requirement — the base 100 points are earned locally.       |
 
-Feel free to adjust the content as per additional details or specifications you might have!
+The point-by-point breakdown for each deliverable is in the
+[project README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/deliverable/project_1/README.md#deliverables-and-grading).
 
 ## Project 2: TinyTroupe for Simulation
 

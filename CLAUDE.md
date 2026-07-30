@@ -16,11 +16,11 @@ Course materials for **CS676 Algorithms for Data Science** (Pace University), au
 - `docs/13_final_guidance.md` — final presentation rubric (front-end 10% / back-end 20% / API 30% / system design 40%).
 - `notebooks/session_N/` — the coding half of each lecture. Notebooks are written for Google Colab (pip installs inline, no shared environment), so they are not expected to run against a repo-level venv.
 - `deliverable/` — instructor reference implementations of the capstone projects.
-- `.github/workflows/jekyll-gh-pages.yml` publishes the repo to GitHub Pages on push to `main`; `config.yml` is an unmodified starter CI workflow that does nothing meaningful.
+- The site is a **Docusaurus 3** app rooted at the repo top level (`docusaurus.config.ts`, `sidebars.ts`, `src/`, `static/`), reading `docs/` in place — which is why the `../pics/` image references in the notes resolve. `.github/workflows/deploy-docusaurus.yml` builds and publishes it to GitHub Pages on push to `main`; `config.yml` is an unmodified starter CI workflow that does nothing meaningful. Doc URLs drop the numeric filename prefix: `docs/01_introduction.md` serves at `/docs/introduction`.
 
 ## deliverable/project_1 — credibility-score chatbot
 
-Streamlit + Anthropic reference app, managed with **uv** (`pyproject.toml` + `uv.lock`, Python ≥3.9).
+Streamlit + Anthropic starter kit, managed with **uv** (`pyproject.toml` + `uv.lock`) or plain `pip` (`requirements.txt`). Python ≥3.10; **`anthropic>=0.120`** is required — 0.69 predates the `output_config` parameter `credibility.py` depends on and fails at runtime.
 
 ```bash
 cd deliverable/project_1
@@ -29,16 +29,26 @@ cp .env.example .env          # fill in keys
 uv run streamlit run main.py
 ```
 
-`main.py` is a single-file app: a Streamlit chat UI, optional SerpAPI web search injected into the last user message as extra context, and `get_claude_response()` wrapped in Langfuse's `@observe()` decorator with `update_current_trace()` supplying user/session/tag metadata. Required env vars are listed in `.env.example` (`ANTHROPIC_API_KEY`, `SERPAPI_API_KEY`, and the three `LANGFUSE_*` values). Claude is called with the server-side `web_search_20250305` tool in addition to SerpAPI.
+`credibility.py` is the file students are graded on and the only one that matters here. It implements `score_url(url) -> {"score": float, "explanation": str}` in two layers — rule-based URL inspection that needs no API key, plus an optional Claude judgment blended at `RULE_WEIGHT`. **The baseline is deliberately weak**, and the twelve defects listed in its `KNOWN WEAKNESSES` block are the assignment. Do not "improve" it unprompted; that removes the exercise.
 
-The credibility-score function itself is specified in `docs/12_capstone.md`, not implemented here: it takes a URL and must return `{"score": float, "explanation": string}`.
+`main.py` is the Streamlit app: chat UI, optional SerpAPI search, Claude with the server-side `web_search_20260209` tool, citation extraction, and a colour-coded credibility chip per source. Langfuse tracing is optional and degrades to a no-op decorator when the keys are absent.
 
-## deliverable/project_2 — TinyTroupe simulation
+`evaluate.py` scores 24 labelled URLs (MAE / band accuracy / worst error; baseline **0.142 / 66.7% / 0.410**) and `test_credibility.py` holds 21 contract tests. **Both run with no API key** — that offline path is a design requirement, not an accident, so keep it working.
 
-`tinytroupe_usage_guide.md` is the student-facing guide (TinyPerson / TinyWorld, JSON persona specs, `listen_and_act`). `tinytroupeproj/` is a **vendored clone of microsoft/TinyTroupe** that is untracked in git — do not commit it, and do not edit files under `tinytroupeproj/tinytroupe/` as if they were course code. Only `main.py` and `pyproject.toml` at that directory's root are project-local. TinyTroupe needs `OPENAI_API_KEY` (or the Azure pair) and Python ≥3.10.
+## deliverable/project_2 — PersonaForge
+
+A `uv` project with a **src layout** and an installable package (`src/personaforge/`), plus `tests/`. Run it with `uv run main.py` or `uv run main.py --offline`; test with `uv run pytest`.
+
+The architecture is one idea repeated: **a persona is a markdown file** (`temp/*.md`, frontmatter + body), **an agent is that file plus a model** (`agent.py` makes the body the system prompt), **a conversation is agents taking turns** (`conversation.py`). `llm.py` puts `ClaudeLLM` and offline stubs behind one `complete()` protocol — that seam is why all **39 tests run offline in under a second**, and why `--offline` works with no API key. Preserve it.
+
+`orchestrator.py` routes intent with regular expressions and is **deliberately the weakest module**; replacing it with Claude tool use is the headline student task, and the schemas are sketched in place. Every module ends with a `YOUR TASK` block — those lists are the assignment, so don't quietly fix the items.
+
+`tinytroupe_usage_guide.md` remains as background on the Microsoft library that inspired the project. `tinytroupeproj/` is a **vendored clone of microsoft/TinyTroupe**, gitignored — do not commit or edit it.
 
 ## Conventions
 
 - Docs are the product. Prose is deliberately verbose and explanatory — match that register rather than condensing when editing lecture notes or project specs.
-- Never commit `.env` files; `deliverable/project_1/.gitignore` covers its own.
-- Python apps here use `uv`, not pip/requirements.txt — but note `docs/13_final_guidance.md` asks *students* for a `requirements.txt`, so don't "fix" that guidance to match the reference apps.
+- Never commit `.env` files. The root `.gitignore` covers `.env`/`.env.*` at any depth with an `!.env.example` negation, plus private keys and runtime output. Note `*.egg-info/` with a trailing slash does **not** match until the directory exists — use the slashless form.
+- Both starter kits must keep working **without an API key** (project 1: rules + tests + evaluator; project 2: `--offline` + pytest). A student's first run should never require a key.
+- Python apps here use `uv`. Project 1 also ships a `requirements.txt` for pip users, matching what `docs/13_final_guidance.md` asks students for.
+- Grading lives in two places that must agree: the table in the root `README.md` (homework 10%, projects 30/30/30, +5% Hugging Face bonus on projects 1 and 2, letter scale) and the per-project rubrics in each `deliverable/*/README.md`. `docs/12_capstone.md` is authoritative for deadlines.
