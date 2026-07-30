@@ -6,7 +6,7 @@ sidebar_label: "09. Support Vector Machine"
 
 # Support Vector Machine
 
-Back to [home](/)
+Back to [home](https://github.com/yiqiao-yin/pace-u-cs676)
 
 ## Introduction to SVM
 

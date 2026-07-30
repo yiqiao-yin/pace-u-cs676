@@ -6,7 +6,7 @@ sidebar_label: "05. Sampling and Bootstrap"
 
 # Lecture Notes: Sampling, Bootstrap, and Cross Validation
 
-Back to [home](/)
+Back to [home](https://github.com/yiqiao-yin/pace-u-cs676)
 
 ## What is Sampling?
 

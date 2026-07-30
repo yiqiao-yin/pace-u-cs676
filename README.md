@@ -1,5 +1,7 @@
 # CS676 Algorithms for Data Science
 
+📖 **Course site: [yiqiao-yin.github.io/pace-u-cs676](https://yiqiao-yin.github.io/pace-u-cs676/)** — all lecture notes below, rendered with LaTeX math and per-session navigation.
+
 ## Table of Contents
 - [Syllabus](#syllabus)
 - [Course Topics](#course-topics)

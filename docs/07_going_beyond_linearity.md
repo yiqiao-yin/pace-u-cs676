@@ -6,7 +6,7 @@ sidebar_label: "07. Going Beyond Linearity"
 
 # Lecture Notes: Nonlinear and Polynomial Regression Models
 
-Back to [home](/)
+Back to [home](https://github.com/yiqiao-yin/pace-u-cs676)
 
 ## What is Nonlinear Regression Models?
 

@@ -6,7 +6,7 @@ sidebar_label: "01. Introduction"
 
 # Introduction
 
-Back to [home](/)
+Back to [home](https://github.com/yiqiao-yin/pace-u-cs676)
 
 ## Course Overview
 

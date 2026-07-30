@@ -6,7 +6,7 @@ sidebar_label: "04. Classification"
 
 # Introduction to Classification and Logistic Regression
 
-Back to [home](/)
+Back to [home](https://github.com/yiqiao-yin/pace-u-cs676)
 
 ## 1. Motivational Example
 

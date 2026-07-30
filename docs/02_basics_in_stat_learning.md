@@ -6,7 +6,7 @@ sidebar_label: "02. Basics in Statistical Learning"
 
 # Basics in Statistical Learning
 
-Back to [home](/)
+Back to [home](https://github.com/yiqiao-yin/pace-u-cs676)
 
 ## What is Statistical Machine Learning?
 

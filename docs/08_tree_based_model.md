@@ -6,7 +6,7 @@ sidebar_label: "08. Tree-Based Methods"
 
 # Decision Tree Algorithm Lecture Notes
 
-Back to [home](/)
+Back to [home](https://github.com/yiqiao-yin/pace-u-cs676)
 
 ## What is the Decision Tree Algorithm?
 

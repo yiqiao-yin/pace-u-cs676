@@ -6,7 +6,7 @@ sidebar_label: "03. Linear Regression"
 
 # Supervised Learning Overview
 
-Back to [home](/)
+Back to [home](https://github.com/yiqiao-yin/pace-u-cs676)
 
 ## 📚 What is Supervised Learning?
 Supervised Learning is a type of machine learning approach that involves training a model on a labeled dataset. In this context, the dataset consists of features (`X`) and a corresponding response (`Y`). The goal is to learn a mapping from the input features to the output response so that the model can make predictions on new, unseen data.

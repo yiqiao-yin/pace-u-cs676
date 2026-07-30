@@ -6,7 +6,7 @@ sidebar_label: "06. Model Selection & Regularization"
 
 # Lecture Notes: Model Selection and Related Concepts
 
-Back to [home](/)
+Back to [home](https://github.com/yiqiao-yin/pace-u-cs676)
 
 ## 1. What is Model Selection? Why is it Important?
 Model selection refers to the process of choosing the best statistical model from a set of candidate models. It is crucial for:

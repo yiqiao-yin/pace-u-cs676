@@ -6,7 +6,7 @@ sidebar_label: "10. Deep Learning"
 
 # Deep Learning
 
-Back to [home](/)
+Back to [home](https://github.com/yiqiao-yin/pace-u-cs676)
 
 Deep learning is a subset of machine learning that attempts to model complex patterns in data using neural networks with multiple layers. It has revolutionized various fields by improving the performance of many tasks, such as image and speech recognition, natural language processing, and more.
 
