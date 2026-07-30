@@ -1,0 +1,6 @@
+# Vendored clone of microsoft/TinyTroupe — reference material, not course code
+deliverable/project_2/tinytroupeproj/
+
+.venv/
+__pycache__/
+.env
