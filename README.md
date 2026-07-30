@@ -82,20 +82,37 @@ The final project will be an individual project that is submission based. It wil
 ### Grading Policy
 The assessments will count toward your grade as follows:
 
-- **10%** of your grade will be determined by homework assignments. You must fill up the assessment form after every session. You can be excused twice.
-- **90%** of your grade will be determined by the projects of the class. Please read the following. 
-  - project 1 - credit score:
-    - **10%**: deliverable 1
-    - **10%**: deliverable 2
-    - **10%**: deliverable 3
-  - project 2 - tinytroupe:
-    - **10%**: deliverable 1
-    - **10%**: deliverable 2
-    - **10%**: deliverable 3
-  - project 3 - to be determined:
-    - **10%**: deliverable 1
-    - **20%**: deliverable 2
-- **30%** (bonus) will be additionally rewarded for extracurriculum activities. Please contact me if you would like to see the detailed list. Please use the course submission form to indicate which project(s) you want to apply for. This can replace project 3 entirely. You may choose to replace project 1 or project 2 with bonus if you want to, although I would recommend to go through project 1 and project 2 to engage with the content of the class.
+Your grade is built from four components. Each project is marked out of 100 points and then weighted as shown.
+
+| Component | Weight | Bonus available | Details |
+| --- | --- | --- | --- |
+| Homework | **10%** | — | Fill out the assessment form after every session. Two absences excused; the lowest two grades are dropped. |
+| Project 1 — Credibility Scoring | **30%** | **+5%** | [Starter code and rubric](deliverable/project_1/README.md) · [Spec](docs/12_capstone.md#project-1-credibility-score-for-articlessourcesreferences) |
+| Project 2 — PersonaForge (agent-to-agent package) | **30%** | **+5%** | [Starter code and rubric](deliverable/project_2/README.md) · [Spec](docs/12_capstone.md#project-2-tinytroupe-for-simulation) |
+| Project 3 — Your Own AI/ML Project | **30%** | — | Required. Take-home, your own idea. [Spec](docs/12_capstone.md#project-3-your-own-aiml-project) |
+| | **100%** | **+10%** | **110% total available** |
+
+**Both bonuses are earned by deploying a working app to Hugging Face Spaces** — 5% for Project 1, 5% for Project 2. This is real additional work, which is why it carries real additional credit. Submit the public Space URL with your deliverables.
+
+Each project's 100 points are split across its deliverables. For Project 1 that is 25 points (deliverable 1), 35 points (deliverable 2), and 40 points (deliverable 3); see the [project README](deliverable/project_1/README.md#deliverables-and-grading) for the point-by-point rubric.
+
+### Letter Grades
+
+Your final percentage maps to a letter grade on this scale. Because 110% is available, the bonuses can carry you above 100% — a student who finishes everything and deploys both apps can absorb a weak deliverable elsewhere and still earn an A.
+
+| Final Score | Letter |
+| --- | --- |
+| 95% and above | **A** |
+| 90 – 94% | **A-** |
+| 85 – 89% | **B+** |
+| 80 – 84% | **B** |
+| 75 – 79% | **B-** |
+| 70 – 74% | **C+** |
+| 65 – 69% | **C** |
+| 60 – 64% | **C-** |
+| Below 60% | **F** |
+
+There is no rounding beyond the bands shown: an 89.9% is a B+, not an A-.
 
 Late submissions for the midterm will incur a deduction of 5 points from the total score (100 points).
 

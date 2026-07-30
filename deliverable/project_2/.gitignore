@@ -1,0 +1,22 @@
+# Secrets — never commit these.
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Personas and transcripts are generated at runtime and are yours, not the repo's.
+temp/*
+!temp/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db

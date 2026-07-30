@@ -1,16 +1,41 @@
+# =============================================================================
+# SECRETS — never commit these. `.env.example` templates are safe and tracked.
+# =============================================================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa
+id_ed25519
+secrets.json
+credentials.json
+
 # Vendored clone of microsoft/TinyTroupe — reference material, not course code
 deliverable/project_2/tinytroupeproj/
 
-# Docusaurus
+# Docusaurus / Node
 /node_modules
 /build
 /.docusaurus
 .cache-loader
+npm-debug.log*
 
 # Python
 .venv/
+venv/
 __pycache__/
-.env
+*.py[cod]
+*.egg-info
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Runtime output from the project_2 starter app
+deliverable/project_2/temp/*
+!deliverable/project_2/temp/.gitkeep
 
 # OS
 .DS_Store
+Thumbs.db

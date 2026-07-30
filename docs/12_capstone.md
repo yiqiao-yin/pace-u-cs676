@@ -10,6 +10,7 @@ sidebar_label: "12. Capstone Projects"
    - [Project 1: Credibility Score for Articles/Sources/References](#project-1-credibility-score-for-articlessourcesreferences)
      - [Concept Overview](#concept-overview)
      - [Approach to Scoring Credibility](#approach-to-scoring-credibility)
+     - [Starter Code, Setup, and Grading](#starter-code-setup-and-grading)
      - [Deliverable](#deliverable)
      - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown)
        - [Deliverable 1: Draft of the Python Function (Sept 19, 2025)](#deliverable-1-draft-of-the-python-function-sept-19-2025)
@@ -18,19 +19,20 @@ sidebar_label: "12. Capstone Projects"
    - [Project 2: TinyTroupe for Simulation](#project-2-tinytroupe-for-simulation)
      - [Concept Overview](#concept-overview-1)
      - [Approach to Simulating Feedback](#approach-to-simulating-feedback)
+     - [Starter Code, Setup, and Grading](#starter-code-setup-and-grading-1)
      - [Deliverable](#deliverable-1)
      - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-1)
        - [Deliverable 1: Draft of the App (Oct 31, 2025)](#deliverable-1-draft-of-the-app-oct-31-2025)
        - [Deliverable 2: Beta Version and Technical Report (Nov 7, 2025)](#deliverable-2-beta-version-and-technical-report-nov-7-2025)
        - [Deliverable 3: Final Delivery of Container-Ready App (Nov 14, 2025)](#deliverable-3-final-delivery-of-container-ready-app-nov-14-2025)
-  - [Project 3: Your Own AI/ML Project (Optional)](#project-3-your-own-aiml-project-optional)
+  - [Project 3: Your Own AI/ML Project](#project-3-your-own-aiml-project)
     - [Concept Overview](#concept-overview-2)
     - [Approach](#approach)
     - [Submission Process](#submission-process)
     - [Deliverable](#deliverable-2)
     - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-2)
-      - [Optional Deliverable 1: Project Proposal and Initial Work](#optional-deliverable-1-project-proposal-and-initial-work)
-      - [Optional Deliverable 2: Final Project Submission](#optional-deliverable-2-final-project-submission)
+      - [Deliverable 1: Project Proposal and Initial Work](#deliverable-1-project-proposal-and-initial-work)
+      - [Deliverable 2: Final Project Submission](#deliverable-2-final-project-submission)
 
 ## Capstone Projects
 
@@ -62,6 +64,33 @@ The challenge is to understand and evaluate the credibility of these resources t
 3. **Hybrid Approach**: Combine both ML and rule-based methods for a comprehensive evaluation that leverages the strengths of both methodologies. The hybrid system can use rule-based components to establish baseline credibility assessments and handle edge cases, while ML components can identify subtle patterns and relationships that might be missed by predefined rules. This approach often provides the most robust and accurate credibility assessments by balancing interpretability with predictive power.
 
 4. **Innovative Solutions**: Consider any other creative solutions that enhance credibility assessment beyond the traditional methods. This might include real-time fact-checking against multiple databases, sentiment analysis to detect bias, network analysis to understand source relationships and potential conflicts of interest, or blockchain-based verification systems. Innovative approaches could also involve crowd-sourcing credibility assessments, integrating social media sentiment, or using natural language processing to detect misleading language patterns.
+
+### Starter Code, Setup, and Grading
+[Go back to TOC](#table-of-contents)
+
+**You do not start this project from an empty folder.** A working chatbot is provided
+in [`deliverable/project_1`](https://github.com/yiqiao-yin/pace-u-cs676/tree/main/deliverable/project_1) — clone the
+course repository and run it locally on macOS or Windows following the step-by-step
+instructions in that folder's
+[README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/deliverable/project_1/README.md).
+
+The starter kit contains:
+
+- `main.py` — a Streamlit chat app calling Claude with web search, which already displays a colour-coded credibility chip beside every source it cites.
+- `credibility.py` — **the file you improve.** It holds a deliberately weak baseline implementation of `score_url()`, followed by a numbered list of twelve documented defects in that baseline. Each one is an invitation.
+- `evaluate.py` — a harness that scores 24 labelled URLs and reports mean absolute error, band accuracy, and worst-case error. The provided baseline scores **MAE 0.142 / 66.7% band accuracy**. Beating that measurably is the point of the assignment.
+- `test_credibility.py` — contract tests for the required input/output shape.
+
+The rule-based scorer, the tests, and the evaluation harness all run **without an API
+key**, so you can begin immediately and only spend credits once you reach the chat
+interface.
+
+**Weighting: this project is 30% of your course grade, marked out of 100 points**
+(deliverable 1: 25, deliverable 2: 35, deliverable 3: 40). An additional **5% bonus**
+is added to your course grade for deploying a working app to Hugging Face Spaces. The
+detailed point-by-point rubric is in the project README, and the full course weighting
+and letter-grade scale are in the [course
+README](https://github.com/yiqiao-yin/pace-u-cs676#grading-policy).
 
 ### Deliverable
 [Go back to TOC](#table-of-contents)
@@ -137,6 +166,48 @@ Feel free to adjust the content as per additional details or specifications you 
 
 ![graph](../pics/12_capstone_02.png)
 
+**Weighting: 30% of your course grade, marked out of 100 points, plus a +5% bonus for
+deploying a working app to Hugging Face Spaces.** See the [course
+README](https://github.com/yiqiao-yin/pace-u-cs676#grading-policy) for the full
+weighting and the letter-grade scale.
+
+### Starter Code, Setup, and Grading
+[Go back to TOC](#table-of-contents)
+
+**Project 1 asked you to improve a function inside someone else's app. This one asks
+you to build a Python package.** A runnable skeleton called **PersonaForge** is
+provided in
+[`deliverable/project_2`](https://github.com/yiqiao-yin/pace-u-cs676/tree/main/deliverable/project_2)
+— clone the course repository and follow the macOS and Windows instructions in that
+folder's
+[README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/deliverable/project_2/README.md).
+
+What the skeleton does: you talk to an agent in your terminal, ask it to invent
+characters, and then tell those characters to talk to each other. The architecture is
+one idea repeated — **a persona is a markdown file, an agent is that file plus a model,
+and a conversation is agents taking turns.** Personas are written to `temp/` as `.md`
+files you can open and edit by hand; change a line and the character behaves
+differently on the next run.
+
+It is a proper `uv` project with a `src/` layout, a real package under
+`src/personaforge/`, and a `tests/` suite:
+
+- `main.py` — entry point. `uv run main.py`
+- `src/personaforge/persona.py` — persona files: generate, save, load, find
+- `src/personaforge/agent.py` — markdown plus model becomes a character
+- `src/personaforge/conversation.py` — the turn loop
+- `src/personaforge/orchestrator.py` — **the weakest part.** It routes what you typed using regular expressions. Replacing that with genuine Claude tool use is the headline task of this project; the tool schemas you need are already sketched in a comment there.
+- `tests/` — **39 tests that run offline in under a second**, because every test injects a fake model instead of calling the API
+
+Run `uv run main.py --offline` to drive the entire app with no API key and no cost —
+the scripted stub creates personas and runs conversations so you can see the shape of
+the system before spending anything. Every module ends with a **YOUR TASK** comment
+block listing what is wrong with it; those lists are the assignment.
+
+For background on the Microsoft TinyTroupe library that inspired this project, see
+[`tinytroupe_usage_guide.md`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/deliverable/project_2/tinytroupe_usage_guide.md).
+You are not required to use TinyTroupe itself — you are building your own package.
+
 ### Concept Overview
 [Go back to TOC](#table-of-contents)
 
@@ -205,15 +276,21 @@ The app will include:
 
 By implementing this simulation app, the project demonstrates how AI can streamline feature feedback collection, reducing costs and accelerating the go-to-market strategy. The result is a scalable, efficient solution for user feedback analysis that can transform how companies approach user research and product validation, potentially reducing feedback collection time from weeks to minutes while maintaining the quality and diversity of insights needed for informed decision-making.
 
-## Project 3: Your Own AI/ML Project (Optional)
+## Project 3: Your Own AI/ML Project
 [Go back to TOC](#table-of-contents)
 
 ![graph](../pics/12_capstone_03.png)
 
+**Weighting: 30% of your course grade, marked out of 100 points.** This is a required
+take-home project on a topic of your own choosing. No Hugging Face bonus applies here —
+the two 5% deployment bonuses are attached to Projects 1 and 2. See the [course
+README](https://github.com/yiqiao-yin/pace-u-cs676#grading-policy) for the full
+weighting and the letter-grade scale.
+
 ### Concept Overview
 [Go back to TOC](#table-of-contents)
 
-**This is an OPTIONAL project.** Due to time constraints in the semester, Project 3 provides an opportunity for students who want to explore their own ideas in AI, machine learning, or agentic systems.
+**This project is required and is worth 30% of your course grade.** Unlike Projects 1 and 2, the topic is yours to choose: this is where you show what you can build without a specification handed to you.
 
 This project is entirely open-ended and allows you to pursue your own interests. You can choose from a wide variety of project types, including but not limited to:
 
@@ -234,7 +311,7 @@ The key requirement is that your project demonstrates meaningful engagement with
 
 Your approach will depend entirely on the project you choose. Consider the following when planning your project:
 
-1. **Scope Appropriately**: Choose a project that can be reasonably completed given the optional nature and timing of this assignment.
+1. **Scope Appropriately**: Choose a project you can genuinely finish in the time available. A small system that works end to end beats an ambitious one that does not run.
 
 2. **Leverage Course Concepts**: Try to incorporate concepts, tools, or techniques we've covered in class (RAG, agentic AI, LLMs, machine learning pipelines, etc.).
 
@@ -281,7 +358,7 @@ Your deliverable will vary based on your chosen project, but should generally in
 ### Deliverable Deadline Breakdown
 [Go back to TOC](#table-of-contents)
 
-#### Optional Deliverable 1: Project Proposal and Initial Work
+#### Deliverable 1: Project Proposal and Initial Work
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Define your project scope and begin initial development or research.
@@ -295,7 +372,7 @@ Your deliverable will vary based on your chosen project, but should generally in
   - Initial work demonstrating progress on your project
   - A GitHub repository with your initial commits
 
-#### Optional Deliverable 2: Final Project Submission
+#### Deliverable 2: Final Project Submission
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Complete your project and submit it for evaluation.
@@ -307,4 +384,4 @@ Your deliverable will vary based on your chosen project, but should generally in
   - Submission through the wyn360search.com website as described above
   - A brief reflection on what you learned and any challenges you encountered
 
-**Note**: Since this is an optional project, deadlines will be flexible. However, it's recommended to complete the project before the end of the semester to receive feedback and credit.
+**Note**: Submit early enough to get feedback. Work that arrives after the last session cannot be reviewed before grades are due.

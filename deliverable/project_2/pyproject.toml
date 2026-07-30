@@ -1,0 +1,30 @@
+[project]
+name = "personaforge"
+version = "0.1.0"
+description = "CS676 Project 2 — an agent-to-agent persona simulation package"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.120.0",
+    "python-dotenv>=1.1.1",
+    "rich>=13.7.0",
+]
+
+[project.scripts]
+# Lets you run the app as `uv run personaforge` as well as `uv run main.py`.
+personaforge = "personaforge.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/personaforge"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
