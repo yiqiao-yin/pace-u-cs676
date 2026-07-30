@@ -1,0 +1,13 @@
+# CS676 Project 1 dependencies.
+#
+#   pip install -r requirements.txt
+#
+# anthropic must be >= 0.70 — earlier releases do not accept the
+# `output_config` parameter that credibility.py uses for structured output.
+anthropic>=0.120.0
+streamlit>=1.50.0
+python-dotenv>=1.1.1
+
+# Optional. The app runs without these; the sidebar shows which are active.
+google-search-results>=2.4.2   # SerpAPI, provides `from serpapi import GoogleSearch`
+langfuse>=3.6.1                # tracing
