@@ -1,4 +1,10 @@
-# Table of Contents
+---
+sidebar_position: 12
+title: "Capstone Projects"
+sidebar_label: "12. Capstone Projects"
+---
+
+## Table of Contents
 
 - [Capstone Projects](#capstone-projects)
    - [Project 1: Credibility Score for Articles/Sources/References](#project-1-credibility-score-for-articlessourcesreferences)
@@ -26,7 +32,7 @@
       - [Optional Deliverable 1: Project Proposal and Initial Work](#optional-deliverable-1-project-proposal-and-initial-work)
       - [Optional Deliverable 2: Final Project Submission](#optional-deliverable-2-final-project-submission)
 
-# Capstone Projects
+## Capstone Projects
 
 Please see the following projects.
 

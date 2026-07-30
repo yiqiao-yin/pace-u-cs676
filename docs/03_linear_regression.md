@@ -1,6 +1,12 @@
+---
+sidebar_position: 3
+title: "Linear Regression"
+sidebar_label: "03. Linear Regression"
+---
+
 # Supervised Learning Overview
 
-Back to [home](../README.md)
+Back to [home](/)
 
 ## 📚 What is Supervised Learning?
 Supervised Learning is a type of machine learning approach that involves training a model on a labeled dataset. In this context, the dataset consists of features (`X`) and a corresponding response (`Y`). The goal is to learn a mapping from the input features to the output response so that the model can make predictions on new, unseen data.
@@ -212,7 +218,7 @@ model.fit(X, y, epochs=100)  # Replace 100 with your chosen number of epochs
 
 This code will create and train a TensorFlow model that performs linear regression, analogous to using `LinearRegression` from `sklearn`. Ensure that your input data `X` and labels `y` are correctly preprocessed and available for training.
 
-# What data is good for linear regression?
+## What data is good for linear regression?
 
 What data set do you think is good for linear regression model? We will revisit this again in the future.
 
@@ -262,7 +268,7 @@ plt.show()
 
 The plot at the end visualizes the generated data points and shows how they are distributed across different clusters. Feel free to adjust parameters like `n_samples`, `centers`, or `cluster_std` to observe how the output changes.
 
-# Tensorflow Implementation on Colab
+## Tensorflow Implementation on Colab
 
 ```python
 # import

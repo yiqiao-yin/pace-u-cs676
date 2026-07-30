@@ -1,6 +1,12 @@
+---
+sidebar_position: 11
+title: "Unsupervised Metrics"
+sidebar_label: "11. Unsupervised Metrics"
+---
+
 # Unsupervised Metrics
 
-Back to [home](../README.md)
+Back to [home](/)
 
 Unsupervised learning is a class of machine learning techniques used to draw inferences from datasets consisting of input data without labeled responses. Unsupervised metrics are essential for understanding the underlying structure and distribution of data, allowing automated data analysis.
 

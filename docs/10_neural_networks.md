@@ -1,6 +1,12 @@
+---
+sidebar_position: 10
+title: "Deep Learning"
+sidebar_label: "10. Deep Learning"
+---
+
 # Deep Learning
 
-Back to [home](../README.md)
+Back to [home](/)
 
 Deep learning is a subset of machine learning that attempts to model complex patterns in data using neural networks with multiple layers. It has revolutionized various fields by improving the performance of many tasks, such as image and speech recognition, natural language processing, and more.
 
@@ -147,7 +153,7 @@ Deep learning has been transformative across industries, from enhancing user exp
 
 In summary, deep learning's ability to automatically extract intricate features from raw data makes it an indispensable tool in modern AI applications. With continued advancements in computational power and data availability, deep learning will likely push the boundaries of what's currently achievable in AI.
 
-# Neural Networks from Scratch using NumPy
+## Neural Networks from Scratch using NumPy
 
 Neural networks, inspired by the human brain's structure, are a class of models used in machine learning to perform tasks like classification and regression. Building a neural network from scratch using just NumPy offers a solid understanding of its foundational concepts.
 

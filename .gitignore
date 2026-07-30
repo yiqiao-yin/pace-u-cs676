@@ -1,6 +1,16 @@
 # Vendored clone of microsoft/TinyTroupe — reference material, not course code
 deliverable/project_2/tinytroupeproj/
 
+# Docusaurus
+/node_modules
+/build
+/.docusaurus
+.cache-loader
+
+# Python
 .venv/
 __pycache__/
 .env
+
+# OS
+.DS_Store

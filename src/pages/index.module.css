@@ -1,0 +1,131 @@
+.hero {
+  padding: 6rem 1rem 4rem;
+  background:
+    radial-gradient(60rem 30rem at 50% -10%, rgba(124, 196, 255, 0.14), transparent 70%),
+    #000000;
+  border-bottom: 1px solid #16161a;
+}
+
+.heroInner {
+  max-width: 52rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  color: #7cc4ff;
+  margin-bottom: 0.75rem;
+}
+
+.heroTitle {
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+}
+
+.heroSubtitle {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: #b6b6bd;
+  margin-bottom: 2.25rem;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.primaryBtn {
+  background: #ffffff;
+  color: #000000;
+}
+.primaryBtn:hover {
+  background: #d8d8dd;
+  color: #000000;
+  text-decoration: none;
+}
+
+.secondaryBtn {
+  border: 1px solid #2c2c33;
+  color: #ffffff;
+}
+.secondaryBtn:hover {
+  border-color: #7cc4ff;
+  color: #7cc4ff;
+  text-decoration: none;
+}
+
+.gridSection {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 4rem 1rem 5rem;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin-bottom: 1.75rem;
+  letter-spacing: -0.01em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid #1c1c21;
+  border-radius: 10px;
+  background: #08080a;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+}
+
+.card:hover {
+  border-color: #7cc4ff;
+  background: #0d0d11;
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.cardNum {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: #7cc4ff;
+  margin-bottom: 0.6rem;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: 650;
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+}
+
+.cardBlurb {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #8e8e97;
+}

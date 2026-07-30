@@ -1,6 +1,12 @@
+---
+sidebar_position: 8
+title: "Tree-Based Methods"
+sidebar_label: "08. Tree-Based Methods"
+---
+
 # Decision Tree Algorithm Lecture Notes
 
-Back to [home](../README.md)
+Back to [home](/)
 
 ## What is the Decision Tree Algorithm?
 

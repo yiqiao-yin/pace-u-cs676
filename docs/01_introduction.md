@@ -1,8 +1,14 @@
+---
+sidebar_position: 1
+title: "Introduction"
+sidebar_label: "01. Introduction"
+---
+
 # Introduction
 
-Back to [home](../README.md)
+Back to [home](/)
 
-# Course Overview
+## Course Overview
 
 Welcome to the comprehensive Data Science course, designed to equip you with the essential skills and knowledge to excel in the field of data science. This course provides a structured learning path, covering everything from foundational concepts to advanced techniques in data analysis, machine learning, and statistical modeling. Whether you are an aspiring data scientist or someone looking to enhance your analytical skills, this course will guide you through hands-on projects, practical exercises, and real-world applications. By the end of this course, you will have developed a robust understanding of data-driven problem-solving and be well-prepared to thrive in various industries.
 

@@ -1,6 +1,12 @@
+---
+sidebar_position: 7
+title: "Going Beyond Linearity"
+sidebar_label: "07. Going Beyond Linearity"
+---
+
 # Lecture Notes: Nonlinear and Polynomial Regression Models
 
-Back to [home](../README.md)
+Back to [home](/)
 
 ## What is Nonlinear Regression Models?
 

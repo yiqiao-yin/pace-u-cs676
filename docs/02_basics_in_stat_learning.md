@@ -1,6 +1,12 @@
+---
+sidebar_position: 2
+title: "Basics in Statistical Learning"
+sidebar_label: "02. Basics in Statistical Learning"
+---
+
 # Basics in Statistical Learning
 
-Back to [home](../README.md)
+Back to [home](/)
 
 ## What is Statistical Machine Learning?
 

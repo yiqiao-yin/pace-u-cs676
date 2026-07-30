@@ -1,6 +1,12 @@
+---
+sidebar_position: 5
+title: "Sampling and Bootstrap"
+sidebar_label: "05. Sampling and Bootstrap"
+---
+
 # Lecture Notes: Sampling, Bootstrap, and Cross Validation
 
-Back to [home](../README.md)
+Back to [home](/)
 
 ## What is Sampling?
 
@@ -25,12 +31,8 @@ Back to [home](../README.md)
 2. Generating multiple datasets (called bootstrap samples).
 3. Calculating statistics (e.g., mean, variance) for each sample to estimate uncertainty.
 
-<div class="image-container">
-    <img src="../pics/05_sampling_02.png" alt="Graph 1" width="800">
-</div>
-<div class="image-container">
-    <img src="../pics/05_sampling_03.png" alt="Graph 2" width="800">
-</div>
+![Graph 1](../pics/05_sampling_02.png)
+![Graph 2](../pics/05_sampling_03.png)
 
 ### Why Use Bootstrap?
 - It estimates the variability of a statistic without requiring additional data.

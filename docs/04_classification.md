@@ -1,6 +1,12 @@
+---
+sidebar_position: 4
+title: "Classification"
+sidebar_label: "04. Classification"
+---
+
 # Introduction to Classification and Logistic Regression
 
-Back to [home](../README.md)
+Back to [home](/)
 
 ## 1. Motivational Example
 

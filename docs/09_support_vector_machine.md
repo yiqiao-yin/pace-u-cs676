@@ -1,6 +1,12 @@
+---
+sidebar_position: 9
+title: "Support Vector Machine"
+sidebar_label: "09. Support Vector Machine"
+---
+
 # Support Vector Machine
 
-Back to [home](../README.md)
+Back to [home](/)
 
 ## Introduction to SVM
 
