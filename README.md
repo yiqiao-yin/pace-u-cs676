@@ -88,7 +88,7 @@ Your grade is built from four components. Each project is marked out of 100 poin
 | --- | --- | --- | --- |
 | Homework | **10%** | — | Fill out the assessment form after every session. Two absences excused; the lowest two grades are dropped. |
 | Project 1 — Credibility Scoring | **30%** | **+5%** | [Starter code and rubric](deliverable/project_1/README.md) · [Spec](docs/12_capstone.md#project-1-credibility-score-for-articlessourcesreferences) |
-| Project 2 — PersonaForge (agent-to-agent package) | **30%** | **+5%** | [Starter code and rubric](deliverable/project_2/README.md) · [Spec](docs/12_capstone.md#project-2-tinytroupe-for-simulation) |
+| Project 2 — PersonaForge (agent-to-agent package) | **30%** | **+5%** | [Starter code and rubric](deliverable/project_2/README.md) · [Spec](docs/12_capstone.md#project-2-personaforge--build-an-agent-to-agent-package) |
 | Project 3 — Your Own AI/ML Project | **30%** | — | Required. Take-home, your own idea. [Spec](docs/12_capstone.md#project-3-your-own-aiml-project) |
 | | **100%** | **+10%** | **110% total available** |
 

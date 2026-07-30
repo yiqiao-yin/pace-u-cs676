@@ -16,13 +16,13 @@ sidebar_label: "12. Capstone Projects"
        - [Deliverable 1: Draft of the Python Function (Sept 19, 2025)](#deliverable-1-draft-of-the-python-function-sept-19-2025)
        - [Deliverable 2: Detailed Technique Report (Oct 3, 2025)](#deliverable-2-detailed-technique-report-oct-3-2025)
        - [Deliverable 3: Implementation into Live Applications (Oct 17, 2025)](#deliverable-3-implementation-into-live-applications-oct-17-2025)
-   - [Project 2: TinyTroupe for Simulation](#project-2-tinytroupe-for-simulation)
+   - [Project 2: PersonaForge — Build an Agent-to-Agent Package](#project-2-personaforge--build-an-agent-to-agent-package)
      - [Concept Overview](#concept-overview-1)
-     - [Approach to Simulating Feedback](#approach-to-simulating-feedback)
+     - [Approach to Building the Package](#approach-to-building-the-package)
      - [Starter Code, Setup, and Grading](#starter-code-setup-and-grading-1)
      - [Deliverable](#deliverable-1)
      - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-1)
-       - [Deliverable 1: Draft of the App (Oct 31, 2025)](#deliverable-1-draft-of-the-app-oct-31-2025)
+       - [Deliverable 1: Working Package (Oct 31, 2025)](#deliverable-1-working-package-oct-31-2025)
        - [Deliverable 2: Beta Version and Technical Report (Nov 7, 2025)](#deliverable-2-beta-version-and-technical-report-nov-7-2025)
        - [Deliverable 3: Final Delivery of Container-Ready App (Nov 14, 2025)](#deliverable-3-final-delivery-of-container-ready-app-nov-14-2025)
   - [Project 3: Your Own AI/ML Project](#project-3-your-own-aiml-project)
@@ -119,7 +119,7 @@ This feature will involve:
 #### Deliverable 1: Draft of the Python Function (Sept 19, 2025)
 [Go back to TOC](#table-of-contents)
 
-- **Objective**: Develop a preliminary version of the Python function that evaluates the URL of each reference. This initial implementation serves as a proof-of-concept to demonstrate the feasibility of automated credibility assessment and establish the foundation for more sophisticated evaluation mechanisms. The focus at this stage is on creating a functional prototype that can process URLs and generate basic credibility scores, even if the scoring algorithm is simplified.
+- **Objective**: Get the starter kit running, record its baseline, and make your first real improvement to `score_url()`. You are not writing this function from scratch — a working but deliberately weak version is provided, along with twelve documented defects in it. This phase is about understanding exactly what the baseline does before you change it, so that every later change is a deliberate choice you can defend.
 - **Deliverables**:
   - A working draft of the function with basic functionality to return a JSON object containing structured credibility information. The function should handle common URL formats, implement basic error handling for invalid inputs, and provide consistent output formatting. At this stage, the scoring mechanism may rely on simple heuristics or basic feature extraction, but it must demonstrate the core functionality:
     ```json
@@ -128,7 +128,8 @@ This feature will involve:
       "explanation": string
     }
     ```
-  - Initial testing to validate input/output handling, including test cases for various URL types, edge cases for malformed inputs, and verification that the JSON output format is consistent and properly structured. The testing should also include performance benchmarks to ensure the function can handle reasonable loads without significant delays.
+  - Your recorded baseline from `python evaluate.py` (the provided starter scores **MAE 0.142, band accuracy 66.7%, worst error 0.410**) and at least one measured improvement on it.
+  - Testing that validates input and output handling: `python test_credibility.py` must still pass, and you must add your own cases for URL types and malformed inputs the provided 21 tests do not already cover.
 
 #### Deliverable 2: Detailed Technique Report (Oct 3, 2025)
 [Go back to TOC](#table-of-contents)
@@ -144,11 +145,11 @@ This feature will involve:
 #### Deliverable 3: Implementation into Live Applications (Oct 17, 2025)
 [Go back to TOC](#table-of-contents)
 
-- **Objective**: Integrate the finalized Python function into live applications and ensure seamless operation with the chatbot. This final deliverable represents the transition from prototype to production-ready system, requiring careful attention to performance optimization, user experience design, and system reliability. The integration must be robust enough to handle real-world usage patterns while maintaining the quality and accuracy of credibility assessments.
+- **Objective**: Make the scoring feature work well inside the running application. The wiring is already done — the app extracts citations and renders a colour-coded chip beside each source — so this deliverable is about the quality and reliability of what those chips say, not about building the integration from nothing.
 - **Deliverables**:
   - Full implementation of the credibility scoring feature within the chatbot platform, including user interface components that display credibility scores in an intuitive and non-intrusive manner. The implementation should handle concurrent requests efficiently and provide fallback mechanisms for cases where credibility assessment fails or takes too long to complete.
   - Testing and validation to ensure correct functionality and user interaction across different scenarios, including unit tests for individual components, integration tests for the complete system, and user acceptance testing to validate the interface design. The testing should cover edge cases, error conditions, and performance under load.
-  - Integration support using a provided application template to streamline the process, including deployment scripts, configuration management, and monitoring capabilities. The integration should be designed for easy maintenance and updates, with clear separation between the credibility assessment logic and the chatbot infrastructure.
+  - Clean separation maintained between the scoring logic in `credibility.py` and the application in `main.py`. Someone should be able to import your scorer into a different app without dragging Streamlit along with it.
   - Please follow the following rubrics for this deliverable!
 
 **Project Deliverable Rubrics**
@@ -164,7 +165,7 @@ This feature will involve:
 The point-by-point breakdown for each deliverable is in the
 [project README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/deliverable/project_1/README.md#deliverables-and-grading).
 
-## Project 2: TinyTroupe for Simulation
+## Project 2: PersonaForge — Build an Agent-to-Agent Package
 
 ![graph](../pics/12_capstone_02.png)
 
@@ -213,70 +214,127 @@ You are not required to use TinyTroupe itself — you are building your own pack
 ### Concept Overview
 [Go back to TOC](#table-of-contents)
 
-This project aims to demonstrate the use of simulation to generate feedback for features based on customer personas, addressing a critical challenge in modern product development. For example, a company introducing a new button or feature in their iOS app must survey beta customers from targeted demographics to gather feedback. However, this traditional process is expensive and time-consuming due to the need to pay contractors and incentivize participants with rewards, often resulting in limited sample sizes and potential bias in feedback collection. The process can take weeks or months, delaying product launches and increasing development costs significantly.
+Multi-agent systems are the current frontier of applied AI, and the interesting
+engineering problem in them is not the model — it is everything around it. How does an
+agent know who it is? Where does that identity live? How do two agents share a
+conversation without sharing a mind? Who decides which one speaks next?
 
-This project proposes an **AI-first solution** to simulate user feedback for features by modeling different customer personas through sophisticated agent-based simulation. The approach leverages artificial intelligence to create virtual users that behave according to realistic persona characteristics, providing rapid, cost-effective feedback that can inform design decisions early in the development process. By using AI agents to simulate diverse user perspectives, companies can test multiple feature variations quickly and identify potential issues before committing to expensive user studies. Recommended package: [TinyTroup](https://github.com/microsoft/TinyTroupe), which provides a robust framework for creating and managing multiple AI personas in conversational scenarios.
+This project makes you answer those questions by building the machinery yourself. The
+approach here is that **a persona is a plain markdown file on disk**. That single
+decision has consequences you will feel immediately: personas are inspectable, you can
+version them in git, you can hand-edit one in a text editor and watch the character
+change on the next run, and an agent is nothing more than one of those files handed to
+a model. There is no persona database and no hidden state.
 
-### Approach to Simulating Feedback
+Microsoft's [TinyTroupe](https://github.com/microsoft/TinyTroupe) is the library that
+inspired this project and is worth reading for its `TinyPerson` / `TinyWorld`
+abstractions. **You are not using it.** You are writing your own package that does the
+same job your way, because the point of the assignment is to understand the
+abstractions rather than to consume them.
+
+### Approach to Building the Package
 [Go back to TOC](#table-of-contents)
 
-1. **Persona-Based Simulation**: Develop an AI model that generates realistic feedback based on predefined personas, such as tech-savvy users, casual users, elderly users, or users with accessibility needs. Each persona should have detailed characteristics including demographic information, technical proficiency levels, usage patterns, preferences, and behavioral tendencies. The simulation must account for how different personas would realistically interact with features, considering factors like cognitive load, prior experience, and contextual constraints. This approach ensures that feedback reflects genuine diversity in user perspectives rather than generic responses.
+1. **Personas as files**: Represent each character as a markdown document with
+   frontmatter for the fields your code indexes on (name, role, summary) and a body
+   describing background, personality, speech patterns, goals, and limits. The body
+   becomes the agent's system prompt verbatim. Decide what happens when two personas
+   collide, when a file is malformed, and when the model ignores your requested format.
 
-2. **Feature-Driven Inputs**: Allow the app to take feature descriptions as input and output persona-specific feedback that reflects how each user type would realistically respond. The system should be able to process various feature description formats (text descriptions, wireframes, mockups, or functional specifications) and generate contextually appropriate feedback. Input processing should handle both simple feature descriptions and complex interaction flows, ensuring that the generated feedback addresses usability, functionality, and user experience concerns specific to each persona's perspective.
+2. **Agents as file plus model**: An agent is a persona file bound to a model client.
+   Nothing else should distinguish one character from another — same class, same model,
+   different file. Getting this boundary right is what makes the rest composable.
 
-3. **User Feedback Scenarios**: Simulate common scenarios such as beta feature rollouts, user onboarding experiences, feature discovery processes, and long-term usage patterns. The simulation should model realistic user journeys, including initial reactions, learning curves, adaptation over time, and potential abandonment points. Scenarios should cover both positive and negative user experiences, helping identify potential friction points and optimization opportunities that might not be apparent in traditional testing approaches.
+3. **Conversation as a protocol**: Agents take turns. Each one sees the transcript
+   rewritten from its own point of view — its own lines as assistant turns, everyone
+   else's as user turns — which is what makes a model behave like a participant instead
+   of something narrating a script. Strict round-robin is the starting point, not the
+   answer.
 
-4. **Feedback Analysis**: Aggregate the feedback to draw conclusions about user preferences, feature acceptance, and potential issues across different user segments. The analysis should identify patterns and themes in the simulated feedback, highlight consensus and disagreements between personas, and provide actionable recommendations for feature improvements. The system should generate comprehensive reports that include quantitative metrics (acceptance rates, usage likelihood) and qualitative insights (specific concerns, suggested improvements) to guide product development decisions.
+4. **An orchestrator that understands intent**: The user types "I want a patient and a
+   doctor, and have them argue about the diagnosis." Something must turn that into
+   calls into your package. Pattern matching gets you started; tool use is what makes it
+   an agent.
+
+5. **Package discipline**: This is a package, not a script. A clean public API, a
+   `src/` layout, tests that run without network access, errors that tell the caller
+   what to do next, and a README someone else could follow.
 
 ### Deliverable
 [Go back to TOC](#table-of-contents)
 
-The deliverable for this project is an interactive app built using **Streamlit** or **Gradio** that can simulate user conversations and display feedback for a given feature and persona. This application serves as a comprehensive tool for product managers, UX designers, and development teams to rapidly prototype and evaluate feature concepts across diverse user segments. The app should provide an intuitive interface that makes persona-based simulation accessible to non-technical team members while offering sufficient depth and customization for detailed analysis.
+The deliverable is **an installable Python package plus a terminal application that
+uses it.** You talk to an orchestrating agent, ask it to create characters, and then
+tell those characters to talk to each other while you watch.
 
-The app will include:
+A concrete session looks like this:
 
-- **Input Fields**: To specify the feature description and persona type, with support for detailed feature specifications including interaction flows, visual elements, and contextual information. Users should be able to select from predefined personas or create custom persona profiles with specific characteristics, demographics, and behavioral patterns. The input interface should guide users in providing sufficient detail for meaningful simulation while remaining easy to use.
+```
+you › create a persona patient with chronic back pain who distrusts doctors
+stage › Created Maria Delgado (patient) — 58-year-old with chronic lumbar pain
+  · wrote temp/maria-delgado.md
 
-- **Output Display**: A conversational output simulating feedback based on the persona's characteristics, presented in a realistic chat-like interface that mimics actual user feedback sessions. The output should include not only the feedback content but also metadata about the persona's reasoning, confidence levels, and potential follow-up questions. The display should support rich formatting to highlight key insights and concerns raised by different personas.
+you › create a persona doctor who is direct and running forty minutes late
+stage › Created Dr. Samuel Reyes (doctor) — overbooked internist, blunt bedside manner
 
-- **Functionality**: A user-friendly interface that allows users to test various features and personas iteratively, with capabilities for saving simulation results, comparing feedback across personas, and exporting reports for stakeholder review. The interface should support batch processing for testing multiple feature variations simultaneously and provide visualization tools to help identify patterns and trends in the simulated feedback.
+you › have them talk about the MRI results
+── conversation: the mri results ──
+Maria Delgado: I've been waiting three weeks for someone to tell me what this means.
+Dr. Samuel Reyes: I know, and I'm sorry about that. Let me pull it up now.
+```
+
+The application must:
+
+- **Create personas on request** and persist each one as a markdown file you can open and edit. The character's behaviour on the next run must reflect the edit.
+- **Run conversations between two or more personas**, printing each line as it arrives rather than dumping the transcript at the end, and saving the result.
+- **Accept natural instructions** rather than fixed commands. "Have the doctor and the nurse discuss the schedule" should work without the user learning a syntax.
+- **Run its test suite offline.** Tests that require an API key are tests nobody runs.
+
+The medical scenario above is only an example. A teacher and a student, a customer and
+a support agent, two historians disagreeing about a date — pick a domain you find
+interesting, because you will read a great deal of its output.
 
 ### Deliverable Deadline Breakdown
 [Go back to TOC](#table-of-contents)
 
-#### Deliverable 1: Draft of the App (Oct 31, 2025)
+#### Deliverable 1: Working Package (Oct 31, 2025)
 [Go back to TOC](#table-of-contents)
 
-- **Objective**: Investigate agentic AI by using TinyTroupe package to understand the capabilities and limitations of persona-based simulation. This phase focuses on establishing familiarity with the technology, exploring different persona configurations, and evaluating the quality of generated conversations. The investigation should provide insights into how effectively AI agents can simulate realistic user behavior and identify areas where the simulation approach shows promise or needs improvement.
+- **Objective**: Get the starter kit running, understand its architecture, and make your first substantive extension to it. This phase is about establishing the ground truth of what the skeleton does and does not do, so that everything you build afterwards is a deliberate choice rather than an accident.
 - **Deliverables**:
-  - A walkthrough of the installation and usage, including detailed setup instructions, dependency management, and configuration options. The walkthrough should address common installation issues and provide troubleshooting guidance for different operating systems and environments. Include performance considerations and system requirements for optimal operation.
-  - Initial persona simulation results demonstrating the range of personas that can be effectively simulated, with examples showing how different personality types, demographic characteristics, and usage contexts affect the generated feedback. Results should include both successful simulations and cases where the system produces less realistic or useful outputs.
-  - Comments on the conversation stream quality, including analysis of how natural and realistic the generated conversations feel, identification of recurring patterns or limitations in the AI responses, and assessment of whether the personas maintain consistency throughout extended interactions. Comments should also evaluate the diversity and depth of insights generated by different persona types.
-  - Deliver a `.md` file where conversation history can be found, organized by persona type and feature being evaluated, with annotations explaining the context and significance of key exchanges. The file should serve as a reference for understanding how different personas respond to various types of features and interaction scenarios.
+  - The project running on your machine from a clean clone: `uv sync` followed by `uv run main.py`, with `uv run pytest` passing. Include a short note on anything that did not work on your platform, since that is useful to the next student.
+  - **At least one substantive extension** beyond the skeleton, clearly identified. Extending the persona template is not substantive; replacing the regex router with tool use, giving agents persistent memory, or changing how turn-taking is decided all are.
+  - **Your own tests for what you added**, following the existing pattern of injecting a fake model so the suite stays offline and fast.
+  - A saved conversation transcript your system produced, with a paragraph on what the agents got right and where they broke character.
 
 #### Deliverable 2: Beta Version and Technical Report (Nov 7, 2025)
 [Go back to TOC](#table-of-contents)
 
-- **Objective**: Complete the bulk of the app development and submit a draft app that demonstrates the full potential of persona-based feature simulation. This deliverable represents the core implementation phase where all major features are integrated and tested, resulting in a functional application that can be used for real product development scenarios. The focus is on creating a robust, user-friendly tool that provides valuable insights while being accessible to non-technical team members.
+- **Objective**: Turn the extended skeleton into a system with a point of view, and write up the reasoning behind it. The report matters as much as the code — the questions this project raises rarely have one right answer, so the defence of your choice is the substance.
 - **Deliverables**:
-  - A beta version of agentic AI app with different personas that showcases the full range of simulation capabilities, including multiple predefined personas with diverse characteristics, customizable persona creation tools, and comprehensive feature evaluation workflows. The app should handle various types of feature descriptions and generate meaningful, actionable feedback that reflects realistic user perspectives and concerns.
-  - A detailed repository covering multiple aspects of the implementation and demonstrating technical depth:
-    - The simulation algorithm design, including detailed documentation of how personas are modeled, how feature descriptions are processed, how conversations are generated, and how feedback is synthesized. The design should explain the underlying AI architecture and decision-making processes.
-    - A live conversation can be initiated from your UI, with real-time simulation capabilities that allow users to interact with personas dynamically, ask follow-up questions, and explore different aspects of feature feedback. The conversation interface should feel natural and engaging.
-    - Use cases and examples of your own choice that demonstrate the practical value of the simulation approach, including examples from different industries, various types of features (UI elements, workflows, content), and different stages of product development (early concept, detailed design, pre-launch validation).
-  - Feedback from a second round of instructor review, with documented responses to suggestions and improvements made based on initial feedback. This should include explanations of design decisions, trade-offs considered, and areas identified for future enhancement.
+  - A design write-up covering what you changed and why, with the alternatives you rejected. If you gave agents memory, say where you put it and what you gave up. If you replaced the router with tool use, show the tool schemas and describe what the model does with an ambiguous request.
+  - **Transcripts as evidence**, annotated. Include at least one conversation that went well and one that went badly, and explain the difference. A failure you understand is worth more than a success you cannot account for.
+  - **An honest failure analysis**: where agents break character, where they lose the thread, where the cost becomes unreasonable. Measure the cost — a six-turn conversation is at least six API calls, and you should know what that actually costs.
+  - Test coverage of the parts you own, with an explanation of what your tests do and do not verify.
 
 #### Deliverable 3: Final Delivery of Container-Ready App (Nov 14, 2025)
 [Go back to TOC](#table-of-contents)
 
-- **Objective**: Deliver a fully functional app ready for deployment that can be used in real-world product development scenarios. This final deliverable ensures that the simulation tool is production-ready, scalable, and maintainable, with comprehensive documentation and testing to support ongoing use and development. The objective includes optimizing performance, ensuring reliability, and providing the necessary infrastructure for sustainable operation.
+- **Objective**: Ship a package someone else could pick up and use. This deliverable is about completeness and robustness rather than new features — a smaller system that behaves well beats an ambitious one that falls over.
 - **Deliverables**:
-  - A live app deployed on cloud such as HuggingFace, with proper load balancing, error handling, and monitoring capabilities to ensure consistent availability and performance. The deployment should include appropriate security measures, user authentication if needed, and backup/recovery procedures to protect against data loss or service interruption.
-  - Finalized persona database with diverse customer profiles representing a wide range of demographics, technical skill levels, usage contexts, and behavioral patterns. The database should be well-documented, easily expandable, and include validation measures to ensure persona consistency and realism. Each persona should have comprehensive characteristics that enable nuanced, realistic feedback generation.
-  - Integration and deployment documentation covering all aspects of system setup, configuration, maintenance, and troubleshooting. Documentation should include API specifications, database schemas, deployment procedures, monitoring guidelines, and update processes. The documentation should enable other developers to maintain and enhance the system effectively.
-  - End-to-end testing and validation of app functionality across different scenarios, user loads, and edge cases. Testing should include performance benchmarks, accuracy validation of persona simulations, user acceptance testing with actual product teams, and stress testing to ensure the system can handle realistic usage patterns.
+  - A finished package with a coherent public API, docstrings explaining intent, comments at the course standard of three to five explanatory lines per section, and no dead code left from experiments.
+  - **Robustness**: bad input, a persona that does not exist, a malformed persona file, and an API failure mid-conversation must all be handled. A crashed turn should not lose the transcript.
+  - Documentation that lets another developer install, run, test, and extend your package without asking you a question.
+  - A live demo during your presentation slot, plus a defence of what is novel in your version.
+  - **Optionally, a deployment for the +5% bonus.** This is a terminal app and Hugging Face Spaces serves web pages, so the honest path is a small Gradio or Streamlit front end that calls your package — which is easy if your package boundaries are clean, and revealing if they are not.
 
-By implementing this simulation app, the project demonstrates how AI can streamline feature feedback collection, reducing costs and accelerating the go-to-market strategy. The result is a scalable, efficient solution for user feedback analysis that can transform how companies approach user research and product validation, potentially reducing feedback collection time from weeks to minutes while maintaining the quality and diversity of insights needed for informed decision-making.
+The rubric point split is 25 / 35 / 40 across the three deliverables; the point-by-point
+breakdown is in the
+[project README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/deliverable/project_2/README.md#deliverables-and-grading).
+
+By building this package rather than importing one, you end up understanding where the
+hard parts of multi-agent systems actually live: not in calling a model, but in
+deciding what an agent is, what it remembers, and who gets to speak.
 
 ## Project 3: Your Own AI/ML Project
 [Go back to TOC](#table-of-contents)
