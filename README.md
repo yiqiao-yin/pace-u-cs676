@@ -2,6 +2,8 @@
 
 📖 **Course site: [yiqiao-yin.github.io/pace-u-cs676](https://yiqiao-yin.github.io/pace-u-cs676/)** — all lecture notes below, rendered with LaTeX math and per-session navigation.
 
+🎞️ **Slide deck: [Interactive presentation](https://main.d3j8dqgo1nf8ma.amplifyapp.com)** — all 330 slides in your browser, with chapter navigation, full-text search, and a presenter mode. No download required.
+
 ## Table of Contents
 - [Syllabus](#syllabus)
 - [Course Topics](#course-topics)
@@ -74,7 +76,10 @@ We will be using [this link](https://airtable.com/embed/appBjNPgdot15ZqO7/pagKL7
 ### Lecture
 The lectures are composed of slides and coding sessions. Both slides and Python notebooks will be used during the lecture. Depending on the material's content, slides and coding sessions may be presented in any order.
 
-The slides and coding materials can be found in the course repo. Please see [here](docs/slide_doc/CS%20676%20Algorithms%20of%20Data%20Science.pdf).
+The slides and coding materials can be found in the course repo.
+
+- **[Interactive slide deck](https://main.d3j8dqgo1nf8ma.amplifyapp.com)** — recommended. All 330 slides in the browser: chapter menu on the left, progress dots across the top, full-text search, and a presenter mode (press `f`). Use `←`/`→` to move between slides.
+- **[Original PDF](docs/slide_doc/CS%20676%20Algorithms%20of%20Data%20Science.pdf)** — the same material as a download.
 
 ### Final Exam and Class Project
 The final project will be an individual project that is submission based. It will be a culmination of everything you know. You have full flexibility of the content of the application. You'll need to include a backend, a frontend, and some form of invocation of LLM.
@@ -266,6 +271,11 @@ A more complete list can be accessed [here](https://github.com/yiqiao-yin/WYNAss
 This directory contains additional documentation files.
 
 ### Slide Doc
-PDF documents for presentation slides. Please see slide here [here](./docs/slide_doc/CS%20676%20Algorithms%20of%20Data%20Science.pdf). If you are accessing from iOS app, please hold and open as a new link from browser.
+The slides are available two ways:
+
+- **[Interactive presentation](https://main.d3j8dqgo1nf8ma.amplifyapp.com)** — 330 slides rendered in the browser with a chapter table of contents, dot progress bar, search across every slide, and keyboard navigation.
+- **[Original PDF](./docs/slide_doc/CS%20676%20Algorithms%20of%20Data%20Science.pdf)** — the source document.
+
+If you are accessing from the iOS app, please hold and open as a new link from the browser.
 
 [Back to TOC](#table-of-contents)
