@@ -43,7 +43,7 @@ Successful students will:
 1. Develop proficiency in Python for data analytics.
 2. Implement algorithms for data reduction, including data mapping and data dictionaries.
 3. Utilize scalable algorithms to handle big data.
-4. Gain insights from data through visualization, regression modeling, and cluster analysis.`
+4. Gain insights from data through visualization, regression modeling, and cluster analysis.
 5. Apply predictive analytics techniques such as k-nearest neighbors, naïve Bayes, and time series forecasting.
 6. Analyze and interpret streaming data in real-time.
 
@@ -66,7 +66,7 @@ Students must demonstrate proficiency in the following areas:
 3. **Basic Machine Learning:** Understand and apply fundamental machine learning algorithms or tools.
 4. **Basic API Calls:** Make and utilize API calls to interact with different data services.
 
-We will be using [this link](https://airtable.com/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form) for all of the submissions. You can also access this page from the iOS app (see ✅ tab). The link is set up that allows multiple submissions, but I will only read the last verson you submit. This includes homework assignments, midterm, final projects, and extra credits. **We take this very seriously and you must fill this out after every single class.** Please see the following rubrics:
+We will be using [this link](https://airtable.com/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form) for all of the submissions. You can also access this page from the iOS app (see ✅ tab). The link is set up that allows multiple submissions, but I will only read the last version you submit. This includes homework assignments, midterm, final projects, and extra credits. **We take this very seriously and you must fill this out after every single class.** Please see the following rubrics:
 
 | Scores | Submission Status |
 | --- | --- |
@@ -153,7 +153,7 @@ The schedule is tentative and subject to change. The learning goals below should
 #### Session 01: Introduction
 - Overview of the course
 - Importance of data science
-- Introduction to Python (R is optional by Python is recommended)
+- Introduction to Python (R is optional but Python is recommended)
 
 For more details, please see: [01_introduction](docs/01_introduction.md)
 
