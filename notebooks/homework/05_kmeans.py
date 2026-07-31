@@ -14,6 +14,13 @@ has to mean something you define yourself: the assignments stopped changing.
 
 We do generate the data from three known blobs, but the algorithm never sees
 those. They exist only so you can check afterwards whether it found them.
+
+THREE BLANKS in this exercise — it is the last one, and you build the whole
+algorithm. Suggested order, bottom up:
+
+    1. assign_clusters()   — the ASSIGN step
+    2. update_centroids()  — the UPDATE step
+    3. fit_kmeans()        — the loop that alternates them until nothing moves
 """
 
 import argparse
@@ -66,31 +73,76 @@ def init_centroids(X, k, rng):
 
 def assign_clusters(X, centroids):
     """
-    Label each point with the index of its nearest centroid.
+    Label each point with the index of its nearest centroid — the ASSIGN step.
 
-    The broadcast below builds an (n, k) matrix of distances in one shot:
-    X[:, None, :] has shape (n, 1, 2), centroids has (k, 2), so subtracting
-    gives (n, k, 2). Summing the squares over the last axis leaves (n, k).
-    No loop over points is needed — and squared distance is enough, since the
-    square root would not change which column is smallest.
+    :param X:         (n, d) array of points
+    :param centroids: (k, d) array of centroids
+    :return:          (n,) integer array; entry i is the centroid index closest
+                      to point i
     """
-    d2 = np.sum((X[:, None, :] - centroids[None, :, :]) ** 2, axis=2)
-    return np.argmin(d2, axis=1)
+    # ┌─ YOUR TASK ─────────────────────────────────────────────────────────────
+    # │ For every point, find which centroid is nearest.
+    # │
+    # │ A plain double loop over points and centroids is perfectly correct, and
+    # │ if that is where you start, good. But try to do it without looping over
+    # │ points, because the vectorised version is the one worth learning:
+    # │
+    # │   X[:, None, :]        has shape (n, 1, d)
+    # │   centroids[None,:,:]  has shape (1, k, d)
+    # │   subtracting them broadcasts to (n, k, d)   <- every point-centroid pair
+    # │   square, then sum over the last axis        -> (n, k) of distances
+    # │   np.argmin(..., axis=1)                     -> (n,) nearest index
+    # │
+    # │ Note you never need np.sqrt. The square root is monotonic, so whichever
+    # │ centroid is nearest by squared distance is nearest by distance too — and
+    # │ skipping it saves an operation on every pair.
+    # │
+    # │ Check the shape of what you return. Getting (k,) or (n, k) back instead
+    # │ of (n,) is the usual mistake, and it fails confusingly further downstream.
+    # └──────────────────────────────────────────────────────────────────────────
+    # YOUR CODE HERE — the assign step
+    # Delete the raise below once you have written it.
+    raise NotImplementedError(
+        "Homework: write the assign step. "
+        "See the YOUR TASK box just above for the steps."
+    )
 
 
 def update_centroids(X, labels, k, centroids):
     """
-    Move each centroid to the mean of the points assigned to it.
+    Move each centroid to the mean of its assigned points — the UPDATE step.
 
-    An empty cluster has no mean, so its centroid is left where it was rather
-    than becoming nan. Dropping it instead would silently change k.
+    :param X:         (n, d) array of points
+    :param labels:    (n,) cluster index per point, from assign_clusters
+    :param k:         number of clusters
+    :param centroids: (k, d) current centroids, needed for the empty-cluster case
+    :return:          (k, d) array of new centroids
     """
-    new = centroids.copy()
-    for j in range(k):
-        members = X[labels == j]
-        if len(members) > 0:
-            new[j] = members.mean(axis=0)
-    return new
+    # ┌─ YOUR TASK ─────────────────────────────────────────────────────────────
+    # │ Recompute each centroid as the average of the points assigned to it.
+    # │
+    # │ For each cluster j in range(k):
+    # │   - select its members with a boolean mask:  X[labels == j]
+    # │   - the new centroid is their mean along axis=0
+    # │
+    # │ THE CASE THAT WILL BITE YOU: a cluster can end up with no points at all.
+    # │ np.mean of an empty array is nan with a RuntimeWarning, and one nan
+    # │ centroid poisons every distance computed against it, so on the next pass
+    # │ nothing is assigned to it and it stays broken forever.
+    # │
+    # │ Decide what should happen instead. Leaving that centroid exactly where it
+    # │ was is the simplest defensible choice, which is why `centroids` is passed
+    # │ in. Do NOT drop the cluster — that silently changes k, and the caller is
+    # │ still expecting k rows back.
+    # │
+    # │ A loop over k is fine here. k is small, and clarity beats cleverness.
+    # └──────────────────────────────────────────────────────────────────────────
+    # YOUR CODE HERE — the update step
+    # Delete the raise below once you have written it.
+    raise NotImplementedError(
+        "Homework: write the update step. "
+        "See the YOUR TASK box just above for the steps."
+    )
 
 
 def inertia(X, labels, centroids):

@@ -3,8 +3,10 @@
 **CS676 Algorithms for Data Science · Pace University**
 
 Five short exercises. Each one is a complete, runnable Python script with the
-**core algorithm removed** — the fitting loop, and in one case the function it
-calls. Everything else — the data, the metrics, the printing — is written for you.
+**core algorithm removed** — the fitting loop and the functions it calls.
+Everything around it — the data, the metrics, the printing, the plots — is
+written for you, so you can spend your time on the ten or fifteen lines that
+actually do the learning.
 
 That is deliberate. Reading `beta = beta - lr * grad` in a slide is not the same as
 writing it and watching the loss fall. These exercises put you in the four or five
@@ -21,19 +23,21 @@ pip install matplotlib     # optional, only for --plot
 
 ## The exercises
 
-| Script | Topic | What you write | Session |
-| --- | --- | --- | --- |
-| `01_lr.py` | Linear regression | the gradient descent loop | 03 |
-| `02_logreg.py` | Logistic regression | the sigmoid **and** the gradient descent loop | 04 |
-| `03_cv.py` | K-fold cross validation | the fold rotation loop | 05 |
-| `04_tree.py` | Decision tree | the exhaustive split search | 08 |
-| `05_kmeans.py` | K-means clustering | the assign / update loop | 11 |
+| Script | Topic | What you write | Blanks | Session |
+| --- | --- | --- | --- | --- |
+| `01_lr.py` | Linear regression | the MSE gradient, then the descent loop | 2 | 03 |
+| `02_logreg.py` | Logistic regression | the sigmoid, then the descent loop | 2 | 04 |
+| `03_cv.py` | K-fold cross validation | the fold construction, then the rotation loop | 2 | 05 |
+| `04_tree.py` | Decision tree | the exhaustive split search | 1 | 08 |
+| `05_kmeans.py` | K-means clustering | the assign step, the update step, then the loop | 3 | 11 |
 
 Do them in order. 02 reuses the loop you write in 01 with one substitution, and
 seeing that for yourself is half the lesson.
 
-**`02_logreg.py` has two blanks** — the sigmoid and the loop. The others have one
-each. Write the sigmoid first; the loop calls it.
+**Most exercises have more than one blank.** Each script's docstring lists them in
+a suggested order — always bottom-up, small helper first, then the loop that calls
+it. The script itself will complain about the loop first, because that is what it
+reaches soonest; ignore that and start with the helper.
 
 ## How to work
 

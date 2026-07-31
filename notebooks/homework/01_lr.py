@@ -12,6 +12,11 @@ Why gradient descent when a closed form exists? Because the closed form only
 works for linear regression. The loop you write here is the same loop that
 trains logistic regression (homework 02) and every neural network in the course.
 We fit both ways and compare — that comparison is your correctness check.
+
+TWO BLANKS in this exercise. Suggested order:
+
+    1. gradient()              — differentiate the loss
+    2. fit_gradient_descent()  — the loop that repeatedly calls it
 """
 
 import argparse
@@ -66,14 +71,39 @@ def gradient(X_design, y, beta):
     """
     Gradient of the MSE with respect to beta.
 
-    d/dbeta  mean((y - X beta)^2)  =  -2/n * X.T @ (y - X beta)
-
-    Work that derivative out on paper once. Everything else in this course that
-    "learns" is doing this same thing with a different loss.
+    :return: array with the SAME shape as beta — one partial derivative per
+             coefficient, telling you which way each one should move.
     """
-    n = X_design.shape[0]
-    residual = y - predict(X_design, beta)
-    return -2.0 / n * (X_design.T @ residual)
+    # ┌─ YOUR TASK ─────────────────────────────────────────────────────────────
+    # │ Differentiate the loss and return the result.
+    # │
+    # │ The loss is       L(beta) = (1/n) * sum_i (y_i - x_i . beta)^2
+    # │ You need          dL/dbeta
+    # │
+    # │ Do it on paper first. Chain rule on the square, then note that
+    # │ d/dbeta (x_i . beta) = x_i. Collecting the terms over all i turns the sum
+    # │ into a single matrix product, and the answer has the shape
+    # │
+    # │       (some constant) * X.T @ (residual)
+    # │
+    # │ where residual = y - X @ beta. Two things to settle for yourself:
+    # │   - what is the constant? (it involves n, and the 2 from the square)
+    # │   - what is its SIGN? Get this wrong and gradient descent climbs the loss
+    # │     instead of descending it — your MSE will grow every iteration.
+    # │
+    # │ Check yourself numerically. For a small h, the i-th partial derivative is
+    # │ approximately (L(beta + h*e_i) - L(beta - h*e_i)) / (2h). If that matches
+    # │ your formula to a few decimals, the algebra is right.
+    # │
+    # │ Work this out once and the rest of the course is easier: every model that
+    # │ "learns" is doing exactly this with a different L.
+    # └──────────────────────────────────────────────────────────────────────────
+    # YOUR CODE HERE — the MSE gradient
+    # Delete the raise below once you have written it.
+    raise NotImplementedError(
+        "Homework: write the MSE gradient. "
+        "See the YOUR TASK box just above for the steps."
+    )
 
 
 def normal_equation(X_design, y):

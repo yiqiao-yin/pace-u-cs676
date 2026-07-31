@@ -15,6 +15,11 @@ get an honest estimate of out-of-sample error from a dataset you only have once.
 The script also fits the full dataset and scores it on itself. Compare that
 number with the cross-validated one. The gap between them is the whole reason
 cross validation exists.
+
+TWO BLANKS in this exercise. Suggested order:
+
+    1. make_folds()     — shuffle and cut the indices
+    2. cross_validate() — the rotation loop that uses them
 """
 
 import argparse
@@ -71,15 +76,39 @@ def make_folds(n, k, rng):
     """
     Split indices 0..n-1 into k roughly equal, shuffled folds.
 
-    Shuffling first matters. If the data arrived sorted by anything — date,
-    label, region — unshuffled folds would each see a biased slice and every
-    score would be wrong in the same direction.
-
-    np.array_split handles n not dividing evenly by k; the first n % k folds
-    simply get one extra row.
+    :param n:   number of rows in the dataset
+    :param k:   number of folds
+    :param rng: a numpy Generator, so the split is reproducible
+    :return:    a list of k index arrays. Every index 0..n-1 appears in exactly
+                one of them.
     """
-    indices = rng.permutation(n)
-    return np.array_split(indices, k)
+    # ┌─ YOUR TASK ─────────────────────────────────────────────────────────────
+    # │ Build the folds.
+    # │
+    # │ Two steps:
+    # │   1. shuffle the indices 0..n-1     (rng.permutation(n) gives you these
+    # │      already shuffled, in one call)
+    # │   2. cut the shuffled sequence into k pieces
+    # │
+    # │ For step 2, np.array_split(arr, k) is what you want, NOT np.split.
+    # │ np.split refuses when k does not divide n exactly; array_split handles it
+    # │ by giving the first n % k folds one extra element. With n=240 and k=10
+    # │ you would not notice the difference, but with k=7 np.split raises.
+    # │
+    # │ Why shuffle at all? Because real data arrives ordered — by date, by
+    # │ customer, by whoever exported the file. Take contiguous blocks of a
+    # │ time-sorted dataset and every fold trains on the past and validates on
+    # │ the future, or worse, the reverse. The scores come out confidently wrong.
+    # │
+    # │ Sanity check your result: the k pieces should have lengths summing to n,
+    # │ and np.sort(np.concatenate(folds)) should equal np.arange(n).
+    # └──────────────────────────────────────────────────────────────────────────
+    # YOUR CODE HERE — shuffle and split the indices
+    # Delete the raise below once you have written it.
+    raise NotImplementedError(
+        "Homework: write shuffle and split the indices. "
+        "See the YOUR TASK box just above for the steps."
+    )
 
 
 # ---------------------------------------------------------------------------
