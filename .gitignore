@@ -14,6 +14,16 @@ credentials.json
 # Vendored clone of microsoft/TinyTroupe — reference material, not course code
 deliverable/project_2/tinytroupeproj/
 
+# Homework answer keys — instructor only, never published.
+# The student scripts in notebooks/homework/ ARE committed; the solutions are not.
+notebooks/homework/answer/
+
+# Output written by running the homework scripts
+notebooks/homework/*.png
+notebooks/homework/*_report.md
+notebooks/homework/answer/*.png
+notebooks/homework/answer/*_report.md
+
 # Docusaurus / Node
 /node_modules
 /build
