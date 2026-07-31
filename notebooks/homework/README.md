@@ -2,9 +2,9 @@
 
 **CS676 Algorithms for Data Science · Pace University**
 
-Five short exercises. Each one is a complete, runnable Python script with exactly
-one piece missing: **the fitting loop.** Everything else — the data, the maths, the
-metrics, the printing — is written for you.
+Five short exercises. Each one is a complete, runnable Python script with the
+**core algorithm removed** — the fitting loop, and in one case the function it
+calls. Everything else — the data, the metrics, the printing — is written for you.
 
 That is deliberate. Reading `beta = beta - lr * grad` in a slide is not the same as
 writing it and watching the loss fall. These exercises put you in the four or five
@@ -24,13 +24,16 @@ pip install matplotlib     # optional, only for --plot
 | Script | Topic | What you write | Session |
 | --- | --- | --- | --- |
 | `01_lr.py` | Linear regression | the gradient descent loop | 03 |
-| `02_logreg.py` | Logistic regression | the gradient descent loop | 04 |
+| `02_logreg.py` | Logistic regression | the sigmoid **and** the gradient descent loop | 04 |
 | `03_cv.py` | K-fold cross validation | the fold rotation loop | 05 |
 | `04_tree.py` | Decision tree | the exhaustive split search | 08 |
 | `05_kmeans.py` | K-means clustering | the assign / update loop | 11 |
 
 Do them in order. 02 reuses the loop you write in 01 with one substitution, and
 seeing that for yourself is half the lesson.
+
+**`02_logreg.py` has two blanks** — the sigmoid and the loop. The others have one
+each. Write the sigmoid first; the loop calls it.
 
 ## How to work
 

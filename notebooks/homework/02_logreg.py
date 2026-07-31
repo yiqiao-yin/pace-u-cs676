@@ -11,6 +11,14 @@ This is homework 01 with two changes: the prediction is squashed through a
 sigmoid, and the loss is log-loss instead of squared error. Everything else —
 the loop, the step, the bookkeeping — is identical. That is the point. Notice
 how little has to change to go from predicting a number to predicting a class.
+
+THIS EXERCISE HAS TWO BLANKS, and the script will complain about the second one
+first, because that is the one main() reaches soonest. Do them in this order:
+
+    1. sigmoid()               — the squashing function
+    2. fit_gradient_descent()  — the training loop that uses it
+
+Writing the loop first works too; you will just hit the sigmoid error next.
 """
 
 import argparse
@@ -55,17 +63,39 @@ def add_intercept(X):
 # ---------------------------------------------------------------------------
 def sigmoid(z):
     """
-    Map any real number to (0, 1).
+    Map any real number to (0, 1) — the squashing function that turns a linear
+    score into a probability.
 
-    Written in two branches so large-magnitude z cannot overflow exp(). The
-    naive 1/(1+exp(-z)) warns and returns nan once z goes very negative.
+    :param z: numpy array of any shape
+    :return:  array of the same shape, every entry strictly between 0 and 1
     """
-    out = np.empty_like(z, dtype=float)
-    pos, neg = z >= 0, z < 0
-    out[pos] = 1.0 / (1.0 + np.exp(-z[pos]))
-    ez = np.exp(z[neg])
-    out[neg] = ez / (1.0 + ez)
-    return out
+    # ┌─ YOUR TASK ─────────────────────────────────────────────────────────────
+    # │ Implement the logistic sigmoid.
+    # │
+    # │ The definition is   sigma(z) = 1 / (1 + e^-z)
+    # │
+    # │ Write that and it will work — until z goes very negative, where e^-z
+    # │ overflows, numpy warns, and you get nan. Try it: sigmoid(np.array([-800.0])).
+    # │
+    # │ The fix is to compute the two halves differently. For z < 0, multiply
+    # │ top and bottom by e^z and convince yourself that
+    # │
+    # │       1 / (1 + e^-z)   ==   e^z / (1 + e^z)
+    # │
+    # │ These are the same function, but the second never exponentiates a large
+    # │ positive number when z is negative. So: use the first form where z >= 0
+    # │ and the second where z < 0, then stitch the two halves back together.
+    # │
+    # │ Handling this is worth doing properly. Overflow in the sigmoid is one of
+    # │ the classic ways a working model starts producing nan halfway through
+    # │ training, and it is invisible until it happens.
+    # └──────────────────────────────────────────────────────────────────────────
+    # YOUR CODE HERE — the sigmoid function
+    # Delete the raise below once you have written it.
+    raise NotImplementedError(
+        "Homework: write the sigmoid function. "
+        "See the YOUR TASK box just above for the steps."
+    )
 
 
 def predict_proba(X_design, beta):
