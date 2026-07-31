@@ -149,3 +149,13 @@ Unsupervised learning has diverse applications across numerous domains:
 - **Document Clustering**: Grouping similar documents together in content management systems to enhance information retrieval.
 
 In conclusion, unsupervised learning opens avenues for insightful data exploration, enabling discovery and understanding without explicit supervision. As methodologies advance, their applicability will continue to broaden, impacting numerous fields.
+
+## Homework
+
+**[`05_kmeans.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/05_kmeans.py) — K-Means Clustering from scratch**
+
+Write all three pieces of Lloyd's algorithm: the assign step, the update step, and the loop that alternates them until nothing moves. Nothing supervises you here — the check is that inertia never rises.
+
+The script is complete apart from the parts you write, and it grades itself, so you
+are not guessing whether you got it right. Only numpy is needed. See the
+[homework README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/README.md) for setup and the full list of exercises.

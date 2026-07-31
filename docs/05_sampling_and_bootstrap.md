@@ -212,3 +212,12 @@ error = mean_squared_error(y_true, y_pred)
 print("Mean Squared Error:", error)
 ```
 
+## Homework
+
+**[`03_cv.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/03_cv.py) — K-Fold Cross Validation from scratch**
+
+Build the folds, then write the rotation loop that trains on k-1 of them and validates on the one left out. The script contrasts your cross-validated error against the resubstitution error, which comes out *below* the noise floor — an impossible result that shows exactly what fitting and scoring on the same rows measures.
+
+The script is complete apart from the parts you write, and it grades itself, so you
+are not guessing whether you got it right. Only numpy is needed. See the
+[homework README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/README.md) for setup and the full list of exercises.

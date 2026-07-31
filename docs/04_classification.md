@@ -499,3 +499,13 @@ print("Predicted Probabilities:", probabilities.detach().numpy())
 ### Conclusion
 
 This implementation demonstrates how to build a binary classification model from scratch using **TensorFlow** and **PyTorch**. Each helper function is modular, allowing for easy debugging and understanding of how logistic regression works internally. By implementing these steps, you gain a deeper understanding of the mechanics behind binary classification. 
+
+## Homework
+
+**[`02_logreg.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/02_logreg.py) — Logistic Regression from scratch**
+
+Write the sigmoid — including the overflow handling that keeps it from returning `nan` on large negative input — and then the gradient descent loop. It is the same loop as homework 01 with a different loss, which is the point.
+
+The script is complete apart from the parts you write, and it grades itself, so you
+are not guessing whether you got it right. Only numpy is needed. See the
+[homework README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/README.md) for setup and the full list of exercises.

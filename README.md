@@ -20,6 +20,7 @@
   - [Session 10: Deep Learning](#session-10-deep-learning)
   - [Session 11: Unsupervised Learning](#session-11-unsupervised-learning)
   - [Session 12: Capstone Project Preparation](#session-12-capstone-project-preparation)
+- [Homework — algorithms from scratch](#homework--algorithms-from-scratch)
 
 ## Syllabus
 
@@ -175,6 +176,8 @@ For more details, please see: [02_basics_in_stat_learning](docs/02_basics_in_sta
 
 For more details, please see: [03_linear_regression](docs/03_linear_regression.md)
 
+🧮 **Homework: [`01_lr.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/01_lr.py)** — you write the MSE gradient and the gradient descent loop. See the [homework README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/README.md).
+
 [Back to TOC](#table-of-contents)
 
 #### Session 04: Classification
@@ -184,6 +187,8 @@ For more details, please see: [03_linear_regression](docs/03_linear_regression.m
 
 For more details, please see: [04_classification](docs/04_classification.md)
 
+🧮 **Homework: [`02_logreg.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/02_logreg.py)** — you write the sigmoid and the gradient descent loop. See the [homework README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/README.md).
+
 [Back to TOC](#table-of-contents)
 
 #### Session 05: Sampling and Bootstrap
@@ -192,6 +197,8 @@ For more details, please see: [04_classification](docs/04_classification.md)
 - Applications of sampling and bootstrap
 
 For more details, please see: [05_sampling_and_bootstrap](docs/05_sampling_and_bootstrap.md)
+
+🧮 **Homework: [`03_cv.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/03_cv.py)** — you write the fold construction and the k-fold rotation loop. See the [homework README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/README.md).
 
 [Back to TOC](#table-of-contents)
 
@@ -222,6 +229,8 @@ For more details, please see: [07_going_beyond_linearity](docs/07_going_beyond_l
 
 For more details, please see: [08_tree_based_model](docs/08_tree_based_model.md)
 
+🧮 **Homework: [`04_tree.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/04_tree.py)** — you write the exhaustive Gini split search. See the [homework README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/README.md).
+
 [Back to TOC](#table-of-contents)
 
 #### Session 09: Support Vector Machine
@@ -249,6 +258,8 @@ For more details, please see: [10_neural_networks](docs/10_neural_networks.md)
 
 For more details, please see: [11_unsupervised](docs/11_unsupervised.md)
 
+🧮 **Homework: [`05_kmeans.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/05_kmeans.py)** — you write the assign step, the update step, and the loop. See the [homework README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/README.md).
+
 [Back to TOC](#table-of-contents)
 
 #### Session 12: Capstone Project Preparation
@@ -261,9 +272,44 @@ For more details, please see: [12_capstone](docs/12_capstone.md)
 [Back to TOC](#table-of-contents)
 
 ## Notebooks
-This folder contains Jupyter notebooks used for the project. Please see the course notebook folder [here](./notebooks/).
+This folder contains the Jupyter notebooks used during the coding sessions. Please see the course notebook folder [here](./notebooks/).
 
 A more complete list can be accessed [here](https://github.com/yiqiao-yin/WYNAssociates/tree/main/docs/ref-deeplearning). I update this folder with new latest new AI tools frequently.
+
+### Homework — algorithms from scratch
+
+**[`notebooks/homework/`](./notebooks/homework/)** holds five short exercises that
+ask you to implement the algorithms yourself, in plain numpy. No scikit-learn, no
+statsmodels — importing them skips the exercise.
+
+Each one is a complete, runnable script with the **core algorithm removed**. The
+data, the metrics, the printing and the plots are written for you, so your time goes
+on the ten or fifteen lines that actually do the learning. Run a script and it stops
+immediately with a `NotImplementedError` pointing at a boxed set of instructions:
+
+| Exercise | Topic | What you write | Session |
+| --- | --- | --- | --- |
+| [`01_lr.py`](./notebooks/homework/01_lr.py) | Linear regression | the MSE gradient, then the descent loop | 03 |
+| [`02_logreg.py`](./notebooks/homework/02_logreg.py) | Logistic regression | the sigmoid, then the descent loop | 04 |
+| [`03_cv.py`](./notebooks/homework/03_cv.py) | K-fold cross validation | the fold construction, then the rotation loop | 05 |
+| [`04_tree.py`](./notebooks/homework/04_tree.py) | Decision tree | the exhaustive Gini split search | 08 |
+| [`05_kmeans.py`](./notebooks/homework/05_kmeans.py) | K-means clustering | the assign step, the update step, then the loop | 11 |
+
+**Every script grades itself, so you are never left guessing.** `01_lr.py` checks
+your gradient descent against the closed-form solution and prints `PASS` when they
+agree. `02_logreg.py` and `04_tree.py` compare accuracy against the majority-class
+baseline. `03_cv.py` shows training error below validation error in each fold.
+`05_kmeans.py` asserts that inertia never rises.
+
+The numbers are chosen to raise questions rather than just to be correct — why the
+MSE in 01 cannot go below 2.25, why the resubstitution error in 03 lands *below* the
+noise floor, why 1.0000 training accuracy in 04 means nothing, and why 05 sometimes
+clusters badly while the code is entirely right. Bring answers to those; they are
+better exam preparation than the code.
+
+Start with the [homework README](./notebooks/homework/README.md), which covers setup,
+the optional `--plot` and `--report` flags, and how to check your work. Submit through
+the usual [course form](https://airtable.com/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form).
 
 [Back to TOC](#table-of-contents)
 

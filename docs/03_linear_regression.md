@@ -319,3 +319,13 @@ np.abs(y_test_pred_.reshape((-1)) - np.asarray(y_test))
 # sttep 3: take the average of the absolute difference
 np.mean(np.abs(y_test_pred_.reshape((-1)) - np.asarray(y_test)))
 ```
+
+## Homework
+
+**[`01_lr.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/01_lr.py) — Linear Regression from scratch**
+
+Differentiate the mean squared error, then write the gradient descent loop that uses it. Your result is checked against the closed-form least squares solution — they should agree to about six decimal places.
+
+The script is complete apart from the parts you write, and it grades itself, so you
+are not guessing whether you got it right. Only numpy is needed. See the
+[homework README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/README.md) for setup and the full list of exercises.

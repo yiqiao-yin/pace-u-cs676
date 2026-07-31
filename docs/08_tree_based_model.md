@@ -199,3 +199,12 @@ print(regressor.predict([[2.5]]))
 - For regression tasks, RSS is used as the primary loss function to decide splits and fit the model.
 - The `sklearn.tree` module in Python provides easy-to-use classes for building decision tree classifiers and regressors.
 
+## Homework
+
+**[`04_tree.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/04_tree.py) — Decision Tree from scratch**
+
+Write the exhaustive search for the best Gini split. The exercise uses the `SimpleDecisionTreeClassifier` from this page unchanged, with synthetic data and a held-out test set, and prints the tree it learned so you can read its rules.
+
+The script is complete apart from the parts you write, and it grades itself, so you
+are not guessing whether you got it right. Only numpy is needed. See the
+[homework README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/README.md) for setup and the full list of exercises.
