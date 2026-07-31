@@ -8,11 +8,11 @@ sidebar_label: "11. Unsupervised Learning"
 
 Back to [home](https://github.com/yiqiao-yin/pace-u-cs676)
 
-Unsupervised learning is a class of machine learning techniques used to draw inferences from datasets consisting of input data without labeled responses. Unsupervised metrics are essential for understanding the underlying structure and distribution of data, allowing automated data analysis.
+Unsupervised learning is a class of machine learning techniques used to draw inferences from datasets consisting of input data without labeled responses. These techniques are essential for understanding the underlying structure and distribution of data, allowing automated data analysis.
 
 ## Introduction to Unsupervised Learning
 
-Unsupervised metrics provide mechanisms to assess models without defined labels. The primary goal is to capture intrinsic relationships in data, enabling tasks like clustering, dimensionality reduction, and anomaly detection. Unlike supervised metrics, unsupervised metrics lack clear performance indicators, such as accuracy, because they operate without ground-truth labels.
+Unsupervised learning provides mechanisms to model data without defined labels. The primary goal is to capture intrinsic relationships in data, enabling tasks like clustering, dimensionality reduction, and anomaly detection. Unlike supervised learning, unsupervised methods lack clear performance indicators such as accuracy, because they operate without ground-truth labels.
 
 ## Principal Component Analysis (PCA)
 
@@ -140,7 +140,7 @@ $$s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}$$
 
 ## Practical Applications of Unsupervised Learning
 
-Unsupervised metrics have diverse applications across numerous domains:
+Unsupervised learning has diverse applications across numerous domains:
 
 - **Market Segmentation**: Identifying distinct consumer groups based on purchasing behaviors.
 - **Data Compression**: Dimensionality reduction methods like PCA for reducing storage needs while maintaining information fidelity.
@@ -148,4 +148,4 @@ Unsupervised metrics have diverse applications across numerous domains:
 - **Anomaly Detection**: Recognizing deviations from standard operation, pivotal in fraud detection and maintenance prediction.
 - **Document Clustering**: Grouping similar documents together in content management systems to enhance information retrieval.
 
-In conclusion, unsupervised metrics open avenues for insightful data exploration, enabling discovery and understanding without explicit supervision. As methodologies advance, their applicability will continue to broaden, impacting numerous fields.
+In conclusion, unsupervised learning opens avenues for insightful data exploration, enabling discovery and understanding without explicit supervision. As methodologies advance, their applicability will continue to broaden, impacting numerous fields.
