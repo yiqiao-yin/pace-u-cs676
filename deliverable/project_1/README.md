@@ -14,7 +14,7 @@ can be trusted.
 
 - [The problem](#the-problem)
 - [What you are given](#what-you-are-given)
-- [⚠️ Known: the live Claude path is unverified](#-known-the-live-claude-path-is-unverified)
+- [⚠️ You need your own Anthropic API key](#-you-need-your-own-anthropic-api-key)
 - [Setup](#setup) — [macOS / Linux](#macos--linux) · [Windows](#windows)
 - [Run it](#run-it)
 - [The one function you are graded on](#the-one-function-you-are-graded-on)
@@ -65,25 +65,34 @@ state, and the UI. **None of that is what you are graded on.**
 
 ---
 
-## ⚠️ Known: the live Claude path is unverified
+## ⚠️ You need your own Anthropic API key
 
-Be aware of this before your first keyed run.
+**The chat does not work without one.** Get a key at
+[console.anthropic.com](https://console.anthropic.com/), then copy `.env.example` to
+`.env` and paste it in. The key is yours and **the calls are billed to your account** —
+nobody else's.
 
-**Proven — these have been run and pass:**
+You can do a large part of this assignment before spending anything:
 
-- `python test_credibility.py` — 21 contract tests
-- `python evaluate.py` — the 24-URL harness
-- the entire rule-based scoring layer
+| Works with no key | Needs your key |
+| --- | --- |
+| `python test_credibility.py` — 21 contract tests | the chat itself (`streamlit run main.py`) |
+| `python evaluate.py` — the 24-URL harness | `python evaluate.py --llm` |
+| the whole rule-based scoring layer | `credibility.llm_opinion()` |
+| the sidebar URL scorer in the running app | |
 
-**Unproven — never executed against the real Anthropic API:**
+That split is deliberate. Improving the rule layer, measuring it, and defending the
+result is most of the grade, and none of it costs money.
 
-- `credibility.llm_opinion()` — the Claude judgment layer, including its `output_config` structured-output call
-- `main.ask_claude()` — the chat call and its citation-extraction loop
+### And a known gap: the keyed path shipped unverified
 
-No billed request has ever been made with this code. The parameters were written
-against the current Anthropic SDK and reviewed, but reviewing is not running. If your
-first live run fails, that is where to look — and it is a known gap, not something you
-broke.
+`credibility.llm_opinion()` and `main.ask_claude()` were written against the current
+Anthropic SDK and reviewed, **but never run against the live API** — these materials
+were prepared without a key. Reviewing is not running.
+
+So if your first keyed run misbehaves, look there first: the `output_config`
+structured-output call in `llm_opinion()`, and the citation-extraction loop in
+`ask_claude()`. **It is a known gap, not something you broke.**
 
 **Report it if you hit it.** Fixing it counts toward your grade, and telling the class
 counts for more.

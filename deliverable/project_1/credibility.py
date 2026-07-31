@@ -262,16 +262,21 @@ _JUDGE_SCHEMA: Dict[str, Any] = {
 
 
 # =============================================================================
-# ⚠️  NOT VERIFIED AGAINST THE LIVE API
+# ⚠️  NEEDS YOUR OWN API KEY — AND SHIPPED UNVERIFIED
 # =============================================================================
-# The rule-based layer, the tests, and evaluate.py have all been run and pass.
-# `llm_opinion()` below has NOT been executed against the real Anthropic API —
-# it was written and reviewed against the current SDK signature, but no billed
-# request has ever been made with it.
+# REQUIRES A KEY. This function is the only part of credibility.py that calls
+# Anthropic. Without ANTHROPIC_API_KEY set it returns None and the scorer falls
+# back to rules only — no error, just a weaker score. Get a key at
+# https://console.anthropic.com/ and put it in `.env` (copy `.env.example`).
+# The key is yours and the calls are billed to you, which is exactly why the
+# rules layer, the tests, and evaluate.py were all built to run without one.
 #
-# What that means for you: the FIRST time you run with an ANTHROPIC_API_KEY set,
-# treat this function as unproven. If it misbehaves, the likely suspects are the
-# `output_config` structured-output call and the response parsing right below it.
+# SHIPPED UNVERIFIED. This function was written against the current SDK and
+# reviewed, but the course materials were prepared without an API key, so it has
+# never been run against the live API. Treat it as unproven on your first keyed
+# run. The likeliest suspects if it misbehaves are the `output_config`
+# structured-output call and the response parsing directly below it.
+#
 # Report what you find — fixing it counts toward your grade, and telling the
 # class about it is worth more.
 # =============================================================================

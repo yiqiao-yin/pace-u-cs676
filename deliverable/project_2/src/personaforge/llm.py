@@ -33,15 +33,21 @@ class LLM(Protocol):
 
 
 # =============================================================================
-# ⚠️  NOT VERIFIED AGAINST THE LIVE API
+# ⚠️  NEEDS YOUR OWN API KEY — AND SHIPPED UNVERIFIED
 # =============================================================================
-# Every test in tests/ passes, and `--offline` has been driven end to end. But
-# `ClaudeLLM.complete()` below has NEVER been called against the real Anthropic
-# API — no billed request has been made with it.
+# REQUIRES A KEY. ClaudeLLM is every real model call in this package. Without
+# ANTHROPIC_API_KEY it raises with instructions rather than failing quietly. Get
+# a key at https://console.anthropic.com/ and put it in `.env` (copy
+# `.env.example`). Calls are billed to you, and a conversation costs one call
+# per turn, so six turns is six calls plus one per persona created.
 #
-# So: `uv run pytest` and `uv run main.py --offline` are proven. `uv run main.py`
-# with a real key is not. If the first live run fails, this method is where to
-# look. Fixing it is fair game and counts as a contribution.
+# You do not need a key to work on this project: `uv run pytest` and
+# `uv run main.py --offline` exercise the whole package for free.
+#
+# SHIPPED UNVERIFIED. `complete()` below was written against the current SDK but
+# never run against the live API, because the materials were built without a
+# key. The offline paths are genuinely verified; this one is not. If the first
+# live run fails, look here. Fixing it is fair game and counts as a contribution.
 # =============================================================================
 
 

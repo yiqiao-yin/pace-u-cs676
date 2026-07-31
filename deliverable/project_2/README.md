@@ -13,7 +13,7 @@ your job is to turn it into something worth installing.
 ## Table of Contents
 
 - [What it does](#what-it-does)
-- [⚠️ Known: the live Claude path is unverified](#-known-the-live-claude-path-is-unverified)
+- [⚠️ You need your own Anthropic API key](#-you-need-your-own-anthropic-api-key)
 - [Setup](#setup) — [macOS / Linux](#macos--linux) · [Windows](#windows)
 - [Run it](#run-it)
 - [How it works](#how-it-works)
@@ -58,24 +58,35 @@ taking turns.
 
 ---
 
-## ⚠️ Known: the live Claude path is unverified
+## ⚠️ You need your own Anthropic API key
 
-Be aware of this before your first keyed run.
+**Personas and conversations do not work without one.** Get a key at
+[console.anthropic.com](https://console.anthropic.com/), then copy `.env.example` to
+`.env` and paste it in. The key is yours and **the calls are billed to your account**.
 
-**Proven — these have been run and pass:**
+Budget for it: **one API call per conversation turn**, plus one per persona you
+create. A six-turn conversation between two personas you just made is eight calls. Use
+`--model claude-haiku-4-5` while iterating.
 
-- `uv run pytest` — 39 tests
-- `uv run main.py --offline` — the full app, driven end to end
+You can build almost all of this project without spending anything:
 
-**Unproven — never executed against the real Anthropic API:**
+| Works with no key | Needs your key |
+| --- | --- |
+| `uv run pytest` — all 39 tests | `uv run main.py` (no flag) |
+| `uv run main.py --offline` — the entire app | real personas written by Claude |
+| every module you are asked to extend | real agent-to-agent dialogue |
 
-- `personaforge.llm.ClaudeLLM.complete()` — every real model call in the package
-- therefore also `uv run main.py` without `--offline`
+`--offline` swaps in a scripted model, so you can create personas, list them, and run
+conversations for free. Use it for everything except prompt quality.
 
-No billed request has ever been made with this code. The parameters were written
-against the current Anthropic SDK and reviewed, but reviewing is not running. If your
-first live run fails, that is where to look — and it is a known gap, not something you
-broke.
+### And a known gap: the keyed path shipped unverified
+
+`ClaudeLLM.complete()` — every real model call in the package — was written against
+the current Anthropic SDK and reviewed, **but never run against the live API**. These
+materials were prepared without a key. Reviewing is not running.
+
+The offline paths are genuinely verified. The live one is not. If your first keyed run
+fails, look there — **it is a known gap, not something you broke.**
 
 **Report it if you hit it.** Fixing it counts toward your grade, and telling the class
 counts for more.

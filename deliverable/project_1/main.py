@@ -71,12 +71,19 @@ def search_serpapi(query: str, api_key: str) -> List[Dict[str, Any]]:
 
 
 # ---------------------------------------------------------------------------
-# ⚠️  NOT VERIFIED AGAINST THE LIVE API
+# ⚠️  NEEDS YOUR OWN API KEY — AND SHIPPED UNVERIFIED
 # ---------------------------------------------------------------------------
-# `ask_claude()` below has never been run against the real Anthropic API — no
-# billed request has been made. The parameters match the current SDK, but the
-# citation-extraction loop in particular is unproven against a real response.
-# If something breaks on your first keyed run, start here.
+# REQUIRES A KEY. The chat does not work without ANTHROPIC_API_KEY in `.env`;
+# the sidebar shows a red mark when it is missing. Get one at
+# https://console.anthropic.com/. Calls are billed to you. The URL scorer in the
+# sidebar, the tests, and evaluate.py all work without a key.
+#
+# SHIPPED UNVERIFIED. This function was written against the current SDK but was
+# never run against the live API, because the materials were built without a
+# key. The citation-extraction loop below is the least proven part — it depends
+# on the exact shape of the response. It reads defensively with getattr, so a
+# mismatch should mean "no chips appear" rather than a crash. Start here if the
+# first keyed run misbehaves.
 # ---------------------------------------------------------------------------
 @observe()
 def ask_claude(messages: List[Dict[str, str]], user: str, email: str, session_id: str) -> Tuple[str, List[Dict[str, str]]]:
