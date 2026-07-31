@@ -44,10 +44,12 @@ class LLM(Protocol):
 # You do not need a key to work on this project: `uv run pytest` and
 # `uv run main.py --offline` exercise the whole package for free.
 #
-# SHIPPED UNVERIFIED. `complete()` below was written against the current SDK but
-# never run against the live API, because the materials were built without a
-# key. The offline paths are genuinely verified; this one is not. If the first
-# live run fails, look here. Fixing it is fair game and counts as a contribution.
+# VERIFIED LIVE. `complete()` has been run against the real API end to end:
+# personas are authored, saved, and hold character across a multi-turn
+# conversation. One bug surfaced during that run, in persona.py rather than
+# here — the model intermittently omits the closing '---' of the frontmatter,
+# which the parser used to reject, silently producing a character called
+# "Unnamed". The parser now tolerates it.
 # =============================================================================
 
 

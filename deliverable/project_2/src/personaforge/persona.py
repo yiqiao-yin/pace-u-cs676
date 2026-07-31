@@ -70,17 +70,44 @@ class PersonaSpec:
         treat the whole file as the body, so a hand-written persona still loads.
         """
         meta = {"name": "Unnamed", "role": "unknown", "summary": ""}
+        text = text.strip()
+
+        # Models sometimes wrap the whole document in a code fence.
+        if text.startswith("```"):
+            lines = text.splitlines()
+            text = "\n".join(lines[1:-1] if lines[-1].strip().startswith("```") else lines[1:])
+            text = text.strip()
+
         body = text
 
-        match = re.match(r"^---\n(.*?)\n---\n?(.*)$", text, re.DOTALL)
-        if match:
-            for line in match.group(1).splitlines():
+        if text.startswith("---"):
+            rest = text[3:].lstrip("\n")
+            closing = re.search(r"^---\s*$", rest, re.MULTILINE)
+            if closing:
+                # Well-formed: frontmatter is everything up to the closing fence.
+                front, body = rest[:closing.start()], rest[closing.end():]
+            else:
+                # The closing '---' is missing, which the model does drop from
+                # time to time. Rather than throw the whole document away, read
+                # `key: value` lines from the top and treat the first line that
+                # is not one as the start of the body.
+                front_lines, body_lines, in_front = [], [], True
+                for line in rest.splitlines():
+                    if in_front and re.match(r"^[A-Za-z_][A-Za-z0-9_ -]*:", line):
+                        front_lines.append(line)
+                    elif in_front and not line.strip():
+                        continue            # blank line inside the header block
+                    else:
+                        in_front = False
+                        body_lines.append(line)
+                front, body = "\n".join(front_lines), "\n".join(body_lines)
+
+            for line in front.splitlines():
                 if ":" in line:
                     key, _, value = line.partition(":")
                     key = key.strip().lower()
                     if key in meta:
                         meta[key] = value.strip()
-            body = match.group(2)
 
         return cls(name=meta["name"], role=meta["role"], summary=meta["summary"], body=body.strip())
 
@@ -199,10 +226,15 @@ def generate_persona(description: str, llm: LLM) -> PersonaSpec:
 #     Creating two patients named Maria loses the first one.
 #
 #  3. The frontmatter parser handles three fixed keys and no quoting. A summary
-#     containing a colon will parse in a way you will not enjoy.
+#     containing a colon will parse in a way you will not enjoy. It does now
+#     tolerate a missing closing '---', which the model drops often enough that
+#     the app looked broken without it — but that is one failure mode handled,
+#     not a robust parser.
 #
 #  4. Nothing validates what the model returned. If it emits prose instead of the
-#     requested structure, you get a persona whose body is an apology.
+#     requested structure, you get a persona whose body is an apology. Nothing
+#     checks that `role` is one word, that `name` looks like a name, or that the
+#     body has the sections the prompt asked for.
 #
 #  5. Personas cannot be edited from inside the app — only by opening the file.
 #     Should "make the doctor more skeptical" be a command?

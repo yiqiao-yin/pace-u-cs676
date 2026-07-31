@@ -79,17 +79,21 @@ You can build almost all of this project without spending anything:
 `--offline` swaps in a scripted model, so you can create personas, list them, and run
 conversations for free. Use it for everything except prompt quality.
 
-### And a known gap: the keyed path shipped unverified
+### A bug worth knowing about
 
-`ClaudeLLM.complete()` — every real model call in the package — was written against
-the current Anthropic SDK and reviewed, **but never run against the live API**. These
-materials were prepared without a key. Reviewing is not running.
+The live path has been run end to end — personas authored, saved, and holding character
+across a multi-turn conversation. One bug surfaced doing it, and it is instructive.
 
-The offline paths are genuinely verified. The live one is not. If your first keyed run
-fails, look there — **it is a known gap, not something you broke.**
+**The model intermittently omits the closing `---` of the frontmatter.** Roughly one
+persona in three. The parser required it, so the whole document fell through to the
+fallback and you got a character called `Unnamed` with `role: unknown` — no error, no
+warning, just a broken persona.
 
-**Report it if you hit it.** Fixing it counts toward your grade, and telling the class
-counts for more.
+The parser now tolerates it. But notice the shape of the failure: the model was not
+wrong in any way a human would care about, the output was perfectly readable, and the
+code was strict about something that did not matter. **You will hit this class of bug
+constantly when a model is producing structured text.** Decide what your code should be
+strict about, and be generous about everything else.
 
 ---
 

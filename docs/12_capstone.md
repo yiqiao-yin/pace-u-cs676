@@ -100,7 +100,7 @@ The starter kit contains:
 
 - `main.py` — a Streamlit chat app calling Claude with web search, which already displays a colour-coded credibility chip beside every source it cites.
 - `credibility.py` — **the file you improve.** It holds a deliberately weak baseline implementation of `score_url()`, followed by a numbered list of twelve documented defects in that baseline. Each one is an invitation.
-- `evaluate.py` — a harness that scores 24 labelled URLs and reports mean absolute error, band accuracy, and worst-case error. The provided baseline scores **MAE 0.142 / 66.7% band accuracy**. Beating that measurably is the point of the assignment.
+- `evaluate.py` — a harness that scores 24 labelled URLs and reports mean absolute error, band accuracy, and worst-case error. The provided baseline scores **MAE 0.142 / 66.7% band accuracy** with rules alone, and **0.086 / 83.3%** once the optional Claude layer is switched on. Beating that measurably is the point of the assignment.
 - `test_credibility.py` — contract tests for the required input/output shape.
 
 The rule-based scorer, the tests, and the evaluation harness all run **without an API

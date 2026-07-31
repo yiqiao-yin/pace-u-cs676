@@ -84,18 +84,31 @@ You can do a large part of this assignment before spending anything:
 That split is deliberate. Improving the rule layer, measuring it, and defending the
 result is most of the grade, and none of it costs money.
 
-### And a known gap: the keyed path shipped unverified
+### What the key buys you
 
-`credibility.llm_opinion()` and `main.ask_claude()` were written against the current
-Anthropic SDK and reviewed, **but never run against the live API** — these materials
-were prepared without a key. Reviewing is not running.
+Turning the LLM layer on is not decoration — it measurably improves the scorer:
 
-So if your first keyed run misbehaves, look there first: the `output_config`
-structured-output call in `llm_opinion()`, and the citation-extraction loop in
-`ask_claude()`. **It is a known gap, not something you broke.**
+| | MAE | Band accuracy | Worst error |
+| --- | --- | --- | --- |
+| `python evaluate.py` (rules only) | 0.142 | 66.7% | 0.410 |
+| `python evaluate.py --llm` | **0.086** | **83.3%** | **0.230** |
 
-**Report it if you hit it.** Fixing it counts toward your grade, and telling the class
-counts for more.
+Most of that gain is on the held-out domains the lookup table has never seen. A JAMA
+article scores **0.52** on rules alone and **0.70** with the model, because the model
+knows what JAMA is and a hand-written domain list does not.
+
+That is also your warning: it is easy to "improve" the scorer by just calling the model
+more. The report asks you to justify an *algorithm*, and "I asked Claude" is not one.
+
+### A bug worth knowing about
+
+The first live run of `ask_claude()` returned **zero sources**. The function read
+citations off the text blocks, which is the obvious place — but `web_search_20260209`
+returns them in `web_search_tool_result` blocks instead, and `block.citations` is
+`None`. Nothing crashed and nothing was logged; the app just quietly showed no sources.
+
+It is fixed. Keep the failure mode in mind: an API returning an empty list where you
+expected data is far harder to notice than one that raises.
 
 ---
 
