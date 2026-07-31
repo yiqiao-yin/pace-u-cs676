@@ -14,6 +14,10 @@ credentials.json
 # Vendored clone of microsoft/TinyTroupe — reference material, not course code
 deliverable/project_2/tinytroupeproj/
 
+# The private mirror's git directory (see ./full). Never commit this to the
+# public repo — it contains the full history of the answer keys.
+.git-full/
+
 # Homework answer keys — instructor only, never published.
 # The student scripts in notebooks/homework/ ARE committed; the solutions are not.
 notebooks/homework/answer/

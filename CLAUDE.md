@@ -40,7 +40,16 @@ python notebooks/homework/make_homework.py
 
 `answer/*_ans.py` are the real sources. Each marks its solution with `# BEGIN SOLUTION: description` / `# END SOLUTION`; the generator copies the file, drops the `_ans` suffix, and replaces each block with a `NotImplementedError` stub at the right indentation. Editing a student file by hand is silently undone on the next run.
 
-**`notebooks/homework/answer/` is gitignored and has never been committed.** It exists only on the instructor's machine — there is no backup anywhere. Do not commit it, and do not paste solution code into any tracked file.
+**`notebooks/homework/answer/` is gitignored in this repo and must never be committed here.** Do not commit it, and do not paste solution code into any tracked file.
+
+It *is* backed up, to a **private mirror** — a second git directory (`.git-full`) over this same working tree, pushed to `yiqiao-yin/pace-u-cs676-full`. Use the `./full` wrapper for it:
+
+```bash
+./full status
+./full add -A && ./full commit -m "sync" && ./full push
+```
+
+`git ...` is the public repo, `./full ...` is the private one. The answer keys are force-added there, so the public `.gitignore` rule cannot hide them from the mirror — and cannot leak them into the public repo either. After changing an answer key, regenerate the student scripts, commit those publicly, and sync the mirror.
 
 Blank counts are 2 / 2 / 2 / 1 / 3 (`01_lr`, `02_logreg`, `03_cv`, `04_tree`, `05_kmeans`). Every script grades itself — closed-form comparison, majority-class baseline, train-vs-validation gap, or monotonically falling inertia — and every answer key must keep printing `PASS`. The `# ┌─ YOUR TASK` boxes teach without giving code; keep that register if you add one.
 

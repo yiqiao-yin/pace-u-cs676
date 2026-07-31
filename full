@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Talk to the PRIVATE mirror (pace-u-cs676-full) instead of the public repo.
+#
+#   ./full status
+#   ./full add -A && ./full commit -m "sync" && ./full push
+#   ./full log --oneline
+#
+# Both repositories share this one working tree. `git ...` is the public repo
+# (pace-u-cs676); `./full ...` is the private one, which additionally tracks
+# notebooks/homework/answer/.
+#
+# The answer keys are force-added in the private repo, so the .gitignore rule
+# that hides them from the public repo does not affect them here.
+set -euo pipefail
+cd "$(dirname "$0")"
+exec git --git-dir=.git-full --work-tree=. "$@"
