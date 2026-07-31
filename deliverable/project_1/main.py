@@ -70,6 +70,14 @@ def search_serpapi(query: str, api_key: str) -> List[Dict[str, Any]]:
     return search.get_dict().get("organic_results", [])
 
 
+# ---------------------------------------------------------------------------
+# ⚠️  NOT VERIFIED AGAINST THE LIVE API
+# ---------------------------------------------------------------------------
+# `ask_claude()` below has never been run against the real Anthropic API — no
+# billed request has been made. The parameters match the current SDK, but the
+# citation-extraction loop in particular is unproven against a real response.
+# If something breaks on your first keyed run, start here.
+# ---------------------------------------------------------------------------
 @observe()
 def ask_claude(messages: List[Dict[str, str]], user: str, email: str, session_id: str) -> Tuple[str, List[Dict[str, str]]]:
     """

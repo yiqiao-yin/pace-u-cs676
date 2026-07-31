@@ -13,6 +13,7 @@ your job is to turn it into something worth installing.
 ## Table of Contents
 
 - [What it does](#what-it-does)
+- [⚠️ Known: the live Claude path is unverified](#-known-the-live-claude-path-is-unverified)
 - [Setup](#setup) — [macOS / Linux](#macos--linux) · [Windows](#windows)
 - [Run it](#run-it)
 - [How it works](#how-it-works)
@@ -54,6 +55,30 @@ Each persona is **a markdown file on disk**. Open `temp/maria-delgado.md` in an 
 change a line, and she behaves differently next run. That is the whole architecture:
 a persona is a file, an agent is that file plus a model, a conversation is agents
 taking turns.
+
+---
+
+## ⚠️ Known: the live Claude path is unverified
+
+Be aware of this before your first keyed run.
+
+**Proven — these have been run and pass:**
+
+- `uv run pytest` — 39 tests
+- `uv run main.py --offline` — the full app, driven end to end
+
+**Unproven — never executed against the real Anthropic API:**
+
+- `personaforge.llm.ClaudeLLM.complete()` — every real model call in the package
+- therefore also `uv run main.py` without `--offline`
+
+No billed request has ever been made with this code. The parameters were written
+against the current Anthropic SDK and reviewed, but reviewing is not running. If your
+first live run fails, that is where to look — and it is a known gap, not something you
+broke.
+
+**Report it if you hit it.** Fixing it counts toward your grade, and telling the class
+counts for more.
 
 ---
 
@@ -265,10 +290,17 @@ properly beats five half-finished ones. Choose, and justify the choice in your r
 ## Deliverables and grading
 
 **100 points total = 30% of your course grade**, plus a **+5% bonus** for a Hugging
-Face deployment. Deadlines are in [`docs/12_capstone.md`](../../docs/12_capstone.md)
-and the full weighting and letter-grade scale are in the
-[course README](../../README.md#grading-policy) — those files are authoritative if
-anything here disagrees with them.
+Face deployment.
+
+| Deliverable | Due (Friday) |
+| --- | --- |
+| 1 — Working package | **Oct 16, 2026** |
+| 2 — Beta version and technical report | **Oct 23, 2026** |
+| 3 — Final container-ready app | **Oct 30, 2026** |
+
+The [capstone spec](../../docs/12_capstone.md) and the
+[course README](../../README.md#grading-policy) are authoritative if anything here
+disagrees with them.
 
 ### Deliverable 1 — Working package (25 points)
 

@@ -14,6 +14,7 @@ can be trusted.
 
 - [The problem](#the-problem)
 - [What you are given](#what-you-are-given)
+- [⚠️ Known: the live Claude path is unverified](#-known-the-live-claude-path-is-unverified)
 - [Setup](#setup) — [macOS / Linux](#macos--linux) · [Windows](#windows)
 - [Run it](#run-it)
 - [The one function you are graded on](#the-one-function-you-are-graded-on)
@@ -61,6 +62,31 @@ Those two explanations are, frankly, not good enough. That is the point.
 
 The app already handles the Claude call, web search, citation extraction, session
 state, and the UI. **None of that is what you are graded on.**
+
+---
+
+## ⚠️ Known: the live Claude path is unverified
+
+Be aware of this before your first keyed run.
+
+**Proven — these have been run and pass:**
+
+- `python test_credibility.py` — 21 contract tests
+- `python evaluate.py` — the 24-URL harness
+- the entire rule-based scoring layer
+
+**Unproven — never executed against the real Anthropic API:**
+
+- `credibility.llm_opinion()` — the Claude judgment layer, including its `output_config` structured-output call
+- `main.ask_claude()` — the chat call and its citation-extraction loop
+
+No billed request has ever been made with this code. The parameters were written
+against the current Anthropic SDK and reviewed, but reviewing is not running. If your
+first live run fails, that is where to look — and it is a known gap, not something you
+broke.
+
+**Report it if you hit it.** Fixing it counts toward your grade, and telling the class
+counts for more.
 
 ---
 
@@ -227,10 +253,17 @@ graded separately from score accuracy.
 ## Deliverables and grading
 
 **100 points total = 30% of your course grade**, plus a **+5% bonus** for a Hugging
-Face deployment. Submit through the course form. Deadlines are in
-[`docs/12_capstone.md`](../../docs/12_capstone.md) and the full course weighting and
-letter-grade scale are in the [course README](../../README.md#grading-policy) — those
-files are authoritative if anything here disagrees with them.
+Face deployment. Submit through the course form.
+
+| Deliverable | Due (Friday) |
+| --- | --- |
+| 1 — Working function and tests | **Sept 25, 2026** |
+| 2 — Technique report | **Oct 2, 2026** |
+| 3 — Working integrated application | **Oct 9, 2026** |
+
+The [capstone spec](../../docs/12_capstone.md) and the
+[course README](../../README.md#grading-policy) are authoritative if anything here
+disagrees with them.
 
 ### Deliverable 1 — Working function and tests (25 points)
 

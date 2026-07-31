@@ -261,6 +261,22 @@ _JUDGE_SCHEMA: Dict[str, Any] = {
 }
 
 
+# =============================================================================
+# ⚠️  NOT VERIFIED AGAINST THE LIVE API
+# =============================================================================
+# The rule-based layer, the tests, and evaluate.py have all been run and pass.
+# `llm_opinion()` below has NOT been executed against the real Anthropic API —
+# it was written and reviewed against the current SDK signature, but no billed
+# request has ever been made with it.
+#
+# What that means for you: the FIRST time you run with an ANTHROPIC_API_KEY set,
+# treat this function as unproven. If it misbehaves, the likely suspects are the
+# `output_config` structured-output call and the response parsing right below it.
+# Report what you find — fixing it counts toward your grade, and telling the
+# class about it is worth more.
+# =============================================================================
+
+
 def llm_opinion(url: str) -> Optional[Signal]:
     """
     Ask Claude to judge the URL. Returns None whenever the call cannot be made.

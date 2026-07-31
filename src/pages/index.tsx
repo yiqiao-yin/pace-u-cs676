@@ -22,7 +22,7 @@ const SESSIONS: Session[] = [
   {num: '08', title: 'Tree-Based Methods', blurb: 'Trees, random forests, boosting.', to: '/docs/tree_based_model'},
   {num: '09', title: 'Support Vector Machine', blurb: 'SVM for classification and regression.', to: '/docs/support_vector_machine'},
   {num: '10', title: 'Deep Learning', blurb: 'Neural networks and architectures.', to: '/docs/neural_networks'},
-  {num: '11', title: 'Unsupervised Metrics', blurb: 'Clustering and evaluation.', to: '/docs/unsupervised'},
+  {num: '11', title: 'Unsupervised Learning', blurb: 'Clustering and evaluation.', to: '/docs/unsupervised'},
   {num: '12', title: 'Capstone Projects', blurb: 'Project specs, deadlines, rubrics.', to: '/docs/capstone'},
 ];
 

@@ -32,6 +32,19 @@ class LLM(Protocol):
         ...
 
 
+# =============================================================================
+# ⚠️  NOT VERIFIED AGAINST THE LIVE API
+# =============================================================================
+# Every test in tests/ passes, and `--offline` has been driven end to end. But
+# `ClaudeLLM.complete()` below has NEVER been called against the real Anthropic
+# API — no billed request has been made with it.
+#
+# So: `uv run pytest` and `uv run main.py --offline` are proven. `uv run main.py`
+# with a real key is not. If the first live run fails, this method is where to
+# look. Fixing it is fair game and counts as a contribution.
+# =============================================================================
+
+
 @dataclass
 class ClaudeLLM:
     """

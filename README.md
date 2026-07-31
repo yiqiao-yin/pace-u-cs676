@@ -18,7 +18,7 @@
   - [Session 08: Tree-based Methods and Midterm](#session-08-tree-based-methods-and-midterm)
   - [Session 09: Support Vector Machine](#session-09-support-vector-machine)
   - [Session 10: Deep Learning](#session-10-deep-learning)
-  - [Session 11: Unsupervised Metrics](#session-11-unsupervised-metrics)
+  - [Session 11: Unsupervised Learning](#session-11-unsupervised-learning)
   - [Session 12: Capstone Project Preparation](#session-12-capstone-project-preparation)
 
 ## Syllabus
@@ -242,7 +242,7 @@ For more details, please see: [10_neural_networks](docs/10_neural_networks.md)
 
 [Back to TOC](#table-of-contents)
 
-#### Session 11: Unsupervised Metrics
+#### Session 11: Unsupervised Learning
 - Introduction to unsupervised metrics
 - Evaluation of clustering methods
 - Practical applications of unsupervised metrics
