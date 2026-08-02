@@ -307,17 +307,13 @@ properly beats five half-finished ones. Choose, and justify the choice in your r
 **100 points total = 30% of your course grade**, plus a **+5% bonus** for a Hugging
 Face deployment.
 
-| Deliverable | Due (Friday) |
-| --- | --- |
-| 1 — Working package | **Oct 16, 2026** |
-| 2 — Beta version and technical report | **Oct 23, 2026** |
-| 3 — Final container-ready app | **Oct 30, 2026** |
+**This project has one deliverable and one deadline.** You submit once, through the
+course form. The date is in [DEADLINES.md](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/DEADLINES.md) — the only place deadlines live.
 
-The [capstone spec](../../docs/12_capstone.md) and the
-[course README](../../README.md#grading-policy) are authoritative if anything here
-disagrees with them.
+The three parts below are **where the marks are**, not a schedule. Work through them in
+any order, or all at once — nothing is graded on when you did which piece.
 
-### Deliverable 1 — Working package (25 points)
+### Part 1 — Working package (25 points)
 
 | | Points |
 |---|---|
@@ -326,7 +322,7 @@ disagrees with them.
 | Your own tests for what you added, passing | 6 |
 | Package structure stays coherent — no logic dumped into `main.py` | 4 |
 
-### Deliverable 2 — Beta version and technical report (35 points)
+### Part 2 — Beta version and technical report (35 points)
 
 | | Points |
 |---|---|
@@ -335,7 +331,7 @@ disagrees with them.
 | Honest failure analysis — where agents break character, lose the thread, or cost too much | 9 |
 | Test coverage of the parts you own | 8 |
 
-### Deliverable 3 — Final container-ready app (40 points)
+### Part 3 — Final container-ready app (40 points)
 
 | | Points |
 |---|---|

@@ -1,0 +1,103 @@
+# Deadlines — CS676, Fall 2026
+
+**This file is the only place deadlines live.** If a date appears anywhere else in this
+repository or contradicts what is written here, this file wins. Nothing else needs
+updating when a date moves.
+
+Everything is due **Friday at 11:59 PM Eastern**, submitted through the
+[course form](https://airtable.com/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form).
+
+---
+
+## The schedule
+
+| Due (Friday, 11:59 PM EST) | What | Type |
+| --- | --- | --- |
+| **Sept 11, 2026** | Homework 1 — Linear regression | Pass / Fail |
+| **Sept 18, 2026** | Homework 2 — Logistic regression | Pass / Fail |
+| **Sept 25, 2026** | **Project 1** — Credibility scoring | Graded, 30% |
+| **Oct 9, 2026** | Homework 3 — Cross validation | Pass / Fail |
+| **Oct 16, 2026** | Homework 4 — Decision tree | Pass / Fail |
+| **Nov 13, 2026** | **Project 2** — PersonaForge | Graded, 30% |
+| **Nov 20, 2026** | Homework 5 — K-means clustering | Pass / Fail |
+| **Dec 18, 2026** | **Project 3** — Your own AI/ML project | Graded, 30% |
+
+---
+
+## Homework — five assignments, Pass / Fail
+
+The five exercises live in [`notebooks/homework/`](notebooks/homework/). Each is a
+runnable numpy script with the core algorithm removed; you write the missing part.
+
+| Homework | Script | Topic |
+| --- | --- | --- |
+| 1 | [`01_lr.py`](notebooks/homework/01_lr.py) | Linear regression |
+| 2 | [`02_logreg.py`](notebooks/homework/02_logreg.py) | Logistic regression |
+| 3 | [`03_cv.py`](notebooks/homework/03_cv.py) | K-fold cross validation |
+| 4 | [`04_tree.py`](notebooks/homework/04_tree.py) | Decision tree |
+| 5 | [`05_kmeans.py`](notebooks/homework/05_kmeans.py) | K-means clustering |
+
+**Graded Pass / Fail.** A submission that runs and produces the expected output passes.
+Every script grades itself — it prints `PASS`, or compares your result against a known
+answer — so you can tell before you submit.
+
+**All five count. None are dropped.** Together with the per-session submission form,
+they make up the 10% homework portion of your grade.
+
+Nothing stops you finishing them early. They are all in the repository now, and each
+one only needs numpy.
+
+---
+
+## Projects — one deliverable each
+
+**Each project has exactly one deliverable and one deadline.** There is no
+deliverable 1, 2, 3 to hand in separately. You submit once, on the date above.
+
+What to build is described in full in each project's own README. Read it — it contains
+the requirements, the rubric, and the point breakdown:
+
+| Project | Due | What to follow |
+| --- | --- | --- |
+| **Project 1** — Credibility scoring | **Sept 25, 2026** | [`deliverable/project_1/README.md`](deliverable/project_1/README.md) |
+| **Project 2** — PersonaForge | **Nov 13, 2026** | [`deliverable/project_2/README.md`](deliverable/project_2/README.md) |
+| **Project 3** — Your own AI/ML project | **Dec 18, 2026** | [Project 3 spec](docs/12_capstone.md#project-3-your-own-aiml-project) |
+
+### About the "checkpoints" in those documents
+
+The project specs break the work into **Checkpoint 1, 2, and 3**. Those are a
+**recommended order of work, not separate submissions.** They exist because building
+the whole thing in one sitting the night before does not go well, and because the
+checkpoints match the order the material is taught.
+
+You are free to ignore the sequence entirely and submit everything at once. Nothing is
+graded on when you did which part — only on what you hand in by the deadline.
+
+The point splits attached to each checkpoint (25 / 35 / 40 for Project 1, for example)
+are how your **single submission** is marked. They tell you where the marks are, not
+when things are due.
+
+---
+
+## Grading at a glance
+
+| Component | Weight | Notes |
+| --- | --- | --- |
+| Homework | **10%** | Per-session submission form **and** the five Pass/Fail exercises. All five count. |
+| Project 1 | **30%** | +5% bonus for a Hugging Face deployment |
+| Project 2 | **30%** | +5% bonus for a Hugging Face deployment |
+| Project 3 | **30%** | Required. Topic is yours. |
+| | **100%** | **110% available with both bonuses** |
+
+The letter-grade scale is in the [course README](README.md#letter-grades).
+
+---
+
+## Submitting
+
+Use the [course form](https://airtable.com/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form) for
+everything. Multiple submissions are allowed and **only the last one before the deadline
+is read**, so submitting early and replacing it later costs you nothing.
+
+Late work on a project loses 5 points from that project's 100. If something is going
+wrong, tell me before the deadline rather than after.

@@ -21,7 +21,8 @@ The site is a **Docusaurus 3** app rooted at the repo top level (`docusaurus.con
 
 - `README.md` — the syllabus and canonical entry point. Sessions link out to `docs/NN_topic.md`; five also link to a homework exercise.
 - `docs/01…11_*.md` — one file per lecture session. Fixed convention: Table of Contents at the top, `[Go back to TOC](#table-of-contents)` under each heading, LaTeX math, figures as `../pics/NN_topic_MM.png`. Five end with a `## Homework` section.
-- `docs/12_capstone.md` — the spec driving `deliverable/`. Authoritative for **deadlines** (Fall 2026: every deliverable on a Friday, Sept 25 → Nov 13).
+- `DEADLINES.md` — **the single source of truth for every date.** Homework and project deadlines live here and nowhere else. If you are asked to change a date, change this file only; do not reintroduce dates into the capstone spec or the project READMEs, which were deliberately stripped of them.
+- `docs/12_capstone.md` — the spec driving `deliverable/`. Describes *what* to build, never *when*. Each project is **one deliverable**; the "Checkpoint 1/2/3" sections are a recommended order of work and a point breakdown for that single submission, not separate hand-ins.
 - `docs/13_final_guidance.md` — presentation rubric (front-end 10% / back-end 20% / API 30% / system design 40%).
 - `notebooks/session_N/` — coding sessions, written for Google Colab (inline pip installs, no shared venv).
 - `notebooks/homework/` — five from-scratch exercises. See below.

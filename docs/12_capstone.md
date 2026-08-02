@@ -7,58 +7,49 @@ sidebar_label: "12. Capstone Projects"
 ## Table of Contents
 
 - [Capstone Projects](#capstone-projects)
-   - [Schedule — Fall 2026](#schedule--fall-2026)
+   - [Deadlines](#deadlines)
    - [Project 1: Credibility Score for Articles/Sources/References](#project-1-credibility-score-for-articlessourcesreferences)
      - [Concept Overview](#concept-overview)
      - [Approach to Scoring Credibility](#approach-to-scoring-credibility)
      - [Starter Code, Setup, and Grading](#starter-code-setup-and-grading)
      - [Deliverable](#deliverable)
-     - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown)
-       - [Deliverable 1: Draft of the Python Function (Sept 25, 2026)](#deliverable-1-draft-of-the-python-function-sept-25-2026)
-       - [Deliverable 2: Detailed Technique Report (Oct 2, 2026)](#deliverable-2-detailed-technique-report-oct-2-2026)
-       - [Deliverable 3: Implementation into Live Applications (Oct 9, 2026)](#deliverable-3-implementation-into-live-applications-oct-9-2026)
+     - [Recommended Checkpoints](#recommended-checkpoints)
+       - [Checkpoint 1: Draft of the Python Function](#checkpoint-1-draft-of-the-python-function)
+       - [Checkpoint 2: Detailed Technique Report](#checkpoint-2-detailed-technique-report)
+       - [Checkpoint 3: Implementation into Live Applications](#checkpoint-3-implementation-into-live-applications)
    - [Project 2: PersonaForge — Build an Agent-to-Agent Package](#project-2-personaforge--build-an-agent-to-agent-package)
      - [Concept Overview](#concept-overview-1)
      - [Approach to Building the Package](#approach-to-building-the-package)
      - [Starter Code, Setup, and Grading](#starter-code-setup-and-grading-1)
      - [Deliverable](#deliverable-1)
-     - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-1)
-       - [Deliverable 1: Working Package (Oct 16, 2026)](#deliverable-1-working-package-oct-16-2026)
-       - [Deliverable 2: Beta Version and Technical Report (Oct 23, 2026)](#deliverable-2-beta-version-and-technical-report-oct-23-2026)
-       - [Deliverable 3: Final Delivery of Container-Ready App (Oct 30, 2026)](#deliverable-3-final-delivery-of-container-ready-app-oct-30-2026)
+     - [Recommended Checkpoints](#recommended-checkpoints-1)
+       - [Checkpoint 1: Working Package](#checkpoint-1-working-package)
+       - [Checkpoint 2: Beta Version and Technical Report](#checkpoint-2-beta-version-and-technical-report)
+       - [Checkpoint 3: Final Delivery of Container-Ready App](#checkpoint-3-final-delivery-of-container-ready-app)
   - [Project 3: Your Own AI/ML Project](#project-3-your-own-aiml-project)
     - [Concept Overview](#concept-overview-2)
     - [Approach](#approach)
     - [Submission Process](#submission-process)
     - [Deliverable](#deliverable-2)
-    - [Deliverable Deadline Breakdown](#deliverable-deadline-breakdown-2)
-      - [Deliverable 1: Project Proposal and Initial Work (Nov 6, 2026)](#deliverable-1-project-proposal-and-initial-work-nov-6-2026)
-      - [Deliverable 2: Final Project Submission (Nov 13, 2026)](#deliverable-2-final-project-submission-nov-13-2026)
+    - [Recommended Checkpoints](#recommended-checkpoints-2)
+      - [Checkpoint 1: Project Proposal and Initial Work](#checkpoint-1-project-proposal-and-initial-work)
+      - [Checkpoint 2: Final Project Submission](#checkpoint-2-final-project-submission)
 
 ## Capstone Projects
 
 Please see the following projects.
 
-### Schedule — Fall 2026
+### Deadlines
 [Go back to TOC](#table-of-contents)
 
-Every deliverable is due on a **Friday**, one per week, starting the last Friday of
-September. Submit through the course form; the latest submission before the deadline
-is the one that gets read.
+**All deadlines live in one place: [DEADLINES.md](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/DEADLINES.md).**
+Dates are deliberately not repeated here, so there is only ever one file to check and
+one file to update.
 
-| Week | Due (Friday) | Project | Deliverable |
-| --- | --- | --- | --- |
-| 1 | **Sept 25, 2026** | Project 1 | Draft of the Python function |
-| 2 | **Oct 2, 2026** | Project 1 | Detailed technique report |
-| 3 | **Oct 9, 2026** | Project 1 | Implementation into the live app |
-| 4 | **Oct 16, 2026** | Project 2 | Working package |
-| 5 | **Oct 23, 2026** | Project 2 | Beta version and technical report |
-| 6 | **Oct 30, 2026** | Project 2 | Final container-ready app |
-| 7 | **Nov 6, 2026** | Project 3 | Project proposal and initial work |
-| 8 | **Nov 13, 2026** | Project 3 | Final project submission |
-
-Nothing stops you working ahead — the starter kits for Projects 1 and 2 are in the
-repository now, and Project 3 is yours to scope from the start.
+**Each project has exactly one deliverable and one deadline.** The checkpoints below
+are a recommended order of work, not separate submissions — you may do them in any
+order, or all at once. The point split attached to each is how your single submission
+is marked, not a schedule.
 
 ## Project 1: Credibility Score for Articles/Sources/References
 
@@ -135,10 +126,12 @@ This feature will involve:
     {"score": 0.90, "explanation": "This source is considered credible based on its citation count and author credentials."}
     ```
 
-### Deliverable Deadline Breakdown
+### Recommended Checkpoints
 [Go back to TOC](#table-of-contents)
 
-#### Deliverable 1: Draft of the Python Function (Sept 25, 2026)
+**One submission, one deadline.** The three checkpoints below are a suggested order of work — they follow the order the material is taught, and building everything the night before does not go well. They are not separate hand-ins. Do them in any order, or all at once. The points attached to each show where the marks are in your single submission. Deadline: [DEADLINES.md](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/DEADLINES.md).
+
+#### Checkpoint 1: Draft of the Python Function
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Get the starter kit running, record its baseline, and make your first real improvement to `score_url()`. You are not writing this function from scratch — a working but deliberately weak version is provided, along with twelve documented defects in it. This phase is about understanding exactly what the baseline does before you change it, so that every later change is a deliberate choice you can defend.
@@ -153,7 +146,7 @@ This feature will involve:
   - Your recorded baseline from `python evaluate.py` (the provided starter scores **MAE 0.142, band accuracy 66.7%, worst error 0.410**) and at least one measured improvement on it.
   - Testing that validates input and output handling: `python test_credibility.py` must still pass, and you must add your own cases for URL types and malformed inputs the provided 21 tests do not already cover.
 
-#### Deliverable 2: Detailed Technique Report (Oct 2, 2026)
+#### Checkpoint 2: Detailed Technique Report
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Provide an in-depth analysis and report on the algorithmic approach and scientific research supporting the credibility scoring. This deliverable focuses on the theoretical foundation and empirical justification for the chosen methodology, ensuring that the credibility assessment system is grounded in established research and best practices. The report should demonstrate a thorough understanding of the credibility assessment domain and provide a roadmap for algorithmic improvements.
@@ -164,7 +157,7 @@ This feature will involve:
     - Justification of chosen methodologies, including both ML-based and rule-based approaches if applicable, with empirical evidence supporting the selection criteria. This should include comparative analysis of different approaches and discussion of trade-offs between accuracy, interpretability, and computational efficiency.
   - Documentation to guide future iterations and refinements, including detailed API specifications, algorithm parameters that may need tuning, and identified areas for improvement. The documentation should also include guidelines for maintaining and updating the credibility assessment model as new research becomes available.
 
-#### Deliverable 3: Implementation into Live Applications (Oct 9, 2026)
+#### Checkpoint 3: Implementation into Live Applications
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Make the scoring feature work well inside the running application. The wiring is already done — the app extracts citations and renders a colour-coded chip beside each source — so this deliverable is about the quality and reliability of what those chips say, not about building the integration from nothing.
@@ -316,10 +309,12 @@ The medical scenario above is only an example. A teacher and a student, a custom
 a support agent, two historians disagreeing about a date — pick a domain you find
 interesting, because you will read a great deal of its output.
 
-### Deliverable Deadline Breakdown
+### Recommended Checkpoints
 [Go back to TOC](#table-of-contents)
 
-#### Deliverable 1: Working Package (Oct 16, 2026)
+**One submission, one deadline.** The three checkpoints below are a suggested order of work — they follow the order the material is taught, and building everything the night before does not go well. They are not separate hand-ins. Do them in any order, or all at once. The points attached to each show where the marks are in your single submission. Deadline: [DEADLINES.md](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/DEADLINES.md).
+
+#### Checkpoint 1: Working Package
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Get the starter kit running, understand its architecture, and make your first substantive extension to it. This phase is about establishing the ground truth of what the skeleton does and does not do, so that everything you build afterwards is a deliberate choice rather than an accident.
@@ -329,7 +324,7 @@ interesting, because you will read a great deal of its output.
   - **Your own tests for what you added**, following the existing pattern of injecting a fake model so the suite stays offline and fast.
   - A saved conversation transcript your system produced, with a paragraph on what the agents got right and where they broke character.
 
-#### Deliverable 2: Beta Version and Technical Report (Oct 23, 2026)
+#### Checkpoint 2: Beta Version and Technical Report
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Turn the extended skeleton into a system with a point of view, and write up the reasoning behind it. The report matters as much as the code — the questions this project raises rarely have one right answer, so the defence of your choice is the substance.
@@ -339,7 +334,7 @@ interesting, because you will read a great deal of its output.
   - **An honest failure analysis**: where agents break character, where they lose the thread, where the cost becomes unreasonable. Measure the cost — a six-turn conversation is at least six API calls, and you should know what that actually costs.
   - Test coverage of the parts you own, with an explanation of what your tests do and do not verify.
 
-#### Deliverable 3: Final Delivery of Container-Ready App (Oct 30, 2026)
+#### Checkpoint 3: Final Delivery of Container-Ready App
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Ship a package someone else could pick up and use. This deliverable is about completeness and robustness rather than new features — a smaller system that behaves well beats an ambitious one that falls over.
@@ -439,10 +434,12 @@ Your deliverable will vary based on your chosen project, but should generally in
 - Any necessary configuration files (requirements.txt, environment files, etc.)
 - Results, outputs, or demonstrations of your work
 
-### Deliverable Deadline Breakdown
+### Recommended Checkpoints
 [Go back to TOC](#table-of-contents)
 
-#### Deliverable 1: Project Proposal and Initial Work (Nov 6, 2026)
+**One submission, one deadline.** The two checkpoints below are a suggested order of work — they follow the order the material is taught, and building everything the night before does not go well. They are not separate hand-ins. Do them in any order, or all at once. The points attached to each show where the marks are in your single submission. Deadline: [DEADLINES.md](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/DEADLINES.md).
+
+#### Checkpoint 1: Project Proposal and Initial Work
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Define your project scope and begin initial development or research.
@@ -456,7 +453,7 @@ Your deliverable will vary based on your chosen project, but should generally in
   - Initial work demonstrating progress on your project
   - A GitHub repository with your initial commits
 
-#### Deliverable 2: Final Project Submission (Nov 13, 2026)
+#### Checkpoint 2: Final Project Submission
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Complete your project and submit it for evaluation.

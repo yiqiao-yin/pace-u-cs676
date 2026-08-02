@@ -275,19 +275,17 @@ graded separately from score accuracy.
 ## Deliverables and grading
 
 **100 points total = 30% of your course grade**, plus a **+5% bonus** for a Hugging
-Face deployment. Submit through the course form.
+Face deployment.
 
-| Deliverable | Due (Friday) |
-| --- | --- |
-| 1 — Working function and tests | **Sept 25, 2026** |
-| 2 — Technique report | **Oct 2, 2026** |
-| 3 — Working integrated application | **Oct 9, 2026** |
+**This project has one deliverable and one deadline.** You submit once, through the
+course form. The date is in [DEADLINES.md](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/DEADLINES.md) — the only place deadlines live.
 
-The [capstone spec](../../docs/12_capstone.md) and the
-[course README](../../README.md#grading-policy) are authoritative if anything here
-disagrees with them.
+The three parts below are **where the marks are**, not a schedule. They are listed in
+the order that works best, because each builds on the last and because the report is
+much easier to write once the code exists. You are free to work in any order, or to do
+the whole thing in one go.
 
-### Deliverable 1 — Working function and tests (25 points)
+### Part 1 — Working function and tests (25 points)
 
 | | Points |
 |---|---|
@@ -296,7 +294,7 @@ disagrees with them.
 | At least one substantive improvement over the baseline, clearly identified | 7 |
 | Your own added test cases beyond the ones provided | 5 |
 
-### Deliverable 2 — Technique report (35 points)
+### Part 2 — Technique report (35 points)
 
 A written report, 4–8 pages.
 
@@ -311,7 +309,7 @@ The measured comparison is the core of this deliverable. "It seems better" earns
 nothing; "MAE fell from 0.142 to 0.081, driven mostly by the held-out block" earns
 full marks.
 
-### Deliverable 3 — Working integrated application (40 points)
+### Part 3 — Working integrated application (40 points)
 
 | | Points |
 |---|---|

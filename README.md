@@ -4,7 +4,10 @@
 
 🎞️ **Slide deck: [Interactive presentation](https://main.d3j8dqgo1nf8ma.amplifyapp.com)** — all 330 slides in your browser, with chapter navigation, full-text search, and a presenter mode. No download required.
 
+🗓️ **[Deadlines](DEADLINES.md)** — every due date for homework and projects, in one file.
+
 ## Table of Contents
+- [Deadlines](DEADLINES.md)
 - [Syllabus](#syllabus)
 - [Course Topics](#course-topics)
   - [Schedule and Weekly Learning Goals](#schedule-and-weekly-learning-goals)
@@ -92,7 +95,7 @@ Your grade is built from four components. Each project is marked out of 100 poin
 
 | Component | Weight | Bonus available | Details |
 | --- | --- | --- | --- |
-| Homework | **10%** | — | Fill out the assessment form after every session. Two absences excused; the lowest two grades are dropped. |
+| Homework | **10%** | — | The per-session submission form **and** the five Pass/Fail exercises in [`notebooks/homework/`](notebooks/homework/). All five count — none are dropped. |
 | Project 1 — Credibility Scoring | **30%** | **+5%** | [Starter code and rubric](deliverable/project_1/README.md) · [Spec](docs/12_capstone.md#project-1-credibility-score-for-articlessourcesreferences) |
 | Project 2 — PersonaForge (agent-to-agent package) | **30%** | **+5%** | [Starter code and rubric](deliverable/project_2/README.md) · [Spec](docs/12_capstone.md#project-2-personaforge--build-an-agent-to-agent-package) |
 | Project 3 — Your Own AI/ML Project | **30%** | — | Required. Take-home, your own idea. [Spec](docs/12_capstone.md#project-3-your-own-aiml-project) |
@@ -100,7 +103,16 @@ Your grade is built from four components. Each project is marked out of 100 poin
 
 **Both bonuses are earned by deploying a working app to Hugging Face Spaces** — 5% for Project 1, 5% for Project 2. This is real additional work, which is why it carries real additional credit. Submit the public Space URL with your deliverables.
 
-Each project's 100 points are split across its deliverables. For Project 1 that is 25 points (deliverable 1), 35 points (deliverable 2), and 40 points (deliverable 3); see the [project README](deliverable/project_1/README.md#deliverables-and-grading) for the point-by-point rubric.
+**Every deadline is in [DEADLINES.md](DEADLINES.md)** — homework and projects, one file,
+nothing repeated elsewhere.
+
+**Each project is a single deliverable with a single deadline.** There is no
+deliverable 1, 2, 3 to hand in separately. The project specs break the work into parts —
+25 / 35 / 40 points for Project 1, for instance — but those show where the marks are in
+your one submission, not when things are due. Work through them in any order, or all at
+once. What to build is in each project's own README:
+[Project 1](deliverable/project_1/README.md) · [Project 2](deliverable/project_2/README.md) ·
+[Project 3](docs/12_capstone.md#project-3-your-own-aiml-project).
 
 ### Letter Grades
 
@@ -132,7 +144,7 @@ Late submissions for the midterm will incur a deduction of 5 points from the tot
 - Attendance will not be separately recorded but the weekly submission will help me understand your progress and attendance.
 
 #### Policies on Incomplete Grades and Late Assignments
-- The lowest two homework grades will be dropped.
+- All five homework assignments count toward your grade; none are dropped.
 - There will be no make-up sessions for the midterm and final exams.
 
 #### Academic Integrity and Honesty
