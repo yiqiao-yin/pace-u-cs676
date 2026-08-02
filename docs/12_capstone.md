@@ -31,9 +31,9 @@ sidebar_label: "12. Capstone Projects"
     - [Approach](#approach)
     - [Submission Process](#submission-process)
     - [Deliverable](#deliverable-2)
-    - [Recommended Checkpoints](#recommended-checkpoints-2)
-      - [Checkpoint 1: Project Proposal and Initial Work](#checkpoint-1-project-proposal-and-initial-work)
-      - [Checkpoint 2: Final Project Submission](#checkpoint-2-final-project-submission)
+    - [The Two Submissions](#the-two-submissions)
+      - [Submission 1: Project Proposal (Pass / Fail)](#submission-1-project-proposal-pass--fail)
+      - [Submission 2: Final Project (100 points)](#submission-2-final-project-100-points)
 
 ## Capstone Projects
 
@@ -434,12 +434,12 @@ Your deliverable will vary based on your chosen project, but should generally in
 - Any necessary configuration files (requirements.txt, environment files, etc.)
 - Results, outputs, or demonstrations of your work
 
-### Recommended Checkpoints
+### The Two Submissions
 [Go back to TOC](#table-of-contents)
 
-**One submission, one deadline.** The two checkpoints below are a suggested order of work — they follow the order the material is taught, and building everything the night before does not go well. They are not separate hand-ins. Do them in any order, or all at once. The points attached to each show where the marks are in your single submission. Deadline: [DEADLINES.md](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/DEADLINES.md).
+**Unlike Projects 1 and 2, this project has TWO submissions.** A short proposal first, then the finished project — both dates are in [DEADLINES.md](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/DEADLINES.md). The proposal is graded Pass / Fail and exists so you get feedback before sinking weeks into something unworkable; all 100 points are on the final submission.
 
-#### Checkpoint 1: Project Proposal and Initial Work
+#### Submission 1: Project Proposal (Pass / Fail)
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Define your project scope and begin initial development or research.
@@ -453,7 +453,7 @@ Your deliverable will vary based on your chosen project, but should generally in
   - Initial work demonstrating progress on your project
   - A GitHub repository with your initial commits
 
-#### Checkpoint 2: Final Project Submission
+#### Submission 2: Final Project (100 points)
 [Go back to TOC](#table-of-contents)
 
 - **Objective**: Complete your project and submit it for evaluation.

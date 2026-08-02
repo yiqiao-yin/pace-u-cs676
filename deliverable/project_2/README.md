@@ -3,6 +3,8 @@
 **CS676 Algorithms for Data Science · Pace University**
 
 > **Weight: 30% of your course grade · 100 points · +5% bonus for a live Hugging Face deployment**
+>
+> **One deliverable, one deadline.** Due date: **[DEADLINES.md](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/DEADLINES.md)** — the only place dates live. The parts below are where the marks are, not a schedule.
 
 Project 1 gave you a function to improve inside someone else's app. This one is
 different: **you are building a Python package.** You get a skeleton that runs, and

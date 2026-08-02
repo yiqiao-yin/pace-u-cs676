@@ -20,6 +20,7 @@ Everything is due **Friday at 11:59 PM Eastern**, submitted through the
 | **Oct 16, 2026** | Homework 4 — Decision tree | Pass / Fail |
 | **Nov 13, 2026** | **Project 2** — PersonaForge | Graded, 30% |
 | **Nov 20, 2026** | Homework 5 — K-means clustering | Pass / Fail |
+| **Dec 4, 2026** | **Project 3 proposal** | Pass / Fail |
 | **Dec 18, 2026** | **Project 3** — Your own AI/ML project | Graded, 30% |
 
 ---
@@ -49,10 +50,14 @@ one only needs numpy.
 
 ---
 
-## Projects — one deliverable each
+## Projects
 
-**Each project has exactly one deliverable and one deadline.** There is no
-deliverable 1, 2, 3 to hand in separately. You submit once, on the date above.
+**Projects 1 and 2 have exactly one deliverable and one deadline each.** There is no
+deliverable 1, 2, 3 to hand in separately — you submit once, on the date above.
+
+**Project 3 is the one exception: it has two submissions.** A short proposal on
+**Dec 4**, so I can give you feedback while there is still time to act on it, and the
+finished project on **Dec 18**.
 
 What to build is described in full in each project's own README. Read it — it contains
 the requirements, the rubric, and the point breakdown:
@@ -61,14 +66,26 @@ the requirements, the rubric, and the point breakdown:
 | --- | --- | --- |
 | **Project 1** — Credibility scoring | **Sept 25, 2026** | [`deliverable/project_1/README.md`](deliverable/project_1/README.md) |
 | **Project 2** — PersonaForge | **Nov 13, 2026** | [`deliverable/project_2/README.md`](deliverable/project_2/README.md) |
-| **Project 3** — Your own AI/ML project | **Dec 18, 2026** | [Project 3 spec](docs/12_capstone.md#project-3-your-own-aiml-project) |
+| **Project 3** — proposal | **Dec 4, 2026** | [Project 3 spec](docs/12_capstone.md#project-3-your-own-aiml-project) |
+| **Project 3** — final submission | **Dec 18, 2026** | [Project 3 spec](docs/12_capstone.md#project-3-your-own-aiml-project) |
 
-### About the "checkpoints" in those documents
+### The Project 3 proposal
 
-The project specs break the work into **Checkpoint 1, 2, and 3**. Those are a
-**recommended order of work, not separate submissions.** They exist because building
-the whole thing in one sitting the night before does not go well, and because the
-checkpoints match the order the material is taught.
+Due **Dec 4**, graded **Pass / Fail**. It is short — a title, what you intend to build,
+the approach, and what you expect to end up with. A page is plenty.
+
+It exists so you do not spend three weeks on something unworkable. Submit it, I will
+respond, and you will know before you commit. The 100 points for Project 3 are all on
+the final submission; the proposal is a gate, not a grade.
+
+### About the "checkpoints" in Projects 1 and 2
+
+The specs for **Projects 1 and 2** break the work into **Checkpoint 1, 2, and 3**.
+Those are a **recommended order of work, not separate submissions.** They exist because
+building the whole thing in one sitting the night before does not go well, and because
+the checkpoints match the order the material is taught.
+
+(Project 3 is different — its two dates above are real submissions, not checkpoints.)
 
 You are free to ignore the sequence entirely and submit everything at once. Nothing is
 graded on when you did which part — only on what you hand in by the deadline.

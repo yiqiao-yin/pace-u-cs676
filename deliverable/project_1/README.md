@@ -3,6 +3,8 @@
 **CS676 Algorithms for Data Science · Pace University**
 
 > **Weight: 30% of your course grade · 100 points · +5% bonus for a live Hugging Face deployment**
+>
+> **One deliverable, one deadline.** Due date: **[DEADLINES.md](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/DEADLINES.md)** — the only place dates live. The parts below are where the marks are, not a schedule.
 
 This is the first of the three projects that make up the bulk of your grade. You get
 a working chatbot for free. What you build is the part that decides whether a source
