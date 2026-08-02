@@ -112,9 +112,61 @@ The letter-grade scale is in the [course README](README.md#letter-grades).
 
 ## Submitting
 
-Use the [course form](https://airtable.com/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form) for
-everything. Multiple submissions are allowed and **only the last one before the deadline
-is read**, so submitting early and replacing it later costs you nothing.
+### One GitHub repository for the whole course
+
+Before the first deadline, create **one** GitHub repository and use it for everything
+you submit in this course. Not one per assignment — **one, all semester.**
+
+**The repository name must contain the course number.** For example:
+
+```
+cs676-jane-doe          cs676-fall-2026          CS676-portfolio
+```
+
+Any of those is fine. `homework`, `my-project`, or `untitled-3` is not — with a class
+of submissions to work through, a name without `cs676` in it is one I cannot place.
+
+**It must be reachable.** Public is simplest. If you would rather keep it private, add
+me as a collaborator so I can actually open it — a link I cannot load counts as nothing
+submitted.
+
+### Organize it so a stranger can find things
+
+Something like this, and the exact names matter less than the fact that they are
+obvious:
+
+```
+cs676-jane-doe/
+├── README.md          <- what is here, and how to run it
+├── homework/
+│   ├── 01_lr.py
+│   ├── 02_logreg.py
+│   ├── 03_cv.py
+│   ├── 04_tree.py
+│   └── 05_kmeans.py
+├── project_1/         <- credibility scoring
+├── project_2/         <- personaforge
+└── project_3/         <- your own project
+```
+
+A top-level `README.md` saying what each folder holds costs you five minutes and makes
+everything after it easier to grade.
+
+### Submit the form every week
+
+Use the [course form](https://airtable.com/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form) — you can also reach it from the iOS app, ✅ tab.
+
+**Submit it weekly, not only when something is due.** The weekly submission is part of
+the 10% homework grade, and it is how I see that you are moving.
+
+**Give the same GitHub URL every time.** The one repository from above, the same link
+each week. Do not create a new repository per assignment and do not send a link to a
+single file — send the repository, and let the folder structure show what is finished.
+
+Multiple submissions are allowed and **only the last one before the deadline is read**,
+so submitting early and updating later costs you nothing.
+
+### Late work
 
 Late work on a project loses 5 points from that project's 100. If something is going
 wrong, tell me before the deadline rather than after.

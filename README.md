@@ -72,6 +72,20 @@ Students must demonstrate proficiency in the following areas:
 
 We will be using [this link](https://airtable.com/appBjNPgdot15ZqO7/pagKL7hfbTouEflS9/form) for all of the submissions. You can also access this page from the iOS app (see ✅ tab). The link is set up that allows multiple submissions, but I will only read the last version you submit. This includes homework assignments, midterm, final projects, and extra credits. **We take this very seriously and you must fill this out after every single class.** Please see the following rubrics:
 
+**Before the first deadline, set up your submission repository.** Three rules, and they
+matter more than they look:
+
+1. **One GitHub repository for the entire course** — not one per assignment.
+2. **Its name must contain the course number**, for example `cs676-jane-doe` or `cs676-fall-2026`. A repository called `homework` or `untitled-3` is one I cannot place among a class of them.
+3. **Submit the same URL every week.** Point the form at that one repository each time, and let the folder structure show what is finished — do not link individual files.
+
+Keep it organized: a `homework/` folder and a folder per project, with a top-level
+`README.md` saying what is where. If the repository is private, add me as a collaborator
+— a link I cannot open counts as nothing submitted.
+
+Full details, the suggested folder layout, and every deadline are in
+**[DEADLINES.md](DEADLINES.md)**.
+
 | Scores | Submission Status |
 | --- | --- |
 | 1 | Pass - Homework submitted |
