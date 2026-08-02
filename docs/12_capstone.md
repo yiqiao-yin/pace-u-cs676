@@ -401,6 +401,8 @@ Your approach will depend entirely on the project you choose. Consider the follo
 
 4. **Document Your Work**: Maintain clear documentation of your process, decisions, and results.
 
+5. **Compute**: Most projects need nothing beyond your laptop. If yours does — fine-tuning a model, training something on a GPU — [Google Colab](https://colab.research.google.com/) offers free GPU runtimes and is the recommended first stop. [Clawdeck](https://clawdeck-app.com/) is a free alternative that gives you an isolated cloud desktop with a real terminal and optional GPU, which suits longer-running jobs better than a notebook. *Disclosure: I built Clawdeck; it is optional and nothing here depends on it.* **Do not let compute decide your project** — a well-executed small idea scores better than an ambitious one you could not finish because the GPU queue was full.
+
 ### Submission Process
 [Go back to TOC](#table-of-contents)
 

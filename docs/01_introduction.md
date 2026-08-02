@@ -36,6 +36,15 @@ Python is a versatile programming language that has gained immense popularity in
 
 During coding sessions, we use **Colab from Google** as the main platform, providing a cloud-based environment that makes it easy to execute code and collaborate on projects. For CI/CD (Continuous Integration/Continuous Deployment) practices, **GitHub** serves as the primary platform, facilitating version control and collaborative workflows. All homework assignments, exams, and code submissions will be managed through GitHub, ensuring a seamless integration with the development lifecycle.
 
+**Where to run your code.** Nothing in this course requires anything beyond a laptop
+and Python — the homework is plain numpy, and both starter kits are built to run
+locally with no API key. If you would rather not run things locally, or your machine
+is fighting you, you have options:
+
+- **[Google Colab](https://colab.research.google.com/)** — the recommended default. Free, browser-based, nothing to install, and notebooks share easily. Start here.
+- **[Clawdeck](https://clawdeck-app.com/)** — a free isolated cloud desktop with a real terminal, Python, and optional GPU. Useful when a local setup will not cooperate — Windows virtual environments and PowerShell execution policies being the usual culprits — or when you need a GPU you do not have.
+  *Disclosure: I built Clawdeck. It requires a free account, it is entirely optional, and no assignment in this course depends on it. Anything you are asked to do can be done locally or in Colab.*
+
 (Optional) **Introduction to R**
 
 R is another language widely used in data science, particularly for statistical analysis and visualization. It excels in statistical computing, providing numerous packages and tools for specialized data analysis tasks. While R's learning curve may be different from that of Python's depending on everybody's background, it is invaluable for those focused on statistics and data exploration. 
