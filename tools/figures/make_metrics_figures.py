@@ -1,12 +1,13 @@
 """
-make_metrics_figures.py — generate the two figures for the Classification
-Metrics notes (docs/12_classification_metrics.md).
+make_metrics_figures.py — generate the figures for the Classification Metrics
+notes (docs/12_classification_metrics.md).
 
     python tools/figures/make_metrics_figures.py
 
 Writes:
     pics/12_metrics_01.png   which confusion-matrix cells each metric uses
     pics/12_metrics_02.png   ROC curves with AUC
+    pics/12_metrics_03.png   why F1 uses the harmonic mean
 
 Drawn from scratch with matplotlib rather than lifted from a slide or a
 textbook, so the course owns them outright and they can be regenerated or
@@ -181,7 +182,87 @@ def figure_two():
     return path
 
 
+def figure_three():
+    """Why F1 uses the harmonic mean: the commute, then the whole P-R plane."""
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.2, 4.9))
+
+    # --- left: the deck's commute argument, with numbers that divide cleanly ---
+    x, y, d = 60.0, 20.0, 30.0          # out mph, back mph, one-way miles
+    arith = (x + y) / 2
+    harm = 2 * x * y / (x + y)          # == total distance / total time
+
+    ax1.add_patch(Rectangle((0.10, 0.52), 0.80, 0.085, facecolor="#cfe8d4",
+                            edgecolor=INK, linewidth=1.0))
+    ax1.text(0.50, 0.562, f"distance each way: {d:.0f} miles", ha="center",
+             va="center", fontsize=9, color=INK)
+    ax1.annotate("", xy=(0.86, 0.70), xytext=(0.14, 0.70),
+                 arrowprops=dict(arrowstyle="->", color="#1a7f37", lw=1.6))
+    ax1.text(0.50, 0.735, f"out: {x:.0f} mph  →  takes {d / x:.1f} h", ha="center",
+             fontsize=9, color="#1a7f37")
+    ax1.annotate("", xy=(0.14, 0.42), xytext=(0.86, 0.42),
+                 arrowprops=dict(arrowstyle="->", color="#a01722", lw=1.6))
+    ax1.text(0.50, 0.355, f"back: {y:.0f} mph  →  takes {d / y:.1f} h", ha="center",
+             fontsize=9, color="#a01722")
+    # Drawn markers rather than emoji: DejaVu Sans (matplotlib's default, and all
+    # anyone is guaranteed to have) has no emoji glyphs, so 🏠 renders as tofu.
+    for cx, label in [(0.06, "home"), (0.94, "work")]:
+        ax1.add_patch(Rectangle((cx - 0.045, 0.545), 0.09, 0.09, facecolor="white",
+                                edgecolor=INK, linewidth=1.2, zorder=4))
+        ax1.text(cx, 0.59, label, ha="center", va="center", fontsize=8,
+                 color=INK, zorder=5)
+
+    ax1.text(0.50, 0.235,
+             f"{2 * d:.0f} miles in {d / x + d / y:.0f} hours  =  {harm:.0f} mph",
+             ha="center", fontsize=10.5, color=INK, fontweight="bold")
+    ax1.text(0.28, 0.115, f"arithmetic\n({x:.0f}+{y:.0f})/2 = {arith:.0f} mph",
+             ha="center", fontsize=9, color="#a01722")
+    ax1.text(0.72, 0.115, f"harmonic\n2xy/(x+y) = {harm:.0f} mph",
+             ha="center", fontsize=9, color="#1a7f37", fontweight="bold")
+    ax1.text(0.50, 0.02, "the mean that answers the question is the harmonic one",
+             ha="center", fontsize=8.5, color=NUM, style="italic")
+
+    ax1.set_xlim(0, 1); ax1.set_ylim(0, 0.88); ax1.axis("off")
+    ax1.set_title("Averaging rates: there and back", fontsize=11,
+                  fontweight="bold", color=INK)
+
+    # --- right: F1 across the whole precision-recall plane ---
+    g = np.linspace(0.001, 1, 400)
+    P, R = np.meshgrid(g, g)
+    f1 = 2 * P * R / (P + R)
+
+    im = ax2.contourf(P, R, f1, levels=np.linspace(0, 1, 21), cmap="Blues")
+    cs = ax2.contour(P, R, f1, levels=[0.2, 0.4, 0.6, 0.8], colors=INK,
+                     linewidths=0.7, alpha=0.55)
+    ax2.clabel(cs, inline=True, fontsize=7.5, fmt="%.1f")
+    fig.colorbar(im, ax=ax2, fraction=0.046, pad=0.03, label="$F_1$")
+
+    # One lopsided model and one balanced model with the SAME arithmetic mean.
+    # xytext is absolute, not an offset, so neither box can drift off the axes.
+    for (p, r, tx, ty) in [(0.98, 0.12, 0.54, 0.15),
+                           (0.55, 0.55, 0.30, 0.85)]:
+        ax2.plot(p, r, marker="o", ms=8, color="#d1242f", zorder=6,
+                 markeredgecolor="white", markeredgewidth=1.2)
+        ax2.annotate(f"precision {p:.2f}, recall {r:.2f}\n"
+                     f"arithmetic {(p + r) / 2:.2f}   ·   $F_1$ {2 * p * r / (p + r):.2f}",
+                     xy=(p, r), xytext=(tx, ty), fontsize=8, color=INK,
+                     ha="center", va="center", zorder=7,
+                     arrowprops=dict(arrowstyle="->", color=INK, lw=0.9),
+                     bbox=dict(boxstyle="round,pad=0.35", fc="white", ec=NUM, lw=0.6, alpha=0.95))
+
+    ax2.set_xlabel("Precision", fontsize=9.5)
+    ax2.set_ylabel("Recall", fontsize=9.5)
+    ax2.set_title("Same arithmetic mean, very different $F_1$", fontsize=11,
+                  fontweight="bold", color=INK)
+    ax2.set_aspect("equal")
+    ax2.set_xlim(0, 1); ax2.set_ylim(0, 1)
+
+    fig.tight_layout()
+    path = OUT / "12_metrics_03.png"
+    fig.savefig(path, dpi=150, facecolor="white"); plt.close(fig)
+    return path
+
+
 if __name__ == "__main__":
     OUT.mkdir(exist_ok=True)
-    for p in (figure_one(), figure_two()):
+    for p in (figure_one(), figure_two(), figure_three()):
         print(f"  wrote {p.relative_to(p.parents[1])}  ({p.stat().st_size / 1024:.0f} KB)")

@@ -5,7 +5,7 @@ them outright and they can be restyled or regenerated at any time.
 
 | Script | Produces | Used by |
 | --- | --- | --- |
-| `make_metrics_figures.py` | `pics/12_metrics_01.png`, `pics/12_metrics_02.png` | [Classification Metrics](../../docs/12_classification_metrics.md) |
+| `make_metrics_figures.py` | `pics/12_metrics_01.png`, `pics/12_metrics_02.png`, `pics/12_metrics_03.png` | [Classification Metrics](../../docs/12_classification_metrics.md) |
 
 ```bash
 pip install numpy matplotlib
@@ -23,6 +23,8 @@ output always lands in `pics/`.
   session the figure belongs to.
 - **White background** (`facecolor="white"`). The site is dark, and its CSS gives
   every image a white backing plate, so figures should assume a light background.
+- **No emoji.** matplotlib's default font (DejaVu Sans) has no emoji glyphs, so
+  they render as empty boxes. Draw the shape instead.
 - **Deterministic.** Seed any randomness, so rerunning produces the same image and
   git does not see a diff for no reason.
 
