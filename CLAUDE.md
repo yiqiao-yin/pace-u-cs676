@@ -17,10 +17,26 @@ Course materials for **CS676 Algorithms for Data Science** (Pace University), au
 
 The site is a **Docusaurus 3** app rooted at the repo top level (`docusaurus.config.ts`, `sidebars.ts`, `src/`, `static/`) reading `docs/` in place — which is why `../pics/` references in the notes resolve. `npm run build` validates every internal link and anchor, so **run it after editing any doc**. Doc URLs drop the numeric filename prefix: `docs/01_introduction.md` serves at `/docs/introduction`, so renaming a heading changes an anchor but renaming a file changes a URL.
 
+## Continuous integration
+
+Two workflows, both on `main`:
+
+| Workflow | Trigger | What it does |
+| --- | --- | --- |
+| `deploy-docusaurus.yml` | push to `main` | builds the site and publishes to Pages |
+| `tests.yml` | every push and PR | runs both starter kits and guards the homework |
+
+`tests.yml` needs no secrets, because everything it runs works without an API key — that is the property it exists to protect. Three jobs: project 1's contract tests plus `evaluate.py`; project 2's pytest suite plus a real `--offline` session checked for actual output; and a homework guard.
+
+**Two traps in `tests.yml`:**
+
+- The homework job asserts an **exact stub count per file** — `01_lr.py`=2, `02_logreg.py`=2, `03_cv.py`=2, `04_tree.py`=1, `05_kmeans.py`=3 — held in a `declare -A EXPECTED` map. Checking merely that *a* stub survives is not enough: several exercises have more than one blank, so a partial solution leak passes. **If you change how many blanks an exercise has, update that map in the same commit** or CI fails.
+- `astral-sh/setup-uv` is pinned to `@v9.0.0` on purpose. That action publishes **no floating major tag past v6**, so `@v9` does not resolve and the run dies at "Prepare all required actions". Do not "tidy" it to a major tag.
+
 ## Layout
 
 - `README.md` — the syllabus and canonical entry point. Sessions link out to `docs/NN_topic.md`; five also link to a homework exercise.
-- `docs/01…11_*.md` — one file per lecture session. Fixed convention: Table of Contents at the top, `[Go back to TOC](#table-of-contents)` under each heading, LaTeX math, figures as `../pics/NN_topic_MM.png`. Five end with a `## Homework` section.
+- `docs/01…12_*.md` — one file per lecture session; `13_capstone.md` and `14_final_guidance.md` are course admin rather than lectures. **`12_classification_metrics.md` is a draft** — scaffolded from the slide deck, definitions correct but examples and emphasis are placeholders, and it says so in an admonition at the top. Do not describe it as finished, and leave that banner until the instructor has reviewed it. Fixed convention: Table of Contents at the top, `[Go back to TOC](#table-of-contents)` under each heading, LaTeX math, figures as `../pics/NN_topic_MM.png`. Five end with a `## Homework` section.
 - `DEADLINES.md` — **the single source of truth for every date.** Homework and project deadlines live here and nowhere else. If you are asked to change a date, change this file only; do not reintroduce dates into the capstone spec or the project READMEs, which were deliberately stripped of them.
 - `docs/13_capstone.md` — the spec driving `deliverable/`. Describes *what* to build, never *when*. **Projects 1 and 2 are one deliverable each**; their "Checkpoint 1/2/3" sections are a recommended order of work and a point breakdown for a single submission, not separate hand-ins. **Project 3 is the exception** — a Pass/Fail proposal and then the final project, two real submissions, so its section is headed "The Two Submissions" instead.
 - `docs/14_final_guidance.md` — presentation rubric (front-end 10% / back-end 20% / API 30% / system design 40%).
