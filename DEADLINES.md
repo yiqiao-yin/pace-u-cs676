@@ -66,8 +66,8 @@ the requirements, the rubric, and the point breakdown:
 | --- | --- | --- |
 | **Project 1** — Credibility scoring | **Sept 25, 2026** | [`deliverable/project_1/README.md`](deliverable/project_1/README.md) |
 | **Project 2** — PersonaForge | **Nov 13, 2026** | [`deliverable/project_2/README.md`](deliverable/project_2/README.md) |
-| **Project 3** — proposal | **Dec 4, 2026** | [Project 3 spec](docs/12_capstone.md#project-3-your-own-aiml-project) |
-| **Project 3** — final submission | **Dec 18, 2026** | [Project 3 spec](docs/12_capstone.md#project-3-your-own-aiml-project) |
+| **Project 3** — proposal | **Dec 4, 2026** | [Project 3 spec](docs/13_capstone.md#project-3-your-own-aiml-project) |
+| **Project 3** — final submission | **Dec 18, 2026** | [Project 3 spec](docs/13_capstone.md#project-3-your-own-aiml-project) |
 
 ### The Project 3 proposal
 

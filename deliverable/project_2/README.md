@@ -290,7 +290,7 @@ conversation because the question got answered?
 Nobody watches the conversation. A third agent could summarize it, score whether the
 doctor actually answered the patient's question, or flag when someone broke character.
 This is the natural bridge to the AI-judge requirement in
-[`docs/13_final_guidance.md`](../../docs/13_final_guidance.md).
+[`docs/14_final_guidance.md`](../../docs/14_final_guidance.md).
 
 ### 5. Make it a package someone else could use
 

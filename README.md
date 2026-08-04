@@ -22,7 +22,8 @@
   - [Session 09: Support Vector Machine](#session-09-support-vector-machine)
   - [Session 10: Deep Learning](#session-10-deep-learning)
   - [Session 11: Unsupervised Learning](#session-11-unsupervised-learning)
-  - [Session 12: Capstone Project Preparation](#session-12-capstone-project-preparation)
+  - [Session 12: Classification Metrics](#session-12-classification-metrics)
+  - [Session 13: Capstone Project Preparation](#session-13-capstone-project-preparation)
 - [Homework — algorithms from scratch](#homework--algorithms-from-scratch)
 
 ## Syllabus
@@ -110,9 +111,9 @@ Your grade is built from four components. Each project is marked out of 100 poin
 | Component | Weight | Bonus available | Details |
 | --- | --- | --- | --- |
 | Homework | **10%** | — | The per-session submission form **and** the five Pass/Fail exercises in [`notebooks/homework/`](notebooks/homework/). All five count — none are dropped. |
-| Project 1 — Credibility Scoring | **30%** | **+5%** | [Starter code and rubric](deliverable/project_1/README.md) · [Spec](docs/12_capstone.md#project-1-credibility-score-for-articlessourcesreferences) |
-| Project 2 — PersonaForge (agent-to-agent package) | **30%** | **+5%** | [Starter code and rubric](deliverable/project_2/README.md) · [Spec](docs/12_capstone.md#project-2-personaforge--build-an-agent-to-agent-package) |
-| Project 3 — Your Own AI/ML Project | **30%** | — | Required. Take-home, your own idea. [Spec](docs/12_capstone.md#project-3-your-own-aiml-project) |
+| Project 1 — Credibility Scoring | **30%** | **+5%** | [Starter code and rubric](deliverable/project_1/README.md) · [Spec](docs/13_capstone.md#project-1-credibility-score-for-articlessourcesreferences) |
+| Project 2 — PersonaForge (agent-to-agent package) | **30%** | **+5%** | [Starter code and rubric](deliverable/project_2/README.md) · [Spec](docs/13_capstone.md#project-2-personaforge--build-an-agent-to-agent-package) |
+| Project 3 — Your Own AI/ML Project | **30%** | — | Required. Take-home, your own idea. [Spec](docs/13_capstone.md#project-3-your-own-aiml-project) |
 | | **100%** | **+10%** | **110% total available** |
 
 **Both bonuses are earned by deploying a working app to Hugging Face Spaces** — 5% for Project 1, 5% for Project 2. This is real additional work, which is why it carries real additional credit. Submit the public Space URL with your deliverables.
@@ -126,7 +127,7 @@ deliverable 1, 2, 3 to hand in separately. The project specs break the work into
 your one submission, not when things are due. Work through them in any order, or all at
 once. What to build is in each project's own README:
 [Project 1](deliverable/project_1/README.md) · [Project 2](deliverable/project_2/README.md) ·
-[Project 3](docs/12_capstone.md#project-3-your-own-aiml-project).
+[Project 3](docs/13_capstone.md#project-3-your-own-aiml-project).
 
 ### Letter Grades
 
@@ -288,12 +289,24 @@ For more details, please see: [11_unsupervised](docs/11_unsupervised.md)
 
 [Back to TOC](#table-of-contents)
 
-#### Session 12: Capstone Project Preparation
+#### Session 12: Classification Metrics
+- Confusion matrix, accuracy, sensitivity and specificity
+- Precision, recall, and the F1 score
+- ROC curves and AUC
+- The connection to Type I / Type II error in hypothesis testing
+
+For more details, please see: [12_classification_metrics](docs/12_classification_metrics.md)
+
+🧮 **Homework: [`02_logreg.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/02_logreg.py)** already computes every metric in this session — the confusion matrix, precision, recall and F1 — once your gradient descent loop runs.
+
+[Back to TOC](#table-of-contents)
+
+#### Session 13: Capstone Project Preparation
 - Project guidelines
 - Team formation
 - Initial project planning
 
-For more details, please see: [12_capstone](docs/12_capstone.md)
+For more details, please see: [13_capstone](docs/13_capstone.md)
 
 [Back to TOC](#table-of-contents)
 

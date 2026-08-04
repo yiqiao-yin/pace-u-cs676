@@ -1,7 +1,7 @@
 ---
-sidebar_position: 12
+sidebar_position: 13
 title: "Capstone Projects"
-sidebar_label: "12. Capstone Projects"
+sidebar_label: "13. Capstone Projects"
 ---
 
 ## Table of Contents
