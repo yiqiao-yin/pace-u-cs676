@@ -94,17 +94,28 @@ jobs:
         run: |
           set -e
           cd notebooks/homework
+          # Exact stub counts, not "at least one". A file can have several blanks
+          # (01 and 02 have two, 05 has three), so checking merely that SOME stub
+          # survives lets a partial solution leak through unnoticed. If you
+          # deliberately change how many blanks an exercise has, update this map
+          # in the same commit — that is the point of it being explicit.
+          declare -A EXPECTED=( [01_lr.py]=2 [02_logreg.py]=2 [03_cv.py]=2 [04_tree.py]=1 [05_kmeans.py]=3 )
           fail=0
           for f in 0*.py; do
             python -c "import ast,sys; ast.parse(open('$f').read())" || { echo "::error file=$f::does not parse"; fail=1; continue; }
-            if ! grep -q "raise NotImplementedError" "$f"; then
-              echo "::error file=$f::no NotImplementedError stub — has a solution leaked in?"; fail=1; continue
+            want=${EXPECTED[$f]:-}
+            if [ -z "$want" ]; then
+              echo "::error file=$f::not in the expected-stub map; add it"; fail=1; continue
+            fi
+            got=$(grep -c "raise NotImplementedError" "$f" || true)
+            if [ "$got" -ne "$want" ]; then
+              echo "::error file=$f::expected $want NotImplementedError stub(s), found $got — has a solution leaked in?"; fail=1; continue
             fi
             if python "$f" > /tmp/out.txt 2>&1; then
               echo "::error file=$f::ran to completion; it should have stopped at a stub"; cat /tmp/out.txt; fail=1; continue
             fi
             grep -q "NotImplementedError" /tmp/out.txt || { echo "::error file=$f::failed for the wrong reason"; cat /tmp/out.txt; fail=1; }
-            echo "  $f stops at its stub, as intended"
+            echo "  $f has its $want stub(s) and stops at one, as intended"
           done
           exit $fail
 
