@@ -36,7 +36,7 @@ Two workflows, both on `main`:
 ## Layout
 
 - `README.md` — the syllabus and canonical entry point. Sessions link out to `docs/NN_topic.md`; five also link to a homework exercise.
-- `docs/01…12_*.md` — one file per lecture session; `13_capstone.md` and `14_final_guidance.md` are course admin rather than lectures. `12_classification_metrics.md` was scaffolded from the slide deck and has since been reviewed by the instructor — it is no longer a draft, and the admonition at its top is now just a pointer to `tools/figures/make_metrics_figures.py`, not a warning. Fixed convention: Table of Contents at the top, `[Go back to TOC](#table-of-contents)` under each heading, LaTeX math, figures as `../pics/NN_topic_MM.png`. Five end with a `## Homework` section.
+- `docs/01…12_*.md` — one file per lecture session; `13_capstone.md` and `14_final_guidance.md` are course admin rather than lectures. All twelve are reviewed and current — none is a draft. Fixed convention: Table of Contents at the top, `[Go back to TOC](#table-of-contents)` under each heading, LaTeX math, figures as `../pics/NN_topic_MM.png`. Five end with a `## Homework` section.
 - `DEADLINES.md` — **the single source of truth for every date.** Homework and project deadlines live here and nowhere else. If you are asked to change a date, change this file only; do not reintroduce dates into the capstone spec or the project READMEs, which were deliberately stripped of them.
 - `docs/13_capstone.md` — the spec driving `deliverable/`. Describes *what* to build, never *when*. **Projects 1 and 2 are one deliverable each**; their "Checkpoint 1/2/3" sections are a recommended order of work and a point breakdown for a single submission, not separate hand-ins. **Project 3 is the exception** — a Pass/Fail proposal and then the final project, two real submissions, so its section is headed "The Two Submissions" instead.
 - `docs/14_final_guidance.md` — presentation rubric (front-end 10% / back-end 20% / API 30% / system design 40%).
@@ -44,6 +44,7 @@ Two workflows, both on `main`:
 - `notebooks/homework/` — five from-scratch exercises. See below.
 - `deliverable/` — the two starter kits.
 - `tools/slide_deck/` — generator for the slide web app.
+- `tools/figures/` — generators for figures in the notes. See below.
 
 ## notebooks/homework — the exercises
 
@@ -113,6 +114,19 @@ python tools/slide_deck/build_deck.py out.html tools/slide_deck/deck_template.ht
 ```
 
 The output is **not committed** — it is a build artifact, ~30 seconds to regenerate. Redeploy instructions (zip → `aws amplify create-deployment` → upload → `start-deployment`) are in `tools/slide_deck/README.md`.
+
+## tools/figures — figures for the notes
+
+Unlike the deck, these outputs **are** committed, because `docs/` references them as `../pics/NN_topic_MM.png` and the site build resolves those paths.
+
+```bash
+pip install numpy matplotlib
+python tools/figures/make_metrics_figures.py     # writes pics/12_metrics_0{1,2,3}.png
+```
+
+**Figures are drawn, not extracted from the slide PDF** — the deck contains third-party textbook screenshots, so anything shipped in the notes is generated from scratch and owned outright. The conventions are recorded in `tools/figures/README.md` and a new figure should follow them: white background (the site is dark and its CSS puts a white plate behind every image), deterministic output so a rerun does not produce a spurious diff, and **no emoji** — matplotlib's default DejaVu Sans has no emoji glyphs, so they silently render as empty boxes.
+
+The scripts are linked from the notes they serve, so students can reuse them; keep that link if you add a figure.
 
 ## Conventions and traps
 
