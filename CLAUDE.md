@@ -101,6 +101,7 @@ The output is **not committed** — it is a build artifact, ~30 seconds to regen
 ## Conventions and traps
 
 - **Docs are the product.** Prose is deliberately verbose and explanatory — match that register rather than condensing.
+- **Changing the slide PDF does not update the published deck.** `tools/slide_deck/` must be re-run and the result re-uploaded to Amplify by hand; there is no pipeline. The deck will silently serve the old slides otherwise.
 - **Run `npm run build` after editing docs.** It fails the build on broken internal links and anchors, which is the only check that catches a renamed heading.
 - **Both starter kits must work with no API key** (project 1: rules + tests + evaluator; project 2: `--offline` + pytest). A student's first run should never need one.
 - **The live Claude paths have been verified** (2026-07-31) and two real bugs were fixed in the process: `ask_claude` read citations off text blocks, but `web_search_20260209` returns them in `web_search_tool_result` blocks and leaves `block.citations` as `None`, so the app silently showed zero sources; and `PersonaSpec.from_markdown` rejected persona documents where the model omitted the closing `---`, which it does roughly one time in three. Measured result for the scorer: MAE 0.142 → 0.086 and band accuracy 66.7% → 83.3% with the LLM layer on.

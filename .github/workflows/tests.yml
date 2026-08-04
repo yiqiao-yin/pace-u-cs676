@@ -1,0 +1,115 @@
+name: Tests
+
+# Runs on every push and pull request. Both starter kits are built to work with
+# no API key, so this needs no secrets and costs nothing to run.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  project-1:
+    name: Project 1 — credibility scorer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: deliverable/project_1/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        working-directory: deliverable/project_1
+
+      - name: Contract tests
+        run: python test_credibility.py
+        working-directory: deliverable/project_1
+
+      # The evaluator is the offline promise made to students in the README:
+      # it must run and report numbers without an API key.
+      - name: Evaluation harness (rules only, no API key)
+        run: python evaluate.py
+        working-directory: deliverable/project_1
+
+  project-2:
+    name: Project 2 — PersonaForge
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v9
+        with:
+          enable-cache: true
+
+      - name: Install the package and its dev group
+        run: uv sync
+        working-directory: deliverable/project_2
+
+      - name: Test suite
+        run: uv run pytest -q
+        working-directory: deliverable/project_2
+
+      # --offline is the other promise: the whole app runs with no key. Drive it
+      # end to end and require that it actually created personas and a
+      # conversation, rather than merely exiting zero.
+      - name: Offline end-to-end run
+        working-directory: deliverable/project_2
+        run: |
+          printf 'create a persona nurse\ncreate a persona doctor\nhave them talk about the schedule\n/quit\n' \
+            | uv run main.py --offline > /tmp/session.txt 2>&1
+          grep -q "Created" /tmp/session.txt || { echo "::error::no persona was created"; cat /tmp/session.txt; exit 1; }
+          grep -q "turns between" /tmp/session.txt || { echo "::error::no conversation ran"; cat /tmp/session.txt; exit 1; }
+          test -f temp/conversation.md || { echo "::error::transcript was not written"; exit 1; }
+          echo "offline session produced personas, a conversation, and a transcript"
+
+  homework:
+    name: Homework — stubs intact, no leaked solutions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - run: pip install numpy
+
+      # The answer keys are gitignored and live only in the private mirror, so
+      # CI cannot regenerate the student scripts. What it CAN do is guard the
+      # thing that would actually hurt: a solution accidentally committed into a
+      # student-facing file, or a stub deleted so the exercise stops being one.
+      - name: Every exercise must still stop at a NotImplementedError
+        run: |
+          set -e
+          cd notebooks/homework
+          fail=0
+          for f in 0*.py; do
+            python -c "import ast,sys; ast.parse(open('$f').read())" || { echo "::error file=$f::does not parse"; fail=1; continue; }
+            if ! grep -q "raise NotImplementedError" "$f"; then
+              echo "::error file=$f::no NotImplementedError stub — has a solution leaked in?"; fail=1; continue
+            fi
+            if python "$f" > /tmp/out.txt 2>&1; then
+              echo "::error file=$f::ran to completion; it should have stopped at a stub"; cat /tmp/out.txt; fail=1; continue
+            fi
+            grep -q "NotImplementedError" /tmp/out.txt || { echo "::error file=$f::failed for the wrong reason"; cat /tmp/out.txt; fail=1; }
+            echo "  $f stops at its stub, as intended"
+          done
+          exit $fail
+
+      - name: No answer key may be committed to the public repo
+        run: |
+          if git ls-files | grep -E "homework/answer/|_ans\.py"; then
+            echo "::error::an answer key is tracked in the public repository"
+            exit 1
+          fi
+          echo "no answer keys tracked"
