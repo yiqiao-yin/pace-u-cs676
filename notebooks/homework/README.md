@@ -16,9 +16,27 @@ lines where the learning actually happens.
 
 Only **numpy**. No scikit-learn, no statsmodels — using them defeats the purpose.
 
+This folder is one **uv** environment covering all five exercises. Sync it once:
+
+```bash
+cd notebooks/homework
+uv sync
+```
+
+Then run anything in here with `uv run`, which uses that environment without you
+having to activate it:
+
+```bash
+uv run 01_lr.py
+```
+
+Every command in this README is written that way. If you would rather not use uv,
+plain pip works just as well — the scripts import nothing but numpy:
+
 ```bash
 pip install numpy
 pip install matplotlib     # optional, only for --plot
+python 01_lr.py
 ```
 
 ## The exercises
@@ -44,10 +62,13 @@ reaches soonest; ignore that and start with the helper.
 Run the script. It stops immediately:
 
 ```
-$ python 01_lr.py
+$ uv run 01_lr.py
 NotImplementedError: Homework: write the gradient descent loop.
                      See the YOUR TASK box just above for the steps.
 ```
+
+**That traceback is the assignment starting, not the script breaking.** Every
+exercise is built to stop at the first blank until you fill it in.
 
 Open the file and find the box:
 
@@ -86,10 +107,10 @@ Every script grades itself. You are not guessing.
 ## Options
 
 ```bash
-python 01_lr.py --plot       # save a PNG (needs matplotlib)
-python 01_lr.py --report     # write a markdown lab report
-python 03_cv.py --folds 5    # try a different k
-python 05_kmeans.py --k 4 --seed 42
+uv run 01_lr.py --plot       # save a PNG
+uv run 01_lr.py --report     # write a markdown lab report
+uv run 03_cv.py --folds 5    # try a different k
+uv run 05_kmeans.py --k 4 --seed 42
 ```
 
 The `--report` flag writes a small markdown file summarising the run. That is the
@@ -119,12 +140,83 @@ Submit through the [course form](https://airtable.com/appBjNPgdot15ZqO7/pagKL7hf
 like every other assignment. Send the completed `.py` files. If you generated
 reports with `--report`, include those too.
 
-## A note on solutions
+## Solutions
 
-The answer keys are not in this repository, and asking an AI assistant to write the
-loop for you takes about ten seconds. Nobody can stop you, and you will get full
-marks for that submission.
+**Each solution is published after that homework's deadline has passed — not
+before.** The exercise itself is available from day one; the worked answer appears
+later, and only for the homework whose deadline is behind us.
+
+So at any moment this folder holds two things:
+
+| | Where | When it is there |
+| --- | --- | --- |
+| The exercise | [`01_lr.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/01_lr.py) | Always. All five, from the first day of the course. |
+| The solution | [`solutions/01_lr_solution.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/solutions/01_lr_solution.py) | Only after that homework's deadline. |
+
+**The deadlines are in [`DEADLINES.md`](../../DEADLINES.md), and that is the only
+place they live.** If you want to know whether a solution is out yet, check the
+date there. They change from semester to semester, and that one file is what gets
+updated.
+
+A solution link above will **404 until it is released** — that is the mechanism
+working, not a broken link. Releasing is a manual step the instructor takes after
+the deadline, one homework at a time, so expect a short gap between the deadline
+passing and the file appearing.
+
+Once released, run it the same way as everything else:
+
+```bash
+uv run solutions/01_lr_solution.py
+```
+
+Each solution is the exercise with the blanks filled in — **the `YOUR TASK` boxes
+are still there**, now sitting directly above the code that answers them. Read the
+box, read the answer, then go back to your own attempt and compare. It is meant to
+be read next to what you wrote, not instead of it.
+
+### Why they are held back
+
+Asking an AI assistant to write these loops for you takes about ten seconds.
+Nobody can stop you, and you will get full marks for that submission.
 
 You will also have skipped the only part of the exercise that was ever going to
 help you in the exam or the capstone — where nothing hands you a well-marked box
-with the steps in it. The loops here are four to twelve lines each. Write them.
+with the steps in it. The loops here are four to twelve lines each. Write them,
+then read the solution and find out whether you were right.
+
+### For the instructor
+
+The solutions are generated, never hand-written:
+
+```bash
+uv run make_homework.py
+```
+
+That reads `answer/*_ans.py` and writes both the student script and
+`solutions/*_solution.py` from the same source, so the two cannot drift apart.
+
+`notebooks/homework/solutions/` is **gitignored permanently**, including for
+solutions that are already public. Release is therefore always explicit:
+
+```bash
+# release — after the deadline in DEADLINES.md has passed
+git add -f notebooks/homework/solutions/01_lr_solution.py
+git commit -m "Release the homework 1 solution"
+
+# un-release — e.g. at the start of a new semester
+git rm --cached notebooks/homework/solutions/01_lr_solution.py
+git commit -m "Withdraw the homework 1 solution"
+```
+
+The permanent ignore rule is the safety property: a solution can only ever enter
+the repository through `git add -f`, so a stray `git add -A` can never publish one
+early. There is no automation and no date check — the release happens when someone
+reads `DEADLINES.md` and decides it should.
+
+Two things worth knowing about un-releasing. It removes the file from `main`, so
+the link above 404s and fresh clones do not have it, but **the file remains in the
+repository history** — anyone who looks at an older commit can still read it.
+Genuinely erasing it would mean rewriting history and force-pushing, which breaks
+every existing clone and fork and is not worth doing for something that was
+deliberately public for a semester. And it only affects the public repo: the
+private mirror keeps every solution regardless, so nothing is ever lost.

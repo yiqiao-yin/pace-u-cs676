@@ -4,9 +4,9 @@
 Fit y = b0 + b1*x1 + b2*x2 using batch gradient descent, written by hand.
 No scikit-learn, no statsmodels — the point is to see every step.
 
-    python 01_lr.py
-    python 01_lr.py --plot     # save a PNG of fit + loss curve
-    python 01_lr.py --report   # write a markdown lab report
+    uv run 01_lr.py
+    uv run 01_lr.py --plot     # save a PNG of fit + loss curve
+    uv run 01_lr.py --report   # write a markdown lab report
 
 Why gradient descent when a closed form exists? Because the closed form only
 works for linear regression. The loop you write here is the same loop that

@@ -4,9 +4,9 @@
 Lloyd's algorithm in pure numpy: assign every point to its nearest centroid,
 move each centroid to the mean of its points, repeat until nothing moves.
 
-    python 05_kmeans.py
-    python 05_kmeans.py --k 4
-    python 05_kmeans.py --plot --report
+    uv run 05_kmeans.py
+    uv run 05_kmeans.py --k 4
+    uv run 05_kmeans.py --plot --report
 
 The first four homeworks were supervised — every row came with an answer. This
 one has no labels at all. Nothing tells the algorithm it is right, so "converged"

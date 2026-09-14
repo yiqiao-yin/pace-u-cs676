@@ -19,14 +19,25 @@ deliverable/project_2/tinytroupeproj/
 .git-full/
 
 # Homework answer keys — instructor only, never published.
-# The student scripts in notebooks/homework/ ARE committed; the solutions are not.
+# The student scripts in notebooks/homework/ ARE committed; these are not.
 notebooks/homework/answer/
+
+# Released solutions — published one at a time, after each homework's deadline.
+#
+# This rule stays in place permanently, including for solutions that are already
+# public. That is the safety property: a solution can only ever enter the repo
+# through an explicit `git add -f`, so no deadline is ever missed by an absent
+# minded `git add -A`. Releasing and un-releasing are both manual, one file at a
+# time — see the "Solutions" section of notebooks/homework/README.md.
+notebooks/homework/solutions/
 
 # Output written by running the homework scripts
 notebooks/homework/*.png
 notebooks/homework/*_report.md
 notebooks/homework/answer/*.png
 notebooks/homework/answer/*_report.md
+notebooks/homework/solutions/*.png
+notebooks/homework/solutions/*_report.md
 
 # Docusaurus / Node
 /node_modules

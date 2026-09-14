@@ -4,9 +4,9 @@
 Build an n x p dataset, split it into k folds, and rotate: each fold takes a
 turn as the validation set while the other k-1 folds train the model.
 
-    python 03_cv.py
-    python 03_cv.py --folds 5
-    python 03_cv.py --report
+    uv run 03_cv.py
+    uv run 03_cv.py --folds 5
+    uv run 03_cv.py --report
 
 The model here is deliberately boring — closed-form least squares, solved in one
 line — because the model is not the lesson. The lesson is the *rotation*: how you

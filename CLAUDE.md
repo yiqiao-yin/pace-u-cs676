@@ -53,10 +53,19 @@ Five numpy-only scripts, each complete except for the core algorithm, which the 
 **Never edit the student scripts directly.** They are generated:
 
 ```bash
-python notebooks/homework/make_homework.py
+cd notebooks/homework && uv run make_homework.py
 ```
 
-`answer/*_ans.py` are the real sources. Each marks its solution with `# BEGIN SOLUTION: description` / `# END SOLUTION`; the generator copies the file, drops the `_ans` suffix, and replaces each block with a `NotImplementedError` stub at the right indentation. Editing a student file by hand is silently undone on the next run.
+The folder is **one uv environment** (`pyproject.toml` + `uv.lock`, numpy and matplotlib, `package = false`) covering all five exercises and the solutions — `uv sync` once, then `uv run 01_lr.py`. Plain `pip install numpy` still works and is what CI uses, so don't make anything depend on uv.
+
+`answer/*_ans.py` are the real sources. Each marks its solution with `# BEGIN SOLUTION: description` / `# END SOLUTION`, and the generator writes **two** files from each one:
+
+| Output | What happens to the marked block | Release |
+| --- | --- | --- |
+| `NN_topic.py` | replaced by a `NotImplementedError` stub | committed, always public |
+| `solutions/NN_topic_solution.py` | marker comments dropped, code kept | gitignored; released by hand after the deadline |
+
+Everything else — data, metrics, printing, and the `YOUR TASK` boxes — is byte-identical across all three, so the solution reads as completed homework with the boxes still in place rather than a clean tutorial. Editing either generated file by hand is silently undone on the next run.
 
 **`notebooks/homework/answer/` is gitignored in this repo and must never be committed here.** Do not commit it, and do not paste solution code into any tracked file.
 
@@ -70,6 +79,24 @@ It *is* backed up, to a **private mirror** — a second git directory (`.git-ful
 `git ...` is the public repo, `./full ...` is the private one. The answer keys are force-added there, so the public `.gitignore` rule cannot hide them from the mirror — and cannot leak them into the public repo either. After changing an answer key, regenerate the student scripts, commit those publicly, and sync the mirror.
 
 Blank counts are 2 / 2 / 2 / 1 / 3 (`01_lr`, `02_logreg`, `03_cv`, `04_tree`, `05_kmeans`). Every script grades itself — closed-form comparison, majority-class baseline, train-vs-validation gap, or monotonically falling inertia — and every answer key must keep printing `PASS`. The `# ┌─ YOUR TASK` boxes teach without giving code; keep that register if you add one.
+
+### Releasing a solution
+
+**Solutions go out one at a time, after that homework's deadline in `DEADLINES.md`, and only when the instructor says so.** There is no automation and no date check anywhere in the repo — do not add one. When asked to release homework N:
+
+```bash
+git add -f notebooks/homework/solutions/0N_topic_solution.py    # release
+git rm --cached notebooks/homework/solutions/0N_topic_solution.py   # un-release
+```
+
+`notebooks/homework/solutions/` is gitignored **permanently, including for solutions already public** — that is the safety property, since it means a solution can only enter the repo through an explicit `-f` and no `git add -A` can publish one early. Never remove that rule to "simplify" a release.
+
+Un-releasing takes the file off `main` but leaves it in history; that is accepted and documented. Do not propose `filter-repo` or a force-push to scrub it — it breaks every clone and fork to hide something that was deliberately public for a semester. The private mirror keeps all five regardless.
+
+Two CI interactions in `tests.yml`, both deliberate:
+
+- The answer-key guard greps `homework/answer/|_ans\.py`. It is narrow **on purpose** so `_solution.py` does not match and releases can land. Widening it to `ans` or `solution` blocks the whole scheme.
+- A second step reports which solutions are currently released and runs each one. It never fails on *which* are out — only CI-visible logging plus a check that a published solution still works.
 
 ## deliverable/project_1 — credibility-score chatbot
 

@@ -4,9 +4,9 @@
 Grow a classification tree by exhaustively searching for the split that lowers
 Gini impurity the most, then recursing on each side.
 
-    python 04_tree.py
-    python 04_tree.py --plot
-    python 04_tree.py --report
+    uv run 04_tree.py
+    uv run 04_tree.py --plot
+    uv run 04_tree.py --report
 
 The SimpleDecisionTreeClassifier below is the class from the course notes
 (docs/08_tree_based_model.md), used as-is. What this homework adds is toy data

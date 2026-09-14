@@ -121,8 +121,49 @@ jobs:
 
       - name: No answer key may be committed to the public repo
         run: |
+          # This pattern is deliberately narrow, and must stay that way.
+          #
+          # `notebooks/homework/solutions/*_solution.py` is the RELEASE path:
+          # those files are published on purpose, one per homework, after each
+          # deadline has passed. They must NOT match here or no release can ever
+          # land. Do not "tidy" this to a looser pattern like `ans` or
+          # `solution` — the first blocks every release, the second blocks the
+          # whole scheme. What is banned is the private key: the `answer/`
+          # directory and the `_ans.py` suffix. Nothing else.
           if git ls-files | grep -E "homework/answer/|_ans\.py"; then
             echo "::error::an answer key is tracked in the public repository"
             exit 1
           fi
           echo "no answer keys tracked"
+
+      - name: Released solutions — report which, and check they still run
+        run: |
+          # Releasing is a manual `git add -f`, so this step does not judge WHICH
+          # solutions are out — only the instructor knows which deadlines have
+          # passed. It prints the current release state, so a mistaken release
+          # shows up in the log rather than silently, and it runs whatever is
+          # released, so a published solution can never be a broken one.
+          set -e
+          released=$(git ls-files "notebooks/homework/solutions/")
+          if [ -z "$released" ]; then
+            echo "no solutions released yet"
+            exit 0
+          fi
+          echo "released solutions:"
+          echo "$released" | sed 's/^/  /'
+
+          # Only generated solutions belong in that directory.
+          if stray=$(echo "$released" | grep -v "_solution\.py$"); then
+            echo "::error::unexpected file(s) in notebooks/homework/solutions/:"
+            echo "$stray"
+            exit 1
+          fi
+
+          for f in $released; do
+            if ! python "$f" > /tmp/sol.txt 2>&1; then
+              echo "::error file=$f::a released solution failed to run"
+              cat /tmp/sol.txt
+              exit 1
+            fi
+            echo "  $f runs clean"
+          done

@@ -1,0 +1,24 @@
+[project]
+name = "cs676-homework"
+version = "0.1.0"
+description = "CS676 homework — five algorithms written from scratch, numpy only."
+requires-python = ">=3.10"
+
+# One environment for the whole folder: the five exercises, and the solutions
+# once they are released. Deliberately short.
+#
+# numpy is the only thing the algorithms are allowed to use — the exercises are
+# about writing the loop yourself. matplotlib is here purely so the optional
+# --plot flag works out of the box; nothing that gets graded depends on it.
+#
+# scikit-learn and statsmodels are absent on purpose. Importing either one to
+# do the fitting defeats every exercise in this folder.
+dependencies = [
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+]
+
+# A folder of standalone scripts, not an installable library — so there is
+# nothing to build and uv should not try.
+[tool.uv]
+package = false

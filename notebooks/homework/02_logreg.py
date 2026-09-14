@@ -3,9 +3,9 @@
 
 Binary classification by gradient descent on the log-loss. Pure numpy.
 
-    python 02_logreg.py
-    python 02_logreg.py --plot
-    python 02_logreg.py --report
+    uv run 02_logreg.py
+    uv run 02_logreg.py --plot
+    uv run 02_logreg.py --report
 
 This is homework 01 with two changes: the prediction is squashed through a
 sigmoid, and the loss is log-loss instead of squared error. Everything else —
