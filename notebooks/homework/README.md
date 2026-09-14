@@ -12,26 +12,53 @@ That is deliberate. Reading `beta = beta - lr * grad` in a slide is not the same
 writing it and watching the loss fall. These exercises put you in the four or five
 lines where the learning actually happens.
 
-## Requirements
+## Getting started
 
-Only **numpy**. No scikit-learn, no statsmodels — using them defeats the purpose.
-
-This folder is one **uv** environment covering all five exercises. Sync it once:
+Three commands, from nothing to a running exercise:
 
 ```bash
-cd notebooks/homework
+git clone https://github.com/yiqiao-yin/pace-u-cs676.git
+cd pace-u-cs676/notebooks/homework
 uv sync
 ```
 
-Then run anything in here with `uv run`, which uses that environment without you
-having to activate it:
+Then run any exercise with `uv run`, which uses that environment without you
+having to activate anything:
 
 ```bash
 uv run 01_lr.py
 ```
 
-Every command in this README is written that way. If you would rather not use uv,
-plain pip works just as well — the scripts import nothing but numpy:
+Every command in this README is written that way.
+
+**The only thing you need installed first is [uv](https://docs.astral.sh/uv/).**
+You do not need to set up Python yourself — this folder declares the version it
+wants and uv will fetch a suitable interpreter if you do not already have one.
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh     # macOS / Linux
+brew install uv                                     # or, with Homebrew
+```
+
+Two things worth knowing, so nothing looks broken:
+
+- **The first `uv sync` downloads about 37 MB** and takes a few seconds to a
+  minute depending on your connection. Every run after that is instant, because
+  the packages are cached. It needs the network only that first time.
+- **You can skip `uv sync` entirely.** `uv run` sets the environment up on demand,
+  so running an exercise straight after cloning works too. The explicit sync is
+  just a way to get the downloading over with.
+
+### Requirements
+
+Only **numpy**. No scikit-learn, no statsmodels — using them defeats the purpose.
+matplotlib comes along too, but only the optional `--plot` flag touches it.
+
+This folder is one uv environment shared by all five exercises and the solutions,
+so you sync once and never think about it again.
+
+If you would rather not use uv, plain pip works just as well — the scripts import
+nothing but numpy:
 
 ```bash
 pip install numpy
