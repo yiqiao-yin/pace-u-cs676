@@ -67,6 +67,8 @@ The folder is **one uv environment** (`pyproject.toml` + `uv.lock`, numpy and ma
 
 Everything else — data, metrics, printing, and the `YOUR TASK` boxes — is byte-identical across all three, so the solution reads as completed homework with the boxes still in place rather than a clean tutorial. Editing either generated file by hand is silently undone on the next run.
 
+The generator also rewrites the docstring usage lines, since the same source serves three files that are run three different ways: `    python 01_lr_ans.py` becomes `uv run 01_lr.py` in the student script and `uv run solutions/01_lr_solution.py` in the solution. Write answer-key usage lines as `    python <file>` at four spaces of indent and let it do the substitution — hand-writing `uv run` in an answer key defeats it.
+
 **`notebooks/homework/answer/` is gitignored in this repo and must never be committed here.** Do not commit it, and do not paste solution code into any tracked file.
 
 It *is* backed up, to a **private mirror** — a second git directory (`.git-full`) over this same working tree, pushed to `yiqiao-yin/pace-u-cs676-full`. Use the `./full` wrapper for it:
@@ -85,9 +87,14 @@ Blank counts are 2 / 2 / 2 / 1 / 3 (`01_lr`, `02_logreg`, `03_cv`, `04_tree`, `0
 **Solutions go out one at a time, after that homework's deadline in `DEADLINES.md`, and only when the instructor says so.** There is no automation and no date check anywhere in the repo — do not add one. When asked to release homework N:
 
 ```bash
+git ls-files notebooks/homework/solutions/                      # what is out right now
 git add -f notebooks/homework/solutions/0N_topic_solution.py    # release
 git rm --cached notebooks/homework/solutions/0N_topic_solution.py   # un-release
 ```
+
+That first command is the only trustworthy answer to "which solutions are public" — every solution exists on disk whether or not it is released, so `ls` tells you nothing. After releasing, sync the mirror and verify the live state with `gh api repos/yiqiao-yin/pace-u-cs676/contents/notebooks/homework/solutions`.
+
+`git rm --cached` leaves the file on disk, where the permanent ignore rule immediately re-hides it — so un-releasing returns to the pre-release state with no cleanup. This is the expected start-of-semester operation when a new cohort should not see last term's answers.
 
 `notebooks/homework/solutions/` is gitignored **permanently, including for solutions already public** — that is the safety property, since it means a solution can only enter the repo through an explicit `-f` and no `git add -A` can publish one early. Never remove that rule to "simplify" a release.
 
