@@ -196,6 +196,77 @@ def fit_kmeans(X, k, rng, max_iter=MAX_ITERATIONS):
 
 
 # ---------------------------------------------------------------------------
+# A WARNING ABOUT THIS ALGORITHM — read this once your loop works
+#
+# Homeworks 01 and 02 had one right answer and always found it. Run gradient
+# descent on that data a hundred times and you get the same coefficients every
+# time. K-means is not like that, and the difference is worth understanding.
+#
+# Try a few seeds:
+#
+#     uv run 05_kmeans.py --seed 42
+#     uv run 05_kmeans.py --seed 31
+#
+# Most seeds give purity 1.0000. Some do not. Over 500 seeds, 385 came out
+# perfect and 61 collapsed badly — so roughly one run in eight fails, which you
+# would rarely notice trying three or four by hand. Seed 31 is one of them:
+#
+#       cluster   size    centroid x   centroid y
+#             0     37       -2.5282      -1.1127
+#             1    177        2.1948       1.0198
+#             2     56       -3.0758      -2.5940
+#
+#       purity vs the true blobs: 0.6630
+#       inertia decreased every pass: yes
+#
+# Read the sizes. 37 + 56 = 93, and both of those centroids sit on top of the
+# blob near (-3, -2): two clusters split ONE real blob down the middle. Cluster
+# 1 then holds 177 points — it swallowed the other two blobs whole and parked
+# its centre at (2.19, 1.02), empty space where no blob exists.
+#
+# Now read the last line again: inertia decreased every pass. The algorithm did
+# nothing wrong. It went downhill the whole way and stopped when no single point
+# could improve by switching clusters. That is a LOCAL OPTIMUM — the bottom of
+# the wrong valley. Escaping would mean moving many points at once, and the
+# algorithm only ever asks "would this one point be better off elsewhere?" The
+# answer is no, so it is stuck, correctly obeying its own rules.
+#
+# More iterations cannot save it. It has converged. It converged to the wrong
+# thing, because init_centroids happened to draw two starting points out of one
+# blob and none out of another.
+#
+# THE USEFUL PART: you can detect this without knowing the true blobs.
+#
+#     purity 1.00       385 seeds     inertia  322 ..  464
+#     purity 0.80-0.99   54 seeds     inertia  347 ..  437
+#     purity under 0.80  61 seeds     inertia 1535 .. 2310
+#
+# A collapsed run has inertia three to five times higher than a good one, and
+# inertia needs no labels — it is just the sum of squared distances, which you
+# can always compute. So the fix is to run k-means several times from different
+# random starts and keep the run with the LOWEST inertia. Best-of-10 restarts
+# takes the success rate from 385/500 to about 89/100.
+#
+# This is not a toy workaround. It is what real implementations do:
+# scikit-learn's KMeans runs 10 initialisations by default (n_init=10) for
+# exactly this reason.
+#
+# Two honest limits. Inertia catches collapses, not near misses — the 0.80-0.99
+# runs sit inside the good range, so a couple of boundary points in the wrong
+# cluster are invisible to it. And restarts are not a guarantee: 11 in 100 still
+# missed with ten tries.
+#
+# The lesson to carry out of this course: some algorithms find the one answer
+# every time, and some find a different answer depending on where they started.
+# Knowing which kind you are holding is most of what it means to understand a
+# method. Nothing in the output of a single bad run says "I failed" — purity
+# said it here only because we generated the data and kept the labels to score
+# against. On real data you would not have that. You would have inertia, several
+# restarts, and your own judgement.
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
 # 4. Scoring against the blobs we generated
 # ---------------------------------------------------------------------------
 def purity(true_ids, labels, k):
