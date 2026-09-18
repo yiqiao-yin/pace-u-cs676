@@ -139,6 +139,20 @@ notepad .env
 
 You never need to activate the virtual environment manually — `uv run` handles it.
 
+**What `uv sync` does.** It reads `pyproject.toml` for the dependency list and
+`uv.lock` for the exact version of every package those dependencies pull in — 29 of
+them here, most of which you never named. Both files are committed, so you install the
+same versions as everyone else, and `uv.lock` is why a run of yours and a run of a
+classmate's behave the same way.
+
+It also installs `personaforge` itself, from `src/`, in editable form. That is what
+makes `from personaforge.agent import Agent` work from anywhere in the project, and
+why a bare `python main.py` fails where `uv run main.py` succeeds — the package is on
+the path only inside the environment uv built.
+
+If you add a dependency, use `uv add <package>` rather than editing `pyproject.toml`
+by hand; it updates the lock in the same step. Commit both files together.
+
 ---
 
 ## Run it
@@ -359,6 +373,19 @@ Hugging Face Spaces serves web pages. You have two honest options.
 Either way: create a Space, choose the matching SDK, add `ANTHROPIC_API_KEY` under
 **Settings → Variables and secrets**, and submit the public URL.
 **Never commit your key** — a key pushed to a public Space must be revoked immediately.
+
+**You will need a `requirements.txt`, and this project does not ship one.** Spaces
+installs dependencies from that file; it does not read `uv.lock`. Generate one from the
+lock so the Space gets the versions you actually tested against:
+
+```bash
+uv export --no-dev --no-emit-project --no-hashes -o requirements.txt
+```
+
+`--no-dev` leaves out pytest, and `--no-emit-project` leaves out `personaforge` itself —
+Spaces cannot install it from PyPI, so ship the `src/personaforge/` directory alongside
+your app file instead. Add whichever front end you chose (`gradio` or `streamlit`) to
+that file by hand; it is a dependency of your deployment, not of this package.
 
 ---
 
