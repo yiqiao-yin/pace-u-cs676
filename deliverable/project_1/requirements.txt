@@ -1,8 +1,13 @@
 # CS676 Project 1 dependencies.
 #
-#   pip install -r requirements.txt
+# This file is the FALLBACK for pip users, and what Hugging Face reads when you
+# deploy. The project itself is managed by uv — `uv sync` installs from
+# pyproject.toml and uv.lock, which pin exact versions. Keep the two in step.
 #
-# anthropic must be >= 0.70 — earlier releases do not accept the
+#   uv sync                          # preferred
+#   pip install -r requirements.txt  # fallback
+#
+# anthropic must be >= 0.120 — earlier releases do not accept the
 # `output_config` parameter that credibility.py uses for structured output.
 anthropic>=0.120.0
 streamlit>=1.50.0

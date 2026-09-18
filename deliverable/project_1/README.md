@@ -17,7 +17,7 @@ can be trusted.
 - [The problem](#the-problem)
 - [What you are given](#what-you-are-given)
 - [⚠️ You need your own Anthropic API key](#-you-need-your-own-anthropic-api-key)
-- [Setup](#setup) — [macOS / Linux](#macos--linux) · [Windows](#windows)
+- [Setup](#setup) — [with uv](#with-uv-recommended) · [fallback: venv and pip](#fallback-venv-and-pip)
 - [Run it](#run-it)
 - [The one function you are graded on](#the-one-function-you-are-graded-on)
 - [Measuring your work](#measuring-your-work)
@@ -59,8 +59,8 @@ Those two explanations are, frankly, not good enough. That is the point.
 | `evaluate.py` | Scores 24 labelled URLs and reports your error | Extend the label set |
 | `test_credibility.py` | Contract tests — checks the output *shape*, not quality | Add your own cases |
 | `.env.example` | Template for API keys | Copy to `.env` |
-| `requirements.txt` | Dependencies for `pip` users | No |
-| `pyproject.toml` | Dependencies for `uv` users | No |
+| `pyproject.toml` + `uv.lock` | The dependency list and the exact pinned versions. `uv sync` reads these | No |
+| `requirements.txt` | The same dependencies for the `pip` fallback, and what Hugging Face needs | No |
 
 The app already handles the Claude call, web search, citation extraction, session
 state, and the UI. **None of that is what you are graded on.**
@@ -78,8 +78,8 @@ You can do a large part of this assignment before spending anything:
 
 | Works with no key | Needs your key |
 | --- | --- |
-| `python test_credibility.py` — 21 contract tests | the chat itself (`streamlit run main.py`) |
-| `python evaluate.py` — the 24-URL harness | `python evaluate.py --llm` |
+| `uv run python test_credibility.py` — 21 contract tests | the chat itself (`uv run streamlit run main.py`) |
+| `uv run python evaluate.py` — the 24-URL harness | `uv run python evaluate.py --llm` |
 | the whole rule-based scoring layer | `credibility.llm_opinion()` |
 | the sidebar URL scorer in the running app | |
 
@@ -92,8 +92,8 @@ Turning the LLM layer on is not decoration — it measurably improves the scorer
 
 | | MAE | Band accuracy | Worst error |
 | --- | --- | --- | --- |
-| `python evaluate.py` (rules only) | 0.142 | 66.7% | 0.410 |
-| `python evaluate.py --llm` | **0.086** | **83.3%** | **0.230** |
+| `uv run python evaluate.py` (rules only) | 0.142 | 66.7% | 0.410 |
+| `uv run python evaluate.py --llm` | **0.086** | **83.3%** | **0.230** |
 
 Most of that gain is on the held-out domains the lookup table has never seen. A JAMA
 article scores **0.52** on rules alone and **0.70** with the model, because the model
@@ -116,44 +116,85 @@ expected data is far harder to notice than one that raises.
 
 ## Setup
 
-You need **Python 3.10 or newer** and **git**. Check with `python --version`.
+This project is managed by **[uv](https://docs.astral.sh/uv/)**. It is the same tool
+the homework folder uses, it works identically on macOS, Linux and Windows, and it is
+the path these instructions assume.
 
-### macOS / Linux
+### With `uv` (recommended)
+
+Install uv first — it is the only thing you need in advance. You do **not** need to
+install Python yourself; `pyproject.toml` declares the version this project wants and
+uv will fetch a suitable interpreter if you do not already have one.
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh     # macOS / Linux
+```
+
+```powershell
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"    # Windows
+```
+
+Then, identically on every platform:
 
 ```bash
 # 1. Clone the course repo and enter this project
 git clone https://github.com/yiqiao-yin/pace-u-cs676.git
 cd pace-u-cs676/deliverable/project_1
 
-# 2. Create and activate a virtual environment
+# 2. Create the environment and install everything
+uv sync
+
+# 3. Add your API key
+cp .env.example .env        # Windows: copy .env.example .env
+```
+
+Then open `.env` in any editor and paste your key in.
+
+That is the whole setup. There is **no virtual environment to activate** — `uv run`
+finds the right one on its own, which is why every command below starts with it.
+
+**What `uv sync` does.** It reads `pyproject.toml` for the dependency list and
+`uv.lock` for the exact version of all 68 packages, then builds an environment that
+matches. The lock file is committed, so you install the same versions everyone else
+has — including `anthropic 0.120.2`, which the scorer needs. If a run of yours behaves
+differently from a classmate's, it is not the dependencies.
+
+The first sync downloads a few hundred MB and takes a moment. Every later one is
+near-instant, and reports something like `Resolved 68 packages / Checked 64 packages`.
+
+### Fallback: venv and pip
+
+If uv will not install on your machine, or your environment forbids it, the classic
+route still works. `requirements.txt` carries the same pinned dependencies.
+
+You need **Python 3.10 or newer** and **git**. Check with `python --version`.
+
+**macOS / Linux**
+
+```bash
+git clone https://github.com/yiqiao-yin/pace-u-cs676.git
+cd pace-u-cs676/deliverable/project_1
+
 python3 -m venv .venv
 source .venv/bin/activate
 
-# 3. Install dependencies
 pip install -r requirements.txt
 
-# 4. Add your API key
 cp .env.example .env
 nano .env          # or: open -e .env
 ```
 
-### Windows
-
-Use **PowerShell** (not the old `cmd` prompt).
+**Windows** — use PowerShell, not the old `cmd` prompt.
 
 ```powershell
-# 1. Clone the course repo and enter this project
 git clone https://github.com/yiqiao-yin/pace-u-cs676.git
 cd pace-u-cs676\deliverable\project_1
 
-# 2. Create and activate a virtual environment
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 
-# 3. Install dependencies
 pip install -r requirements.txt
 
-# 4. Add your API key
 copy .env.example .env
 notepad .env
 ```
@@ -164,15 +205,9 @@ notepad .env
 > Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 > ```
 
-### Using `uv` instead (either platform)
-
-If you have [uv](https://docs.astral.sh/uv/), it replaces steps 2 and 3:
-
-```bash
-uv sync
-```
-
-and prefix commands with `uv run` (e.g. `uv run streamlit run main.py`).
+On this route you must activate the environment in every new terminal, and you then
+drop the `uv run` prefix from the commands below — `uv run python evaluate.py` becomes
+`python evaluate.py`.
 
 ---
 
@@ -181,16 +216,19 @@ and prefix commands with `uv run` (e.g. `uv run streamlit run main.py`).
 **Verify your setup first — this needs no API key at all:**
 
 ```bash
-python test_credibility.py     # expect: 21 passed, 0 failed
-python evaluate.py             # expect: MAE 0.142, band accuracy 66.7%
+uv run python test_credibility.py     # expect: 21 passed, 0 failed
+uv run python evaluate.py             # expect: MAE 0.142, band accuracy 66.7%
 ```
 
 Those two numbers are your **baseline**. Write them down. Your job is to improve them.
 
+If either command fails before printing anything, your environment is the problem, not
+your code — see [Troubleshooting](#troubleshooting).
+
 **Then start the app:**
 
 ```bash
-streamlit run main.py
+uv run streamlit run main.py
 ```
 
 It opens at `http://localhost:8501`. The sidebar shows which keys it found and lets
@@ -352,14 +390,32 @@ It is genuinely more work, which is why it is worth points.
 ## Troubleshooting
 
 **`ModuleNotFoundError: No module named 'anthropic'`**
-Your virtual environment isn't active. Look for `(.venv)` at the start of your
-prompt; if it's missing, re-run the activate command from [Setup](#setup).
+You ran `python something.py` instead of `uv run python something.py`, so it used your
+system Python rather than this project's environment. Add the prefix.
+*On the venv fallback:* your environment isn't active — look for `(.venv)` at the start
+of your prompt, and if it's missing re-run the activate command from [Setup](#setup).
+
+**`uv: command not found`**
+uv isn't installed, or your shell hasn't picked it up yet. Re-run the install command
+from [Setup](#setup), then open a new terminal. If it still fails, use the
+[venv and pip fallback](#fallback-venv-and-pip).
 
 **`TypeError: Messages.create() got an unexpected keyword argument 'output_config'`**
-Your `anthropic` package is too old. `credibility.py` needs **0.70 or newer**:
+Your `anthropic` package is too old. `credibility.py` needs **0.120 or newer**.
+With uv this cannot happen — `uv.lock` pins it — so seeing this means you are running
+outside the project environment. Check for the `uv run` prefix.
 ```bash
-pip install --upgrade anthropic
+uv sync                            # uv: restore the locked versions
+pip install --upgrade anthropic    # venv fallback
 ```
+
+**`uv sync` fails to resolve, or the lock looks stale**
+Confirm the lock and `pyproject.toml` agree:
+```bash
+uv lock --check
+```
+It should report `Resolved 68 packages`. Do not hand-edit `uv.lock` — if you add a
+dependency, use `uv add <package>`, which updates both files together. Commit both.
 
 **The app loads but every answer is an error**
 Check the sidebar. If "Anthropic API key" shows ❌, your `.env` was not found or the
@@ -367,7 +423,8 @@ key is malformed. The file must be named exactly `.env` (not `.env.txt` — Wind
 Notepad does this silently) and sit in this directory.
 
 **`streamlit: command not found`**
-Activate the venv, or run it as a module: `python -m streamlit run main.py`.
+Run it through uv: `uv run streamlit run main.py`. On the venv fallback, activate the
+environment or run it as a module: `python -m streamlit run main.py`.
 
 **Everything is slow**
 Each chat turn makes a Claude call plus one scoring call per source. Turn off the
@@ -375,6 +432,6 @@ SerpAPI checkbox, or set `JUDGE_MODEL = "claude-haiku-4-5"` in `credibility.py` 
 developing. Say which model produced your submitted numbers.
 
 **I want to work without spending API credits**
-You can do most of the assignment that way. `python evaluate.py` and
-`python test_credibility.py` run the rule layer only and never call the API. Only the
-chat itself and `evaluate.py --llm` need a key.
+You can do most of the assignment that way. `uv run python evaluate.py` and
+`uv run python test_credibility.py` run the rule layer only and never call the API.
+Only the chat itself and `evaluate.py --llm` need a key.

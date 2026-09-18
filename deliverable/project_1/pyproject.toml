@@ -5,8 +5,8 @@ description = "CS676 Project 1 — credibility-scored research chatbot"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    # >=0.70 required for the `output_config` structured-output parameter
-    # that credibility.py uses; 0.69 predates it and fails at runtime.
+    # >=0.120 required for the `output_config` structured-output parameter
+    # that credibility.py uses; earlier releases fail at runtime.
     "anthropic>=0.120.0",
     "streamlit>=1.50.0",
     "python-dotenv>=1.1.1",
