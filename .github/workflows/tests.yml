@@ -101,7 +101,11 @@ jobs:
           # in the same commit — that is the point of it being explicit.
           declare -A EXPECTED=( [01_lr.py]=2 [02_logreg.py]=2 [03_cv.py]=2 [04_tree.py]=1 [05_kmeans.py]=3 )
           fail=0
-          for f in 0*.py; do
+          # Glob 0[1-5] rather than 0*, because 00_uv_tutorial.py is not an
+          # exercise: it has no blanks and is SUPPOSED to run to completion,
+          # which every assertion in this loop would flag. It gets its own step
+          # below. Keep this glob narrow when adding exercises.
+          for f in 0[1-5]_*.py; do
             python -c "import ast,sys; ast.parse(open('$f').read())" || { echo "::error file=$f::does not parse"; fail=1; continue; }
             want=${EXPECTED[$f]:-}
             if [ -z "$want" ]; then
@@ -118,6 +122,24 @@ jobs:
             echo "  $f has its $want stub(s) and stops at one, as intended"
           done
           exit $fail
+
+      - name: The uv tutorial must run cleanly
+        run: |
+          # 00_uv_tutorial.py is the opposite of the exercises: it is the one
+          # script in this folder that must run start to finish, since students
+          # meet it before they have written any code. It uses only the standard
+          # library, so plain python is a fair test of it.
+          set -e
+          cd notebooks/homework
+          python 00_uv_tutorial.py > /tmp/tut.txt 2>&1 || {
+            echo "::error file=00_uv_tutorial.py::the tutorial failed to run"
+            cat /tmp/tut.txt; exit 1; }
+          grep -q "WHAT TO REMEMBER" /tmp/tut.txt || {
+            echo "::error file=00_uv_tutorial.py::ran but did not print its summary"
+            cat /tmp/tut.txt; exit 1; }
+          python 00_uv_tutorial.py --name Ada --times 2 | grep -q "Hello, Ada" || {
+            echo "::error file=00_uv_tutorial.py::command-line flags are broken"; exit 1; }
+          echo "  00_uv_tutorial.py runs clean, and its flags work"
 
       - name: No answer key may be committed to the public repo
         run: |

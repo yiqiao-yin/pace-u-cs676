@@ -31,6 +31,42 @@ uv run 01_lr.py
 
 Every command in this README is written that way.
 
+### New to uv? Start with `00_uv_tutorial.py`
+
+If `uv run` is unfamiliar, run this before anything else:
+
+```bash
+uv run 00_uv_tutorial.py
+```
+
+**It is not graded and has no blanks.** It is a short script whose whole job is to
+show you what `uv run` is doing. It prints which Python is executing it, which
+packages `uv sync` installed, and what your command-line flags became — and then
+asks you to change one line and run it again, which is the edit-save-rerun loop you
+will use for the rest of the course.
+
+The three commands worth knowing, all of which that script demonstrates:
+
+| Command | What it does |
+| --- | --- |
+| `uv sync` | Build the environment. Once per clone, not once per script. |
+| `uv run 01_lr.py` | Run a script inside that environment. |
+| `uv run 01_lr.py --plot` | Anything after the filename is passed to the script, not to uv. |
+
+Two things that trip people up:
+
+- **You never activate anything.** There is no `source .venv/bin/activate` in this
+  course. If you have used `venv` before, this is the habit to drop.
+- **`ModuleNotFoundError` almost always means a missing `uv run`.** Running
+  `python 01_lr.py` uses your system Python, which does not have the packages
+  `uv sync` installed. Add the prefix.
+
+Every script here accepts `--help`, which lists its flags:
+
+```bash
+uv run 01_lr.py --help
+```
+
 **The only thing you need installed first is [uv](https://docs.astral.sh/uv/).**
 You do not need to set up Python yourself — this folder declares the version it
 wants and uv will fetch a suitable interpreter if you do not already have one.
@@ -70,6 +106,7 @@ python 01_lr.py
 
 | Script | Topic | What you write | Blanks | Session |
 | --- | --- | --- | --- | --- |
+| `00_uv_tutorial.py` | *How to run these scripts* | *nothing — not graded* | *0* | — |
 | `01_lr.py` | Linear regression | the MSE gradient, then the descent loop | 2 | 03 |
 | `02_logreg.py` | Logistic regression | the sigmoid, then the descent loop | 2 | 04 |
 | `03_cv.py` | K-fold cross validation | the fold construction, then the rotation loop | 2 | 05 |
