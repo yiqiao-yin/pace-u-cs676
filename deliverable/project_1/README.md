@@ -213,14 +213,45 @@ drop the `uv run` prefix from the commands below — `uv run python evaluate.py`
 
 ## Run it
 
-**Verify your setup first — this needs no API key at all:**
+**Everything below works on a fresh clone with nothing edited and no API key.** If you
+have just run `uv sync`, you are ready.
+
+**Verify your setup first:**
 
 ```bash
-uv run python test_credibility.py     # expect: 21 passed, 0 failed
-uv run python evaluate.py             # expect: MAE 0.142, band accuracy 66.7%
+uv run python test_credibility.py
+uv run python evaluate.py
 ```
 
-Those two numbers are your **baseline**. Write them down. Your job is to improve them.
+The first ends with:
+
+```
+============================================================
+  21 passed, 0 failed
+============================================================
+```
+
+The second prints a row per URL and then this summary:
+
+```
+  URLs evaluated     : 24
+  Mean absolute error: 0.142   (lower is better; 0.000 is perfect)
+  Band accuracy      : 66.7%   (HIGH/MEDIUM/LOW chip correct)
+  Worst single error : 0.410
+  LLM layer          : off (rules only)
+```
+
+Those numbers are your **baseline**. Write them down — your job is to improve them, and
+Part 2 of the grade is the measured before-and-after. Seeing exactly these three figures
+also confirms your environment is correct, since everyone starts from the same locked
+dependencies.
+
+`LLM layer: off` is expected without a key. It is not an error.
+
+Look at the rows above the summary before you change anything. The scorer does well on
+domains in its lookup table and badly on the ones marked **HELD OUT** — the JAMA article
+is the worst single miss at 0.410, scored 0.52 purely because `jamanetwork.com` ends in
+`.com`. That gap is the assignment.
 
 If either command fails before printing anything, your environment is the problem, not
 your code — see [Troubleshooting](#troubleshooting).

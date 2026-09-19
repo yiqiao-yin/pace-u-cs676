@@ -157,7 +157,8 @@ by hand; it updates the lock in the same step. Commit both files together.
 
 ## Run it
 
-**Start here. This needs no API key and costs nothing:**
+**Start here. This works on a fresh clone with nothing edited, needs no API key, and
+costs nothing:**
 
 ```bash
 uv run main.py --offline
@@ -166,6 +167,63 @@ uv run main.py --offline
 Offline mode swaps the real model for a scripted one that replays canned dialogue. The
 whole app works — you can create personas, list them, and run a conversation — you just
 get fixed replies. It exists so you can see the shape of the thing on day one.
+
+### What a working session looks like
+
+Type these four lines at the `you ›` prompt:
+
+```
+create a persona patient with chronic back pain
+create a persona doctor who is direct and busy
+list personas
+have them talk about the test results
+```
+
+You should see personas written to disk, then a conversation between them:
+
+```
+stage › Created Patient With Chronic Back Pain (patient) — a demo persona ...
+  · wrote temp/patient-with-chronic-back-pain.md
+
+stage › 2 persona(s) in temp:
+ • Doctor Who Is Direct And Busy (doctor) — a demo persona generated in offline mode
+ • Patient With Chronic Back Pain (patient) — a demo persona generated in offline mode
+
+── conversation: the test results ──
+
+Doctor Who Is Direct And Busy: Have you noticed anything that makes it better or worse?
+Patient With Chronic Back Pain: Coffee seems to make it worse, and lying down helps a little.
+...
+
+stage › 6 turns between Doctor Who Is Direct And Busy and Patient With Chronic Back Pain.
+  · wrote temp/conversation.md
+```
+
+The replies are canned, but everything else is real: the personas are actual markdown
+files in `temp/`, and the transcript is written to `temp/conversation.md`. Open them.
+
+### ⚠️ The phrasing matters, and that is the assignment
+
+Say this instead:
+
+```
+create a skeptical data scientist named Ada
+```
+
+and you get back a shrug:
+
+```
+stage › Offline mode — I'm a stub. Try: create a persona doctor
+```
+
+**Nothing is broken.** `orchestrator.py` routes what you type with hand-written regular
+expressions, so it only recognises phrasings close to the ones above — `create a persona
+...`, `list personas`, `have them talk about ...`. Anything else falls through to a
+default.
+
+That brittleness is deliberate, and replacing it is the headline task of this project
+(see [What to build](#what-to-build)). Expect to hit it in your first five minutes; it
+is the problem statement introducing itself, not a bug to report.
 
 **Then with a real model:**
 
