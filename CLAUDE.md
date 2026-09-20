@@ -28,9 +28,10 @@ Two workflows, both on `main`:
 
 `tests.yml` needs no secrets, because everything it runs works without an API key — that is the property it exists to protect. Three jobs: project 1's contract tests plus `evaluate.py`; project 2's pytest suite plus a real `--offline` session checked for actual output; and a homework guard.
 
-**Two traps in `tests.yml`:**
+**Three traps in `tests.yml`:**
 
 - The homework job asserts an **exact stub count per file** — `01_lr.py`=2, `02_logreg.py`=2, `03_cv.py`=2, `04_tree.py`=1, `05_kmeans.py`=3 — held in a `declare -A EXPECTED` map. Checking merely that *a* stub survives is not enough: several exercises have more than one blank, so a partial solution leak passes. **If you change how many blanks an exercise has, update that map in the same commit** or CI fails.
+- That guard globs **`0[1-5]_*.py`, not `0*.py`**, because `00_uv_tutorial.py` is not an exercise — it has no stubs and is supposed to run to completion, so every assertion in the loop would flag it. It has its own step instead. Widening the glob back breaks the build; adding an exercise means widening it deliberately *and* extending `EXPECTED`.
 - `astral-sh/setup-uv` is pinned to `@v9.0.0` on purpose. That action publishes **no floating major tag past v6**, so `@v9` does not resolve and the run dies at "Prepare all required actions". Do not "tidy" it to a major tag.
 
 ## Layout
@@ -50,7 +51,9 @@ Two workflows, both on `main`:
 
 Five numpy-only scripts, each complete except for the core algorithm, which the student writes.
 
-**Never edit the student scripts directly.** They are generated:
+`00_uv_tutorial.py` is the exception to everything below: **not graded, no blanks, no answer key, and hand-written rather than generated** — edit it directly. It exists because students reported not understanding `uv run`, and it teaches by being run: it prints which Python is executing it, what `uv sync` installed, and what the flags became, then asks the reader to change a constant and re-run. Keep it standard-library-only, so it works even when the environment is the thing that is broken.
+
+**Never edit the other student scripts directly.** They are generated:
 
 ```bash
 cd notebooks/homework && uv run make_homework.py
@@ -107,14 +110,14 @@ Two CI interactions in `tests.yml`, both deliberate:
 
 ## deliverable/project_1 — credibility-score chatbot
 
-Streamlit + Anthropic. **uv** (`pyproject.toml` + `uv.lock`) or `pip` (`requirements.txt`). Python ≥3.10; **`anthropic>=0.120`** — 0.69 predates the `output_config` parameter `credibility.py` needs and fails at runtime.
+Streamlit + Anthropic. **uv is the documented path** (`pyproject.toml` + `uv.lock`); `pip` + `requirements.txt` is kept as a labelled fallback and is what Hugging Face reads. Python ≥3.10; **`anthropic>=0.120`** — earlier releases lack the `output_config` parameter `credibility.py` needs and fail at runtime.
 
 ```bash
 cd deliverable/project_1
 uv sync && cp .env.example .env
 uv run streamlit run main.py
-python test_credibility.py     # 21 tests, no key needed
-python evaluate.py             # baseline MAE 0.142 / 66.7% / 0.410
+uv run python test_credibility.py     # 21 tests, no key needed
+uv run python evaluate.py             # baseline MAE 0.142 / 66.7% / 0.410
 ```
 
 `credibility.py` is the graded file: `score_url(url) -> {"score": float, "explanation": str}`, rules plus an optional Claude judgment blended at `RULE_WEIGHT`. **The baseline is deliberately weak** — the twelve entries in its `KNOWN WEAKNESSES` block are the assignment, so don't fix them unprompted.
@@ -137,6 +140,8 @@ One idea repeated: **a persona is a markdown file** (`temp/*.md`), **an agent is
 `orchestrator.py` routes intent with regexes and is **deliberately the weakest module**; replacing it with Claude tool use is the headline student task, with schemas sketched in place. Every module ends with a `YOUR TASK` block — the assignment, not a to-do list.
 
 `tinytroupeproj/` is a vendored clone of microsoft/TinyTroupe, gitignored — do not commit or edit.
+
+**This project ships no `requirements.txt`, deliberately** — it is uv-only, because `uv sync` installing `personaforge` from `src/` in editable form is what makes the imports resolve, and a pip path would half-work (dev deps live in `[dependency-groups]`, which pip does not read). The Hugging Face bonus needs one, so the README tells students to generate it with `uv export --no-dev --no-emit-project --no-hashes`. Don't add a checked-in `requirements.txt` to "fix" the asymmetry with project 1.
 
 ## tools/slide_deck — the slide web app
 
