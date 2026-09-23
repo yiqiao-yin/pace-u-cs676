@@ -41,6 +41,29 @@ jobs:
         run: python evaluate.py
         working-directory: deliverable/project_1
 
+      # Regression guard. `--llm` without a key used to print a full table of
+      # rules-only numbers under a heading saying the LLM layer was on, because
+      # evaluate.py never loaded .env and llm_opinion() returns None silently.
+      # Students compared the two runs, saw identical figures, and concluded
+      # their key was broken. CI has no key, so this is the exact broken state:
+      # it must now exit non-zero and say why, not score 24 URLs and lie.
+      - name: '--llm without a key must fail loudly, not silently'
+        run: |
+          set -e
+          if python evaluate.py --llm > /tmp/llm.txt 2>&1; then
+            echo "::error::evaluate.py --llm succeeded with no API key — it has gone silent again"
+            cat /tmp/llm.txt
+            exit 1
+          fi
+          grep -q "ANTHROPIC_API_KEY is not set" /tmp/llm.txt || {
+            echo "::error::it failed, but not with the explanation students need"
+            cat /tmp/llm.txt; exit 1; }
+          grep -q "Mean absolute error" /tmp/llm.txt && {
+            echo "::error::it printed a results table anyway — those numbers would be rules-only"
+            cat /tmp/llm.txt; exit 1; }
+          echo "  --llm with no key exits loudly and prints no misleading numbers"
+        working-directory: deliverable/project_1
+
   project-2:
     name: Project 2 — PersonaForge
     runs-on: ubuntu-latest
