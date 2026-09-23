@@ -95,6 +95,16 @@ Turning the LLM layer on is not decoration — it measurably improves the scorer
 | `uv run python evaluate.py` (rules only) | 0.142 | 66.7% | 0.410 |
 | `uv run python evaluate.py --llm` | **0.086** | **83.3%** | **0.230** |
 
+Both rows are the **unmodified baseline** — putting a key in `.env` improves the
+numbers on its own, before you change any code. That second row is what you should
+see on a fresh clone with a working key, and it is the more honest baseline to
+measure your own work against if you plan to use the LLM layer.
+
+If `--llm` gives you *identical* numbers to the plain run, something is wrong with
+how the key is reaching the script — it is not a property of the scorer. As of the
+current version `--llm` refuses to run at all without a key rather than quietly
+falling back, so this should announce itself.
+
 Most of that gain is on the held-out domains the lookup table has never seen. A JAMA
 article scores **0.52** on rules alone and **0.70** with the model, because the model
 knows what JAMA is and a hand-written domain list does not.
@@ -246,7 +256,10 @@ Part 2 of the grade is the measured before-and-after. Seeing exactly these three
 also confirms your environment is correct, since everyone starts from the same locked
 dependencies.
 
-`LLM layer: off` is expected without a key. It is not an error.
+`LLM layer: off` is expected without a key. It is not an error — that is a plain
+`evaluate.py` run doing exactly what it should. You only need a key when you add
+`--llm`, and if you do that without one the script now stops and tells you, rather
+than printing rules-only numbers under an "LLM layer: on" heading.
 
 Look at the rows above the summary before you change anything. The scorer does well on
 domains in its lookup table and badly on the ones marked **HELD OUT** — the JAMA article
@@ -447,6 +460,13 @@ uv lock --check
 ```
 It should report `Resolved 68 packages`. Do not hand-edit `uv.lock` — if you add a
 dependency, use `uv add <package>`, which updates both files together. Commit both.
+
+**`evaluate.py --llm` gives the same numbers as `evaluate.py`**
+It should not, and on the current version it cannot fail quietly like that — `--llm`
+without a visible key now exits with an explanation instead of scoring. If you are on
+an older clone, `git pull`. Earlier versions of `evaluate.py` did not read `.env`, so
+the key was invisible to it even though the Streamlit sidebar showed a green check,
+and every URL fell back to rules-only scoring with no warning.
 
 **The app loads but every answer is an error**
 Check the sidebar. If "Anthropic API key" shows ❌, your `.env` was not found or the

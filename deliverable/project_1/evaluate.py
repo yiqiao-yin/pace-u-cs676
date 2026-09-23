@@ -18,7 +18,20 @@ with sources from your own domain is encouraged and is worth credit.
 from __future__ import annotations
 
 import argparse
+import os
+import sys
 from typing import Dict, List, Tuple
+
+# Load .env BEFORE importing credibility, so ANTHROPIC_API_KEY is in the
+# environment by the time llm_opinion() looks for it. main.py does the same
+# thing; without it here, `--llm` silently degraded to rules-only and printed
+# numbers identical to a run with no key at all.
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except ImportError:  # pragma: no cover - python-dotenv is a declared dependency
+    pass
 
 from credibility import score_band, score_url
 
@@ -109,4 +122,24 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluate credibility.score_url against labelled URLs.")
     parser.add_argument("--llm", action="store_true", help="include the Claude judgment layer (needs ANTHROPIC_API_KEY)")
     args = parser.parse_args()
+
+    # Fail loudly rather than quietly. llm_opinion() returns None when the key
+    # is missing, which is right for the running app — one dead call should not
+    # take down the UI. But here it would produce a full table of rules-only
+    # numbers under a heading that says the LLM layer is on, and you would have
+    # no way to tell. If you asked for --llm, you should get --llm or an error.
+    if args.llm and not os.getenv("ANTHROPIC_API_KEY"):
+        print(
+            "\n  ERROR: --llm was requested but ANTHROPIC_API_KEY is not set.\n"
+            "\n  Without it every URL would fall back to rules-only scoring and\n"
+            "  you would get the same numbers as a plain run, with no warning.\n"
+            "\n  Fix it with either of these:\n"
+            "    - put ANTHROPIC_API_KEY=sk-... in .env in this directory\n"
+            "      (copy .env.example to .env if you have not already), or\n"
+            "    - export ANTHROPIC_API_KEY=sk-... in your shell\n"
+            "\n  Then re-run. To measure the rules layer on its own, drop --llm.\n",
+            file=sys.stderr,
+        )
+        raise SystemExit(2)
+
     evaluate(use_llm=args.llm)
