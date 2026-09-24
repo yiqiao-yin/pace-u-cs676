@@ -44,14 +44,21 @@ from __future__ import annotations
 import json
 import os
 import re
+import sys
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Tuple
 from urllib.parse import urlparse
 
 # The model used for the Layer 2 judgment. Claude Opus 5 is the most capable
 # model; switch to "claude-haiku-4-5" if you are scoring many URLs and want to
-# cut cost, or "claude-sonnet-5" for a middle option. Scoring quality will move
-# with this choice, so note in your report which model your numbers came from.
+# cut cost, or "claude-sonnet-5" for a middle option. Scoring quality moves with
+# this choice — measured on the 24-URL set, Opus 5 gives MAE 0.086 / 83.3% and
+# Haiku 4.5 gives 0.102 / 75.0% — so say in your report which model produced
+# your numbers.
+#
+# Not every model accepts the same parameters. Haiku 4.5 rejects the `effort`
+# setting that llm_opinion() sends; the code detects that and retries without
+# it, so switching models here is safe. See _NO_EFFORT_SUPPORT further down.
 JUDGE_MODEL = "claude-opus-5"
 
 # How much each layer contributes to the final score. These two must sum to 1.0.
@@ -282,6 +289,35 @@ _JUDGE_SCHEMA: Dict[str, Any] = {
 # =============================================================================
 
 
+# Models that rejected `effort` in this process, so we only pay for that
+# discovery once. Not every model supports the parameter — Haiku 4.5 does not,
+# and it is the model the cost-saving advice above points you at. Rather than
+# hard-coding a list that goes stale with every release, we try the call, and
+# if the API says the parameter is unsupported we remember that and retry
+# without it. Capability detection over a maintained allowlist.
+_NO_EFFORT_SUPPORT: set = set()
+
+# Failures are swallowed below so the app degrades instead of crashing, but a
+# silent degrade is impossible to debug. We print the first occurrence of each
+# distinct failure to stderr — once, not once per URL, so scoring 24 URLs does
+# not produce 24 identical warnings.
+_WARNED: set = set()
+
+
+def _warn_once(key: str, message: str) -> None:
+    """
+    Print a diagnostic to stderr the first time `key` is seen.
+
+    The key is separate from the message on purpose. API errors embed a unique
+    request_id, so deduplicating on the message text would let the same failure
+    warn on every one of 24 URLs. Key on the stable part — the model and the
+    error class — and let the message carry the changing detail.
+    """
+    if key not in _WARNED:
+        _WARNED.add(key)
+        print(f"  [credibility] {message}", file=sys.stderr)
+
+
 def llm_opinion(url: str) -> Optional[Signal]:
     """
     Ask Claude to judge the URL. Returns None whenever the call cannot be made.
@@ -289,25 +325,60 @@ def llm_opinion(url: str) -> Optional[Signal]:
     Returning None rather than raising is deliberate: a missing API key, a
     network blip, or a safety refusal should degrade the score to rules-only
     instead of taking down the whole app. Effort is set to "low" because this
-    is a small judgment and we may be scoring several URLs per question.
+    is a small judgment and we may be scoring several URLs per question — but
+    see _NO_EFFORT_SUPPORT above; not every model accepts that parameter.
+
+    The degrade is quiet in the score but no longer quiet in the terminal: any
+    failure prints one line to stderr explaining itself.
     """
     if not os.getenv("ANTHROPIC_API_KEY"):
         return None
+
+    output_config: Dict[str, Any] = {
+        "format": {"type": "json_schema", "schema": _JUDGE_SCHEMA}
+    }
+    if JUDGE_MODEL not in _NO_EFFORT_SUPPORT:
+        output_config["effort"] = "low"
 
     try:
         import anthropic
 
         client = anthropic.Anthropic()
-        response = client.messages.create(
-            model=JUDGE_MODEL,
-            max_tokens=1024,
-            system=_JUDGE_SYSTEM,
-            messages=[{"role": "user", "content": f"Rate the credibility of this source: {url}"}],
-            output_config={"effort": "low", "format": {"type": "json_schema", "schema": _JUDGE_SCHEMA}},
-        )
+        try:
+            response = client.messages.create(
+                model=JUDGE_MODEL,
+                max_tokens=1024,
+                system=_JUDGE_SYSTEM,
+                messages=[{"role": "user", "content": f"Rate the credibility of this source: {url}"}],
+                output_config=output_config,
+            )
+        except anthropic.BadRequestError as exc:
+            # "This model does not support the effort parameter." Remember it
+            # and retry once without, so switching JUDGE_MODEL to a cheaper
+            # model keeps working instead of silently scoring rules-only.
+            if "effort" not in str(exc) or "effort" not in output_config:
+                raise
+            _NO_EFFORT_SUPPORT.add(JUDGE_MODEL)
+            _warn_once(
+                f"effort:{JUDGE_MODEL}",
+                f"{JUDGE_MODEL} does not accept output_config.effort; "
+                "retrying without it. The LLM layer is still on.",
+            )
+            output_config.pop("effort")
+            response = client.messages.create(
+                model=JUDGE_MODEL,
+                max_tokens=1024,
+                system=_JUDGE_SYSTEM,
+                messages=[{"role": "user", "content": f"Rate the credibility of this source: {url}"}],
+                output_config=output_config,
+            )
 
         # Claude can decline a request; content is empty or partial when it does.
         if response.stop_reason == "refusal":
+            _warn_once(
+                f"refusal:{JUDGE_MODEL}",
+                f"{JUDGE_MODEL} declined to score a URL; falling back to rules for it.",
+            )
             return None
 
         text = next((b.text for b in response.content if b.type == "text"), "")
@@ -315,8 +386,15 @@ def llm_opinion(url: str) -> Optional[Signal]:
         score = max(0.0, min(1.0, float(data["score"])))
         return Signal("llm", score, str(data["reason"]))
 
-    except Exception:
-        # Any failure falls back to rules-only scoring rather than crashing.
+    except Exception as exc:
+        # Any failure falls back to rules-only scoring rather than crashing —
+        # but says so, once, instead of leaving you to wonder why the LLM layer
+        # made no difference to your numbers.
+        _warn_once(
+            f"{type(exc).__name__}:{JUDGE_MODEL}",
+            f"LLM layer unavailable ({type(exc).__name__}: {str(exc)[:160]}). "
+            "Scoring with rules only.",
+        )
         return None
 
 

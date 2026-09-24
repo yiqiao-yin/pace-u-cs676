@@ -122,6 +122,8 @@ uv run python evaluate.py             # baseline MAE 0.142 / 66.7% / 0.410
 
 `credibility.py` is the graded file: `score_url(url) -> {"score": float, "explanation": str}`, rules plus an optional Claude judgment blended at `RULE_WEIGHT`. **The baseline is deliberately weak** — the twelve entries in its `KNOWN WEAKNESSES` block are the assignment, so don't fix them unprompted.
 
+**`llm_opinion()` swallows every exception on purpose** — a dead call should degrade the score, not kill the UI. That breadth hid two real bugs, so it now prints one line to stderr per distinct failure (keyed on error class + model, *not* the message, since API errors embed a unique `request_id` that would defeat the dedupe). Keep the warning if you touch that block. It also sends `output_config.effort`, which **`claude-haiku-4-5` rejects with a 400** — the very model the README recommends for cost. Rather than an allowlist that rots each release, the code retries once without `effort` and remembers the model in `_NO_EFFORT_SUPPORT`. Measured: Opus 5 → MAE 0.086 / 83.3%, Haiku 4.5 → 0.102 / 75.0%, rules only → 0.142 / 66.7%.
+
 `main.py` is the app: chat, optional SerpAPI, Claude with `web_search_20260209`, citation extraction, colour-coded chips. Langfuse is optional and degrades to a no-op decorator.
 
 ## deliverable/project_2 — PersonaForge
