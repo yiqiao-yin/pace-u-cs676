@@ -477,10 +477,19 @@ Notepad does this silently) and sit in this directory.
 Run it through uv: `uv run streamlit run main.py`. On the venv fallback, activate the
 environment or run it as a module: `python -m streamlit run main.py`.
 
-**Everything is slow**
+**Everything is slow, or costs more than I expected**
 Each chat turn makes a Claude call plus one scoring call per source. Turn off the
 SerpAPI checkbox, or set `JUDGE_MODEL = "claude-haiku-4-5"` in `credibility.py` while
-developing. Say which model produced your submitted numbers.
+developing — Haiku is roughly a fifth the price of the default. It scores a little
+worse (MAE 0.102 and 75.0% band accuracy, against 0.086 and 83.3% on the default
+Claude Opus 5), which is a fine trade while you are iterating. **Say which model
+produced your submitted numbers.**
+
+Earlier versions of `credibility.py` broke when you switched to Haiku: it rejects a
+parameter the scorer was sending unconditionally, and the resulting error was
+swallowed, so the LLM layer silently did nothing and your numbers stayed at the
+rules-only baseline. That is fixed — the scorer now notices and retries. If you are
+on an older clone, `git pull`.
 
 **I want to work without spending API credits**
 You can do most of the assignment that way. `uv run python evaluate.py` and
