@@ -58,6 +58,57 @@ def test_missing_frontmatter_still_loads():
     assert "Just a heading" in spec.body
 
 
+# -----------------------------------------------------------------------------
+# Regression tests: things the real model actually does
+#
+# The two cases below are not hypothetical edge cases someone imagined. They are
+# shapes the model returned during live testing, each of which broke the parser
+# until it was taught to cope. They are pinned here because the offline tests
+# cannot see the real API — so without these, a refactor of from_markdown()
+# would pass every test and still break the app the next time a real call came
+# back slightly malformed.
+#
+# Hardening the parser further is YOUR TASK item 3 in persona.py. These tests
+# only hold the ground already taken.
+# -----------------------------------------------------------------------------
+
+MISSING_CLOSING_DELIMITER = """---
+name: Maria Delgado
+role: patient
+summary: 58-year-old with poorly controlled type 2 diabetes
+
+# Maria Delgado
+
+## Background
+Retired schoolteacher.
+"""
+
+
+def test_missing_closing_delimiter_still_parses():
+    """
+    The model omits the closing '---' roughly one time in three.
+
+    Before this was handled, the whole document was treated as frontmatter: the
+    persona loaded with an empty body, so the agent got a system prompt
+    describing nobody and answered as a generic assistant. Nothing raised.
+    """
+    spec = PersonaSpec.from_markdown(MISSING_CLOSING_DELIMITER)
+    assert spec.name == "Maria Delgado"
+    assert spec.role == "patient"
+    assert "Retired schoolteacher" in spec.body
+    # The header keys must not bleed into the body, or they end up in the
+    # system prompt and the agent starts narrating its own metadata.
+    assert "role: patient" not in spec.body
+
+
+def test_code_fenced_document_still_parses():
+    """The model sometimes wraps the whole persona in a markdown code fence."""
+    spec = PersonaSpec.from_markdown("```markdown\n" + SAMPLE_MARKDOWN + "```")
+    assert spec.name == "Maria Delgado"
+    assert "Retired schoolteacher" in spec.body
+    assert "```" not in spec.body
+
+
 def test_save_and_load(tmp_path):
     spec = PersonaSpec(name="Maria Delgado", role="patient", summary="s", body="# M")
     path = save_persona(spec, tmp_path)
