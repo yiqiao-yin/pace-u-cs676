@@ -8,6 +8,7 @@
 
 ## Table of Contents
 - [Deadlines](DEADLINES.md)
+- [Getting Started with AI Tools](GETTING_STARTED_AI_TOOLS.md) — new to Claude Code or Codex? Start here
 - [Syllabus](#syllabus)
 - [Course Topics](#course-topics)
   - [Schedule and Weekly Learning Goals](#schedule-and-weekly-learning-goals)
