@@ -172,6 +172,7 @@ The scripts are linked from the notes they serve, so students can reuse them; ke
 ## Conventions and traps
 
 - **Docs are the product.** Prose is deliberately verbose and explanatory — match that register rather than condensing.
+- **Every mermaid diagram in this repo uses one house style**, specified in `GETTING_STARTED_AI_TOOLS.md` → *The house style for this course*: ELK layout (`layout: elk`), dark-blue fills that lighten with distance from the entry point, white text, grey arrows (`lineColor` set once in the config block), **animated edges for the main path** and plain edges for secondary links. Copy the worked example there rather than reinventing it. Validate before committing — the repo already has mermaid installed, so `mermaid.parse()` under jsdom catches syntax errors that a rendered page would only show as a blank box.
 - **Changing the slide PDF does not update the published deck.** `tools/slide_deck/` must be re-run and the result re-uploaded to Amplify by hand; there is no pipeline. The deck will silently serve the old slides otherwise.
 - **Run `npm run build` after editing docs.** It fails the build on broken internal links and anchors, which is the only check that catches a renamed heading.
 - **Both starter kits must work with no API key** (project 1: rules + tests + evaluator; project 2: `--offline` + pytest). A student's first run should never need one.

@@ -162,33 +162,166 @@ otherwise need other software for.
 ### Mermaid diagrams
 
 You write a description of a diagram in text, and it renders as an actual picture on
-GitHub. No drawing tool needed:
+GitHub. No drawing tool needed. Here is the smallest useful one:
 
 ````markdown
 ```mermaid
 flowchart LR
     URL[A URL] --> Rules[Layer 1: rules]
-    URL --> Page[Layer 2: fetch the page]
-    URL --> LLM[Layer 3: ask Claude]
-    Rules --> Blend[Weighted blend]
+    Rules --> Score[score + explanation]
+```
+````
+
+That works, and if you only ever write that much you will still get value out of it.
+But a diagram in a report should look like it was meant, so this course uses one
+consistent style — described next.
+
+#### The house style for this course
+
+**Use this style for every diagram you put in a report or a README.** Six rules:
+
+| | |
+| --- | --- |
+| **Layout** | ELK (`layout: elk`) — handles dense graphs far better than the default |
+| **Fills** | Shades of dark blue, getting lighter as you move away from the entry point |
+| **Fonts** | White |
+| **Arrows** | Grey |
+| **Main path** | Animated arrows |
+| **Secondary links** | Plain, un-animated arrows |
+
+The animation is the part that does real work: it separates *the path the data actually
+takes* from *the supporting connections*, so a reader's eye follows the main flow
+without you having to explain it in a caption.
+
+#### A simple example
+
+````markdown
+```mermaid
+---
+config:
+  layout: elk
+  theme: base
+  themeVariables:
+    lineColor: '#8d99ae'
+    fontFamily: ui-sans-serif, system-ui, sans-serif
+---
+flowchart LR
+    subgraph Input["Input"]
+        URL[A URL]
+    end
+
+    subgraph Scoring["Scoring layers"]
+        Rules[Layer 1: rules]
+        Page[Layer 2: fetch the page]
+        LLM[Layer 3: ask Claude]
+    end
+
+    Blend[Weighted blend]
+    Score[score + explanation]
+    Cache[(Cache)]
+
+    %% Main path — animated
+    URL e1@--> Rules
+    Rules e2@--> Blend
+    Blend e3@--> Score
+
+    %% Secondary links — plain
+    URL --> Page
+    URL --> LLM
     Page --> Blend
     LLM --> Blend
-    Blend --> Score[score + explanation]
+    Score -.-> Cache
+
+    e1@{ animate: true }
+    e2@{ animate: true }
+    e3@{ animate: true }
+
+    classDef entry  fill:#0b2545,stroke:#134074,color:#ffffff
+    classDef layer  fill:#134074,stroke:#1b4f95,color:#ffffff
+    classDef output fill:#1b4f95,stroke:#2a6bb8,color:#ffffff
+    classDef side   fill:#25314d,stroke:#3d4f78,color:#ffffff
+
+    class URL entry
+    class Rules,Page,LLM,Blend layer
+    class Score output
+    class Cache side
+
+    style Input   fill:#081a33,stroke:#134074,color:#ffffff
+    style Scoring fill:#0d2647,stroke:#134074,color:#ffffff
 ```
 ````
 
 Which renders as:
 
 ```mermaid
+---
+config:
+  layout: elk
+  theme: base
+  themeVariables:
+    lineColor: '#8d99ae'
+    fontFamily: ui-sans-serif, system-ui, sans-serif
+---
 flowchart LR
-    URL[A URL] --> Rules[Layer 1: rules]
-    URL --> Page[Layer 2: fetch the page]
-    URL --> LLM[Layer 3: ask Claude]
-    Rules --> Blend[Weighted blend]
+    subgraph Input["Input"]
+        URL[A URL]
+    end
+
+    subgraph Scoring["Scoring layers"]
+        Rules[Layer 1: rules]
+        Page[Layer 2: fetch the page]
+        LLM[Layer 3: ask Claude]
+    end
+
+    Blend[Weighted blend]
+    Score[score + explanation]
+    Cache[(Cache)]
+
+    %% Main path — animated
+    URL e1@--> Rules
+    Rules e2@--> Blend
+    Blend e3@--> Score
+
+    %% Secondary links — plain
+    URL --> Page
+    URL --> LLM
     Page --> Blend
     LLM --> Blend
-    Blend --> Score[score + explanation]
+    Score -.-> Cache
+
+    e1@{ animate: true }
+    e2@{ animate: true }
+    e3@{ animate: true }
+
+    classDef entry  fill:#0b2545,stroke:#134074,color:#ffffff
+    classDef layer  fill:#134074,stroke:#1b4f95,color:#ffffff
+    classDef output fill:#1b4f95,stroke:#2a6bb8,color:#ffffff
+    classDef side   fill:#25314d,stroke:#3d4f78,color:#ffffff
+
+    class URL entry
+    class Rules,Page,LLM,Blend layer
+    class Score output
+    class Cache side
+
+    style Input   fill:#081a33,stroke:#134074,color:#ffffff
+    style Scoring fill:#0d2647,stroke:#134074,color:#ffffff
 ```
+
+**How the pieces map to the rules.** The `config` block at the top selects ELK and sets
+the grey arrow colour once, globally. Named edges (`e1@-->`) are the ones you animate,
+declared afterwards with `e1@{ animate: true }`; ordinary `-->` and `-.->` edges stay
+still. `classDef` defines the blue shades — `entry` darkest, then `layer`, then `output`
+— and `class` applies them. Subgraph containers get their own darker fill through
+`style`. Every fill sets `color:#ffffff` so text stays white.
+
+**Copy that block and edit the node names.** You do not need to memorise any of it, and
+you can hand it to Claude Code as a template: *"Use this exact mermaid style and redraw
+it for the architecture in this folder."*
+
+One caveat worth knowing: **ELK layout and edge animation are recent Mermaid features.**
+Most renderers support them, but if you paste a diagram somewhere that doesn't, it falls
+back to the default layout and static arrows — the colours and structure still render,
+so nothing breaks badly. Check how yours looks wherever you are submitting it.
 
 This is a genuinely good way to understand a codebase, and a genuinely good way to show
 an architecture in a report.
