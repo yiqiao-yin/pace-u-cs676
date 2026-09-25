@@ -428,8 +428,19 @@ Hugging Face Spaces serves web pages. You have two honest options.
 2. **Ship the package and a browser terminal.** Gradio can render a chat interface that
    drives the orchestrator directly.
 
-Either way: create a Space, choose the matching SDK, add `ANTHROPIC_API_KEY` under
-**Settings → Variables and secrets**, and submit the public URL.
+**Which SDK to pick.** Hugging Face offers Gradio, Docker, and static HTML — there is no
+Streamlit option any more. If you chose Gradio, the **Gradio** SDK is the least work. If
+you chose Streamlit, use the **Docker** SDK with a Dockerfile; the Project 1 README has
+a working one you can copy, changing only the final `CMD` to point at your app file.
+Either route runs on the free **CPU basic** tier — you do not need a paid plan, and if a
+Space asks you to upgrade, stop and email me rather than paying.
+
+For the Docker route, put `sdk: docker` and `app_port: 7860` in the Space's `README.md`
+and bind your server to `0.0.0.0:7860` — Spaces expects that port, and an app listening
+only on localhost builds cleanly and then times out.
+
+Either way: add `ANTHROPIC_API_KEY` under **Settings → Variables and secrets**, and
+submit the public URL.
 **Never commit your key** — a key pushed to a public Space must be revoked immediately.
 
 **You will need a `requirements.txt`, and this project does not ship one.** Spaces

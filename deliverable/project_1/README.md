@@ -410,24 +410,62 @@ full marks.
 Getting the app running on a public URL is worth **an extra 5% on your course grade**.
 It is genuinely more work, which is why it is worth points.
 
+**There is no "Streamlit" SDK option any more.** Hugging Face removed it; the picker now
+offers only Gradio, Docker, and static HTML. That does not stop you — a Streamlit app
+deploys perfectly well under the **Docker** SDK, which is what the steps below use.
+Verified working on the **free CPU basic** tier, so you do not need a paid plan.
+
 1. Create a **Space** at [huggingface.co/new-space](https://huggingface.co/new-space).
-   Choose the **Streamlit** SDK and the free CPU tier.
-2. Push `main.py`, `credibility.py`, and `requirements.txt` to the Space repo.
-3. Put this at the top of the Space's own `README.md` so it launches the right file:
+   Choose the **Docker** SDK (blank template) and the free **CPU basic** hardware.
+2. Push `main.py`, `credibility.py`, and `requirements.txt` to the Space repo, plus the
+   `Dockerfile` from step 4.
+3. Put this at the top of the Space's own `README.md`:
 
    ```yaml
    ---
    title: Credibility Scored Chatbot
-   sdk: streamlit
-   app_file: main.py
+   sdk: docker
+   app_port: 7860
    pinned: false
    ---
    ```
 
-4. Add `ANTHROPIC_API_KEY` under **Settings → Variables and secrets → New secret**.
+   `app_port` matters — Spaces expects your app on **7860**, and Streamlit defaults to
+   8501. The Dockerfile below overrides it.
+
+4. Add a `Dockerfile` next to `main.py`. This is the whole thing:
+
+   ```dockerfile
+   FROM python:3.11-slim
+
+   # Spaces runs your container as a non-root user with uid 1000.
+   RUN useradd -m -u 1000 user
+   USER user
+   ENV PATH="/home/user/.local/bin:$PATH"
+   WORKDIR /home/user/app
+
+   # Copy requirements first so Docker can cache the install layer.
+   COPY --chown=user requirements.txt .
+   RUN pip install --no-cache-dir -r requirements.txt
+
+   COPY --chown=user . .
+
+   EXPOSE 7860
+   CMD ["streamlit", "run", "main.py", \
+        "--server.address=0.0.0.0", "--server.port=7860"]
+   ```
+
+   `--server.address=0.0.0.0` is not optional. Streamlit binds to localhost by default,
+   which inside a container means nothing outside it can connect, and the Space will
+   build cleanly and then time out.
+
+5. Add `ANTHROPIC_API_KEY` under **Settings → Variables and secrets → New secret**.
    **Never commit your key** — a key pushed to a public Space is a key you must
    immediately revoke.
-5. Submit the public Space URL alongside your other deliverables.
+6. Submit the public Space URL alongside your other deliverables.
+
+If the Space asks you to upgrade to a paid plan at any point, stop and email me rather
+than paying. This is a bonus, and no part of this course requires a subscription.
 
 ---
 
