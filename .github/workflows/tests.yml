@@ -47,6 +47,31 @@ jobs:
       # Students compared the two runs, saw identical figures, and concluded
       # their key was broken. CI has no key, so this is the exact broken state:
       # it must now exit non-zero and say why, not score 24 URLs and lie.
+      # Both front ends must at least import and build with no API key. Neither
+      # is covered by the contract tests, and app.py is the file a Hugging Face
+      # Gradio Space runs — so a broken import here is a broken deployment for
+      # every student attempting the bonus, with nothing else in CI to catch it.
+      # This is an import-and-build check, not a UI test: it constructs the
+      # Gradio Blocks and the shared backend without launching a server.
+      - name: Both front ends import and build without a key
+        run: |
+          set -e
+          python -c "
+          import chat_backend
+          assert callable(chat_backend.ask_claude)
+          assert callable(chat_backend.merge_sources)
+          print('  chat_backend imports; ask_claude and merge_sources present')
+          "
+          python -c "
+          import app
+          import gradio as gr
+          assert isinstance(app.demo, gr.Blocks), 'app.demo is not a Gradio Blocks'
+          assert app.render_sources([]).strip(), 'render_sources returned nothing for the empty case'
+          assert '0.95' in app._chip(0.95), 'score chip did not render the score'
+          print('  app.py builds a Gradio Blocks; chips and source panel render')
+          "
+        working-directory: deliverable/project_1
+
       - name: '--llm without a key must fail loudly, not silently'
         run: |
           set -e
