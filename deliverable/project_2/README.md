@@ -428,16 +428,20 @@ Hugging Face Spaces serves web pages. You have two honest options.
 2. **Ship the package and a browser terminal.** Gradio can render a chat interface that
    drives the orchestrator directly.
 
-**Which SDK to pick.** Hugging Face offers Gradio, Docker, and static HTML — there is no
-Streamlit option any more. If you chose Gradio, the **Gradio** SDK is the least work. If
-you chose Streamlit, use the **Docker** SDK with a Dockerfile; the Project 1 README has
-a working one you can copy, changing only the final `CMD` to point at your app file.
-Either route runs on the free **CPU basic** tier — you do not need a paid plan, and if a
-Space asks you to upgrade, stop and email me rather than paying.
+**Pick Gradio, and pick it before you write the wrapper.** Hugging Face offers Gradio,
+Docker, and static HTML — the Streamlit SDK is gone, and while a Streamlit app can run
+under the **Docker** SDK, **creating a Docker Space requires a PRO subscription at
+$9/month**. A **Gradio** Space is free. So option 1 above is only cheap if the front end
+you write is a Gradio one; choosing Streamlit commits you to a paid plan for no benefit.
 
-For the Docker route, put `sdk: docker` and `app_port: 7860` in the Space's `README.md`
-and bind your server to `0.0.0.0:7860` — Spaces expects that port, and an app listening
-only on localhost builds cleanly and then times out.
+Put `sdk: gradio` and `app_file: app.py` in the Space's `README.md`, name your entry
+point `app.py`, and bind it to `0.0.0.0:7860` — Spaces expects that port, and an app
+listening only on localhost builds cleanly and then times out with nothing useful in the
+log. Project 1's `app.py` is a worked example of a Gradio front end over a separate
+backend module, and the same shape applies here: import `personaforge`, keep the UI thin.
+
+If any part of this asks you to upgrade to a paid plan, stop and email me rather than
+paying. No part of this course requires a subscription.
 
 Either way: add `ANTHROPIC_API_KEY` under **Settings → Variables and secrets**, and
 submit the public URL.

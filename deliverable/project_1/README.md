@@ -55,7 +55,9 @@ Those two explanations are, frankly, not good enough. That is the point.
 | File | What it is | Do you edit it? |
 |---|---|---|
 | **`credibility.py`** | **The scorer. Your work goes here.** | **Yes — this is the assignment** |
-| `main.py` | Streamlit chat app; calls Claude, renders sources with coloured chips | Rarely |
+| `main.py` | **Streamlit** front end; renders sources with coloured chips | Rarely |
+| `app.py` | **Gradio** front end — the same app, and what a Hugging Face Space runs | Rarely |
+| `chat_backend.py` | Shared by both front ends: the Claude call, web search, citation extraction | Rarely |
 | `evaluate.py` | Scores 24 labelled URLs and reports your error | Extend the label set |
 | `test_credibility.py` | Contract tests — checks the output *shape*, not quality | Add your own cases |
 | `.env.example` | Template for API keys | Copy to `.env` |
@@ -269,14 +271,22 @@ is the worst single miss at 0.410, scored 0.52 purely because `jamanetwork.com` 
 If either command fails before printing anything, your environment is the problem, not
 your code — see [Troubleshooting](#troubleshooting).
 
-**Then start the app:**
+**Then start the app.** There are two front ends over the same backend — pick either:
 
 ```bash
-uv run streamlit run main.py
+uv run streamlit run main.py     # Streamlit, http://localhost:8501
+uv run python app.py             # Gradio,    http://localhost:7860
 ```
 
-It opens at `http://localhost:8501`. The sidebar shows which keys it found and lets
-you score any URL directly — useful for testing without burning chat tokens.
+Both show which keys they found and let you score any URL directly, which is useful
+for testing without burning chat tokens. They behave the same because the model call,
+the web search, and the citation extraction all live in `chat_backend.py` — only the
+UI differs.
+
+**Use Streamlit for local work and Gradio for deployment.** The Hugging Face bonus
+needs the Gradio one; see [the bonus section](#bonus-deploy-to-hugging-face-5) for why.
+If you improve `credibility.py` — which is the assignment — both front ends pick the
+change up with no extra work, because both call `score_url` the same way.
 
 ---
 
@@ -410,62 +420,53 @@ full marks.
 Getting the app running on a public URL is worth **an extra 5% on your course grade**.
 It is genuinely more work, which is why it is worth points.
 
-**There is no "Streamlit" SDK option any more.** Hugging Face removed it; the picker now
-offers only Gradio, Docker, and static HTML. That does not stop you — a Streamlit app
-deploys perfectly well under the **Docker** SDK, which is what the steps below use.
-Verified working on the **free CPU basic** tier, so you do not need a paid plan.
+**Use the Gradio SDK, and deploy `app.py`.** This needs a short explanation, because
+the obvious route is a trap:
+
+Hugging Face removed the Streamlit SDK — the picker now offers only Gradio, Docker, and
+static HTML. A Streamlit app can still run there under the **Docker** SDK, but
+**creating a Docker Space requires a PRO subscription at $9/month.** A Gradio Space does
+not. That is the entire reason `app.py` exists: it is the same app as `main.py`, over the
+same `chat_backend.py`, so the free route costs you no extra work.
 
 1. Create a **Space** at [huggingface.co/new-space](https://huggingface.co/new-space).
-   Choose the **Docker** SDK (blank template) and the free **CPU basic** hardware.
-2. Push `main.py`, `credibility.py`, and `requirements.txt` to the Space repo, plus the
-   `Dockerfile` from step 4.
+   Choose the **Gradio** SDK and the free **CPU basic** hardware.
+2. Push these four files to the Space repo:
+
+   ```
+   app.py               the Gradio front end (Spaces looks for this filename)
+   chat_backend.py      the Claude call and citation extraction
+   credibility.py       your scorer — the part you are graded on
+   requirements.txt     dependencies
+   ```
+
+   You do **not** need `main.py` on the Space. Leave it out and Streamlit never gets
+   installed there, which makes the build faster.
+
 3. Put this at the top of the Space's own `README.md`:
 
    ```yaml
    ---
    title: Credibility Scored Chatbot
-   sdk: docker
-   app_port: 7860
+   sdk: gradio
+   app_file: app.py
    pinned: false
    ---
    ```
 
-   `app_port` matters — Spaces expects your app on **7860**, and Streamlit defaults to
-   8501. The Dockerfile below overrides it.
-
-4. Add a `Dockerfile` next to `main.py`. This is the whole thing:
-
-   ```dockerfile
-   FROM python:3.11-slim
-
-   # Spaces runs your container as a non-root user with uid 1000.
-   RUN useradd -m -u 1000 user
-   USER user
-   ENV PATH="/home/user/.local/bin:$PATH"
-   WORKDIR /home/user/app
-
-   # Copy requirements first so Docker can cache the install layer.
-   COPY --chown=user requirements.txt .
-   RUN pip install --no-cache-dir -r requirements.txt
-
-   COPY --chown=user . .
-
-   EXPOSE 7860
-   CMD ["streamlit", "run", "main.py", \
-        "--server.address=0.0.0.0", "--server.port=7860"]
-   ```
-
-   `--server.address=0.0.0.0` is not optional. Streamlit binds to localhost by default,
-   which inside a container means nothing outside it can connect, and the Space will
-   build cleanly and then time out.
-
-5. Add `ANTHROPIC_API_KEY` under **Settings → Variables and secrets → New secret**.
+4. Add `ANTHROPIC_API_KEY` under **Settings → Variables and secrets → New secret**.
    **Never commit your key** — a key pushed to a public Space is a key you must
    immediately revoke.
-6. Submit the public Space URL alongside your other deliverables.
+5. Submit the public Space URL alongside your other deliverables.
 
-If the Space asks you to upgrade to a paid plan at any point, stop and email me rather
-than paying. This is a bonus, and no part of this course requires a subscription.
+Two things that save debugging time. `app.py` already binds `0.0.0.0:7860`, which is what
+Spaces expects — if you write your own entry point, it must do the same, or the Space
+builds cleanly and then times out with nothing useful in the log. And the app works
+without a key: the chat will tell you the key is missing and the URL scorer still runs,
+so a Space that loads but cannot answer is a secrets problem, not a code problem.
+
+If any part of this asks you to upgrade to a paid plan, stop and email me rather than
+paying. No part of this course requires a subscription.
 
 ---
 
