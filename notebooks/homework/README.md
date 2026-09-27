@@ -113,6 +113,13 @@ python 01_lr.py
 | `04_tree.py` | Decision tree | the exhaustive split search | 1 | 08 |
 | `05_kmeans.py` | K-means clustering | the assign step, the update step, then the loop | 3 | 11 |
 
+There is also a **[`data_science_tutorial/`](data_science_tutorial/)** folder beside these.
+It is not homework — no blanks, nothing graded — and it covers the work that sits
+*around* the algorithms: loading a real dataset, examining it properly, and reporting
+what you found. It shares this same `uv` environment, so `uv run
+data_science_tutorial/01_exploratory_data_analysis/01_eda.py` works with no extra setup.
+Worth reading if you want to see what a full analysis looks like end to end.
+
 Do them in order. 02 reuses the loop you write in 01 with one substitution, and
 seeing that for yourself is half the lesson.
 

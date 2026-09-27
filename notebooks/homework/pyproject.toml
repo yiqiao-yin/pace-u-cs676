@@ -13,9 +13,14 @@ requires-python = ">=3.10"
 #
 # scikit-learn and statsmodels are absent on purpose. Importing either one to
 # do the fitting defeats every exercise in this folder.
+# ucimlrepo (and the pandas it pulls in) is here for data_science_tutorial/,
+# which is exploratory analysis rather than a graded exercise. Loading and
+# describing a real dataset is not the thing the five exercises test, so a
+# dataframe library is allowed there; the exercises themselves stay numpy-only.
 dependencies = [
     "numpy>=1.26",
     "matplotlib>=3.8",
+    "ucimlrepo>=0.0.7",
 ]
 
 # A folder of standalone scripts, not an installable library — so there is

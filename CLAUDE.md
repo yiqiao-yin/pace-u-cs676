@@ -59,7 +59,9 @@ Five numpy-only scripts, each complete except for the core algorithm, which the 
 cd notebooks/homework && uv run make_homework.py
 ```
 
-The folder is **one uv environment** (`pyproject.toml` + `uv.lock`, numpy and matplotlib, `package = false`) covering all five exercises and the solutions — `uv sync` once, then `uv run 01_lr.py`. Plain `pip install numpy` still works and is what CI uses, so don't make anything depend on uv.
+The folder is **one uv environment** (`pyproject.toml` + `uv.lock`, `package = false`) covering all five exercises, the solutions, and `data_science_tutorial/` — `uv sync` once, then `uv run 01_lr.py`. Plain `pip install numpy` still works and is what CI uses, so don't make anything depend on uv.
+
+`notebooks/homework/data_science_tutorial/` is **not homework** — worked EDA demonstrations, no blanks, nothing graded, one subfolder per topic with its own script and figures, and a single README covering all topics. It is the one place in this folder where pandas is allowed: `ucimlrepo` (and the pandas it pulls) is in the dependency list **for the tutorial only**, and the five exercises stay numpy-only — importing a dataframe library to do the fitting still defeats them. Everything the tutorial writes is gitignored via its own subfolder `.gitignore` (figures *and* the cached UCI CSV, ~1.2 MB) because `uv run 01_eda.py` rebuilds all of it, and the README describes each figure rather than embedding it. **CI is unaffected**: the stub guard globs `0[1-5]_*.py` non-recursively, so a tutorial script named `01_eda.py` in a subfolder is not picked up — but that also means nothing in CI runs it, and CI installs only numpy, so it could not.
 
 `answer/*_ans.py` are the real sources. Each marks its solution with `# BEGIN SOLUTION: description` / `# END SOLUTION`, and the generator writes **two** files from each one:
 
