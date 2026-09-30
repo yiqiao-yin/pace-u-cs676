@@ -2,7 +2,7 @@
 
 **CS676 Algorithms for Data Science · Pace University**
 
-> **Weight: 30% of your course grade · 100 points · +5% bonus for a live Hugging Face deployment**
+> **Weight: 30% of your course grade · 100 points · +5% bonus for a live public deployment**
 >
 > **One deliverable, one deadline.** Due date: **[DEADLINES.md](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/DEADLINES.md)** — the only place dates live. The parts below are where the marks are, not a schedule.
 
@@ -23,7 +23,7 @@ your job is to turn it into something worth installing.
 - [Running the tests](#running-the-tests)
 - [What to build](#what-to-build)
 - [Deliverables and grading](#deliverables-and-grading)
-- [Bonus: deploy to Hugging Face (+5%)](#bonus-deploy-to-hugging-face-5)
+- [Bonus: deploy it publicly (+5%)](#bonus-deploy-it-publicly-5)
 - [Troubleshooting](#troubleshooting)
 
 ---
@@ -417,50 +417,58 @@ any order, or all at once — nothing is graded on when you did which piece.
 
 ---
 
-## Bonus: deploy to Hugging Face (+5%)
+## Bonus: deploy it publicly (+5%)
 
-Worth **an extra 5% on your course grade**. The catch: this is a *terminal* app, and
-Hugging Face Spaces serves web pages. You have two honest options.
+Worth **an extra 5% on your course grade**. **Any host is fine** — the marks are for a
+working public link with the API key handled properly, not for a particular vendor.
+
+**This is optional and it must not cost you anything.** If a platform asks you to
+upgrade to a paid plan, stop, and say so in your report. You lose nothing.
+
+The catch specific to this project: it is a *terminal* app, and hosts serve web pages.
+So you need a thin web front end over the package. Two honest options:
 
 1. **Wrap it in a web UI.** Add a Gradio or Streamlit front end that calls the same
    `personaforge` package. If your package boundaries are clean this is a small file —
-   which is rather the point of building a package.
-2. **Ship the package and a browser terminal.** Gradio can render a chat interface that
+   which is rather the point of having built a package. `deliverable/project_1/app.py`
+   is a worked example of exactly this shape: a Gradio UI over a separate backend
+   module, with no logic of its own.
+2. **Ship the package and a browser chat.** Gradio can render a chat interface that
    drives the orchestrator directly.
 
-**Pick Gradio, and pick it before you write the wrapper.** Hugging Face offers Gradio,
-Docker, and static HTML — the Streamlit SDK is gone, and while a Streamlit app can run
-under the **Docker** SDK, **creating a Docker Space requires a PRO subscription at
-$9/month**. A **Gradio** Space is free. So option 1 above is only cheap if the front end
-you write is a Gradio one; choosing Streamlit commits you to a paid plan for no benefit.
+**Streamlit Community Cloud is the easiest free route** if you write a Streamlit
+wrapper: it is free, it reads your public GitHub repo, and you point it at your app
+file. Put your key in its **Secrets** box at the top level of the TOML —
 
-Put `sdk: gradio` and `app_file: app.py` in the Space's `README.md`, name your entry
-point `app.py`, and bind it to `0.0.0.0:7860` — Spaces expects that port, and an app
-listening only on localhost builds cleanly and then times out with nothing useful in the
-log. Project 1's `app.py` is a worked example of a Gradio front end over a separate
-backend module, and the same shape applies here: import `personaforge`, keep the UI thin.
+```toml
+ANTHROPIC_API_KEY = "sk-ant-..."
+```
 
-If any part of this asks you to upgrade to a paid plan, stop and email me rather than
-paying. No part of this course requires a subscription.
+— because Streamlit exposes root-level secrets as environment variables, which is what
+`llm.py` reads. Nested under a `[section]` it will not be found.
 
-Either way: add `ANTHROPIC_API_KEY` under **Settings → Variables and secrets**, and
-submit the public URL.
-**Never commit your key** — a key pushed to a public Space must be revoked immediately.
+**A note on Hugging Face Spaces,** since it is the better-known option: there is no
+Streamlit SDK any more, and **both Gradio and Docker Spaces require a paid plan to
+create** ($9/month). The one free exception is a Gradio Space on **ZeroGPU** hardware,
+limited to 2, and only for accounts **older than 30 days with a verified email** — so if
+you made your account for this course, it is not available to you. Use another host
+rather than paying.
 
-**You will need a `requirements.txt`, and this project does not ship one.** Spaces
-installs dependencies from that file; it does not read `uv.lock`. Generate one from the
-lock so the Space gets the versions you actually tested against:
+**You will need a `requirements.txt`, and this project does not ship one.** Hosts install
+dependencies from that file; none of them read `uv.lock`. Generate one from the lock so
+your deployment gets the versions you actually tested against:
 
 ```bash
 uv export --no-dev --no-emit-project --no-hashes -o requirements.txt
 ```
 
 `--no-dev` leaves out pytest, and `--no-emit-project` leaves out `personaforge` itself —
-Spaces cannot install it from PyPI, so ship the `src/personaforge/` directory alongside
+no host can install it from PyPI, so ship the `src/personaforge/` directory alongside
 your app file instead. Add whichever front end you chose (`gradio` or `streamlit`) to
 that file by hand; it is a dependency of your deployment, not of this package.
 
----
+**Never commit your key** — a key pushed to a public repository must be revoked
+immediately. Submit the public URL alongside your other deliverables.
 
 ## Troubleshooting
 

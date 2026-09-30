@@ -2,7 +2,7 @@
 
 **CS676 Algorithms for Data Science · Pace University**
 
-> **Weight: 30% of your course grade · 100 points · +5% bonus for a live Hugging Face deployment**
+> **Weight: 30% of your course grade · 100 points · +5% bonus for a live public deployment**
 >
 > **One deliverable, one deadline.** Due date: **[DEADLINES.md](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/DEADLINES.md)** — the only place dates live. The parts below are where the marks are, not a schedule.
 
@@ -23,7 +23,7 @@ can be trusted.
 - [Measuring your work](#measuring-your-work)
 - [Ideas worth pursuing](#ideas-worth-pursuing)
 - [Deliverables and grading](#deliverables-and-grading)
-- [Bonus: deploy to Hugging Face (+5%)](#bonus-deploy-to-hugging-face-5)
+- [Bonus: deploy it publicly (+5%)](#bonus-deploy-it-publicly-5)
 - [Troubleshooting](#troubleshooting)
 
 ---
@@ -62,7 +62,7 @@ Those two explanations are, frankly, not good enough. That is the point.
 | `test_credibility.py` | Contract tests — checks the output *shape*, not quality | Add your own cases |
 | `.env.example` | Template for API keys | Copy to `.env` |
 | `pyproject.toml` + `uv.lock` | The dependency list and the exact pinned versions. `uv sync` reads these | No |
-| `requirements.txt` | The same dependencies for the `pip` fallback, and what Hugging Face needs | No |
+| `requirements.txt` | The same dependencies for the `pip` fallback, and what every deployment host reads | No |
 
 The app already handles the Claude call, web search, citation extraction, session
 state, and the UI. **None of that is what you are graded on.**
@@ -283,8 +283,9 @@ for testing without burning chat tokens. They behave the same because the model 
 the web search, and the citation extraction all live in `chat_backend.py` — only the
 UI differs.
 
-**Use Streamlit for local work and Gradio for deployment.** The Hugging Face bonus
-needs the Gradio one; see [the bonus section](#bonus-deploy-to-hugging-face-5) for why.
+**Either one is fine to develop against.** Streamlit Community Cloud deploys `main.py`
+as-is and is the easiest route to the bonus; the Gradio one exists because Hugging Face
+Spaces has no Streamlit SDK. See [the bonus section](#bonus-deploy-it-publicly-5).
 If you improve `credibility.py` — which is the assignment — both front ends pick the
 change up with no extra work, because both call `score_url` the same way.
 
@@ -415,60 +416,69 @@ full marks.
 
 ---
 
-## Bonus: deploy to Hugging Face (+5%)
+## Bonus: deploy it publicly (+5%)
 
 Getting the app running on a public URL is worth **an extra 5% on your course grade**.
-It is genuinely more work, which is why it is worth points.
+**Any host is fine** — what earns the marks is a working link and an API key handled
+properly, not a particular vendor.
 
-**Use the Gradio SDK, and deploy `app.py`.** This needs a short explanation, because
-the obvious route is a trap:
+**This is optional, and it must not cost you anything.** If a platform asks you to
+upgrade to a paid plan, stop. Say so in your report and you lose nothing.
 
-Hugging Face removed the Streamlit SDK — the picker now offers only Gradio, Docker, and
-static HTML. A Streamlit app can still run there under the **Docker** SDK, but
-**creating a Docker Space requires a PRO subscription at $9/month.** A Gradio Space does
-not. That is the entire reason `app.py` exists: it is the same app as `main.py`, over the
-same `chat_backend.py`, so the free route costs you no extra work.
+### The free route: Streamlit Community Cloud
 
-1. Create a **Space** at [huggingface.co/new-space](https://huggingface.co/new-space).
-   Choose the **Gradio** SDK and the free **CPU basic** hardware.
-2. Push these four files to the Space repo:
+This is the shortest path, because it takes `main.py` exactly as it is — no Gradio
+rewrite, no Dockerfile, no container.
 
-   ```
-   app.py               the Gradio front end (Spaces looks for this filename)
-   chat_backend.py      the Claude call and citation extraction
-   credibility.py       your scorer — the part you are graded on
-   requirements.txt     dependencies
-   ```
+1. Push your work to a public GitHub repository, including `requirements.txt`.
+2. Go to [share.streamlit.io](https://share.streamlit.io), sign in with GitHub, and
+   grant access to your repositories.
+3. Create an app: pick your repo and branch, and set the main file to `main.py`
+   (`deliverable/project_1/main.py` if you kept the course layout — a file in a
+   subdirectory is fine).
+4. Open **Advanced settings → Secrets** before deploying and paste:
 
-   You do **not** need `main.py` on the Space. Leave it out and Streamlit never gets
-   installed there, which makes the build faster.
-
-3. Put this at the top of the Space's own `README.md`:
-
-   ```yaml
-   ---
-   title: Credibility Scored Chatbot
-   sdk: gradio
-   app_file: app.py
-   pinned: false
-   ---
+   ```toml
+   ANTHROPIC_API_KEY = "sk-ant-..."
    ```
 
-4. Add `ANTHROPIC_API_KEY` under **Settings → Variables and secrets → New secret**.
-   **Never commit your key** — a key pushed to a public Space is a key you must
-   immediately revoke.
-5. Submit the public Space URL alongside your other deliverables.
+   Keep it at the **top level** of that box, not inside a `[section]`. Streamlit exposes
+   root-level secrets as environment variables as well as through `st.secrets`, and
+   `credibility.py` reads `os.getenv("ANTHROPIC_API_KEY")` — so a key nested under a
+   section silently will not be found.
 
-Two things that save debugging time. `app.py` already binds `0.0.0.0:7860`, which is what
-Spaces expects — if you write your own entry point, it must do the same, or the Space
-builds cleanly and then times out with nothing useful in the log. And the app works
-without a key: the chat will tell you the key is missing and the URL scorer still runs,
-so a Space that loads but cannot answer is a secrets problem, not a code problem.
+5. Deploy, and submit the public URL alongside your other deliverables.
 
-If any part of this asks you to upgrade to a paid plan, stop and email me rather than
-paying. No part of this course requires a subscription.
+**Never commit your key.** A key pushed to a public repository is a key you must revoke
+immediately.
 
----
+### Hugging Face Spaces — read this before trying
+
+Spaces is the better-known option and it is genuinely awkward right now, so here is the
+honest position rather than instructions that may not work for you:
+
+- There is **no Streamlit SDK** any more. The picker offers Gradio, Docker, and static
+  HTML only.
+- **Gradio and Docker Spaces both require a paid plan to create** — PRO, $9/month. This
+  is a flat subscription; choosing free CPU hardware does not avoid it.
+- The one free exception is a **Gradio Space on ZeroGPU hardware**, limited to 2, and
+  only for accounts that are **more than 30 days old with a verified email**. If you
+  created your Hugging Face account for this course, you are inside that window and no
+  configuration will get you around it.
+- Static HTML Spaces are free but cannot run Python, so they are no use here.
+
+If you have an older account and want to try it: create the Space with the **Gradio**
+SDK, select **ZeroGPU** hardware (not CPU Basic), put `sdk: gradio` and
+`app_file: app.py` in the Space's `README.md`, push `app.py`, `chat_backend.py`,
+`credibility.py`, and `requirements.txt`, and add `ANTHROPIC_API_KEY` under **Settings →
+Variables and secrets**. `app.py` already binds `0.0.0.0:7860`, which is what Spaces
+expects.
+
+### Other options
+
+Anything that serves a public URL counts — Render, Fly.io, Railway, a VPS you already
+pay for. If you deploy somewhere not listed here, say where and how in your report; that
+is worth as much as using the route above.
 
 ## Troubleshooting
 

@@ -101,8 +101,8 @@ when things are due.
 | Component | Weight | Notes |
 | --- | --- | --- |
 | Homework | **10%** | Per-session submission form **and** the five Pass/Fail exercises. All five count. |
-| Project 1 | **30%** | +5% bonus for a Hugging Face deployment |
-| Project 2 | **30%** | +5% bonus for a Hugging Face deployment |
+| Project 1 | **30%** | +5% bonus for a live public deployment |
+| Project 2 | **30%** | +5% bonus for a live public deployment |
 | Project 3 | **30%** | Required. Topic is yours. |
 | | **100%** | **110% available with both bonuses** |
 

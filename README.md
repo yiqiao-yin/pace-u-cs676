@@ -117,7 +117,7 @@ Your grade is built from four components. Each project is marked out of 100 poin
 | Project 3 — Your Own AI/ML Project | **30%** | — | Required. Take-home, your own idea. [Spec](docs/13_capstone.md#project-3-your-own-aiml-project) |
 | | **100%** | **+10%** | **110% total available** |
 
-**Both bonuses are earned by deploying a working app to Hugging Face Spaces** — 5% for Project 1, 5% for Project 2. This is real additional work, which is why it carries real additional credit. Submit the public Space URL with your deliverables.
+**Both bonuses are earned by deploying a working app to a public URL** — 5% for Project 1, 5% for Project 2. **Any host counts**; Streamlit Community Cloud is free and is the shortest route, and the per-project READMEs give the steps. This is real additional work, which is why it carries real additional credit. Submit the public URL with your deliverables, and if a platform asks you to pay, don't — say so in your report instead.
 
 **Every deadline is in [DEADLINES.md](DEADLINES.md)** — homework and projects, one file,
 nothing repeated elsewhere.

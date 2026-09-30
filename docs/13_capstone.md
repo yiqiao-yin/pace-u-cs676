@@ -100,7 +100,7 @@ interface.
 
 **Weighting: this project is 30% of your course grade, marked out of 100 points**
 (deliverable 1: 25, deliverable 2: 35, deliverable 3: 40). An additional **5% bonus**
-is added to your course grade for deploying a working app to Hugging Face Spaces. The
+is added to your course grade for deploying a working app to a public URL — any host. The
 detailed point-by-point rubric is in the project README, and the full course weighting
 and letter-grade scale are in the [course
 README](https://github.com/yiqiao-yin/pace-u-cs676#grading-policy).
@@ -175,7 +175,7 @@ This feature will involve:
 | **Novelty**               | Show something beyond a longer lookup table, and defend it. Extending the domain list is the obvious move and earns the fewest points; reading the page, using real publication metadata, or learning the weights from labelled data are not. Disagreeing with a label in `evaluate.py` and arguing your case counts as novelty. |
 | **Accuracy**              | Report measured before/after numbers from `python evaluate.py` — mean absolute error, band accuracy, and worst-case error against the baseline of 0.142 / 66.7% / 0.410. A measured improvement matters more than a large one; "it seems better" earns nothing. |
 | **Robustness**            | The scorer must not crash the app. Dead links, timeouts, malformed URLs, and API failures all have to degrade to a score and an explanation. `test_credibility.py` must still pass. |
-| **Deployment (bonus)**    | Deploying the working app to **Hugging Face Spaces** adds **+5%** to your course grade. This is a bonus, not a requirement — the base 100 points are earned locally.       |
+| **Deployment (bonus)**    | Deploying the working app to **a public URL** adds **+5%** to your course grade — any host; Streamlit Community Cloud is free. A bonus, not a requirement: the base 100 points are earned locally, and no part of this course requires a paid plan.       |
 
 The point-by-point breakdown for each deliverable is in the
 [project README](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/deliverable/project_1/README.md#deliverables-and-grading).
@@ -185,7 +185,7 @@ The point-by-point breakdown for each deliverable is in the
 ![graph](../pics/12_capstone_02.png)
 
 **Weighting: 30% of your course grade, marked out of 100 points, plus a +5% bonus for
-deploying a working app to Hugging Face Spaces.** See the [course
+deploying a working app to a public URL — any host.** See the [course
 README](https://github.com/yiqiao-yin/pace-u-cs676#grading-policy) for the full
 weighting and the letter-grade scale.
 
@@ -343,7 +343,7 @@ interesting, because you will read a great deal of its output.
   - **Robustness**: bad input, a persona that does not exist, a malformed persona file, and an API failure mid-conversation must all be handled. A crashed turn should not lose the transcript.
   - Documentation that lets another developer install, run, test, and extend your package without asking you a question.
   - A live demo during your presentation slot, plus a defence of what is novel in your version.
-  - **Optionally, a deployment for the +5% bonus.** This is a terminal app and Hugging Face Spaces serves web pages, so the honest path is a small Gradio or Streamlit front end that calls your package — which is easy if your package boundaries are clean, and revealing if they are not.
+  - **Optionally, a deployment for the +5% bonus.** This is a terminal app and hosts serve web pages, so the honest path is a small Gradio or Streamlit front end that calls your package — which is easy if your package boundaries are clean, and revealing if they are not. Any public host counts.
 
 The rubric point split is 25 / 35 / 40 across the three deliverables; the point-by-point
 breakdown is in the
@@ -359,7 +359,7 @@ deciding what an agent is, what it remembers, and who gets to speak.
 ![graph](../pics/12_capstone_03.png)
 
 **Weighting: 30% of your course grade, marked out of 100 points.** This is a required
-take-home project on a topic of your own choosing. No Hugging Face bonus applies here —
+take-home project on a topic of your own choosing. No deployment bonus applies here —
 the two 5% deployment bonuses are attached to Projects 1 and 2. See the [course
 README](https://github.com/yiqiao-yin/pace-u-cs676#grading-policy) for the full
 weighting and the letter-grade scale.
