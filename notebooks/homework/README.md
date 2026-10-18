@@ -211,6 +211,17 @@ Submit through the [course form](https://airtable.com/appBjNPgdot15ZqO7/pagKL7hf
 like every other assignment. Send the completed `.py` files. If you generated
 reports with `--report`, include those too.
 
+**The `.py` file is the submission, and filling in the blanks is the whole assignment.**
+An exercise is finished when the script runs and prints `PASS` — the self-check table
+above is the bar. The reports and plots are conveniences for your own reading, not
+required artifacts.
+
+Some scripts end with a **"Something to try"** note, and a few of the `YOUR TASK` boxes
+raise questions they do not answer. Those are deliberately open — they are there to be
+thought about, argued with, or ignored, and none of them is a second task you are being
+marked on. If you do chase one, it is because it interested you. Nothing is deducted for
+leaving it alone.
+
 ## Solutions
 
 **Each solution is published after that homework's deadline has passed — not

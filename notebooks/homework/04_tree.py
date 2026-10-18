@@ -268,7 +268,10 @@ That is why the decision regions have square corners, and why a tree needs a
 staircase of splits to approximate a diagonal boundary that logistic regression
 would capture with a single line.
 
-## Something to try
+## Something to try — optional, not graded
+
+The exercise is finished once this script runs and reports `PASS`. What follows is
+an open question to poke at if you are curious, not a second task.
 
 Add a stopping rule — refuse to split a node with fewer than, say, five rows, or
 cap the depth. Watch training accuracy fall and test accuracy hold steady or
