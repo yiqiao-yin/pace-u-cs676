@@ -192,6 +192,302 @@ print(regressor.predict([[2.5]]))
 
 - **Advantages of sklearn**: The `sklearn` library offers a simple and efficient API for building decision trees. It also provides utilities for tuning hyperparameters like `max_depth` and `min_samples_split` to optimize performance.
 
+## Gini Impurity, Worked by Hand
+
+The `gini` function above is three lines of code, which makes it easy to use and easy to
+not understand. It is worth doing the arithmetic once.
+
+**Gini impurity is the probability that two items drawn at random from a node have
+different labels.** For two classes with proportions $p$ and $1-p$:
+
+$$\text{Gini} = 1 - (p^2 + (1-p)^2)$$
+
+A node where everything is one class has impurity 0 — pick twice, always agree. A 50/50
+node is the worst case at 0.5:
+
+```python
+import numpy as np
+
+def gini(labels):
+    """Gini impurity: the chance two random picks from this node disagree."""
+    labels = np.asarray(labels)
+    if len(labels) == 0:
+        return 0.0
+    p = np.bincount(labels, minlength=2) / len(labels)
+    return 1.0 - np.sum(p ** 2)
+
+for name, node in [
+    ("all one class ", [1, 1, 1, 1]),
+    ("8 yes / 2 no  ", [1]*8 + [0]*2),
+    ("half and half ", [1]*5 + [0]*5),
+    ("1 yes / 9 no  ", [1] + [0]*9),
+]:
+    y = np.asarray(node)
+    p = y.mean()
+    print(f"{name}: p(yes)={p:.1f}  Gini = 1 - ({p:.1f}^2 + {1-p:.1f}^2) = {gini(y):.3f}")
+```
+
+```
+all one class : p(yes)=1.0  Gini = 1 - (1.0^2 + 0.0^2) = 0.000
+8 yes / 2 no  : p(yes)=0.8  Gini = 1 - (0.8^2 + 0.2^2) = 0.320
+half and half : p(yes)=0.5  Gini = 1 - (0.5^2 + 0.5^2) = 0.500
+1 yes / 9 no  : p(yes)=0.1  Gini = 1 - (0.1^2 + 0.9^2) = 0.180
+```
+
+Notice that `8 yes / 2 no` and `1 yes / 9 no` are **not** symmetric in impurity — 0.320
+against 0.180. Impurity depends on how lopsided the node is, not which class dominates.
+
+### Choosing between candidate splits
+
+A tree does not evaluate impurity once; it evaluates it for every threshold and keeps the
+best. "Best" means the lowest **weighted** impurity of the two children, where each child
+is weighted by how many rows land in it:
+
+$$\text{weighted Gini} = \frac{n_{\text{left}}}{n}\text{Gini}_{\text{left}} + \frac{n_{\text{right}}}{n}\text{Gini}_{\text{right}}$$
+
+The weighting is the part people skip, and it matters: a perfectly pure child holding two
+rows is worth less than a mostly-pure child holding eight. Here are ten patients with one
+feature, and every candidate threshold scored:
+
+```python
+import numpy as np
+
+def gini(y):
+    y = np.asarray(y)
+    if len(y) == 0:
+        return 0.0
+    p = np.bincount(y, minlength=2) / len(y)
+    return 1.0 - np.sum(p ** 2)
+
+age   = np.array([22, 25, 29, 31, 35, 41, 46, 52, 58, 63])
+label = np.array([ 0,  0,  0,  0,  1,  0,  1,  1,  1,  1])   # 1 = diagnosed
+
+print(f"parent node: {label.sum()} yes / {len(label) - label.sum()} no, "
+      f"Gini = {gini(label):.3f}\n")
+
+for t in [25, 31, 38, 46, 52]:
+    left, right = label[age <= t], label[age > t]
+    weighted = (len(left) * gini(left) + len(right) * gini(right)) / len(label)
+    print(f"age <= {t:<3}  left ({len(left)}, {gini(left):.3f})  "
+          f"right ({len(right)}, {gini(right):.3f})  weighted = {weighted:.3f}")
+```
+
+```
+parent node: 5 yes / 5 no, Gini = 0.500
+
+age <= 25   left (2, 0.000)  right (8, 0.469)  weighted = 0.375
+age <= 31   left (4, 0.000)  right (6, 0.278)  weighted = 0.167
+age <= 38   left (5, 0.320)  right (5, 0.320)  weighted = 0.320
+age <= 46   left (7, 0.408)  right (3, 0.000)  weighted = 0.286
+age <= 52   left (8, 0.469)  right (2, 0.000)  weighted = 0.375
+```
+
+`age <= 31` wins with 0.167, down from 0.500 at the parent. Compare it with `age <= 25`:
+both produce a perfectly pure left child, but the split at 25 isolates only two rows and
+leaves eight messy ones behind, while the split at 31 isolates four and leaves a cleaner
+remainder. That difference — **0.167 against 0.375** — is entirely the weighting.
+
+This is exactly the loop you write in the homework. Working these five rows by hand first
+makes that exercise much shorter.
+
+---
+
+## A Real Dataset: Breast Cancer Diagnosis
+
+Every example so far has used four or five made-up points. Here is the same algorithm on
+a real diagnostic dataset that ships with scikit-learn: **569 biopsies, 30 measurements
+each, labelled malignant or benign.** No download required.
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, export_text
+
+data = load_breast_cancer()
+feature_names = list(data.feature_names)
+class_names = data.target_names.tolist()          # ['malignant', 'benign']
+
+X_train, X_test, y_train, y_test = train_test_split(
+    data.data, data.target, test_size=0.25, stratify=data.target, random_state=42)
+
+tree = DecisionTreeClassifier(max_depth=2, random_state=42)
+tree.fit(X_train, y_train)
+
+print(f"rows: {len(data.data)}  features: {len(feature_names)}  classes: {class_names}")
+print(f"training accuracy: {tree.score(X_train, y_train):.3f}")
+print(f"test accuracy    : {tree.score(X_test, y_test):.3f}")
+print()
+print(export_text(tree, feature_names=feature_names, class_names=class_names))
+```
+
+```
+rows: 569  features: 30  classes: ['malignant', 'benign']
+training accuracy: 0.958
+test accuracy    : 0.909
+
+|--- worst radius <= 16.80
+|   |--- worst concave points <= 0.14
+|   |   |--- class: benign
+|   |--- worst concave points >  0.14
+|   |   |--- class: malignant
+|--- worst radius >  16.80
+|   |--- texture error <= 0.47
+|   |   |--- class: benign
+|   |--- texture error >  0.47
+|   |   |--- class: malignant
+```
+
+**This output is the reason decision trees are still used.** Four rules, in plain
+language, that a clinician can read and argue with: large worst-radius plus high texture
+error leans malignant. No other common classifier hands you that. A logistic regression
+gives you thirty coefficients; a neural network gives you nothing you can read aloud.
+`stratify=data.target` keeps the malignant/benign ratio the same in both halves, which
+matters because the classes are not balanced.
+
+### How deep should the tree be?
+
+The single most important knob, and the easiest to get wrong:
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, stratify=y, random_state=42)
+
+print("depth   train    test")
+for d in [1, 2, 3, 5, 10, None]:
+    t = DecisionTreeClassifier(max_depth=d, random_state=42).fit(X_train, y_train)
+    print(f"{'None' if d is None else d:>5}   "
+          f"{t.score(X_train, y_train):.3f}   {t.score(X_test, y_test):.3f}")
+```
+
+```
+depth   train    test
+    1   0.923   0.923
+    2   0.958   0.909
+    3   0.977   0.944
+    5   0.995   0.937
+   10   1.000   0.923
+ None   1.000   0.923
+```
+
+Read the two columns against each other. Training accuracy climbs all the way to **1.000**
+and never looks back — an unconstrained tree can always keep splitting until every leaf
+holds a single row, and at that point it has memorised the training set. Test accuracy
+peaks at **depth 3** and then *declines*. Everything past depth 3 is the tree learning
+noise specific to these 426 training rows.
+
+A training accuracy of 1.0 is not an achievement here; it is the warning sign. This is
+the same lesson the homework prints at you.
+
+---
+
+## How Do Decision Trees Compare With Other Classifiers?
+
+A tree is interpretable, but interpretable is not the same as accurate. The honest way to
+find out is to run the alternatives on the same data with the same cross validation:
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+
+X, y = load_breast_cancer(return_X_y=True)
+cv = StratifiedKFold(5, shuffle=True, random_state=42)
+
+models = {
+    "Decision tree (depth 3)": DecisionTreeClassifier(max_depth=3, random_state=42),
+    "Logistic regression":     make_pipeline(StandardScaler(), LogisticRegression(max_iter=5000)),
+    "k-nearest neighbours":    make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=5)),
+    "Random forest (100)":     RandomForestClassifier(n_estimators=100, random_state=42),
+}
+
+for name, model in models.items():
+    scores = cross_val_score(model, X, y, cv=cv, scoring="accuracy")
+    print(f"{name:26} {scores.mean():.3f}  +/- {scores.std():.3f}")
+```
+
+```
+Decision tree (depth 3)    0.924  +/- 0.021
+Logistic regression        0.974  +/- 0.017
+k-nearest neighbours       0.963  +/- 0.018
+Random forest (100)        0.956  +/- 0.012
+```
+
+**The decision tree comes last.** That is not a mistake in the setup — it is the honest
+result, and it is the most useful thing on this page. A single tree makes hard
+axis-aligned cuts, so a smooth boundary like this one is approximated by a staircase. The
+logistic regression, which assumes exactly the kind of smooth boundary the data has,
+wins by five points.
+
+Two other things in that table are worth reading:
+
+- **The random forest beats the single tree by three points** (0.956 against 0.924), using
+  the same kind of tree. Averaging many trees, each grown on a resample, cancels out the
+  variance that makes an individual tree brittle — which is why forests, not trees, are
+  what people usually deploy. That resampling is the bootstrap from Session 05.
+- **The forest has the smallest spread** (±0.012). It is not just more accurate on
+  average, it is more consistent across folds.
+
+### One advantage that is real: trees ignore the units
+
+Notice that logistic regression and k-NN above are wrapped in `make_pipeline(StandardScaler(), ...)`
+and the trees are not. That is not an oversight. Trees split on thresholds within a single
+feature, so rescaling a column changes nothing. Distance-based and coefficient-based
+methods care a great deal:
+
+```python
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+
+X, y = load_breast_cancer(return_X_y=True)
+cv = StratifiedKFold(5, shuffle=True, random_state=42)
+
+X_rescaled = X.copy()
+X_rescaled[:, 3] *= 10_000        # one column recorded in different units
+
+for name, model in [("Decision tree", DecisionTreeClassifier(max_depth=3, random_state=42)),
+                    ("k-NN (no scaling)", KNeighborsClassifier())]:
+    original = cross_val_score(model, X, y, cv=cv).mean()
+    rescaled = cross_val_score(model, X_rescaled, y, cv=cv).mean()
+    print(f"{name:20} original {original:.3f}   one column rescaled {rescaled:.3f}")
+```
+
+```
+Decision tree        original 0.924   one column rescaled 0.924
+k-NN (no scaling)    original 0.935   one column rescaled 0.866
+```
+
+The tree is **completely unchanged**. The k-NN loses seven points, because one feature now
+dominates every distance calculation. On messy real data where columns arrive in whatever
+units someone recorded them in, that invariance saves a preprocessing step you can get
+wrong.
+
+### When to reach for a tree
+
+| Reach for a tree when | Reach for something else when |
+| --- | --- |
+| Someone has to **read and defend** the rules | Only accuracy matters |
+| Features are a mix of scales and types | The boundary is smooth (logistic regression often wins) |
+| You want a fast, no-preprocessing baseline | You have very few rows and many features |
+| You need feature importance quickly | You need calibrated probabilities |
+
+And in practice: **use a single tree to understand your data, then use a random forest or
+gradient boosting to predict with it.** The single tree is the explanation; the ensemble
+is the product.
+
+---
+
 ## Summary
 
 - Decision trees are powerful, interpretable algorithms for classification and regression tasks.
