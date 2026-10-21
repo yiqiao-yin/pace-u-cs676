@@ -518,6 +518,184 @@ error = mean_squared_error(y_true, y_pred)
 print("Mean Squared Error:", error)
 ```
 
+## Exercise: K-Fold Cross Validation on a Real Dataset
+
+Everything above either used synthetic data or let scikit-learn build the folds for you.
+This exercise does neither. You load a real dataset from the **UCI Machine Learning
+Repository**, build the fold indices yourself with a loop, and score a classifier you
+also write yourself. Only numpy is needed beyond the loader.
+
+Install the loader first:
+
+```bash
+pip install ucimlrepo numpy
+```
+
+### Step 1 — build the indices and look at them
+
+Before writing any cross-validation loop, build the fold indices and print them. This is
+the part that trips people up, and it is much easier to reason about when you can see it.
+
+The recipe is two lines: **shuffle the row numbers once, then cut the shuffled list into
+K pieces.** Each piece takes a turn as the validation set, and the other K−1 pieces
+joined together are the training set.
+
+```python
+import numpy as np
+from ucimlrepo import fetch_ucirepo
+
+wine = fetch_ucirepo(id=109)                     # Wine, 178 rows, 13 features, 3 classes
+X = wine.data.features.to_numpy(dtype=float)
+y = wine.data.targets.to_numpy().ravel()
+print("rows:", X.shape[0], " features:", X.shape[1], " classes:", np.unique(y))
+
+K = 5
+rng = np.random.default_rng(676)
+order = rng.permutation(len(y))       # shuffle the row numbers once
+folds = np.array_split(order, K)      # cut them into K pieces
+
+for i, fold in enumerate(folds):
+    val_idx = fold
+    train_idx = np.concatenate([folds[j] for j in range(K) if j != i])
+    print(f"fold {i}:  train={len(train_idx):3}  val={len(val_idx):2}   "
+          f"val rows start with {val_idx[:6]}")
+
+# rows: 178  features: 13  classes: [1 2 3]
+# fold 0:  train=142  val=36   val rows start with [  0 109  88  39 173  49]
+# fold 1:  train=142  val=36   val rows start with [165 141 150 142 123  56]
+# fold 2:  train=142  val=36   val rows start with [ 76  92  93 100  36  73]
+# fold 3:  train=143  val=35   val rows start with [137   6 171   8  13   4]
+# fold 4:  train=143  val=35   val rows start with [ 34  33  52 131 146 101]
+```
+
+Three things to notice in that output.
+
+**The fold sizes are not all equal.** 178 does not divide by 5, so `np.array_split` makes
+three folds of 36 and two of 35. It handles the remainder for you; if you slice by hand
+with `i * fold_size`, you will silently drop the last three rows.
+
+**The validation indices are scattered, not contiguous.** `[0, 109, 88, 39, ...]` rather
+than `[0, 1, 2, 3, ...]`, because we shuffled first. That matters: the Wine file is sorted
+by class, so unshuffled folds would each contain only one or two of the three classes.
+
+**Train and validation always sum to 178.** Every row is in exactly one validation fold
+and in the training set of every other fold.
+
+That last claim is worth checking rather than trusting:
+
+```python
+import numpy as np
+
+K, n = 5, 178
+rng = np.random.default_rng(676)
+folds = np.array_split(rng.permutation(n), K)
+
+all_val = np.concatenate(folds)
+print("every row used exactly once:", sorted(all_val.tolist()) == list(range(n)))
+print("no row in two folds        :", len(set(all_val.tolist())) == n)
+
+for i in range(K):
+    train_idx = np.concatenate([folds[j] for j in range(K) if j != i])
+    assert len(set(train_idx) & set(folds[i])) == 0
+print("no fold overlaps its own training set: True")
+
+# every row used exactly once: True
+# no row in two folds        : True
+# no fold overlaps its own training set: True
+```
+
+If that third assertion ever fails, your cross-validated score is meaningless, because
+the model was scored on rows it trained on.
+
+### Step 2 — rotate the folds and score each one
+
+Now use those indices. The classifier here is deliberately tiny: compute one centroid per
+class from the training rows, then label each validation row by whichever centroid is
+closest. Ten lines, no library, so nothing about the evaluation is hidden inside someone
+else's function.
+
+```python
+import numpy as np
+from ucimlrepo import fetch_ucirepo
+
+wine = fetch_ucirepo(id=109)
+X = wine.data.features.to_numpy(dtype=float)
+y = wine.data.targets.to_numpy().ravel()
+
+# Scale once. The 13 columns have very different units, and the distances below
+# would otherwise be dominated by whichever column has the largest numbers.
+X = (X - X.mean(axis=0)) / X.std(axis=0)
+
+def fit(X_train, y_train):
+    """One centroid per class."""
+    classes = np.unique(y_train)
+    centroids = np.array([X_train[y_train == c].mean(axis=0) for c in classes])
+    return classes, centroids
+
+def predict(model, X_val):
+    classes, centroids = model
+    distances = np.linalg.norm(X_val[:, None, :] - centroids[None, :, :], axis=2)
+    return classes[np.argmin(distances, axis=1)]
+
+K = 5
+rng = np.random.default_rng(676)
+folds = np.array_split(rng.permutation(len(y)), K)
+
+accuracies = []
+for i in range(K):
+    val_idx = folds[i]
+    train_idx = np.concatenate([folds[j] for j in range(K) if j != i])
+
+    model = fit(X[train_idx], y[train_idx])
+    acc = (predict(model, X[val_idx]) == y[val_idx]).mean()
+    accuracies.append(acc)
+    print(f"fold {i}:  train={len(train_idx):3}  val={len(val_idx):2}   accuracy={acc:.4f}")
+
+accuracies = np.array(accuracies)
+print(f"\nmean accuracy   : {accuracies.mean():.4f}")
+print(f"std across folds: {accuracies.std():.4f}")
+
+# fold 0:  train=142  val=36   accuracy=1.0000
+# fold 1:  train=142  val=36   accuracy=0.9167
+# fold 2:  train=142  val=36   accuracy=0.9722
+# fold 3:  train=143  val=35   accuracy=0.9429
+# fold 4:  train=143  val=35   accuracy=0.9714
+#
+# mean accuracy   : 0.9606
+# std across folds: 0.0285
+```
+
+### What the numbers tell you
+
+The mean is **0.9606**, and that is the number most people would report. The more
+interesting number is the spread.
+
+Fold 0 scored a perfect **1.0000** and fold 1 scored **0.9167** — a gap of more than eight
+points, on the same data, with the same model, differing only in which 36 rows were held
+out. If you had split the data once instead of five times and happened to land on fold 0,
+you would believe this classifier is flawless. Land on fold 1 and you would think it has a
+real problem. Neither is true, and the single number you get from a single split cannot
+tell you which situation you are in.
+
+That is the entire argument for cross validation in one table, and it is why you report
+mean **and** standard deviation. Here the honest summary is "about 96%, give or take 3".
+
+### Things to try
+
+Each of these is a small change to the code above with a visible effect.
+
+1. **Remove the shuffle** — use `order = np.arange(len(y))` instead of
+   `rng.permutation`. The Wine file is sorted by class, so accuracy will collapse.
+   Confirm why by printing `np.unique(y[folds[0]])` for each fold.
+2. **Change K** to 2, then 10, then `len(y)` (leave-one-out). Watch the mean move a
+   little and the standard deviation move a lot.
+3. **Change the seed** from 676 to something else. The mean should barely move; if it
+   moves a lot, your dataset is too small for 5 folds.
+4. **Drop the scaling line** and re-run. Distance-based methods care about units, and
+   this is the cheapest possible demonstration of it.
+5. **Stratify the folds** so each one holds roughly the same class proportions. Compare
+   your result against `sklearn.model_selection.StratifiedKFold` to check your work.
+
 ## Homework
 
 **[`03_cv.py`](https://github.com/yiqiao-yin/pace-u-cs676/blob/main/notebooks/homework/03_cv.py) — K-Fold Cross Validation from scratch**
